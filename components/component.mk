@@ -1,0 +1,2 @@
+COMPONENT_SRCDIRS := hal app user
+COMPONENT_ADD_INCLUDEDIRS := hal app user
