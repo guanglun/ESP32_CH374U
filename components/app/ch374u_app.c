@@ -240,10 +240,13 @@ uint8_t	HostCtrlTransfer374( uint8_t * ReqBuf, uint8_t * DatBuf, uint8_t * RetLe
 			len = total;
 			if ( *ReqBuf & 0x80 ) {  // 收
 				while ( len ) {
-					mDelayuS( 200 );
+					//mDelayuS( 400 );
 					s = WaitHostTransact374( 0, DEF_USB_PID_IN, tog, 200 );  // IN数据
 					if ( s != USB_INT_SUCCESS ) break;
 					count = Read374Byte( REG_USB_LENGTH );
+					Read374Block( RAM_HOST_RECV, count, DatBuf );
+					Read374Block( RAM_HOST_RECV, count, DatBuf );
+					Read374Block( RAM_HOST_RECV, count, DatBuf );
 					Read374Block( RAM_HOST_RECV, count, DatBuf );
 					DatBuf += count;
 					if ( count <= len ) len -= count;
@@ -255,7 +258,7 @@ uint8_t	HostCtrlTransfer374( uint8_t * ReqBuf, uint8_t * DatBuf, uint8_t * RetLe
 			}
 			else {  // 发
 				while ( len ) {
-					mDelayuS( 200 );
+					//mDelayuS( 400 );
 					count = len >= UsbDevEndpSize ? UsbDevEndpSize : len;
 					Write374Block( RAM_HOST_TRAN, count, DatBuf );
 					Write374Byte( REG_USB_LENGTH, count );
@@ -323,8 +326,8 @@ void Init374Host( void )  // 初始化USB主机
 	Write374Byte( REG_USB_H_CTRL, 0x00 );
 	Write374Byte( REG_INTER_FLAG, BIT_IF_USB_PAUSE | BIT_IF_INTER_FLAG );  // 清所有中断标志
 //	Write374Byte( REG_INTER_EN, BIT_IE_TRANSFER );  // 允许传输完成中断,因为本程序使用查询方式检测USB设备插拔,所以无需USB设备检测中断
-	Write374Byte( REG_INTER_EN, 0xF0 | BIT_IE_TRANSFER | BIT_IE_DEV_DETECT );  // 允许传输完成中断和USB设备检测中断
-	Write374Byte( REG_SYS_CTRL, BIT_CTRL_OE_POLAR  );  // 对于CH374T或者UEN引脚悬空的CH374S必须置BIT_CTRL_OE_POLAR为1
+	Write374Byte( REG_INTER_EN, BIT_IE_TRANSFER | BIT_IE_DEV_DETECT );  // 允许传输完成中断和USB设备检测中断
+//	Write374Byte( REG_SYS_CTRL, BIT_CTRL_OE_POLAR  );  // 对于CH374T或者UEN引脚悬空的CH374S必须置BIT_CTRL_OE_POLAR为1
 	Write374Byte( REG_USB_SETUP, BIT_SETP_HOST_MODE );  // USB主机方式
  	HostEnableRootHub();  // 启用内置的Root-HUB
 }
@@ -911,6 +914,8 @@ void ch374u_loop(void)
 	uint8_t	count = 0;
 	uint16_t loc = 0;
 
+	bool loop_flag = false;
+
 	printf( "Start CH374U Host\n" );
 	NewDevCount = 0;
 	for ( n = 0; n < 3; n ++ ) RootHubDev[n].DeviceStatus = ROOT_DEV_DISCONNECT;  // 清空
@@ -958,22 +963,25 @@ void ch374u_loop(void)
 				}
 			}
 		}
-		count++;
-		//if ( count > 50 ) count = 0;
-        count = 17;
-		switch( count ) {  // 模拟主观请求,对某USB设备进行操作
-			case 13:  // 用定时模拟主观需求,需要操作U盘,请参考CH374LIB\EXAM14\CH374HFT.C程序
-				loc = SearchAllHubPort( DEV_DISK );  // 在ROOT-HUB以及外部HUB各端口上搜索指定类型的设备所在的端口号
-				if ( loc != 0xFFFF ) {  // 找到了
-					n = loc >> 8;
-					loc &= 0xFF;
-					printf( "Access USB-disk\n" );
-					SelectHubPort( n, loc );  // 选择操作指定的ROOT-HUB端口,设置当前USB速度以及被操作设备的USB地址
-//					对U盘进行操作,调用CH374LIB或者HostCtrlTransfer374,HostTransact374等
-					SetUsbSpeed( true );  // 默认为全速
-				}
-				break;
-			case 17:  // 用定时模拟主观需求,需要操作鼠标
+// 		count++;
+// 		//if ( count > 50 ) count = 0;
+//         count = 17;
+// 		switch( count ) {  // 模拟主观请求,对某USB设备进行操作
+// 			case 13:  // 用定时模拟主观需求,需要操作U盘,请参考CH374LIB\EXAM14\CH374HFT.C程序
+// 				loc = SearchAllHubPort( DEV_DISK );  // 在ROOT-HUB以及外部HUB各端口上搜索指定类型的设备所在的端口号
+// 				if ( loc != 0xFFFF ) {  // 找到了
+// 					n = loc >> 8;
+// 					loc &= 0xFF;
+// 					printf( "Access USB-disk\n" );
+// 					SelectHubPort( n, loc );  // 选择操作指定的ROOT-HUB端口,设置当前USB速度以及被操作设备的USB地址
+// //					对U盘进行操作,调用CH374LIB或者HostCtrlTransfer374,HostTransact374等
+// 					SetUsbSpeed( true );  // 默认为全速
+// 				}
+// 				break;
+// 			case 17:  // 用定时模拟主观需求,需要操作鼠标
+			while(1)
+			{
+				mDelaymS( 50 );
 				loc = SearchAllHubPort( DEV_MOUSE );  // 在ROOT-HUB以及外部HUB各端口上搜索指定类型的设备所在的端口号
 				if ( loc != 0xFFFF ) {  // 找到了,如果有两个MOUSE如何处理?
 					n = loc >> 8;
@@ -989,6 +997,8 @@ void ch374u_loop(void)
 					i = loc ? DevOnHubPort[n][loc-1].GpVar : RootHubDev[n].GpVar;  // 中断端点的地址,位7用于同步标志位
 					if ( i & 0x7F ) 
                     {  // 端点有效
+						
+							
 						s = HostTransact374( (i & 0x7F), DEF_USB_PID_IN, (i & 0x80) );  // CH374传输事务,获取数据
 						if ( s == USB_INT_SUCCESS ) {
 							i ^= 0x80;  // 同步标志翻转
@@ -1008,6 +1018,7 @@ void ch374u_loop(void)
 								for ( s = 0; s < i; s ++ ) 
                                     printf("0x%02X ",*(TempBuf + s) );
 								printf("\n");
+								loop_flag = true;
 							}
 						}
 						else if ( s != ( 0x20 | USB_INT_RET_NAK ) ) printf("Mouse error %02x\n",(uint16_t)s);  // 可能是断开了
@@ -1015,7 +1026,7 @@ void ch374u_loop(void)
 					else printf("Mouse no interrupt endpoint\n");
 					SetUsbSpeed( true );  // 默认为全速
 				}
-				break;
+//				break;
 		}   
     }
 		

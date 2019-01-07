@@ -76,12 +76,13 @@ void CH374_PORT_INIT()
     io_conf.mode = GPIO_MODE_INPUT;
     io_conf.pin_bit_mask = PORT8_SEL;
     io_conf.pull_down_en = 0;
-    io_conf.pull_up_en = 1;
+    io_conf.pull_up_en = 0;
     gpio_config(&io_conf);
 
 
     io_conf.mode = GPIO_MODE_OUTPUT;
     io_conf.pin_bit_mask = CH374_CTRL_SEL;
+	io_conf.pull_up_en = 0;
     gpio_config(&io_conf);
 
 	CH374_WR_HIGH();
@@ -112,16 +113,44 @@ void Write374Data( uint8_t mData )
 	CH374_WR_HIGH(); 
 }
 
+void delay(uint16_t d)
+{
+	while(d--);
+}
+
 uint8_t Read374Data(void) 
 {
 	uint8_t	mData = 0;
 	CH374_DATA_DIR_IN(); 
 	CH374_A0_LOW();
 	CH374_RD_LOW(); 
-    ets_delay_us(1);
+    //ets_delay_us(1);
+	delay(1);
 	mData = CH374_DATA_DAT_IN(); 
 	CH374_RD_HIGH();
 	return(mData);
+}
+
+uint8_t Read374Data8(uint8_t *buf) 
+{
+	uint8_t	ii = 0;
+	CH374_DATA_DIR_IN(); 
+	delay(6);
+	CH374_A0_LOW();
+	delay(20);
+
+	for(ii=0;ii<8;ii++)
+	{
+		CH374_RD_LOW(); 
+		//ets_delay_us(1);
+		delay(3);
+		*(buf + ii) = CH374_DATA_DAT_IN(); 
+		delay(3);
+		CH374_RD_HIGH();
+		delay(6);
+	}
+	delay(6);
+	return(0);
 }
 
 uint8_t Read374Data0(void) 
@@ -158,14 +187,15 @@ void Modify374Byte( uint8_t mAddr, uint8_t mAndData, uint8_t mOrData )
 void Read374Block( uint8_t mAddr, uint8_t mLen, uint8_t *mBuf )  /* 从指定起始地址读出数据块 */
 {
 	 uint8_t count = 0;
-	 //Write374Index(mAddr);
-	 for (count = 0;count < mLen; count++) 
-	 {
-		 *(mBuf + count) = Read374Byte(mAddr + count);
-	 	//*(mBuf + count) = Read374Data();
-	 }
-	//printf("recv ");
-	//printf_byte(mBuf,mLen);
+	 Write374Index(mAddr);
+	 Read374Data8(mBuf);
+	//  for (count = 0;count < mLen; count++) 
+	//  {
+	// 	// *(mBuf + count) = Read374Byte(mAddr + count);
+	//  	*(mBuf + count) = Read374Data();
+	//  }
+	printf("\r\nrecv ");
+	printf_byte(mBuf,mLen);
 }
 
 void Write374Block( uint8_t mAddr, uint8_t mLen, uint8_t *mBuf )  /* 向指定起始地址写入数据块 */
