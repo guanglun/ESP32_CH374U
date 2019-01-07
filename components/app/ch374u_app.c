@@ -963,24 +963,22 @@ void ch374u_loop(void)
 				}
 			}
 		}
-// 		count++;
-// 		//if ( count > 50 ) count = 0;
-//         count = 17;
-// 		switch( count ) {  // 模拟主观请求,对某USB设备进行操作
-// 			case 13:  // 用定时模拟主观需求,需要操作U盘,请参考CH374LIB\EXAM14\CH374HFT.C程序
-// 				loc = SearchAllHubPort( DEV_DISK );  // 在ROOT-HUB以及外部HUB各端口上搜索指定类型的设备所在的端口号
-// 				if ( loc != 0xFFFF ) {  // 找到了
-// 					n = loc >> 8;
-// 					loc &= 0xFF;
-// 					printf( "Access USB-disk\n" );
-// 					SelectHubPort( n, loc );  // 选择操作指定的ROOT-HUB端口,设置当前USB速度以及被操作设备的USB地址
-// //					对U盘进行操作,调用CH374LIB或者HostCtrlTransfer374,HostTransact374等
-// 					SetUsbSpeed( true );  // 默认为全速
-// 				}
-// 				break;
-// 			case 17:  // 用定时模拟主观需求,需要操作鼠标
-			while(1)
-			{
+		count++;
+		//if ( count > 50 ) count = 0;
+        count = 17;
+		switch( count ) {  // 模拟主观请求,对某USB设备进行操作
+			case 13:  // 用定时模拟主观需求,需要操作U盘,请参考CH374LIB\EXAM14\CH374HFT.C程序
+				loc = SearchAllHubPort( DEV_DISK );  // 在ROOT-HUB以及外部HUB各端口上搜索指定类型的设备所在的端口号
+				if ( loc != 0xFFFF ) {  // 找到了
+					n = loc >> 8;
+					loc &= 0xFF;
+					printf( "Access USB-disk\n" );
+					SelectHubPort( n, loc );  // 选择操作指定的ROOT-HUB端口,设置当前USB速度以及被操作设备的USB地址
+//					对U盘进行操作,调用CH374LIB或者HostCtrlTransfer374,HostTransact374等
+					SetUsbSpeed( true );  // 默认为全速
+				}
+				break;
+			case 17:  // 用定时模拟主观需求,需要操作鼠标
 				mDelaymS( 50 );
 				loc = SearchAllHubPort( DEV_MOUSE );  // 在ROOT-HUB以及外部HUB各端口上搜索指定类型的设备所在的端口号
 				if ( loc != 0xFFFF ) {  // 找到了,如果有两个MOUSE如何处理?
@@ -1026,7 +1024,7 @@ void ch374u_loop(void)
 					else printf("Mouse no interrupt endpoint\n");
 					SetUsbSpeed( true );  // 默认为全速
 				}
-//				break;
+				break;
 		}   
     }
 		

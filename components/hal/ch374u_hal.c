@@ -35,28 +35,35 @@
 bool is_in = true;
 
 #define	CH374_DATA_DAT_OUT(d)	{GPIO.out_w1tc = ((0xFF) << PORT8_0); GPIO.out_w1ts = (d << PORT8_0); }	
-#define	CH374_DATA_DAT_IN()	    ( (GPIO.in >> PORT8_0) & 0xFF )		
-//#define	CH374_DATA_DIR_OUT()	{GPIO.enable_w1ts = (0xFF << PORT8_0);}
-//#define	CH374_DATA_DIR_IN()	    {GPIO.enable_w1tc = (0xFF << PORT8_0);}
+#define	CH374_DATA_DAT_IN()	    ( (GPIO.in >> PORT8_0) )		
+#define	CH374_DATA_DIR_OUT()	{GPIO.enable_w1ts = (0xFF << PORT8_0);}
+#define	CH374_DATA_DIR_IN()	    {GPIO.enable_w1tc = (0xFF << PORT8_0);}
 
-void CH374_DATA_DIR_OUT(void)	
-{
-	if(is_in == true)
-	{
-		is_in = false;
-		GPIO.enable_w1ts = (0xFF << PORT8_0);
-	}
+// void CH374_DATA_DIR_OUT(void)	
+// {
+// 	gpio_config_t io_conf;
+// 	io_conf.intr_type = GPIO_PIN_INTR_DISABLE;
+// 	io_conf.mode = GPIO_MODE_OUTPUT;
+// 	io_conf.pin_bit_mask = PORT8_SEL;
+// 	io_conf.pull_down_en = 0;
+// 	io_conf.pull_up_en = 1;
+// 	gpio_config(&io_conf);
 	
-}
-void CH374_DATA_DIR_IN(void)	    
-{
-	if(is_in == false)
-	{
-		is_in = true;
-		GPIO.enable_w1tc = (0xFF << PORT8_0);
-	}	
 	
-}
+// }
+// void CH374_DATA_DIR_IN(void)	    
+// {
+// 	gpio_config_t io_conf;
+// 	is_in = true;
+// 	io_conf.intr_type = GPIO_PIN_INTR_DISABLE;
+// 	io_conf.mode = GPIO_MODE_INPUT;
+// 	io_conf.pin_bit_mask = PORT8_SEL;
+// 	io_conf.pull_down_en = 0;
+// 	io_conf.pull_up_en = 1;
+// 	gpio_config(&io_conf);
+	
+	
+// }
 
 void printf_byte(uint8_t *buf,uint16_t len)
 {
@@ -124,32 +131,85 @@ uint8_t Read374Data(void)
 	CH374_DATA_DIR_IN(); 
 	CH374_A0_LOW();
 	CH374_RD_LOW(); 
-    //ets_delay_us(1);
+    ets_delay_us(1);
 	delay(1);
 	mData = CH374_DATA_DAT_IN(); 
 	CH374_RD_HIGH();
 	return(mData);
 }
 
-uint8_t Read374Data8(uint8_t *buf) 
+uint8_t Read374Data8(uint8_t mIndex,uint8_t *buf) 
 {
-	uint8_t	ii = 0;
-	CH374_DATA_DIR_IN(); 
-	delay(6);
+	uint8_t	ii = 0,nop;
+	CH374_DATA_DIR_OUT();  
+	CH374_DATA_DAT_OUT(mIndex); 
+	CH374_A0_HIGH();
+		asm("nop"); 	
+		asm("nop"); 
+	CH374_WR_LOW(); 
+		asm("nop"); 	
+		asm("nop"); 
+		asm("nop"); 	
+		asm("nop"); 
+	CH374_WR_HIGH(); 
+		asm("nop"); 	
+		asm("nop"); 
 	CH374_A0_LOW();
-	delay(20);
-
+		asm("nop"); 	
+		asm("nop"); 
+		asm("nop"); 
+		asm("nop"); 
+		asm("nop"); 
+		asm("nop"); 
+		asm("nop"); 
+		asm("nop"); 	
+		asm("nop"); 	
+		asm("nop"); 
+		asm("nop"); 
+		asm("nop"); 
+		asm("nop"); 
+		asm("nop"); 
+		asm("nop"); 
+		asm("nop"); 
+	CH374_DATA_DIR_IN(); 
+	CH374_A0_LOW();
+		asm("nop"); 
+		asm("nop"); 
 	for(ii=0;ii<8;ii++)
 	{
 		CH374_RD_LOW(); 
-		//ets_delay_us(1);
-		delay(3);
+		asm("nop"); 	
+		asm("nop"); 
+		asm("nop"); 	
+		asm("nop"); 
+		asm("nop"); 	
+		asm("nop"); 
+		asm("nop"); 	
+		asm("nop"); 
+		asm("nop"); 	
+		asm("nop"); 
+		
 		*(buf + ii) = CH374_DATA_DAT_IN(); 
-		delay(3);
+		asm("nop"); 	
+		asm("nop"); 
 		CH374_RD_HIGH();
-		delay(6);
+		asm("nop"); 	
+		asm("nop"); 
+		asm("nop"); 
+		asm("nop"); 
+		asm("nop"); 
+		asm("nop"); 
+		asm("nop"); 
+		asm("nop"); 	
+		asm("nop"); 	
+		asm("nop"); 
+		asm("nop"); 
+		asm("nop"); 
+		asm("nop"); 
+		asm("nop"); 
+		asm("nop"); 
+		asm("nop"); 				
 	}
-	delay(6);
 	return(0);
 }
 
@@ -187,8 +247,8 @@ void Modify374Byte( uint8_t mAddr, uint8_t mAndData, uint8_t mOrData )
 void Read374Block( uint8_t mAddr, uint8_t mLen, uint8_t *mBuf )  /* 从指定起始地址读出数据块 */
 {
 	 uint8_t count = 0;
-	 Write374Index(mAddr);
-	 Read374Data8(mBuf);
+	 //Write374Index(mAddr);
+	 Read374Data8(mAddr,mBuf);
 	//  for (count = 0;count < mLen; count++) 
 	//  {
 	// 	// *(mBuf + count) = Read374Byte(mAddr + count);
