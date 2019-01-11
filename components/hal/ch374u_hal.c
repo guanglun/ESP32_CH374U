@@ -54,7 +54,6 @@ bool is_in = true;
 // void CH374_DATA_DIR_IN(void)	    
 // {
 // 	gpio_config_t io_conf;
-// 	is_in = true;
 // 	io_conf.intr_type = GPIO_PIN_INTR_DISABLE;
 // 	io_conf.mode = GPIO_MODE_INPUT;
 // 	io_conf.pin_bit_mask = PORT8_SEL;
@@ -104,9 +103,10 @@ void Write374Index( uint8_t mIndex )
 	CH374_DATA_DAT_OUT(mIndex); 
 	CH374_A0_HIGH();
 	CH374_WR_LOW(); 
-    ets_delay_us(1);
+    //ets_delay_us(1);
 	CH374_WR_HIGH(); 
 	CH374_A0_LOW();
+	//ets_delay_us(2);
 }
 
 void Write374Data( uint8_t mData )
@@ -129,88 +129,13 @@ uint8_t Read374Data(void)
 {
 	uint8_t	mData = 0;
 	CH374_DATA_DIR_IN(); 
+	//ets_delay_us(1);
 	CH374_A0_LOW();
 	CH374_RD_LOW(); 
-    ets_delay_us(1);
-	delay(1);
+	ets_delay_us(1);
 	mData = CH374_DATA_DAT_IN(); 
 	CH374_RD_HIGH();
 	return(mData);
-}
-
-uint8_t Read374Data8(uint8_t mIndex,uint8_t *buf) 
-{
-	uint8_t	ii = 0,nop;
-	CH374_DATA_DIR_OUT();  
-	CH374_DATA_DAT_OUT(mIndex); 
-	CH374_A0_HIGH();
-		asm("nop"); 	
-		asm("nop"); 
-	CH374_WR_LOW(); 
-		asm("nop"); 	
-		asm("nop"); 
-		asm("nop"); 	
-		asm("nop"); 
-	CH374_WR_HIGH(); 
-		asm("nop"); 	
-		asm("nop"); 
-	CH374_A0_LOW();
-		asm("nop"); 	
-		asm("nop"); 
-		asm("nop"); 
-		asm("nop"); 
-		asm("nop"); 
-		asm("nop"); 
-		asm("nop"); 
-		asm("nop"); 	
-		asm("nop"); 	
-		asm("nop"); 
-		asm("nop"); 
-		asm("nop"); 
-		asm("nop"); 
-		asm("nop"); 
-		asm("nop"); 
-		asm("nop"); 
-	CH374_DATA_DIR_IN(); 
-	CH374_A0_LOW();
-		asm("nop"); 
-		asm("nop"); 
-	for(ii=0;ii<8;ii++)
-	{
-		CH374_RD_LOW(); 
-		asm("nop"); 	
-		asm("nop"); 
-		asm("nop"); 	
-		asm("nop"); 
-		asm("nop"); 	
-		asm("nop"); 
-		asm("nop"); 	
-		asm("nop"); 
-		asm("nop"); 	
-		asm("nop"); 
-		
-		*(buf + ii) = CH374_DATA_DAT_IN(); 
-		asm("nop"); 	
-		asm("nop"); 
-		CH374_RD_HIGH();
-		asm("nop"); 	
-		asm("nop"); 
-		asm("nop"); 
-		asm("nop"); 
-		asm("nop"); 
-		asm("nop"); 
-		asm("nop"); 
-		asm("nop"); 	
-		asm("nop"); 	
-		asm("nop"); 
-		asm("nop"); 
-		asm("nop"); 
-		asm("nop"); 
-		asm("nop"); 
-		asm("nop"); 
-		asm("nop"); 				
-	}
-	return(0);
 }
 
 uint8_t Read374Data0(void) 
@@ -246,14 +171,13 @@ void Modify374Byte( uint8_t mAddr, uint8_t mAndData, uint8_t mOrData )
 
 void Read374Block( uint8_t mAddr, uint8_t mLen, uint8_t *mBuf )  /* 从指定起始地址读出数据块 */
 {
-	 uint8_t count = 0;
-	 //Write374Index(mAddr);
-	 Read374Data8(mAddr,mBuf);
-	//  for (count = 0;count < mLen; count++) 
-	//  {
-	// 	// *(mBuf + count) = Read374Byte(mAddr + count);
-	//  	*(mBuf + count) = Read374Data();
-	//  }
+	uint8_t count = 0;
+	Write374Index(mAddr);
+	//ets_delay_us(4);
+	for (count = 0;count < mLen; count++) 
+	{
+	  	*(mBuf + count) = Read374Data();
+	}
 	printf("\r\nrecv ");
 	printf_byte(mBuf,mLen);
 }
@@ -274,6 +198,7 @@ void ch374u_hal_init(void)
 {
 
     uint8_t id;
+	uint8_t TEST_CHAR[] = {0,0xFF,0xF0,0x0F,4,5,6,7,8,9},TEST_CHAR2[10];
 
     CH374_PORT_INIT();
     
@@ -285,5 +210,16 @@ void ch374u_hal_init(void)
         printf("CH374U Connect Fail %02X\r\n",id);
     }
 
+    
+
+    Write374Block( 0x40, 10, TEST_CHAR);  
+    Read374Block( 0x40, 10, TEST_CHAR2 );    
+    Read374Block( 0x40, 10, TEST_CHAR2 ); 
+    Read374Block( 0x40, 10, TEST_CHAR2 ); 
+    Read374Block( 0x40, 10, TEST_CHAR2 ); 
+    Read374Block( 0x40, 10, TEST_CHAR2 ); 
+    Read374Block( 0x40, 10, TEST_CHAR2 ); 
+    Read374Block( 0x40, 10, TEST_CHAR2 ); 
+    Read374Block( 0x40, 10, TEST_CHAR2 ); 
 }
 

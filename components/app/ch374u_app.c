@@ -289,7 +289,7 @@ void HostDetectInterrupt( void )  // 处理USB设备插拔事件中断
 {
 	uint8_t	s;
 	s = Read374Byte( REG_INTER_FLAG );  // 获取中断状态
-    printf("isr:%02x\r\n",s);
+    //printf("isr:%02x\r\n",s);
 	if ( s & BIT_IF_DEV_DETECT ) {  // USB设备插拔事件
 		AnalyzeRootHub( );   // 分析ROOT-HUB状态
 		Write374Byte( REG_INTER_FLAG, BIT_IF_DEV_DETECT );  // 清中断标志
