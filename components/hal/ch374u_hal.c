@@ -32,37 +32,10 @@
 #define CH374_A0_HIGH()     GPIO.out_w1ts = (1 << CH374_A0);
 #define CH374_A0_LOW()      GPIO.out_w1tc = (1 << CH374_A0);
 
-bool is_in = true;
-
 #define	CH374_DATA_DAT_OUT(d)	{GPIO.out_w1tc = ((0xFF) << PORT8_0); GPIO.out_w1ts = (d << PORT8_0); }	
 #define	CH374_DATA_DAT_IN()	    ( (GPIO.in >> PORT8_0) )		
 #define	CH374_DATA_DIR_OUT()	{GPIO.enable_w1ts = (0xFF << PORT8_0);}
 #define	CH374_DATA_DIR_IN()	    {GPIO.enable_w1tc = (0xFF << PORT8_0);}
-
-// void CH374_DATA_DIR_OUT(void)	
-// {
-// 	gpio_config_t io_conf;
-// 	io_conf.intr_type = GPIO_PIN_INTR_DISABLE;
-// 	io_conf.mode = GPIO_MODE_OUTPUT;
-// 	io_conf.pin_bit_mask = PORT8_SEL;
-// 	io_conf.pull_down_en = 0;
-// 	io_conf.pull_up_en = 1;
-// 	gpio_config(&io_conf);
-	
-	
-// }
-// void CH374_DATA_DIR_IN(void)	    
-// {
-// 	gpio_config_t io_conf;
-// 	io_conf.intr_type = GPIO_PIN_INTR_DISABLE;
-// 	io_conf.mode = GPIO_MODE_INPUT;
-// 	io_conf.pin_bit_mask = PORT8_SEL;
-// 	io_conf.pull_down_en = 0;
-// 	io_conf.pull_up_en = 1;
-// 	gpio_config(&io_conf);
-	
-	
-// }
 
 void printf_byte(uint8_t *buf,uint16_t len)
 {
@@ -103,10 +76,8 @@ void Write374Index( uint8_t mIndex )
 	CH374_DATA_DAT_OUT(mIndex); 
 	CH374_A0_HIGH();
 	CH374_WR_LOW(); 
-    //ets_delay_us(1);
 	CH374_WR_HIGH(); 
 	CH374_A0_LOW();
-	//ets_delay_us(2);
 }
 
 void Write374Data( uint8_t mData )
@@ -129,7 +100,6 @@ uint8_t Read374Data(void)
 {
 	uint8_t	mData = 0;
 	CH374_DATA_DIR_IN(); 
-	//ets_delay_us(1);
 	CH374_A0_LOW();
 	CH374_RD_LOW(); 
 	ets_delay_us(1);
@@ -173,13 +143,12 @@ void Read374Block( uint8_t mAddr, uint8_t mLen, uint8_t *mBuf )  /* 从指定起
 {
 	uint8_t count = 0;
 	Write374Index(mAddr);
-	//ets_delay_us(4);
 	for (count = 0;count < mLen; count++) 
 	{
 	  	*(mBuf + count) = Read374Data();
 	}
-	printf("\r\nrecv ");
-	printf_byte(mBuf,mLen);
+	//printf("\r\nrecv ");
+	//printf_byte(mBuf,mLen);
 }
 
 void Write374Block( uint8_t mAddr, uint8_t mLen, uint8_t *mBuf )  /* 向指定起始地址写入数据块 */
@@ -190,15 +159,11 @@ void Write374Block( uint8_t mAddr, uint8_t mLen, uint8_t *mBuf )  /* 向指定�
 	{
 		Write374Data(*(mBuf + count));
 	}
-	//printf("send ");
-	//printf_byte(mBuf,mLen);
 }
 
 void ch374u_hal_init(void)
 {
-
     uint8_t id;
-	uint8_t TEST_CHAR[] = {0,0xFF,0xF0,0x0F,4,5,6,7,8,9},TEST_CHAR2[10];
 
     CH374_PORT_INIT();
     
@@ -210,16 +175,5 @@ void ch374u_hal_init(void)
         printf("CH374U Connect Fail %02X\r\n",id);
     }
 
-    
-
-    Write374Block( 0x40, 10, TEST_CHAR);  
-    Read374Block( 0x40, 10, TEST_CHAR2 );    
-    Read374Block( 0x40, 10, TEST_CHAR2 ); 
-    Read374Block( 0x40, 10, TEST_CHAR2 ); 
-    Read374Block( 0x40, 10, TEST_CHAR2 ); 
-    Read374Block( 0x40, 10, TEST_CHAR2 ); 
-    Read374Block( 0x40, 10, TEST_CHAR2 ); 
-    Read374Block( 0x40, 10, TEST_CHAR2 ); 
-    Read374Block( 0x40, 10, TEST_CHAR2 ); 
 }
 
