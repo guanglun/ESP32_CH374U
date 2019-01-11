@@ -8,7 +8,6 @@
 
 #include "ch374u_app.h"
 #include "ch374u_hal.h"
-#include "EX_HUB.H"
 #include "CH374INC.H"
 
 // 附加的USB操作状态定义
@@ -456,17 +455,27 @@ uint8_t	ClearPortFeature( uint8_t port, uint8_t select )
 
 }
 
-void	DisableRootHubPort( uint8_t index )  // 关闭指定的ROOT-HUB端口,实际上硬件已经自动关闭,此处只是清除一些结构状态
+void DisableRootHubPort( uint8_t index )  // 关闭指定的ROOT-HUB端口,实际上硬件已经自动关闭,此处只是清除一些结构状态
 {
-	RootHubDev[ index ].DeviceStatus = ROOT_DEV_DISCONNECT;
-	RootHubDev[ index ].DeviceAddress = 0x00;
-	if ( index == 1 ) Write374Byte( REG_HUB_CTRL, Read374Byte(REG_HUB_CTRL)&0xF0 );  // 清除有关HUB1的控制数据,实际上不需要清除
-	else if ( index == 2 ) Write374Byte( REG_HUB_CTRL, Read374Byte(REG_HUB_CTRL)&0x0F );  // 清除有关HUB2的控制数据,实际上不需要清除
-	else Write374Byte( REG_HUB_SETUP, Read374Byte(REG_HUB_SETUP)&0xF0 );  // 清除有关HUB0的控制数据,实际上不需要清除
+	RootHubDev[index].DeviceStatus = ROOT_DEV_DISCONNECT;
+	RootHubDev[index].DeviceAddress = 0x00;
+
+	if ( index == 1 ) 
+	{
+		Write374Byte( REG_HUB_CTRL, Read374Byte(REG_HUB_CTRL)&0xF0 );  // 清除有关HUB1的控制数据,实际上不需要清除
+	}
+	else if ( index == 2 ) 
+	{
+		Write374Byte( REG_HUB_CTRL, Read374Byte(REG_HUB_CTRL)&0x0F );  // 清除有关HUB2的控制数据,实际上不需要清除
+	}
+	else 
+	{
+		Write374Byte( REG_HUB_SETUP, Read374Byte(REG_HUB_SETUP) & 0xF0 );  // 清除有关HUB0的控制数据,实际上不需要清除
+	}
 //	printf( "HUB %01x close\n",(uint16_t)index );
 }
 
-void	ResetRootHubPort( uint8_t index )  // 检测到设备后,复位相应端口的总线,为枚举设备准备,设置为默认为全速
+void ResetRootHubPort( uint8_t index )  // 检测到设备后,复位相应端口的总线,为枚举设备准备,设置为默认为全速
 {
 	UsbDevEndpSize = DEFAULT_ENDP0_SIZE;  /* USB设备的端点0的最大包尺寸 */
 	SetHostUsbAddr( 0x00 );
@@ -549,18 +558,19 @@ void SelectHubPort( uint8_t HubIndex, uint8_t PortIndex )  // PortIndex=0选择�
 	}
 }
 
-void	AnalyzeRootHub( void )   // 分析ROOT-HUB状态,处理ROOT-HUB端口的设备插拔事件
+void AnalyzeRootHub( void )   // 分析ROOT-HUB状态,处理ROOT-HUB端口的设备插拔事件
 { //处理HUB端口的插拔事件，如果设备拔出，函数中调用DisableHubPort()函数，将端口关闭，插入事件，置相应端口的状态位
-	if ( (( Read374Byte( REG_HUB_SETUP ) & BIT_HUB0_ATTACH ) && (RootHubDev[0].DeviceStatus == ROOT_DEV_DISCONNECT) ) //检测到有设备插入
+	if ((( Read374Byte( REG_HUB_SETUP ) & BIT_HUB0_ATTACH ) && (RootHubDev[0].DeviceStatus == ROOT_DEV_DISCONNECT) ) //检测到有设备插入
 		|| ( (Read374Byte( REG_HUB_SETUP ) & (BIT_HUB0_ATTACH|BIT_HUB0_EN) ) == BIT_HUB0_ATTACH )) {  //检测到有设备插入,但尚未允许,说明是刚插入
-		DisableRootHubPort( 0 );  // 关闭端口
+		DisableRootHubPort(0);  // 关闭端口
 //		RootHubDev[0].DeviceSpeed=( Read374Byte(REG_INTER_FLAG) ^ ( Read374Byte( REG_HUB_SETUP ) & BIT_HUB0_POLAR ? 0xFF : 0x00 ) ) & BIT_HUB0_DX_IN;
-		RootHubDev[0].DeviceStatus=ROOT_DEV_CONNECTED;  //置连接标志
+		RootHubDev[0].DeviceStatus = ROOT_DEV_CONNECTED;  //置连接标志
 		printf( "HUB 0 device in\n" );
 		NewDevCount++;
 	}
-	if( ! ( Read374Byte(REG_HUB_SETUP) & BIT_HUB0_ATTACH ) && (RootHubDev[0].DeviceStatus >= ROOT_DEV_CONNECTED )) {  //检测到设备拔出
-		DisableRootHubPort( 0 );  // 关闭端口
+
+	if( ! (Read374Byte(REG_HUB_SETUP) & BIT_HUB0_ATTACH) && (RootHubDev[0].DeviceStatus >= ROOT_DEV_CONNECTED )) {  //检测到设备拔出
+		DisableRootHubPort(0);  // 关闭端口
 		printf( "HUB 0 device out\n" );
 	}
 
@@ -575,8 +585,6 @@ void	AnalyzeRootHub( void )   // 分析ROOT-HUB状态,处理ROOT-HUB端口的设
 		DisableRootHubPort( 1 );  // 关闭端口
 		printf( "HUB 1 device out\n" );
 	}
-
-
 
 	if ( (( Read374Byte( REG_HUB_CTRL ) & BIT_HUB2_ATTACH ) && (RootHubDev[2].DeviceStatus == ROOT_DEV_DISCONNECT))  //检测到有设备插入
 		|| (( Read374Byte( REG_HUB_CTRL ) & (BIT_HUB2_ATTACH|BIT_HUB2_EN) ) == BIT_HUB2_ATTACH )) {  //检测到有设备插入,但尚未允许,说明是刚插入
@@ -927,8 +935,11 @@ void ch374u_loop(void)
 
     while(1)
     {
-        if (Query374Interrupt( )) 
-            HostDetectInterrupt( );  // 如果有USB主机中断则处理
+        if (Query374Interrupt()) 
+            HostDetectInterrupt();  // 如果有USB主机中断则处理
+
+
+
 		if ( NewDevCount ) {  // 有新的USB设备
                 mDelaymS( 200 );  // 由于USB设备刚插入尚未稳定，故等待USB设备数百毫秒，消除插拔抖动
 //			if ( Query374Interrupt( ) ) HostDetectInterrupt( );  // 如果有USB主机中断则处理
