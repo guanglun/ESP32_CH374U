@@ -7,6 +7,7 @@
 #include "freertos/queue.h"
 #include "driver/gpio.h"
 
+#include "log.h"
 #include "ch374u_hal.h"
 
 #define PORT8_0    12
@@ -37,15 +38,7 @@
 #define	CH374_DATA_DIR_OUT()	{GPIO.enable_w1ts = (0xFF << PORT8_0);}
 #define	CH374_DATA_DIR_IN()	    {GPIO.enable_w1tc = (0xFF << PORT8_0);}
 
-void printf_byte(uint8_t *buf,uint16_t len)
-{
-	uint16_t count = 0;
-	for(;count < len;count++)
-	{
-		printf("%02X ",*(buf + count));
-	}
-	printf("\r\n");
-}
+
 
 void CH374_PORT_INIT()  
 {

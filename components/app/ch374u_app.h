@@ -35,6 +35,17 @@
 #define GET_DESCRIPTOR		6
 #define SET_DESCRIPTOR		7
 
+// 输入: 内置HUB端口号0/1/2
+// 输出: 0-操作失败, 0x31-成功枚举到USB键盘, 0x32-成功枚举到鼠标, 0x70-成功枚举到打印机, 0x80-成功枚举到U盘, 0xFF-成功枚举未知设备, 其它值暂未定义
+#define DEV_ERROR 0x00
+#define DEV_KEYBOARD 0x31
+#define DEV_MOUSE 0x32
+#define DEV_PRINT 0x70
+#define DEV_DISK 0x80
+#define DEV_HUB 0x90
+#define DEV_ADB 0xA0
+#define DEV_UNKNOWN 0xFF
+
 typedef struct _HUB_DESCRIPTOR
 {
 	unsigned char bDescLength;

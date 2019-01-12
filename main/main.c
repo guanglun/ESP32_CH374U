@@ -19,7 +19,7 @@ void app_main()
 
     ch374u_init();
 
-    xTaskCreate(gpio_task_example, "gpio_task_example", 2048, NULL, 10, NULL);
+    xTaskCreate(gpio_task_example, "gpio_task_example", 8*1024, NULL, 10, NULL);
 
     while(1) {
         //printf("cnt: %d\n", cnt++);

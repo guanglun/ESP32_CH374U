@@ -340,6 +340,18 @@ typedef struct _USB_INTERF_DESCRIPTOR {
     UINT8 iInterface;
 } USB_ITF_DESCR, *PUSB_ITF_DESCR;
 
+typedef struct _USB_HID_DESCRIPTOR {
+    UINT8 bLength;
+    UINT8 bDescriptorType;
+    UINT8 bcdHIDL;
+    UINT8 bcdHIDH;
+    UINT8 bCountryCode;
+    UINT8 bNumDescriptors;
+    UINT8 bDescriptorType2;
+    UINT8 bDescriptorLengthL;
+    UINT8 bDescriptorLengthH;
+} USB_HID_DESCR, *PUSB_HID_DESCR;
+
 typedef struct _USB_ENDPOINT_DESCRIPTOR {
     UINT8 bLength;
     UINT8 bDescriptorType;
