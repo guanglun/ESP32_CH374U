@@ -4,22 +4,13 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/queue.h"
-#include "driver/gpio.h"
 
-#include "ch374u_app.h"
-
-
-static void gpio_task_example(void* arg)
-{
-    ch374u_loop();
-}
+#include "usb_hub.h"
 
 void app_main()
 {
 
-    ch374u_init();
-
-    xTaskCreate(gpio_task_example, "gpio_task_example", 8*1024, NULL, 10, NULL);
+    xTaskCreate(usb_hub_task, "usb_hub_task", 8*1024, NULL, 10, NULL);
 
     while(1) {
         //printf("cnt: %d\n", cnt++);
