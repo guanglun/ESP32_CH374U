@@ -20,12 +20,62 @@ uint32_t local_id = 1;
 uint32_t remote_id;
 ADB_Connect_Status adb_c_s = ADB_CONNECT_NOT_CHECK;
 
+void printf_adb_frame(amessage *msg, uint8_t *buffer,bool is_recv)
+{
+    if(is_recv == true)
+    {
+        printf("ADB RECV: ");
+    }else{
+        printf("ADB SEND: ");
+    }
+    switch (msg->command)
+    {
+    case A_SYNC:
+        printf("SYNC ");
+        break;
+
+    case A_CNXN: /* CONNECT(version, maxdata, "system-id-string") */
+        printf("CNXN ");
+        break;
+
+    case A_AUTH:
+        printf("AUTH ");
+        break;
+
+    case A_OPEN: /* OPEN(local-id, 0, "destination") */
+        printf("OPEN ");
+        break;
+
+    case A_OKAY: /* READY(local-id, remote-id, "") */
+        printf("OKAY ");
+
+        break;
+
+    case A_CLSE: /* CLOSE(local-id, remote-id, "") */
+        printf("CLOSE ");
+        break;
+
+    case A_WRTE:
+        printf("WRTE ");
+
+        break;
+
+    default:
+        printf("handle_packet: what is %08x?!", msg->command);
+        break;
+    }
+    printf_byte_str(buffer, msg->data_length);
+}
+
 int usb_send_packet(amessage *msg, uint8_t *buffer)
 {
     
     uint16_t i_count = 0;
 
     get_adb_packet(msg, buffer);
+
+    printf_adb_frame(msg,buffer,false);
+
     QueryADB_Send((uint8_t *)msg, sizeof(amessage));
 
     for (i_count = 0; i_count < msg->data_length; i_count += 64)
@@ -44,6 +94,8 @@ int usb_send_packet(amessage *msg, uint8_t *buffer)
             //printf_byte_str((uint8_t *)(buffer + i_count), 64);
         }
     }
+
+    
 	return 0;
 }
 
@@ -116,13 +168,15 @@ reset:
 int ADB_RecvFrame(apacket *p)
 {
     
-    printf("====================\r\n");  
-    printf("command\t0x%02X\r\n", p->msg.command);
-    printf("arg0\t0x%02X\r\n", p->msg.arg0);
-    printf("arg1\t0x%02X\r\n", p->msg.arg1);
-    printf("length\t0x%02X\r\n", p->msg.data_length);  
-    printf("====================\r\n");  
+    // printf("====================\r\n");  
+    // printf("command\t0x%02X\r\n", p->msg.command);
+    // printf("arg0\t0x%02X\r\n", p->msg.arg0);
+    // printf("arg1\t0x%02X\r\n", p->msg.arg1);
+    // printf("length\t0x%02X\r\n", p->msg.data_length);  
+    // printf("====================\r\n");  
 
+    printf_adb_frame(&(p->msg),p->data,true);
+    
     switch (p->msg.command)
     {
     case A_SYNC:
@@ -131,7 +185,7 @@ int ADB_RecvFrame(apacket *p)
 
     case A_CNXN: /* CONNECT(version, maxdata, "system-id-string") */
             adb_c_s = ADB_CONNECT_CHECK_OK;
-            connect_to_remote(local_id);
+            //connect_to_remote(local_id);
         break;
 
     case A_AUTH:
@@ -160,12 +214,12 @@ int ADB_RecvFrame(apacket *p)
         break;
 
     case A_OKAY: /* READY(local-id, remote-id, "") */
-        if(adb_c_s != ADB_CONNECT_INTO_SHELL)
-        {
-            adb_c_s = ADB_CONNECT_INTO_SHELL;
-            remote_id = p->msg.arg1;
+        // if(adb_c_s != ADB_CONNECT_INTO_SHELL)
+        // {
+        //     adb_c_s = ADB_CONNECT_INTO_SHELL;
+        //     remote_id = p->msg.arg1;
             
-        }
+        // }
 
         break;
 
@@ -175,13 +229,15 @@ int ADB_RecvFrame(apacket *p)
 
     case A_WRTE:
 
-        send_ready(local_id,remote_id);
+        //send_ready(local_id,remote_id);
         break;
 
     default:
         printf("handle_packet: what is %08x?!\r\n", p->msg.command);
         break;
     }
+
+    
 
     return 0;
 }

@@ -24,6 +24,7 @@ mbedtls/library/sha512.o: \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha512.h \
  /home/share/esp32/esp-idf/components/newlib/include/stdint.h \
  /home/share/esp32/esp-idf/components/newlib/include/sys/_intsup.h \
+ /home/share/esp32/esp-idf/components/mbedtls/port/include/sha512_alt.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h \
  /home/share/esp32/esp-idf/components/newlib/include/string.h \
  /home/share/esp32/esp-idf/components/newlib/include/sys/string.h \
@@ -85,6 +86,8 @@ mbedtls/library/sha512.o: \
 /home/share/esp32/esp-idf/components/newlib/include/stdint.h:
 
 /home/share/esp32/esp-idf/components/newlib/include/sys/_intsup.h:
+
+/home/share/esp32/esp-idf/components/mbedtls/port/include/sha512_alt.h:
 
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h:
 

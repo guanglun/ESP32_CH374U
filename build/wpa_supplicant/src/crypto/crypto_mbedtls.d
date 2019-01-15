@@ -47,11 +47,9 @@ src/crypto/crypto_mbedtls.o: \
  /home/share/esp32/esp-idf/components/newlib/include/limits.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/entropy.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha512.h \
+ /home/share/esp32/esp-idf/components/mbedtls/port/include/sha512_alt.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/ctr_drbg.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/aes.h \
- /home/share/esp32/esp-idf/components/mbedtls/port/include/aes_alt.h \
- /home/share/esp32/esp-idf/components/esp32/include/hwcrypto/aes.h \
- /home/share/esp32/esp-idf/components/esp32/include/rom/aes.h \
  /home/share/esp32/esp-idf/components/esp32/include/esp_system.h \
  /home/share/esp32/esp-idf/components/esp32/include/esp_sleep.h \
  /home/share/esp32/esp-idf/components/driver/include/driver/gpio.h \
@@ -177,15 +175,11 @@ src/crypto/crypto_mbedtls.o: \
 
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha512.h:
 
+/home/share/esp32/esp-idf/components/mbedtls/port/include/sha512_alt.h:
+
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/ctr_drbg.h:
 
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/aes.h:
-
-/home/share/esp32/esp-idf/components/mbedtls/port/include/aes_alt.h:
-
-/home/share/esp32/esp-idf/components/esp32/include/hwcrypto/aes.h:
-
-/home/share/esp32/esp-idf/components/esp32/include/rom/aes.h:
 
 /home/share/esp32/esp-idf/components/esp32/include/esp_system.h:
 

@@ -26,10 +26,6 @@ mbedtls/library/aes.o: \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/aes.h \
  /home/share/esp32/esp-idf/components/newlib/include/stdint.h \
  /home/share/esp32/esp-idf/components/newlib/include/sys/_intsup.h \
- /home/share/esp32/esp-idf/components/mbedtls/port/include/aes_alt.h \
- /home/share/esp32/esp-idf/components/esp32/include/hwcrypto/aes.h \
- /home/share/esp32/esp-idf/components/esp32/include/esp_types.h \
- /home/share/esp32/esp-idf/components/esp32/include/rom/aes.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/padlock.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/aes.h \
@@ -96,14 +92,6 @@ mbedtls/library/aes.o: \
 /home/share/esp32/esp-idf/components/newlib/include/stdint.h:
 
 /home/share/esp32/esp-idf/components/newlib/include/sys/_intsup.h:
-
-/home/share/esp32/esp-idf/components/mbedtls/port/include/aes_alt.h:
-
-/home/share/esp32/esp-idf/components/esp32/include/hwcrypto/aes.h:
-
-/home/share/esp32/esp-idf/components/esp32/include/esp_types.h:
-
-/home/share/esp32/esp-idf/components/esp32/include/rom/aes.h:
 
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h:
 

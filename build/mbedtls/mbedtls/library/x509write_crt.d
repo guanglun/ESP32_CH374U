@@ -42,6 +42,7 @@ mbedtls/library/x509write_crt.o: \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/cipher.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/asn1write.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha1.h \
+ /home/share/esp32/esp-idf/components/mbedtls/port/include/sha1_alt.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h \
  /home/share/esp32/esp-idf/components/newlib/include/string.h \
  /home/share/esp32/esp-idf/components/newlib/include/sys/string.h \
@@ -130,6 +131,8 @@ mbedtls/library/x509write_crt.o: \
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/asn1write.h:
 
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha1.h:
+
+/home/share/esp32/esp-idf/components/mbedtls/port/include/sha1_alt.h:
 
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h:
 

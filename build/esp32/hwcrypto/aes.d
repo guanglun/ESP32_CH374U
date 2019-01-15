@@ -25,7 +25,6 @@ hwcrypto/aes.o: /home/share/esp32/esp-idf/components/esp32/hwcrypto/aes.c \
  /home/share/esp32/esp-idf/components/newlib/include/limits.h \
  /home/share/esp32/esp-idf/components/newlib/include/stdint.h \
  /home/share/esp32/esp-idf/components/newlib/include/sys/_intsup.h \
- /home/share/esp32/esp-idf/components/mbedtls/port/include/aes_alt.h \
  /home/share/esp32/esp-idf/components/esp32/include/hwcrypto/aes.h \
  /home/share/esp32/esp-idf/components/esp32/include/esp_types.h \
  /home/share/esp32/esp-idf/components/esp32/include/rom/aes.h \
@@ -145,8 +144,6 @@ hwcrypto/aes.o: /home/share/esp32/esp-idf/components/esp32/hwcrypto/aes.c \
 /home/share/esp32/esp-idf/components/newlib/include/stdint.h:
 
 /home/share/esp32/esp-idf/components/newlib/include/sys/_intsup.h:
-
-/home/share/esp32/esp-idf/components/mbedtls/port/include/aes_alt.h:
 
 /home/share/esp32/esp-idf/components/esp32/include/hwcrypto/aes.h:
 

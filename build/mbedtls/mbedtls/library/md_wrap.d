@@ -27,8 +27,11 @@ mbedtls/library/md_wrap.o: \
  /home/share/esp32/esp-idf/components/newlib/include/stdint.h \
  /home/share/esp32/esp-idf/components/newlib/include/sys/_intsup.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha1.h \
+ /home/share/esp32/esp-idf/components/mbedtls/port/include/sha1_alt.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha256.h \
+ /home/share/esp32/esp-idf/components/mbedtls/port/include/sha256_alt.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha512.h \
+ /home/share/esp32/esp-idf/components/mbedtls/port/include/sha512_alt.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_time.h \
  /home/share/esp32/esp-idf/components/newlib/platform_include/time.h \
@@ -94,9 +97,15 @@ mbedtls/library/md_wrap.o: \
 
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha1.h:
 
+/home/share/esp32/esp-idf/components/mbedtls/port/include/sha1_alt.h:
+
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha256.h:
 
+/home/share/esp32/esp-idf/components/mbedtls/port/include/sha256_alt.h:
+
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha512.h:
+
+/home/share/esp32/esp-idf/components/mbedtls/port/include/sha512_alt.h:
 
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform.h:
 

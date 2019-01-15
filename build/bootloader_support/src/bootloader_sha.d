@@ -38,7 +38,8 @@ src/bootloader_sha.o: \
  /home/share/esp32/esp-idf/components/mbedtls/port/include/mbedtls/esp_config.h \
  /home/share/esp32/esp-idf/components/mbedtls/port/include/esp_mem.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/check_config.h \
- /home/share/esp32/esp-idf/components/newlib/include/limits.h
+ /home/share/esp32/esp-idf/components/newlib/include/limits.h \
+ /home/share/esp32/esp-idf/components/mbedtls/port/include/sha256_alt.h
 
 /home/share/esp32/esp-idf/components/bootloader_support/include_bootloader/bootloader_sha.h:
 
@@ -117,4 +118,6 @@ src/bootloader_sha.o: \
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/check_config.h:
 
 /home/share/esp32/esp-idf/components/newlib/include/limits.h:
+
+/home/share/esp32/esp-idf/components/mbedtls/port/include/sha256_alt.h:
 /home/share/esp32/esp-idf/components/bootloader_support/src/bootloader_sha.c:

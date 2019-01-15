@@ -27,6 +27,7 @@ mbedtls/library/entropy_poll.o: \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha512.h \
  /home/share/esp32/esp-idf/components/newlib/include/stdint.h \
  /home/share/esp32/esp-idf/components/newlib/include/sys/_intsup.h \
+ /home/share/esp32/esp-idf/components/mbedtls/port/include/sha512_alt.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/entropy_poll.h
 
 /home/share/esp32/esp-idf/components/mbedtls/port/include/mbedtls/esp_config.h:
@@ -82,6 +83,8 @@ mbedtls/library/entropy_poll.o: \
 /home/share/esp32/esp-idf/components/newlib/include/stdint.h:
 
 /home/share/esp32/esp-idf/components/newlib/include/sys/_intsup.h:
+
+/home/share/esp32/esp-idf/components/mbedtls/port/include/sha512_alt.h:
 
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/entropy_poll.h:
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/library/entropy_poll.c:

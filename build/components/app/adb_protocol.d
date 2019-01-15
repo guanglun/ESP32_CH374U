@@ -87,7 +87,8 @@ app/adb_protocol.o: \
  /home/share/esp32/project/ESP32_CH374U/components/app/CH374INC.H \
  /home/share/esp32/project/ESP32_CH374U/components/hal/ch374u_hal.h \
  /home/share/esp32/project/ESP32_CH374U/components/app/adb_device.h \
- /home/share/esp32/project/ESP32_CH374U/components/app/adb_protocol.h
+ /home/share/esp32/project/ESP32_CH374U/components/app/adb_protocol.h \
+ /home/share/esp32/project/ESP32_CH374U/components/app/sha1withrsa.h
 
 /home/share/esp32/esp-idf/components/newlib/include/stdio.h:
 
@@ -264,4 +265,6 @@ app/adb_protocol.o: \
 /home/share/esp32/project/ESP32_CH374U/components/app/adb_device.h:
 
 /home/share/esp32/project/ESP32_CH374U/components/app/adb_protocol.h:
+
+/home/share/esp32/project/ESP32_CH374U/components/app/sha1withrsa.h:
 /home/share/esp32/project/ESP32_CH374U/components/app/adb_protocol.c:

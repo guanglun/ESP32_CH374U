@@ -12,6 +12,7 @@
 #include "adb_device.h"
 #include "adb_protocol.h"
 #include "CH374INC.H"
+#include "sha1withrsa.h"
 
 #define PUBLIC_KEY "QAAAAC/VcToxbiTUhT4Bm3tvGDXxT3+XC7G6ntpPb07RqtVhffOJATCB1nWbOenUpr5DOeOLDEttPjFCSzaXgatPXT6JkCfZ5RomXhk4D40Gfdo9X0DvRgmiu6sO7YxiOhsHppnoABcXtBnFX9cfvOv8ShI78+/j6Q9F+eNBG2bbhhLYsdq1ynSvLlT/1Smp7fN/X/IA3A8zDtN/JhmzdsM/vTZr4hahTlljFo4AWDEMSqmSF9Mh/zXxlHTq402/LWTGZirkLKF30/3U9zxIvkXJnwDKilaFOBcLTS44F7jZByQ4J+GFpmtbaIFwlcxCim5SBoHwSu+6P0RObbFDg8/BY47KiwLjW00BLhiBgPr5xU3N/oqXDS13Rv4duf25mF5ZPuqimC9vjMXj6R/HLwPByOidDkPaNnZKlp6q4aclTw6UAK8kWuGiuFBgJBwGlXsjRT0luYxd1AGzK9ryxYsSk/o1jqhJQyVEIqo0wb9xmChlzReTFB/rwzZCfPZT/rVWPdR9oKZDvnZUf49yRT3PXmSelgzN5Kw2Ca7Nzo8Evh/tBeOl35X7CCYwyie6iFifARrMgfVe/3br33ohGjl8WUWerDn3TKSU9ujKv3F6yvsR4AxjMEElcpRLQUnn5VxBYMoDABjLtItLeDeeC7v8VTHkdNjhUUtpksuiS/epLy+Kza9sbQEAAQA= @unknown"
 #define CNXN_CMD_STR "host::features=stat_v2,shell_v2,cmd"
@@ -92,7 +93,7 @@ void send_auth_response(apacket *p)
     msg.arg1 = 0;
     msg.data_length = 256;
 
-    //SHA1withRSA(p->data, p->msg.data_length, RSABuffer);
+    SHA1withRSA(p->data, p->msg.data_length, RSABuffer);
     usb_send_packet(&msg, RSABuffer);
 }
 

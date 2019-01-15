@@ -49,7 +49,8 @@ mbedtls/library/rsa.o: \
  /home/share/esp32/esp-idf/components/newlib/platform_include/time.h \
  /home/share/esp32/esp-idf/components/newlib/include/time.h \
  /home/share/esp32/esp-idf/components/newlib/include/machine/time.h \
- /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha1.h
+ /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha1.h \
+ /home/share/esp32/esp-idf/components/mbedtls/port/include/sha1_alt.h
 
 /home/share/esp32/esp-idf/components/mbedtls/port/include/mbedtls/esp_config.h:
 
@@ -150,4 +151,6 @@ mbedtls/library/rsa.o: \
 /home/share/esp32/esp-idf/components/newlib/include/machine/time.h:
 
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha1.h:
+
+/home/share/esp32/esp-idf/components/mbedtls/port/include/sha1_alt.h:
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/library/rsa.c:

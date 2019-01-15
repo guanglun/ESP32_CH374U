@@ -20,7 +20,26 @@ port/esp_sha1.o: \
  /home/share/esp32/esp-idf/components/newlib/include/machine/stdlib.h \
  /home/share/esp32/esp-idf/components/newlib/include/alloca.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/check_config.h \
- /home/share/esp32/esp-idf/components/newlib/include/limits.h
+ /home/share/esp32/esp-idf/components/newlib/include/limits.h \
+ /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha1.h \
+ /home/share/esp32/esp-idf/components/newlib/include/stdint.h \
+ /home/share/esp32/esp-idf/components/newlib/include/sys/_intsup.h \
+ /home/share/esp32/esp-idf/components/mbedtls/port/include/sha1_alt.h \
+ /home/share/esp32/esp-idf/components/newlib/include/string.h \
+ /home/share/esp32/esp-idf/components/newlib/include/sys/string.h \
+ /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform.h \
+ /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_time.h \
+ /home/share/esp32/esp-idf/components/newlib/platform_include/time.h \
+ /home/share/esp32/esp-idf/components/newlib/include/time.h \
+ /home/share/esp32/esp-idf/components/newlib/include/machine/time.h \
+ /home/share/esp32/esp-idf/components/newlib/include/sys/types.h \
+ /home/share/esp32/esp-idf/components/newlib/include/machine/types.h \
+ /home/share/esp32/esp-idf/components/newlib/include/sys/sched.h \
+ /home/share/esp32/esp-idf/components/newlib/include/stdio.h \
+ /home/share/esp32/esp-idf/components/newlib/include/sys/stdio.h \
+ /home/share/esp32/esp-idf/components/esp32/include/hwcrypto/sha.h \
+ /home/share/esp32/esp-idf/components/esp32/include/rom/sha.h \
+ /home/share/esp32/esp-idf/components/esp32/include/esp_types.h
 
 /home/share/esp32/esp-idf/components/mbedtls/port/include/mbedtls/esp_config.h:
 
@@ -63,4 +82,42 @@ port/esp_sha1.o: \
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/check_config.h:
 
 /home/share/esp32/esp-idf/components/newlib/include/limits.h:
+
+/home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha1.h:
+
+/home/share/esp32/esp-idf/components/newlib/include/stdint.h:
+
+/home/share/esp32/esp-idf/components/newlib/include/sys/_intsup.h:
+
+/home/share/esp32/esp-idf/components/mbedtls/port/include/sha1_alt.h:
+
+/home/share/esp32/esp-idf/components/newlib/include/string.h:
+
+/home/share/esp32/esp-idf/components/newlib/include/sys/string.h:
+
+/home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform.h:
+
+/home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_time.h:
+
+/home/share/esp32/esp-idf/components/newlib/platform_include/time.h:
+
+/home/share/esp32/esp-idf/components/newlib/include/time.h:
+
+/home/share/esp32/esp-idf/components/newlib/include/machine/time.h:
+
+/home/share/esp32/esp-idf/components/newlib/include/sys/types.h:
+
+/home/share/esp32/esp-idf/components/newlib/include/machine/types.h:
+
+/home/share/esp32/esp-idf/components/newlib/include/sys/sched.h:
+
+/home/share/esp32/esp-idf/components/newlib/include/stdio.h:
+
+/home/share/esp32/esp-idf/components/newlib/include/sys/stdio.h:
+
+/home/share/esp32/esp-idf/components/esp32/include/hwcrypto/sha.h:
+
+/home/share/esp32/esp-idf/components/esp32/include/rom/sha.h:
+
+/home/share/esp32/esp-idf/components/esp32/include/esp_types.h:
 /home/share/esp32/esp-idf/components/mbedtls/port/esp_sha1.c:

@@ -288,7 +288,8 @@ void Init374Host(void) // 初始化USB主机
 	{
 		RootHubDev[n].DeviceStatus = ROOT_DEV_DISCONNECT; // 清空
 		RootHubDev[n].DeviceType = DEV_ERROR;
-		RootHubDev[n].tog_flag = false;
+		RootHubDev[n].recv_tog_flag = false;
+		RootHubDev[n].send_tog_flag = false;
 	}
 		
 
@@ -297,7 +298,7 @@ void Init374Host(void) // 初始化USB主机
 	Write374Byte(REG_USB_H_CTRL, 0x00);
 	Write374Byte(REG_INTER_FLAG, BIT_IF_USB_PAUSE | BIT_IF_INTER_FLAG); // 清所有中断标志
 																		//	Write374Byte( REG_INTER_EN, BIT_IE_TRANSFER );  // 允许传输完成中断,因为本程序使用查询方式检测USB设备插拔,所以无需USB设备检测中断
-	Write374Byte(REG_INTER_EN, BIT_IE_TRANSFER | BIT_IE_DEV_DETECT);	// 允许传输完成中断和USB设备检测中断
+	Write374Byte(REG_INTER_EN,0x00);// BIT_IE_TRANSFER | BIT_IE_DEV_DETECT);	// 允许传输完成中断和USB设备检测中断
 																		//	Write374Byte( REG_SYS_CTRL, BIT_CTRL_OE_POLAR  );  // 对于CH374T或者UEN引脚悬空的CH374S必须置BIT_CTRL_OE_POLAR为1
 	Write374Byte(REG_USB_SETUP, BIT_SETP_HOST_MODE);					// USB主机方式
 	HostEnableRootHub();												// 启用内置的Root-HUB
@@ -996,6 +997,8 @@ void NewDeviceEnum(void)
 	{
 		if (RootHubDev[device_count].DeviceStatus == ROOT_DEV_CONNECTED)
 		{ // 刚插入设备尚未初始化
+			RootHubDev[device_count].recv_tog_flag = false;
+			RootHubDev[device_count].send_tog_flag = false;
 			printf("NewDeviceEnum Found Device %d\r\n", device_count);
 			mDelaymS(200);							 // 由于USB设备刚插入尚未稳定，故等待USB设备数百毫秒，消除插拔抖动
 			InitDevice(device_count);			 // 初始化/枚举指定HUB端口的USB设备
@@ -1019,14 +1022,14 @@ void QueryADB_Send(uint8_t *buf,uint8_t len)
 
 				Write374Block(RAM_HOST_TRAN, len, buf);
 				Write374Byte(REG_USB_LENGTH, len);
-				printf("================================ADB SEND================================\r\n");
-				printf_byte(buf, len);
-				printf_byte_str(buf, len);
-				printf("========================================================================\r\n");
-				s = WaitHostTransact374(RootHubDev[count].Endp_Out, DEF_USB_PID_OUT, RootHubDev[count].tog_flag, 100);
+				// printf("================================ADB SEND================================\r\n");
+				// printf_byte(buf, len);
+				// printf_byte_str(buf, len);
+				// printf("========================================================================\r\n");
+				s = WaitHostTransact374(RootHubDev[count].Endp_Out, DEF_USB_PID_OUT, RootHubDev[count].send_tog_flag, 100);
 				if (s == USB_INT_SUCCESS)
 				{
-					RootHubDev[count].tog_flag = !RootHubDev[count].tog_flag;
+					RootHubDev[count].send_tog_flag = !RootHubDev[count].send_tog_flag;
 				}				
 			}
 		}
@@ -1038,19 +1041,20 @@ void QueryADB_Send(uint8_t *buf,uint8_t len)
 void QueryADB_Recv(uint8_t index)
 {
 	uint8_t s = 0,len = 0;
+	
 	SetHostUsbAddr(RootHubDev[index].DeviceAddress); // 设置USB主机当前操作的USB设备地址
 	SetUsbSpeed(RootHubDev[index].DeviceSpeed);		// 设置当前USB速度
 
-	s = HostTransact374(RootHubDev[index].Endp_In, DEF_USB_PID_IN, RootHubDev[index].tog_flag);
+	s = HostTransact374(RootHubDev[index].Endp_In, DEF_USB_PID_IN,RootHubDev[index].recv_tog_flag);
 	if (s == USB_INT_SUCCESS)
 	{
-		RootHubDev[index].tog_flag = !RootHubDev[index].tog_flag;
+		RootHubDev[index].recv_tog_flag = !RootHubDev[index].recv_tog_flag;
 		len = Read374Byte(REG_USB_LENGTH);
 		Read374Block(RAM_HOST_RECV, len, TempBuf);
-		printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ADB RECV>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\r\n");
-		printf_byte(TempBuf, len);
-		printf_byte_str(TempBuf, len);
-		printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\r\n");
+		// printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ADB RECV>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\r\n");
+		// printf_byte(TempBuf, len);
+		// printf_byte_str(TempBuf, len);
+		// printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\r\n");
 		ADB_RecvData(TempBuf, len);
 	}
 
@@ -1063,11 +1067,11 @@ void QueryMouse(uint8_t index)
 	SetHostUsbAddr(RootHubDev[index].DeviceAddress); // 设置USB主机当前操作的USB设备地址
 	SetUsbSpeed(RootHubDev[index].DeviceSpeed);		// 设置当前USB速度
 
-	s = HostTransact374(RootHubDev[index].Endp_In, DEF_USB_PID_IN, RootHubDev[index].tog_flag); // CH374传输事务,获取数据
+	s = HostTransact374(RootHubDev[index].Endp_In, DEF_USB_PID_IN, RootHubDev[index].recv_tog_flag); // CH374传输事务,获取数据
 
 	if (s == USB_INT_SUCCESS)
 	{
-		RootHubDev[index].tog_flag = !RootHubDev[index].tog_flag;
+		RootHubDev[index].recv_tog_flag = !RootHubDev[index].recv_tog_flag;
 
 		len = Read374Byte(REG_USB_LENGTH); // 接收到的数据长度
 		if (len)

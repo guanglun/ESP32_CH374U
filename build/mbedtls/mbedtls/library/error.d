@@ -37,10 +37,6 @@ mbedtls/library/error.o: \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/aes.h \
  /home/share/esp32/esp-idf/components/newlib/include/stdint.h \
  /home/share/esp32/esp-idf/components/newlib/include/sys/_intsup.h \
- /home/share/esp32/esp-idf/components/mbedtls/port/include/aes_alt.h \
- /home/share/esp32/esp-idf/components/esp32/include/hwcrypto/aes.h \
- /home/share/esp32/esp-idf/components/esp32/include/esp_types.h \
- /home/share/esp32/esp-idf/components/esp32/include/rom/aes.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/base64.h \
  /home/share/esp32/esp-idf/components/mbedtls/port/include/mbedtls/bignum.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/bignum.h \
@@ -54,6 +50,7 @@ mbedtls/library/error.o: \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/ecp.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/entropy.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha512.h \
+ /home/share/esp32/esp-idf/components/mbedtls/port/include/sha512_alt.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/gcm.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/hmac_drbg.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/md.h \
@@ -73,7 +70,9 @@ mbedtls/library/error.o: \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/pkcs5.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/rsa.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha1.h \
+ /home/share/esp32/esp-idf/components/mbedtls/port/include/sha1_alt.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha256.h \
+ /home/share/esp32/esp-idf/components/mbedtls/port/include/sha256_alt.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha512.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/ssl.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/ssl_ciphersuites.h \
@@ -157,14 +156,6 @@ mbedtls/library/error.o: \
 
 /home/share/esp32/esp-idf/components/newlib/include/sys/_intsup.h:
 
-/home/share/esp32/esp-idf/components/mbedtls/port/include/aes_alt.h:
-
-/home/share/esp32/esp-idf/components/esp32/include/hwcrypto/aes.h:
-
-/home/share/esp32/esp-idf/components/esp32/include/esp_types.h:
-
-/home/share/esp32/esp-idf/components/esp32/include/rom/aes.h:
-
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/base64.h:
 
 /home/share/esp32/esp-idf/components/mbedtls/port/include/mbedtls/bignum.h:
@@ -190,6 +181,8 @@ mbedtls/library/error.o: \
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/entropy.h:
 
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha512.h:
+
+/home/share/esp32/esp-idf/components/mbedtls/port/include/sha512_alt.h:
 
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/gcm.h:
 
@@ -229,7 +222,11 @@ mbedtls/library/error.o: \
 
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha1.h:
 
+/home/share/esp32/esp-idf/components/mbedtls/port/include/sha1_alt.h:
+
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha256.h:
+
+/home/share/esp32/esp-idf/components/mbedtls/port/include/sha256_alt.h:
 
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha512.h:
 

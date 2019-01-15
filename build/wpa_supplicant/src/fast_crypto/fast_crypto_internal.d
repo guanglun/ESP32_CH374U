@@ -45,7 +45,8 @@ src/fast_crypto/fast_crypto_internal.o: \
  /home/share/esp32/esp-idf/components/mbedtls/port/include/mbedtls/esp_config.h \
  /home/share/esp32/esp-idf/components/mbedtls/port/include/esp_mem.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/check_config.h \
- /home/share/esp32/esp-idf/components/newlib/include/limits.h
+ /home/share/esp32/esp-idf/components/newlib/include/limits.h \
+ /home/share/esp32/esp-idf/components/mbedtls/port/include/sha256_alt.h
 
 /home/share/esp32/esp-idf/components/wpa_supplicant/include/crypto/includes.h:
 
@@ -138,4 +139,6 @@ src/fast_crypto/fast_crypto_internal.o: \
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/check_config.h:
 
 /home/share/esp32/esp-idf/components/newlib/include/limits.h:
+
+/home/share/esp32/esp-idf/components/mbedtls/port/include/sha256_alt.h:
 /home/share/esp32/esp-idf/components/wpa_supplicant/src/fast_crypto/fast_crypto_internal.c:

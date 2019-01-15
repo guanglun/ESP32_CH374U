@@ -41,10 +41,7 @@ src/fast_crypto/fast_aes-unwrap.o: \
  /home/share/esp32/esp-idf/components/mbedtls/port/include/mbedtls/esp_config.h \
  /home/share/esp32/esp-idf/components/mbedtls/port/include/esp_mem.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/check_config.h \
- /home/share/esp32/esp-idf/components/newlib/include/limits.h \
- /home/share/esp32/esp-idf/components/mbedtls/port/include/aes_alt.h \
- /home/share/esp32/esp-idf/components/esp32/include/hwcrypto/aes.h \
- /home/share/esp32/esp-idf/components/esp32/include/rom/aes.h
+ /home/share/esp32/esp-idf/components/newlib/include/limits.h
 
 /home/share/esp32/esp-idf/components/wpa_supplicant/include/crypto/includes.h:
 
@@ -129,10 +126,4 @@ src/fast_crypto/fast_aes-unwrap.o: \
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/check_config.h:
 
 /home/share/esp32/esp-idf/components/newlib/include/limits.h:
-
-/home/share/esp32/esp-idf/components/mbedtls/port/include/aes_alt.h:
-
-/home/share/esp32/esp-idf/components/esp32/include/hwcrypto/aes.h:
-
-/home/share/esp32/esp-idf/components/esp32/include/rom/aes.h:
 /home/share/esp32/esp-idf/components/wpa_supplicant/src/fast_crypto/fast_aes-unwrap.c:

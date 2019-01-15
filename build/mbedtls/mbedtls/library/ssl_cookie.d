@@ -52,8 +52,11 @@ mbedtls/library/ssl_cookie.o: \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/ssl_internal.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/md5.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha1.h \
+ /home/share/esp32/esp-idf/components/mbedtls/port/include/sha1_alt.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha256.h \
+ /home/share/esp32/esp-idf/components/mbedtls/port/include/sha256_alt.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha512.h \
+ /home/share/esp32/esp-idf/components/mbedtls/port/include/sha512_alt.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h \
  /home/share/esp32/esp-idf/components/newlib/include/string.h \
  /home/share/esp32/esp-idf/components/newlib/include/sys/string.h
@@ -162,9 +165,15 @@ mbedtls/library/ssl_cookie.o: \
 
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha1.h:
 
+/home/share/esp32/esp-idf/components/mbedtls/port/include/sha1_alt.h:
+
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha256.h:
 
+/home/share/esp32/esp-idf/components/mbedtls/port/include/sha256_alt.h:
+
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha512.h:
+
+/home/share/esp32/esp-idf/components/mbedtls/port/include/sha512_alt.h:
 
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h:
 

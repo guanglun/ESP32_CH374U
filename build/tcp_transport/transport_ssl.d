@@ -147,11 +147,9 @@ transport_ssl.o: \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/ssl.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/entropy.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha512.h \
+ /home/share/esp32/esp-idf/components/mbedtls/port/include/sha512_alt.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/ctr_drbg.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/aes.h \
- /home/share/esp32/esp-idf/components/mbedtls/port/include/aes_alt.h \
- /home/share/esp32/esp-idf/components/esp32/include/hwcrypto/aes.h \
- /home/share/esp32/esp-idf/components/esp32/include/rom/aes.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/error.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/certs.h \
  /home/share/esp32/esp-idf/components/log/include/esp_log.h \
@@ -455,15 +453,11 @@ transport_ssl.o: \
 
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha512.h:
 
+/home/share/esp32/esp-idf/components/mbedtls/port/include/sha512_alt.h:
+
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/ctr_drbg.h:
 
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/aes.h:
-
-/home/share/esp32/esp-idf/components/mbedtls/port/include/aes_alt.h:
-
-/home/share/esp32/esp-idf/components/esp32/include/hwcrypto/aes.h:
-
-/home/share/esp32/esp-idf/components/esp32/include/rom/aes.h:
 
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/error.h:
 

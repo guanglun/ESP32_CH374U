@@ -115,7 +115,8 @@ typedef struct _RootHubDev
 	uint8_t Endp_Out;
 	USB_DEV_DESCR dev_descr;
 	USB_CFG_DESCR cfg_descr;
-	bool tog_flag;
+	bool send_tog_flag;
+	bool recv_tog_flag;
 }S_RootHubDev;
 
 typedef struct _DevOnHubPort
