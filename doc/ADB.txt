@@ -1,0 +1,22 @@
+Testing started at 14:39 ...
+
+01/15 14:39:01: Launching Tests in 'com.guanglun.uiatuomatordemo'
+$ adb push E:\2.APP\APP\UiatuomatorDemo\app\build\outputs\apk\debug\app-debug.apk /data/local/tmp/com.guanglun.uiatuomatordemo
+$ adb shell pm install -t -r "/data/local/tmp/com.guanglun.uiatuomatordemo"
+Failure [INSTALL_FAILED_UPDATE_INCOMPATIBLE: New package has a different signature: com.guanglun.uiatuomatordemo]
+$ adb shell pm uninstall com.guanglun.uiatuomatordemo
+$ adb shell pm install -t -r "/data/local/tmp/com.guanglun.uiatuomatordemo"
+Success
+APK installed in 3 s 152 ms
+$ adb push E:\2.APP\APP\UiatuomatorDemo\app\build\outputs\apk\androidTest\debug\app-debug-androidTest.apk /data/local/tmp/com.guanglun.uiatuomatordemo.test
+$ adb shell pm install -t -r "/data/local/tmp/com.guanglun.uiatuomatordemo.test"
+Failure [INSTALL_FAILED_UPDATE_INCOMPATIBLE: New package has a different signature: com.guanglun.uiatuomatordemo.test]
+$ adb shell pm uninstall com.guanglun.uiatuomatordemo.test
+$ adb shell pm install -t -r "/data/local/tmp/com.guanglun.uiatuomatordemo.test"
+Success
+APK installed in 1 s 792 ms
+Running tests
+
+$ adb shell am instrument -w -r   -e package com.guanglun.uiatuomatordemo -e debug false com.guanglun.uiatuomatordemo.test/android.support.test.runner.AndroidJUnitRunner
+Client not ready yet..
+Started running tests
