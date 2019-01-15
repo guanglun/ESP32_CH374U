@@ -20,7 +20,8 @@ uint32_t local_id = 1,remote_id = 0;
 
 ADB_Connect_Status adb_c_s = ADB_DISCONNECT;
 
-void printf_adb_frame(amessage *msg, uint8_t *buffer,bool is_recv)
+
+int printf_adb_frame(amessage *msg, uint8_t *buffer,bool is_recv)
 {
     printf(">>>\r\n");
     if(is_recv == true)
@@ -40,7 +41,10 @@ void printf_adb_frame(amessage *msg, uint8_t *buffer,bool is_recv)
         break;
 
     case A_AUTH:
-        printf("AUTH ");
+        printf("AUTH \r\n");
+
+        return 0;
+
         break;
 
     case A_OPEN: /* OPEN(local-id, 0, "destination") */
@@ -65,10 +69,12 @@ void printf_adb_frame(amessage *msg, uint8_t *buffer,bool is_recv)
         printf("handle_packet: what is %08x?!", msg->command);
         break;
     }
+
     //printf("\r\n");
     //printf_byte((uint8_t *)msg, sizeof(amessage));
     printf_byte_str(buffer, msg->data_length);
     //printf_byte(buffer, msg->data_length);
+    return 0;
 }
 
 int usb_send_packet(amessage *msg, uint8_t *buffer)
@@ -105,6 +111,8 @@ int usb_send_packet(amessage *msg, uint8_t *buffer)
 
 void adb_connect(void)
 {
+    local_id = 1;
+    remote_id = 0;
     adb_c_s = ADB_DISCONNECT;
     is_first_recv_auth_token = 1;
     send_cnxn_connect();
@@ -181,6 +189,7 @@ int ADB_RecvFrame(apacket *p)
     // printf("length\t0x%02X\r\n", p->msg.data_length);  
     // printf("====================\r\n");  
 
+    *(p->data + p->msg.data_length) = '\0';
     printf_adb_frame(&(p->msg),p->data,true);
     
     switch (p->msg.command)
@@ -223,8 +232,6 @@ int ADB_RecvFrame(apacket *p)
         // if(adb_c_s != ADB_CONNECT_INTO_SHELL)
         // {
         //     adb_c_s = ADB_CONNECT_INTO_SHELL;
-            
-            
         // }
         remote_id = p->msg.arg1;
         break;
@@ -234,7 +241,15 @@ int ADB_RecvFrame(apacket *p)
         break;
 
     case A_WRTE:
-
+        if(adb_c_s == ADB_WAIT_CHECK_PACKAGE)
+        {
+            if(strstr((const char *)p->data,"com.guanglun.uiatuomatordemo") > 0)
+            {
+                printf("package found\r\n");
+            }else{
+                printf("package not found\r\n");
+            }
+        }
         //send_ready(local_id,remote_id);
         break;
 
@@ -255,7 +270,7 @@ void ADB_Process(void)
     {
         case ADB_CONNECT:
 
-        send_open_shell(local_id,remote_id,(uint8_t *)"ls");
+        send_open_shell(local_id,remote_id,(uint8_t *)"pm list packages com.guanglun.uiatuomatordemo");
 
         adb_c_s = ADB_WAIT_CHECK_PACKAGE;
         break;
