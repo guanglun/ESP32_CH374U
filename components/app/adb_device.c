@@ -16,12 +16,13 @@
 uint8_t is_first_recv_auth_token = 1;
 ADBTxRx_S adb_rx_s, adb_tx_s;
 
-uint32_t local_id = 1;
-uint32_t remote_id;
-ADB_Connect_Status adb_c_s = ADB_CONNECT_NOT_CHECK;
+uint32_t local_id = 1,remote_id = 0;
+
+ADB_Connect_Status adb_c_s = ADB_DISCONNECT;
 
 void printf_adb_frame(amessage *msg, uint8_t *buffer,bool is_recv)
 {
+    printf(">>>\r\n");
     if(is_recv == true)
     {
         printf("ADB RECV: ");
@@ -64,7 +65,10 @@ void printf_adb_frame(amessage *msg, uint8_t *buffer,bool is_recv)
         printf("handle_packet: what is %08x?!", msg->command);
         break;
     }
+    //printf("\r\n");
+    //printf_byte((uint8_t *)msg, sizeof(amessage));
     printf_byte_str(buffer, msg->data_length);
+    //printf_byte(buffer, msg->data_length);
 }
 
 int usb_send_packet(amessage *msg, uint8_t *buffer)
@@ -101,6 +105,7 @@ int usb_send_packet(amessage *msg, uint8_t *buffer)
 
 void adb_connect(void)
 {
+    adb_c_s = ADB_DISCONNECT;
     is_first_recv_auth_token = 1;
     send_cnxn_connect();
 }
@@ -165,6 +170,7 @@ reset:
     return -1;
 }
 
+
 int ADB_RecvFrame(apacket *p)
 {
     
@@ -184,7 +190,7 @@ int ADB_RecvFrame(apacket *p)
         break;
 
     case A_CNXN: /* CONNECT(version, maxdata, "system-id-string") */
-            adb_c_s = ADB_CONNECT_CHECK_OK;
+            adb_c_s = ADB_CONNECT;
             //connect_to_remote(local_id);
         break;
 
@@ -217,10 +223,10 @@ int ADB_RecvFrame(apacket *p)
         // if(adb_c_s != ADB_CONNECT_INTO_SHELL)
         // {
         //     adb_c_s = ADB_CONNECT_INTO_SHELL;
-        //     remote_id = p->msg.arg1;
+            
             
         // }
-
+        remote_id = p->msg.arg1;
         break;
 
     case A_CLSE: /* CLOSE(local-id, remote-id, "") */
@@ -238,7 +244,23 @@ int ADB_RecvFrame(apacket *p)
     }
 
     
+    ADB_Process();
 
     return 0;
+}
+
+void ADB_Process(void)
+{
+    switch(adb_c_s)
+    {
+        case ADB_CONNECT:
+
+        send_open_shell(local_id,remote_id,(uint8_t *)"ls");
+
+        adb_c_s = ADB_WAIT_CHECK_PACKAGE;
+        break;
+        default:
+        break;
+    }
 }
 

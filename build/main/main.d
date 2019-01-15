@@ -1,4 +1,4 @@
-main.o: /home/share/esp32/project/ESP32_CH374U/main/main.c \
+main.o: /home/share/esp32/ESP32_CH374U/main/main.c \
  /home/share/esp32/esp-idf/components/newlib/include/stdio.h \
  /home/share/esp32/esp-idf/components/newlib/include/_ansi.h \
  /home/share/esp32/esp-idf/components/newlib/include/newlib.h \
@@ -26,7 +26,7 @@ main.o: /home/share/esp32/project/ESP32_CH374U/main/main.c \
  /home/share/esp32/esp-idf/components/newlib/include/stdint.h \
  /home/share/esp32/esp-idf/components/newlib/include/sys/_intsup.h \
  /home/share/esp32/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
- /home/share/esp32/project/ESP32_CH374U/build/include/sdkconfig.h \
+ /home/share/esp32/ESP32_CH374U/build/include/sdkconfig.h \
  /home/share/esp32/esp-idf/components/freertos/include/freertos/xtensa_config.h \
  /home/share/esp32/esp-idf/components/esp32/include/xtensa/hal.h \
  /home/share/esp32/esp-idf/components/esp32/include/xtensa/config/core.h \
@@ -81,7 +81,7 @@ main.o: /home/share/esp32/project/ESP32_CH374U/main/main.c \
  /home/share/esp32/esp-idf/components/newlib/include/limits.h \
  /home/share/esp32/esp-idf/components/freertos/include/freertos/list.h \
  /home/share/esp32/esp-idf/components/freertos/include/freertos/queue.h \
- /home/share/esp32/project/ESP32_CH374U/components/app/usb_hub.h
+ /home/share/esp32/ESP32_CH374U/components/app/usb_hub.h
 
 /home/share/esp32/esp-idf/components/newlib/include/stdio.h:
 
@@ -137,7 +137,7 @@ main.o: /home/share/esp32/project/ESP32_CH374U/main/main.c \
 
 /home/share/esp32/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
 
-/home/share/esp32/project/ESP32_CH374U/build/include/sdkconfig.h:
+/home/share/esp32/ESP32_CH374U/build/include/sdkconfig.h:
 
 /home/share/esp32/esp-idf/components/freertos/include/freertos/xtensa_config.h:
 
@@ -247,5 +247,5 @@ main.o: /home/share/esp32/project/ESP32_CH374U/main/main.c \
 
 /home/share/esp32/esp-idf/components/freertos/include/freertos/queue.h:
 
-/home/share/esp32/project/ESP32_CH374U/components/app/usb_hub.h:
-/home/share/esp32/project/ESP32_CH374U/main/./main.c:
+/home/share/esp32/ESP32_CH374U/components/app/usb_hub.h:
+/home/share/esp32/ESP32_CH374U/main/./main.c:

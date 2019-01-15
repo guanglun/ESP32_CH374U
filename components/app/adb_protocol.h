@@ -27,9 +27,10 @@ ADB_Status;
 
 typedef enum
 {
-  ADB_CONNECT_NOT_CHECK = 0,
-  ADB_CONNECT_CHECK_OK,
-  ADB_CONNECT_INTO_SHELL,
+  ADB_DISCONNECT = 0,
+  ADB_CONNECT,
+  ADB_WAIT_CHECK_PACKAGE,
+  ADB_CHECK_PACKAGE_SUCCESS
 }
 ADB_Connect_Status;
 
@@ -76,5 +77,6 @@ void send_auth_publickey(apacket *p);
 void send_auth_response(apacket *p);
 int check_data(apacket *p);
 int check_header(apacket *p);
+void send_open_shell(uint32_t local,uint32_t remote,uint8_t *buf);
 
 #endif

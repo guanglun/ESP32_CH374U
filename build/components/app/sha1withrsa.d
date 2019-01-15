@@ -1,5 +1,5 @@
 app/sha1withrsa.o: \
- /home/share/esp32/project/ESP32_CH374U/components/app/sha1withrsa.c \
+ /home/share/esp32/ESP32_CH374U/components/app/sha1withrsa.c \
  /home/share/esp32/esp-idf/components/newlib/include/stdio.h \
  /home/share/esp32/esp-idf/components/newlib/include/_ansi.h \
  /home/share/esp32/esp-idf/components/newlib/include/newlib.h \
@@ -27,7 +27,7 @@ app/sha1withrsa.o: \
  /home/share/esp32/esp-idf/components/newlib/include/stdint.h \
  /home/share/esp32/esp-idf/components/newlib/include/sys/_intsup.h \
  /home/share/esp32/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
- /home/share/esp32/project/ESP32_CH374U/build/include/sdkconfig.h \
+ /home/share/esp32/ESP32_CH374U/build/include/sdkconfig.h \
  /home/share/esp32/esp-idf/components/freertos/include/freertos/xtensa_config.h \
  /home/share/esp32/esp-idf/components/esp32/include/xtensa/hal.h \
  /home/share/esp32/esp-idf/components/esp32/include/xtensa/config/core.h \
@@ -98,7 +98,7 @@ app/sha1withrsa.o: \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/cipher.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/x509.h \
  /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h \
- /home/share/esp32/project/ESP32_CH374U/components/app/log.h
+ /home/share/esp32/ESP32_CH374U/components/app/log.h
 
 /home/share/esp32/esp-idf/components/newlib/include/stdio.h:
 
@@ -154,7 +154,7 @@ app/sha1withrsa.o: \
 
 /home/share/esp32/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
 
-/home/share/esp32/project/ESP32_CH374U/build/include/sdkconfig.h:
+/home/share/esp32/ESP32_CH374U/build/include/sdkconfig.h:
 
 /home/share/esp32/esp-idf/components/freertos/include/freertos/xtensa_config.h:
 
@@ -296,5 +296,5 @@ app/sha1withrsa.o: \
 
 /home/share/esp32/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h:
 
-/home/share/esp32/project/ESP32_CH374U/components/app/log.h:
-/home/share/esp32/project/ESP32_CH374U/components/app/sha1withrsa.c:
+/home/share/esp32/ESP32_CH374U/components/app/log.h:
+/home/share/esp32/ESP32_CH374U/components/app/sha1withrsa.c:
