@@ -12,6 +12,7 @@
 #include "adb_device.h"
 #include "adb_protocol.h"
 #include "CH374INC.H"
+#include "scmd.h"
 
 uint8_t is_first_recv_auth_token = 1;
 ADBTxRx_S adb_rx_s, adb_tx_s;
@@ -20,6 +21,7 @@ uint32_t local_id = 1,remote_id = 0;
 
 ADB_Connect_Status adb_c_s = ADB_DISCONNECT;
 
+bool is_close = true,is_tcp_send_done = true;
 
 int printf_adb_frame(amessage *msg, uint8_t *buffer,bool is_recv)
 {
@@ -104,13 +106,15 @@ int usb_send_packet(amessage *msg, uint8_t *buffer)
             //printf_byte_str((uint8_t *)(buffer + i_count), 64);
         }
     }
-
+    is_close = false;
     
 	return 0;
 }
 
 void adb_connect(void)
 {
+    is_tcp_send_done = true;
+    is_close = true;
     local_id = 1;
     remote_id = 0;
     adb_c_s = ADB_DISCONNECT;
@@ -194,6 +198,7 @@ int ADB_RecvFrame(apacket *p)
     
     switch (p->msg.command)
     {
+        
     case A_SYNC:
 
         break;
@@ -233,24 +238,77 @@ int ADB_RecvFrame(apacket *p)
         // {
         //     adb_c_s = ADB_CONNECT_INTO_SHELL;
         // }
-        remote_id = p->msg.arg1;
+        //remote_id = p->msg.arg1;
+
+        if(adb_c_s == ADB_CONNECT_TCPSERVER_WAIT)
+        {
+            printf("tcpserver connect success\r\n");
+            adb_c_s = ADB_CONNECT_TCPSERVER_SUCCESS;
+            remote_id = p->msg.arg0;
+        }else if(adb_c_s == ADB_SEND_TCPSERVER_WAIT)  
+        {
+            printf("tcpserver send success\r\n");
+            adb_c_s = ADB_SEND_TCPSERVER_SUCCESS;
+        }else if(adb_c_s == ADB_CONNECT_TCPSERVER_SUCCESS)
+        {
+            is_tcp_send_done = true; 
+        }   
         break;
 
     case A_CLSE: /* CLOSE(local-id, remote-id, "") */
+        if(adb_c_s == ADB_START_PACKAGE_WAIT)
+        {
+            adb_c_s = ADB_CHECK_PACKAGE_SUCCESS;
+        }else if(adb_c_s == ADB_CONNECT_TCPSERVER_WAIT)
+        {
+            printf("tcpserver connect fail\r\n");
+            adb_c_s = ADB_CONNECT_TCPSERVER_FAIL;
+        }else if(adb_c_s == ADB_CONNECT_TCPSERVER_WAIT)
+        {
+            printf("tcpserver connect fail\r\n");
+            adb_c_s = ADB_CONNECT_TCPSERVER_FAIL;
+        }else if(adb_c_s == ADB_CHECK_PACKAGE_ISRUNING_WAIT)
+        {
+            printf("package is not running\r\n");
+            adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_FALSE;
+        }
 
+        is_close = true;
         break;
 
     case A_WRTE:
-        if(adb_c_s == ADB_WAIT_CHECK_PACKAGE)
+        if(adb_c_s == ADB_CHECK_PACKAGE_WAIT)
         {
-            if(strstr((const char *)p->data,"com.guanglun.uiatuomatordemo") > 0)
+            if(strstr((const char *)p->data,"com.guanglun.uiatuomatordemo") != NULL)
             {
                 printf("package found\r\n");
+                adb_c_s = ADB_CHECK_PACKAGE_SUCCESS;
+                
             }else{
                 printf("package not found\r\n");
+                adb_c_s = ADB_CHECK_PACKAGE_FAIL;
             }
+        }else if(adb_c_s == ADB_CHECK_PACKAGE_ISRUNING_WAIT)
+        {
+            if(strstr((const char *)p->data,"com.guanglun.uiatuomatordemo") != NULL)
+            {
+                printf("package is running\r\n");
+                adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_TRUE;
+                
+            }else{
+                printf("package is not running\r\n");
+                adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_FALSE;
+            }
+        }else if(adb_c_s == ADB_START_PACKAGE_WAIT)
+        {
+            is_close = true;
+            adb_c_s = ADB_CHECK_PACKAGE_SUCCESS;
+        }else if(adb_c_s == ADB_CONNECT_TCPSERVER_SUCCESS)
+        {
+            printf("recv tcpserver data\r\n");
+            send_recv_tcpserver_okay(local_id,remote_id);
         }
-        //send_ready(local_id,remote_id);
+
         break;
 
     default:
@@ -258,7 +316,6 @@ int ADB_RecvFrame(apacket *p)
         break;
     }
 
-    
     ADB_Process();
 
     return 0;
@@ -269,13 +326,74 @@ void ADB_Process(void)
     switch(adb_c_s)
     {
         case ADB_CONNECT:
-
         send_open_shell(local_id,remote_id,(uint8_t *)"pm list packages com.guanglun.uiatuomatordemo");
+        adb_c_s = ADB_CHECK_PACKAGE_WAIT;
 
-        adb_c_s = ADB_WAIT_CHECK_PACKAGE;
         break;
+        case ADB_CHECK_PACKAGE_SUCCESS:
+        if(is_close != true)
+        {
+            break;
+        }
+        send_open_shell(local_id,remote_id,(uint8_t *)"ps | grep com.guanglun.uiatuomatordemo");
+        adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_WAIT;
+        break;     
+
+        case ADB_CHECK_PACKAGE_ISRUNING_FALSE:
+        if(is_close != true)
+        {
+            break;
+        }
+        send_open_shell(local_id,remote_id,(uint8_t *)"am instrument -w -r -e package com.guanglun.uiatuomatordemo -e debug false com.guanglun.uiatuomatordemo.test/android.support.test.runner.AndroidJUnitRunner");
+        adb_c_s = ADB_START_PACKAGE_WAIT;
+
+        break;       
+
+        case ADB_CHECK_PACKAGE_ISRUNING_TRUE:
+        if(is_close != true)
+        {
+            break;
+        }
+        send_connect_tcpserver(local_id,remote_id,(uint8_t *)"1989");
+        adb_c_s = ADB_CONNECT_TCPSERVER_WAIT;
+        break;     
+
+        case ADB_CONNECT_TCPSERVER_FAIL:
+        if(is_close != true)
+        {
+            break;
+        }
+        send_connect_tcpserver(local_id,remote_id,(uint8_t *)"1989");
+        adb_c_s = ADB_CONNECT_TCPSERVER_WAIT;             
+        //send_tcpserver(local_id,remote_id,(uint8_t *)"hello",strlen("hello"));
+        //adb_c_s = ADB_SEND_TCPSERVER_WAIT;        
+
+        break;  
+
         default:
         break;
+    }
+}
+
+uint8_t ADB_TCP_Send(uint8_t *buf,uint16_t len)
+{
+    unsigned char buf_tmp[100];
+    unsigned char send_len = 0,s = 0;
+
+    if(adb_c_s == ADB_CONNECT_TCPSERVER_SUCCESS && is_tcp_send_done == true)
+    {
+        is_tcp_send_done = false;
+
+        send_len = cmd_creat(0x02,buf,len,buf_tmp);
+        send_tcpserver(local_id,remote_id,buf_tmp,send_len);
+
+        printf("TCP Mouse data: ");
+		for (s = 0; s < send_len; s++)
+			printf("0x%02X ", *(buf_tmp + s));
+		printf("\r\n");
+        return 0;
+    }else{
+        return 1;
     }
 }
 

@@ -13,6 +13,7 @@
 #include "adb_device.h"
 #include "CH374INC.H"
 
+
 #define HUB_DEV_NUM (3)
 // 附加的USB操作状态定义
 #define ERR_USB_UNKNOWN 0xFA // 未知错误,不应该发生的情况,需检查硬件或者程序错误
@@ -1077,10 +1078,15 @@ void QueryMouse(uint8_t index)
 		if (len)
 		{
 			Read374Block(RAM_HOST_RECV, len, TempBuf); // 取出数据并打印
-			printf("Mouse data: ");
-			for (s = 0; s < len; s++)
-				printf("0x%02X ", *(TempBuf + s));
-			printf("\n");
+			
+
+			if(ADB_TCP_Send(TempBuf,len) != 0)
+			{
+				printf("Mouse data: ");
+				for (s = 0; s < len; s++)
+					printf("0x%02X ", *(TempBuf + s));
+				printf("\n");
+			}
 		}
 	}
 	else if (s != (0x20 | USB_INT_RET_NAK))

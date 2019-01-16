@@ -18,7 +18,6 @@
 #define CNXN_CMD_STR "host::features=stat_v2,shell_v2,cmd"
 
 
-
 void get_adb_packet(amessage *msg, uint8_t *buf)
 {
     unsigned char *x;
@@ -130,8 +129,8 @@ void send_ready(uint32_t local,uint32_t remote)
     amessage msg;
 
     msg.command = A_OPEN;
-    msg.arg0 = remote;
-    msg.arg1 = local;
+    msg.arg0 = local;
+    msg.arg1 = remote;
     msg.data_length = 0;
 
     usb_send_packet(&msg, NULL);   
@@ -142,8 +141,8 @@ void send_shell(uint32_t local,uint32_t remote,uint8_t *buf,uint16_t len)
     amessage msg;
 
     msg.command = A_WRTE;
-    msg.arg0 = remote;
-    msg.arg1 = local;
+    msg.arg0 = local;
+    msg.arg1 = remote;
     msg.data_length = len;
 
     usb_send_packet(&msg, buf);   
@@ -166,6 +165,47 @@ void send_open_shell(uint32_t local,uint32_t remote,uint8_t *buf)
     msg.data_length = len;
 
     usb_send_packet(&msg, send_temp);   
+}
+
+void send_connect_tcpserver(uint32_t local,uint32_t remote,uint8_t *buf)
+{
+    amessage msg;
+    uint16_t len = strlen("tcp:") + strlen((const char *)buf) + 1;
+    uint8_t send_temp[512];
+    memcpy(send_temp, "tcp:",4);
+    memcpy(send_temp + 4, buf,strlen((const char *)buf));
+    *(send_temp + len - 1) = 0x00;
+
+    msg.command = A_OPEN;
+    msg.arg0 = local;
+    msg.arg1 = remote;
+    msg.data_length = len;
+
+    usb_send_packet(&msg, send_temp);   
+}
+
+void send_tcpserver(uint32_t local,uint32_t remote,uint8_t *buf,uint16_t len)
+{
+    amessage msg;
+
+    msg.command = A_WRTE;
+    msg.arg0 = local;
+    msg.arg1 = remote;
+    msg.data_length = len;
+
+    usb_send_packet(&msg, buf);   
+}
+
+void send_recv_tcpserver_okay(uint32_t local,uint32_t remote)
+{
+    amessage msg;
+
+    msg.command = A_OKAY;
+    msg.arg0 = local;
+    msg.arg1 = remote;
+    msg.data_length = 0;
+
+    usb_send_packet(&msg, NULL);   
 }
 
 

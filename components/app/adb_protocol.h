@@ -29,8 +29,28 @@ typedef enum
 {
   ADB_DISCONNECT = 0,
   ADB_CONNECT,
-  ADB_WAIT_CHECK_PACKAGE,
-  ADB_CHECK_PACKAGE_SUCCESS
+
+  ADB_CHECK_PACKAGE_WAIT,
+  ADB_CHECK_PACKAGE_SUCCESS,
+  ADB_CHECK_PACKAGE_FAIL,
+
+  ADB_CHECK_PACKAGE_ISRUNING_WAIT,
+  ADB_CHECK_PACKAGE_ISRUNING_TRUE,
+  ADB_CHECK_PACKAGE_ISRUNING_FALSE,
+
+  ADB_START_PACKAGE_WAIT,
+  ADB_START_PACKAGE_SUCCESS,
+  ADB_START_PACKAGE_FAIL,
+
+  ADB_CONNECT_TCPSERVER_WAIT,
+  ADB_CONNECT_TCPSERVER_SUCCESS,
+  ADB_CONNECT_TCPSERVER_FAIL,
+
+  ADB_SEND_TCPSERVER_WAIT,
+  ADB_SEND_TCPSERVER_SUCCESS,
+  ADB_SEND_TCPSERVER_FAIL,  
+
+  ADB_NULL_STATUS
 }
 ADB_Connect_Status;
 
@@ -78,5 +98,8 @@ void send_auth_response(apacket *p);
 int check_data(apacket *p);
 int check_header(apacket *p);
 void send_open_shell(uint32_t local,uint32_t remote,uint8_t *buf);
+void send_connect_tcpserver(uint32_t local,uint32_t remote,uint8_t *port_buf);
+void send_tcpserver(uint32_t local,uint32_t remote,uint8_t *buf,uint16_t len);
+void send_recv_tcpserver_okay(uint32_t local,uint32_t remote);
 
 #endif
