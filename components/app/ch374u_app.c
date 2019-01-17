@@ -1085,7 +1085,7 @@ void QueryMouse(uint8_t index)
 				printf("Mouse data: ");
 				for (s = 0; s < len; s++)
 					printf("0x%02X ", *(TempBuf + s));
-				printf("\n");
+				printf("\r\n");
 			}
 		}
 	}
@@ -1108,6 +1108,7 @@ void DeviceLoop(void)
 			}else if(RootHubDev[count].DeviceType == DEV_MOUSE)
 			{
 				QueryMouse(count);
+				
 			}
 		}
 	}

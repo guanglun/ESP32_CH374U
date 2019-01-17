@@ -82,6 +82,7 @@ app/usb_hub.o: \
  /home/share/esp32/esp-idf/components/newlib/include/limits.h \
  /home/share/esp32/esp-idf/components/freertos/include/freertos/list.h \
  /home/share/esp32/esp-idf/components/freertos/include/freertos/queue.h \
+ /home/share/esp32/esp-idf/components/esp32/include/esp_task_wdt.h \
  /home/share/esp32/project/ESP32_CH374U/components/app/log.h \
  /home/share/esp32/project/ESP32_CH374U/components/app/ch374u_app.h \
  /home/share/esp32/project/ESP32_CH374U/components/app/CH374INC.H \
@@ -252,6 +253,8 @@ app/usb_hub.o: \
 /home/share/esp32/esp-idf/components/freertos/include/freertos/list.h:
 
 /home/share/esp32/esp-idf/components/freertos/include/freertos/queue.h:
+
+/home/share/esp32/esp-idf/components/esp32/include/esp_task_wdt.h:
 
 /home/share/esp32/project/ESP32_CH374U/components/app/log.h:
 

@@ -5,6 +5,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/queue.h"
+#include "esp_task_wdt.h"
 
 #include "log.h"
 #include "ch374u_app.h"
@@ -31,7 +32,7 @@ void usb_hub_task(void* arg)
 		NewDeviceEnum();
         DeviceLoop();
 
-        vTaskDelay(10 / portTICK_RATE_MS);
+        vTaskDelay(10/ portTICK_RATE_MS);
     }
 
     vTaskDelete(NULL);

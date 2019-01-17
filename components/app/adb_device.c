@@ -86,7 +86,7 @@ int usb_send_packet(amessage *msg, uint8_t *buffer)
 
     get_adb_packet(msg, buffer);
 
-    printf_adb_frame(msg,buffer,false);
+    //printf_adb_frame(msg,buffer,false);
 
     QueryADB_Send((uint8_t *)msg, sizeof(amessage));
 
@@ -194,7 +194,7 @@ int ADB_RecvFrame(apacket *p)
     // printf("====================\r\n");  
 
     *(p->data + p->msg.data_length) = '\0';
-    printf_adb_frame(&(p->msg),p->data,true);
+    //printf_adb_frame(&(p->msg),p->data,true);
     
     switch (p->msg.command)
     {
@@ -387,10 +387,10 @@ uint8_t ADB_TCP_Send(uint8_t *buf,uint16_t len)
         send_len = cmd_creat(0x02,buf,len,buf_tmp);
         send_tcpserver(local_id,remote_id,buf_tmp,send_len);
 
-        printf("TCP Mouse data: ");
-		for (s = 0; s < send_len; s++)
-			printf("0x%02X ", *(buf_tmp + s));
-		printf("\r\n");
+        //printf("TCP Mouse data: ");
+		//for (s = 0; s < send_len; s++)
+		//	printf("0x%02X ", *(buf_tmp + s));
+		//printf("\r\n");
         return 0;
     }else{
         return 1;
