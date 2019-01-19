@@ -72,10 +72,10 @@ int printf_adb_frame(amessage *msg, uint8_t *buffer,bool is_recv)
         break;
     }
 
-    //printf("\r\n");
-    //printf_byte((uint8_t *)msg, sizeof(amessage));
+    printf("\r\n");
+    printf_byte((uint8_t *)msg, sizeof(amessage));
     printf_byte_str(buffer, msg->data_length);
-    //printf_byte(buffer, msg->data_length);
+    printf_byte(buffer, msg->data_length);
     return 0;
 }
 
@@ -245,6 +245,7 @@ int ADB_RecvFrame(apacket *p)
             printf("tcpserver connect success\r\n");
             adb_c_s = ADB_CONNECT_TCPSERVER_SUCCESS;
             remote_id = p->msg.arg0;
+            is_tcp_send_done = true;
         }else if(adb_c_s == ADB_SEND_TCPSERVER_WAIT)  
         {
             printf("tcpserver send success\r\n");
@@ -387,10 +388,10 @@ uint8_t ADB_TCP_Send(uint8_t *buf,uint16_t len)
         send_len = cmd_creat(0x02,buf,len,buf_tmp);
         send_tcpserver(local_id,remote_id,buf_tmp,send_len);
 
-        //printf("TCP Mouse data: ");
-		//for (s = 0; s < send_len; s++)
-		//	printf("0x%02X ", *(buf_tmp + s));
-		//printf("\r\n");
+        printf("TCP Mouse data: ");
+		for (s = 0; s < send_len; s++)
+			printf("0x%02X ", *(buf_tmp + s));
+		printf("\r\n");
         return 0;
     }else{
         return 1;
