@@ -86,7 +86,7 @@ int usb_send_packet(amessage *msg, uint8_t *buffer)
 
     get_adb_packet(msg, buffer);
 
-    //printf_adb_frame(msg,buffer,false);
+    printf_adb_frame(msg,buffer,false);
 
     QueryADB_Send((uint8_t *)msg, sizeof(amessage));
 
@@ -194,7 +194,7 @@ int ADB_RecvFrame(apacket *p)
     // printf("====================\r\n");  
 
     *(p->data + p->msg.data_length) = '\0';
-    //printf_adb_frame(&(p->msg),p->data,true);
+    printf_adb_frame(&(p->msg),p->data,true);
     
     switch (p->msg.command)
     {
