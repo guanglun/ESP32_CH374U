@@ -75,13 +75,13 @@ int printf_adb_frame(amessage *msg, uint8_t *buffer,bool is_recv)
     }
 
     printf("\r\n");
-    printf_byte((uint8_t *)msg, sizeof(amessage));
+    //printf_byte((uint8_t *)msg, sizeof(amessage));
     printf_byte_str(buffer, msg->data_length);
-    printf_byte(buffer, msg->data_length);
+    //printf_byte(buffer, msg->data_length);
     return 0;
 }
 
-int usb_send_packet(amessage *msg, uint8_t *buffer)
+int usb_send_packet(amessage *msg, uint8_t *buffer,uint8_t flag)
 {
     
     uint16_t i_count = 0;
@@ -92,20 +92,20 @@ int usb_send_packet(amessage *msg, uint8_t *buffer)
     printf_adb_frame(msg,buffer,false);
 #endif
 
-    QueryADB_Send((uint8_t *)msg, sizeof(amessage));
+    QueryADB_Send((uint8_t *)msg, sizeof(amessage),0);
 
     for (i_count = 0; i_count < msg->data_length; i_count += 64)
     {
-        if ((msg->data_length - i_count) < 64)
+        if ((msg->data_length - i_count) <= 64)
         {
             
-            QueryADB_Send((uint8_t *)(buffer + i_count), msg->data_length - i_count);
+            QueryADB_Send((uint8_t *)(buffer + i_count), msg->data_length - i_count,flag);
             //printf_byte((uint8_t *)(buffer + i_count), msg->data_length - i_count);
             //printf_byte_str((uint8_t *)(buffer + i_count), msg->data_length - i_count);
         }
         else
         {
-            QueryADB_Send((uint8_t *)(buffer + i_count), 64);
+            QueryADB_Send((uint8_t *)(buffer + i_count), 64,0);
             //printf_byte((uint8_t *)(buffer + i_count), 64);
             //printf_byte_str((uint8_t *)(buffer + i_count), 64);
         }
@@ -285,7 +285,9 @@ int ADB_RecvFrame(apacket *p)
                 }
                 
                 
-            }else if(strstr((const char *)p->data,(const char *)shell_end_str) != NULL){
+            }
+            
+            if(strstr((const char *)p->data,(const char *)shell_end_str) != NULL){
                 if(adb_c_s == ADB_CHECK_PACKAGE_SUCCESS_WAIT_END)
                 {
                     printf("package found\r\n");
@@ -294,8 +296,8 @@ int ADB_RecvFrame(apacket *p)
                     printf("package not found\r\n");
                     adb_c_s = ADB_CHECK_PACKAGE_FAIL;
                 }
-
             }
+
         }else if(adb_c_s == ADB_CHECK_PACKAGE_ISRUNING_WAIT || adb_c_s == ADB_CHECK_PACKAGE_ISRUNING_TRUE_WAIT_END )
         {
             if(strstr((const char *)p->data,PACKAGE_STR) != NULL)
@@ -305,7 +307,9 @@ int ADB_RecvFrame(apacket *p)
                     adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_TRUE_WAIT_END;
                 }
                 
-            }else if(strstr((const char *)p->data,(const char *)shell_end_str) != NULL){
+            }
+            if(strstr((const char *)p->data,(const char *)shell_end_str) != NULL)
+            {
                 if(adb_c_s == ADB_CHECK_PACKAGE_ISRUNING_TRUE_WAIT_END)
                 {
                     printf("package is running\r\n");
@@ -321,7 +325,9 @@ int ADB_RecvFrame(apacket *p)
             if(strstr((const char *)p->data,(const char *)shell_end_str) != NULL){
                 
                 adb_c_s = ADB_START_PACKAGE_SUCCESS_WAIT_END;
-            }else if(strstr((const char *)p->data,(const char *)PACKAGE_STR) != NULL){
+            }
+            if(strstr((const char *)p->data,(const char *)"INSTRUMENTATION_STATUS_CODE") != NULL)
+            {
                 if(adb_c_s == ADB_START_PACKAGE_SUCCESS_WAIT_END)
                 {
                     printf("package start success\r\n");
@@ -414,22 +420,37 @@ void ADB_Process(void)
     }
 }
 
-uint8_t ADB_TCP_Send(uint8_t *buf,uint16_t len)
+uint8_t ADB_TCP_Send(uint8_t *buf,uint16_t len,uint8_t dev_class)
 {
     unsigned char buf_tmp[100];
     unsigned char send_len = 0,s = 0;
+
+
 
     if(adb_c_s == ADB_CONNECT_TCPSERVER_SUCCESS && is_tcp_send_done == true)
     {
         is_tcp_send_done = false;
 
-        send_len = cmd_creat(0x02,buf,len,buf_tmp);
-        send_tcpserver(local_id,remote_id,buf_tmp,send_len);
+        if(dev_class == DEV_MOUSE)
+        {
+            send_len = cmd_creat(0x02,buf,len,buf_tmp);
+            send_tcpserver(local_id,remote_id,buf_tmp,send_len);
 
-        printf("TCP Mouse data: ");
-		for (s = 0; s < send_len; s++)
-			printf("0x%02X ", *(buf_tmp + s));
-		printf("\r\n");
+            printf("TCP Mouse: ");
+            printf_byte(buf_tmp,send_len);
+        }else if(dev_class == DEV_KEYBOARD){
+            send_len = cmd_creat(0x03,buf,len,buf_tmp);
+            send_tcpserver(local_id,remote_id,buf_tmp,send_len);
+
+            printf("TCP KeyBoard: ");
+            printf_byte(buf_tmp,send_len);
+
+        }
+
+
+
+
+
         return 0;
     }else{
         return 1;

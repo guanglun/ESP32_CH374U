@@ -147,7 +147,9 @@ bool Query374Interrupt(uint8_t *inter_flag_reg);
 void HostDetectInterrupt(uint8_t inter_flag_reg); // 处理USB设备插拔事件中断
 void NewDeviceEnum(void);
 void DeviceLoop(void);
-void QueryADB_Send(uint8_t *buf,uint8_t len);
+void QueryADB_Send(uint8_t *buf,uint8_t len,uint8_t flag);
+uint8_t QueryADB_Recv(uint8_t index,uint16_t loop_value);
+
 
 // CH374传输事务，输入目的端点地址/PID令牌/同步标志，返回同CH375，NAK不重试，超时/出错重试
 uint8_t HostTransact374(uint8_t endp_addr, uint8_t pid, bool tog);

@@ -1007,7 +1007,7 @@ void NewDeviceEnum(void)
 	}
 }
 
-void QueryADB_Send(uint8_t *buf,uint8_t len)
+void QueryADB_Send(uint8_t *buf,uint8_t len,uint8_t flag)
 {
 	uint8_t s = 0;
 	uint8_t count = 0;
@@ -1031,7 +1031,13 @@ void QueryADB_Send(uint8_t *buf,uint8_t len)
 				if (s == USB_INT_SUCCESS)
 				{
 					RootHubDev[count].send_tog_flag = !RootHubDev[count].send_tog_flag;
-				}				
+				}	
+
+				if(flag == 0x01)
+				{
+					QueryADB_Recv(count,1000);
+				}
+
 			}
 		}
 	}
@@ -1039,25 +1045,30 @@ void QueryADB_Send(uint8_t *buf,uint8_t len)
 
 }
 
-void QueryADB_Recv(uint8_t index)
+uint8_t QueryADB_Recv(uint8_t index,uint16_t loop_value)
 {
 	uint8_t s = 0,len = 0;
 	
 	SetHostUsbAddr(RootHubDev[index].DeviceAddress); // 设置USB主机当前操作的USB设备地址
 	SetUsbSpeed(RootHubDev[index].DeviceSpeed);		// 设置当前USB速度
 
-	s = HostTransact374(RootHubDev[index].Endp_In, DEF_USB_PID_IN,RootHubDev[index].recv_tog_flag);
-	if (s == USB_INT_SUCCESS)
+	while(loop_value--)
 	{
-		RootHubDev[index].recv_tog_flag = !RootHubDev[index].recv_tog_flag;
-		len = Read374Byte(REG_USB_LENGTH);
-		Read374Block(RAM_HOST_RECV, len, TempBuf);
-		// printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ADB RECV>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\r\n");
-		// printf_byte(TempBuf, len);
-		// printf_byte_str(TempBuf, len);
-		// printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\r\n");
-		ADB_RecvData(TempBuf, len);
+		s = HostTransact374(RootHubDev[index].Endp_In, DEF_USB_PID_IN,RootHubDev[index].recv_tog_flag);
+		if (s == USB_INT_SUCCESS)
+		{
+			RootHubDev[index].recv_tog_flag = !RootHubDev[index].recv_tog_flag;
+			len = Read374Byte(REG_USB_LENGTH);
+			Read374Block(RAM_HOST_RECV, len, TempBuf);
+			// printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ADB RECV>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\r\n");
+			// printf_byte(TempBuf, len);
+			// printf_byte_str(TempBuf, len);
+			// printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\r\n");
+			ADB_RecvData(TempBuf, len);
+			return 0;
+		}
 	}
+	return 1;
 
 }
 
@@ -1080,18 +1091,47 @@ void QueryMouse(uint8_t index)
 			Read374Block(RAM_HOST_RECV, len, TempBuf); // 取出数据并打印
 			
 
-			if(ADB_TCP_Send(TempBuf,len) != 0)
+			if(ADB_TCP_Send(TempBuf,len,DEV_MOUSE) != 0)
 			{
-				printf("Mouse data: ");
-				for (s = 0; s < len; s++)
-					printf("0x%02X ", *(TempBuf + s));
-				printf("\r\n");
+				printf(">>Mouse data: ");
+				printf_byte(TempBuf,len);
 			}
 		}
 	}
 	else if (s != (0x20 | USB_INT_RET_NAK))
 	{
 		printf("Mouse error %02x\n", (uint16_t)s); // 可能是断开了
+	}
+}
+
+void QueryKeyboard(uint8_t index)
+{
+	uint8_t s = 0,len = 0;
+
+	SetHostUsbAddr(RootHubDev[index].DeviceAddress); // 设置USB主机当前操作的USB设备地址
+	SetUsbSpeed(RootHubDev[index].DeviceSpeed);		// 设置当前USB速度
+
+	s = HostTransact374(RootHubDev[index].Endp_In, DEF_USB_PID_IN, RootHubDev[index].recv_tog_flag); // CH374传输事务,获取数据
+
+	if (s == USB_INT_SUCCESS)
+	{
+		RootHubDev[index].recv_tog_flag = !RootHubDev[index].recv_tog_flag;
+
+		len = Read374Byte(REG_USB_LENGTH); // 接收到的数据长度
+		if (len)
+		{
+			Read374Block(RAM_HOST_RECV, len, TempBuf); // 取出数据并打印
+			
+			if(ADB_TCP_Send(TempBuf,len,DEV_KEYBOARD) != 0)
+			{
+				printf(">>KeyBoard data: ");
+				printf_byte(TempBuf,len);
+			}
+		}
+	}
+	else if (s != (0x20 | USB_INT_RET_NAK))
+	{
+		printf("KeyBoard error %02x\n", (uint16_t)s); // 可能是断开了
 	}
 }
 
@@ -1104,11 +1144,13 @@ void DeviceLoop(void)
 		{
 			if(RootHubDev[count].DeviceType == DEV_ADB)
 			{
-				QueryADB_Recv(count);
+				QueryADB_Recv(count,1);
 			}else if(RootHubDev[count].DeviceType == DEV_MOUSE)
 			{
 				QueryMouse(count);
-				
+			}else if(RootHubDev[count].DeviceType == DEV_KEYBOARD)
+			{
+				QueryKeyboard(count);
 			}
 		}
 	}

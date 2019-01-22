@@ -79,7 +79,7 @@ void send_cnxn_connect(void)
     msg.arg1 = MAX_PAYLOAD;
     msg.data_length = strlen(CNXN_CMD_STR);
     
-    usb_send_packet(&msg, (uint8_t *)CNXN_CMD_STR);
+    usb_send_packet(&msg, (uint8_t *)CNXN_CMD_STR,0);   
 }
 
 void send_auth_response(apacket *p)
@@ -93,7 +93,7 @@ void send_auth_response(apacket *p)
     msg.data_length = 256;
 
     SHA1withRSA(p->data, p->msg.data_length, RSABuffer);
-    usb_send_packet(&msg, RSABuffer);
+    usb_send_packet(&msg, RSABuffer,0);   
 }
 
 void send_auth_publickey(apacket *p)
@@ -108,7 +108,7 @@ void send_auth_publickey(apacket *p)
 
     memcpy(public_key,PUBLIC_KEY,strlen(PUBLIC_KEY));
 
-    usb_send_packet(&msg, public_key);
+    usb_send_packet(&msg, public_key,0);   
 }
 
 void connect_to_remote(uint32_t local)
@@ -121,7 +121,7 @@ void connect_to_remote(uint32_t local)
     msg.arg1 = 0;
     msg.data_length = sizeof(shell_cmd);
 
-    usb_send_packet(&msg, shell_cmd);    
+    usb_send_packet(&msg, shell_cmd,0);   
 }
 
 void send_ready(uint32_t local,uint32_t remote)
@@ -133,7 +133,7 @@ void send_ready(uint32_t local,uint32_t remote)
     msg.arg1 = remote;
     msg.data_length = 0;
 
-    usb_send_packet(&msg, NULL);   
+    usb_send_packet(&msg, NULL,0);   
 }
 
 void send_shell(uint32_t local,uint32_t remote,uint8_t *buf)
@@ -151,7 +151,7 @@ void send_shell(uint32_t local,uint32_t remote,uint8_t *buf)
     msg.arg1 = remote;
     msg.data_length = len;
 
-    usb_send_packet(&msg, send_temp);   
+    usb_send_packet(&msg, send_temp,0);   
 }
 
 void send_just_open_shell(uint32_t local,uint32_t remote)
@@ -166,7 +166,7 @@ void send_just_open_shell(uint32_t local,uint32_t remote)
     msg.arg1 = remote;
     msg.data_length = 7;
 
-    usb_send_packet(&msg, send_temp);   
+    usb_send_packet(&msg, send_temp,0);   
 }
 
 void send_open_shell(uint32_t local,uint32_t remote,uint8_t *buf)
@@ -185,7 +185,7 @@ void send_open_shell(uint32_t local,uint32_t remote,uint8_t *buf)
     msg.arg1 = remote;
     msg.data_length = len;
 
-    usb_send_packet(&msg, send_temp);   
+    usb_send_packet(&msg, send_temp,0);   
 }
 
 void send_connect_tcpserver(uint32_t local,uint32_t remote,uint8_t *buf)
@@ -202,7 +202,7 @@ void send_connect_tcpserver(uint32_t local,uint32_t remote,uint8_t *buf)
     msg.arg1 = remote;
     msg.data_length = len;
 
-    usb_send_packet(&msg, send_temp);   
+    usb_send_packet(&msg, send_temp,0);   
 }
 
 void send_tcpserver(uint32_t local,uint32_t remote,uint8_t *buf,uint16_t len)
@@ -214,7 +214,7 @@ void send_tcpserver(uint32_t local,uint32_t remote,uint8_t *buf,uint16_t len)
     msg.arg1 = remote;
     msg.data_length = len;
 
-    usb_send_packet(&msg, buf);   
+    usb_send_packet(&msg, buf,1);   
 }
 
 void send_recv_tcpserver_okay(uint32_t local,uint32_t remote)
@@ -226,7 +226,7 @@ void send_recv_tcpserver_okay(uint32_t local,uint32_t remote)
     msg.arg1 = remote;
     msg.data_length = 0;
 
-    usb_send_packet(&msg, NULL);   
+    usb_send_packet(&msg, NULL,0);   
 }
 
 

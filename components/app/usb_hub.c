@@ -32,7 +32,7 @@ void usb_hub_task(void* arg)
 		NewDeviceEnum();
         DeviceLoop();
 
-        vTaskDelay(10/ portTICK_RATE_MS);
+        vTaskDelay(8/ portTICK_RATE_MS);
     }
 
     vTaskDelete(NULL);
