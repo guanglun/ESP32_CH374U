@@ -14,6 +14,8 @@
 #include "CH374INC.H"
 #include "scmd.h"
 
+uint8_t shell_end_str[20];
+
 uint8_t is_first_recv_auth_token = 1;
 ADBTxRx_S adb_rx_s, adb_tx_s;
 
@@ -86,7 +88,9 @@ int usb_send_packet(amessage *msg, uint8_t *buffer)
 
     get_adb_packet(msg, buffer);
 
-    //printf_adb_frame(msg,buffer,false);
+#ifdef ADB_LOG
+    printf_adb_frame(msg,buffer,false);
+#endif
 
     QueryADB_Send((uint8_t *)msg, sizeof(amessage));
 
@@ -194,8 +198,11 @@ int ADB_RecvFrame(apacket *p)
     // printf("====================\r\n");  
 
     *(p->data + p->msg.data_length) = '\0';
-    //printf_adb_frame(&(p->msg),p->data,true);
     
+#ifdef ADB_LOG    
+    printf_adb_frame(&(p->msg),p->data,true);
+#endif
+
     switch (p->msg.command)
     {
         
@@ -239,12 +246,13 @@ int ADB_RecvFrame(apacket *p)
         //     adb_c_s = ADB_CONNECT_INTO_SHELL;
         // }
         //remote_id = p->msg.arg1;
-
+        
         if(adb_c_s == ADB_CONNECT_TCPSERVER_WAIT)
         {
             printf("tcpserver connect success\r\n");
             adb_c_s = ADB_CONNECT_TCPSERVER_SUCCESS;
             remote_id = p->msg.arg0;
+            local_id =  p->msg.arg1;
             is_tcp_send_done = true;
         }else if(adb_c_s == ADB_SEND_TCPSERVER_WAIT)  
         {
@@ -257,59 +265,94 @@ int ADB_RecvFrame(apacket *p)
         break;
 
     case A_CLSE: /* CLOSE(local-id, remote-id, "") */
-        if(adb_c_s == ADB_START_PACKAGE_WAIT)
-        {
-            adb_c_s = ADB_CHECK_PACKAGE_SUCCESS;
-        }else if(adb_c_s == ADB_CONNECT_TCPSERVER_WAIT)
+        if(adb_c_s == ADB_CONNECT_TCPSERVER_WAIT)
         {
             printf("tcpserver connect fail\r\n");
             adb_c_s = ADB_CONNECT_TCPSERVER_FAIL;
-        }else if(adb_c_s == ADB_CONNECT_TCPSERVER_WAIT)
-        {
-            printf("tcpserver connect fail\r\n");
-            adb_c_s = ADB_CONNECT_TCPSERVER_FAIL;
-        }else if(adb_c_s == ADB_CHECK_PACKAGE_ISRUNING_WAIT)
-        {
-            printf("package is not running\r\n");
-            adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_FALSE;
         }
 
         is_close = true;
         break;
 
     case A_WRTE:
-        if(adb_c_s == ADB_CHECK_PACKAGE_WAIT)
+        if(adb_c_s == ADB_CHECK_PACKAGE_WAIT || adb_c_s == ADB_CHECK_PACKAGE_SUCCESS_WAIT_END )
         {
-            if(strstr((const char *)p->data,"com.guanglun.uiatuomatordemo") != NULL)
+            if(strstr((const char *)p->data,PACKAGE_STR) != NULL)
             {
-                printf("package found\r\n");
-                adb_c_s = ADB_CHECK_PACKAGE_SUCCESS;
+                if(strstr((const char *)p->data,CHECK_PACKAGE_STR) == NULL)
+                {
+                    adb_c_s = ADB_CHECK_PACKAGE_SUCCESS_WAIT_END;
+                }
                 
-            }else{
-                printf("package not found\r\n");
-                adb_c_s = ADB_CHECK_PACKAGE_FAIL;
+                
+            }else if(strstr((const char *)p->data,(const char *)shell_end_str) != NULL){
+                if(adb_c_s == ADB_CHECK_PACKAGE_SUCCESS_WAIT_END)
+                {
+                    printf("package found\r\n");
+                    adb_c_s = ADB_CHECK_PACKAGE_SUCCESS;
+                }else{
+                    printf("package not found\r\n");
+                    adb_c_s = ADB_CHECK_PACKAGE_FAIL;
+                }
+
             }
-        }else if(adb_c_s == ADB_CHECK_PACKAGE_ISRUNING_WAIT)
+        }else if(adb_c_s == ADB_CHECK_PACKAGE_ISRUNING_WAIT || adb_c_s == ADB_CHECK_PACKAGE_ISRUNING_TRUE_WAIT_END )
         {
-            if(strstr((const char *)p->data,"com.guanglun.uiatuomatordemo") != NULL)
+            if(strstr((const char *)p->data,PACKAGE_STR) != NULL)
             {
-                printf("package is running\r\n");
-                adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_TRUE;
+                if(strstr((const char *)p->data,CHECK_PACKAGE_ISRUNING_STR) == NULL)
+                {
+                    adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_TRUE_WAIT_END;
+                }
                 
-            }else{
-                printf("package is not running\r\n");
-                adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_FALSE;
+            }else if(strstr((const char *)p->data,(const char *)shell_end_str) != NULL){
+                if(adb_c_s == ADB_CHECK_PACKAGE_ISRUNING_TRUE_WAIT_END)
+                {
+                    printf("package is running\r\n");
+                    adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_TRUE;
+                }else{
+                    printf("package is not running\r\n");
+                    adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_FALSE;
+                }
+
             }
-        }else if(adb_c_s == ADB_START_PACKAGE_WAIT)
+        }else if(adb_c_s == ADB_START_PACKAGE_WAIT || adb_c_s == ADB_START_PACKAGE_SUCCESS_WAIT_END)
         {
-            is_close = true;
-            adb_c_s = ADB_CHECK_PACKAGE_SUCCESS;
+            if(strstr((const char *)p->data,(const char *)shell_end_str) != NULL){
+                
+                adb_c_s = ADB_START_PACKAGE_SUCCESS_WAIT_END;
+            }else if(strstr((const char *)p->data,(const char *)PACKAGE_STR) != NULL){
+                if(adb_c_s == ADB_START_PACKAGE_SUCCESS_WAIT_END)
+                {
+                    printf("package start success\r\n");
+                    adb_c_s = ADB_START_PACKAGE_SUCCESS;
+                }
+
+            }
+            
         }else if(adb_c_s == ADB_CONNECT_TCPSERVER_SUCCESS)
         {
             printf("recv tcpserver data\r\n");
-            send_recv_tcpserver_okay(local_id,remote_id);
-        }
+        }else if(adb_c_s == ADB_GOTO_SHELL_WAIT)
+        {
+            char *ret;
 
+            if((ret = strchr((const char *)p->data,':')) != NULL)
+            {
+                *ret= '\0';
+                memcpy(shell_end_str,p->data,((uint8_t *)ret - p->data + 1));
+                remote_id = p->msg.arg0;
+                local_id =  p->msg.arg1;
+                
+                adb_c_s = ADB_GOTO_SHELL_SUCCESS;
+                printf("goto shell success %s\r\n",shell_end_str);
+            }else{
+                printf("goto shell fail\r\n");
+                adb_c_s = ADB_GOTO_SHELL_FAIL;
+            }
+
+        }
+        send_recv_tcpserver_okay(local_id,remote_id);
         break;
 
     default:
@@ -326,48 +369,43 @@ void ADB_Process(void)
 {
     switch(adb_c_s)
     {
-        case ADB_CONNECT:
-        send_open_shell(local_id,remote_id,(uint8_t *)"pm list packages com.guanglun.uiatuomatordemo");
-        adb_c_s = ADB_CHECK_PACKAGE_WAIT;
+        case ADB_CONNECT: //ADB AUTH完成之后第一个状态
+
+        send_just_open_shell(local_id,remote_id);
+        adb_c_s = ADB_GOTO_SHELL_WAIT;
 
         break;
-        case ADB_CHECK_PACKAGE_SUCCESS:
-        if(is_close != true)
-        {
-            break;
-        }
-        send_open_shell(local_id,remote_id,(uint8_t *)"ps | grep com.guanglun.uiatuomatordemo");
+
+        case ADB_GOTO_SHELL_SUCCESS: //进入adb shell之后首先检查是否安装uiauto
+        send_shell(local_id,remote_id,(uint8_t *)CHECK_PACKAGE_STR);
+        adb_c_s = ADB_CHECK_PACKAGE_WAIT;
+        break;
+
+        case ADB_CHECK_PACKAGE_SUCCESS://检查到已安装后检查是否在uiauto运行
+        send_shell(local_id,remote_id,(uint8_t *)CHECK_PACKAGE_ISRUNING_STR);
         adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_WAIT;
         break;     
 
         case ADB_CHECK_PACKAGE_ISRUNING_FALSE:
-        if(is_close != true)
-        {
-            break;
-        }
-        send_open_shell(local_id,remote_id,(uint8_t *)"am instrument -w -r -e package com.guanglun.uiatuomatordemo -e debug false com.guanglun.uiatuomatordemo.test/android.support.test.runner.AndroidJUnitRunner");
+        send_shell(local_id,remote_id,(uint8_t *)START_PACKAGE_STR);
         adb_c_s = ADB_START_PACKAGE_WAIT;
-
         break;       
 
         case ADB_CHECK_PACKAGE_ISRUNING_TRUE:
-        if(is_close != true)
-        {
-            break;
-        }
+        local_id++;
+        remote_id = 0;
         send_connect_tcpserver(local_id,remote_id,(uint8_t *)"1989");
         adb_c_s = ADB_CONNECT_TCPSERVER_WAIT;
         break;     
 
+        case ADB_START_PACKAGE_SUCCESS:
+        send_shell(local_id,remote_id,(uint8_t *)CHECK_PACKAGE_ISRUNING_STR);
+        adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_WAIT;
+        break;
+
         case ADB_CONNECT_TCPSERVER_FAIL:
-        if(is_close != true)
-        {
-            break;
-        }
         send_connect_tcpserver(local_id,remote_id,(uint8_t *)"1989");
-        adb_c_s = ADB_CONNECT_TCPSERVER_WAIT;             
-        //send_tcpserver(local_id,remote_id,(uint8_t *)"hello",strlen("hello"));
-        //adb_c_s = ADB_SEND_TCPSERVER_WAIT;        
+        adb_c_s = ADB_CONNECT_TCPSERVER_WAIT;                   
 
         break;  
 

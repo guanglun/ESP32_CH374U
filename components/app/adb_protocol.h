@@ -25,20 +25,31 @@ typedef enum
 }
 ADB_Status;
 
+#define PACKAGE_STR                   "com.guanglun.uiatuomatordemo"
+#define CHECK_PACKAGE_STR             "pm list packages com.guanglun.uiatuomatordemo"
+#define CHECK_PACKAGE_ISRUNING_STR    "ps | grep com.guanglun.uiatuomatordemo"
+#define START_PACKAGE_STR             "am instrument -w -r -e package com.guanglun.uiatuomatordemo -e debug false com.guanglun.uiatuomatordemo.test/android.support.test.runner.AndroidJUnitRunner &"
 typedef enum
 {
   ADB_DISCONNECT = 0,
   ADB_CONNECT,
 
+  ADB_GOTO_SHELL_WAIT,
+  ADB_GOTO_SHELL_SUCCESS,
+  ADB_GOTO_SHELL_FAIL,
+
   ADB_CHECK_PACKAGE_WAIT,
+  ADB_CHECK_PACKAGE_SUCCESS_WAIT_END,
   ADB_CHECK_PACKAGE_SUCCESS,
   ADB_CHECK_PACKAGE_FAIL,
 
   ADB_CHECK_PACKAGE_ISRUNING_WAIT,
+  ADB_CHECK_PACKAGE_ISRUNING_TRUE_WAIT_END,
   ADB_CHECK_PACKAGE_ISRUNING_TRUE,
   ADB_CHECK_PACKAGE_ISRUNING_FALSE,
 
   ADB_START_PACKAGE_WAIT,
+  ADB_START_PACKAGE_SUCCESS_WAIT_END,
   ADB_START_PACKAGE_SUCCESS,
   ADB_START_PACKAGE_FAIL,
 
@@ -91,7 +102,8 @@ ADB_Read_Status;
 void send_cnxn_connect(void);
 void get_adb_packet(amessage *msg, uint8_t *buf);
 void send_ready(uint32_t local,uint32_t remote);
-void send_shell(uint32_t local,uint32_t remote,uint8_t *buf,uint16_t len);
+void send_just_open_shell(uint32_t local,uint32_t remote);
+void send_shell(uint32_t local,uint32_t remote,uint8_t *buf);
 void connect_to_remote(uint32_t local);
 void send_auth_publickey(apacket *p);
 void send_auth_response(apacket *p);

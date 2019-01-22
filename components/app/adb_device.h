@@ -3,6 +3,8 @@
 
 #include "adb_protocol.h"
 
+//#define ADB_LOG
+
 int usb_send_packet(amessage *msg, uint8_t *buffer);
 void adb_connect(void);
 int ADB_RecvFrame(apacket *p);

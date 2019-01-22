@@ -136,16 +136,37 @@ void send_ready(uint32_t local,uint32_t remote)
     usb_send_packet(&msg, NULL);   
 }
 
-void send_shell(uint32_t local,uint32_t remote,uint8_t *buf,uint16_t len)
+void send_shell(uint32_t local,uint32_t remote,uint8_t *buf)
 {
     amessage msg;
+
+    uint16_t len = strlen((const char *)buf) + 1;
+    uint8_t send_temp[512];
+ 
+    memcpy(send_temp, buf,len - 1);
+    *(send_temp + len - 1) = 0x0A;
 
     msg.command = A_WRTE;
     msg.arg0 = local;
     msg.arg1 = remote;
     msg.data_length = len;
 
-    usb_send_packet(&msg, buf);   
+    usb_send_packet(&msg, send_temp);   
+}
+
+void send_just_open_shell(uint32_t local,uint32_t remote)
+{
+    amessage msg;
+
+    uint8_t send_temp[7] = "shell:";
+    send_temp[6] = 0x00;
+    
+    msg.command = A_OPEN;
+    msg.arg0 = local;
+    msg.arg1 = remote;
+    msg.data_length = 7;
+
+    usb_send_packet(&msg, send_temp);   
 }
 
 void send_open_shell(uint32_t local,uint32_t remote,uint8_t *buf)
