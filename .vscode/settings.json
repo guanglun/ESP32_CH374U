@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "scmd.h": "c"
+        "scmd.h": "c",
+        "adb_protocol.h": "c",
+        "usb_hub.h": "c"
     }
 }

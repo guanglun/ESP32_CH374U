@@ -12,7 +12,7 @@
 #include "adb_protocol.h"
 #include "adb_device.h"
 #include "CH374INC.H"
-
+#include "usb_hub.h"
 
 #define HUB_DEV_NUM (3)
 // 附加的USB操作状态定义
@@ -456,6 +456,14 @@ uint8_t ClearPortFeature(uint8_t port, uint8_t select)
 
 void DisableRootHubPort(uint8_t index) // 关闭指定的ROOT-HUB端口,实际上硬件已经自动关闭,此处只是清除一些结构状态
 {
+	if(RootHubDev[index].DeviceType == DEV_MOUSE)
+	{
+		set_status(2,0);
+	}else if(RootHubDev[index].DeviceType == DEV_KEYBOARD)
+	{
+		set_status(1,0);
+	}
+
 	RootHubDev[index].DeviceStatus = ROOT_DEV_DISCONNECT;
 	RootHubDev[index].DeviceAddress = 0x00;
 	RootHubDev[index].DeviceType = DEV_ERROR;
@@ -613,6 +621,7 @@ void AnalyzeRootHub(void) // 分析ROOT-HUB状态,处理ROOT-HUB端口的设备�
 	{
 		if (RootHubDev[0].DeviceStatus >= ROOT_DEV_CONNECTED)
 		{
+
 			DisableRootHubPort(0); // 关闭端口
 			printf("HUB 0 device out\r\n");
 		}
@@ -765,12 +774,14 @@ uint8_t InitHIDDevice(uint8_t cfg, uint8_t index, uint8_t InterfaceProtocol)
 		{
 			//							进一步初始化,例如设备键盘指示灯LED等
 			printf("USB-Keyboard Ready\n");
+			set_status(1,1);
 			return (DEV_KEYBOARD); /* 键盘初始化成功 */
 		}
 		else if (InterfaceProtocol == 2)
 		{
 			//							为了以后查询鼠标状态,应该分析描述符,取得中断端口的地址,长度等信息
 			printf("USB-Mouse Ready\n");
+			set_status(2,1);
 			return (DEV_MOUSE); /* 鼠标初始化成功 */
 		}
 	}

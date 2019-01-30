@@ -14,16 +14,30 @@
 #include "adb_protocol.h"
 #include "CH374INC.H"
 
+uint8_t status_buf[3] = {1,0,0};
+
+void set_status(uint8_t index,uint8_t value)
+{
+    if(index < 3)
+    {
+        status_buf[index] = value;
+    }
+    
+}
+
+
 void usb_hub_task(void* arg)
 {
     uint8_t inter_flag_reg = 0;
-    
+    uint16_t timer_count = 0;
     Init374Host(); // 初始化USB主机
 
 	printf("Wait Device In\n");
 
     while(1)
     {
+        timer_count++;
+
         if (Query374Interrupt(&inter_flag_reg) == true)
 		{
 			HostDetectInterrupt(inter_flag_reg);
@@ -32,7 +46,13 @@ void usb_hub_task(void* arg)
 		NewDeviceEnum();
         DeviceLoop();
 
-        vTaskDelay(8/ portTICK_RATE_MS);
+        if(timer_count >= 100)
+        {
+            timer_count = 0;
+            ADB_TCP_Send(status_buf,3,0x00);
+        }
+
+        vTaskDelay(10/ portTICK_RATE_MS);
     }
 
     vTaskDelete(NULL);

@@ -425,13 +425,20 @@ uint8_t ADB_TCP_Send(uint8_t *buf,uint16_t len,uint8_t dev_class)
     unsigned char buf_tmp[100];
     unsigned char send_len = 0,s = 0;
 
-
-
     if(adb_c_s == ADB_CONNECT_TCPSERVER_SUCCESS && is_tcp_send_done == true)
     {
         is_tcp_send_done = false;
 
-        if(dev_class == DEV_MOUSE)
+        if(dev_class == 0x00)
+        {
+            
+            send_len = cmd_creat(0x00,buf,len,buf_tmp);
+            send_tcpserver(local_id,remote_id,buf_tmp,send_len);
+
+            printf("TCP Status: ");
+            printf_byte(buf_tmp,send_len);
+        }
+        else if(dev_class == DEV_MOUSE)
         {
             send_len = cmd_creat(0x02,buf,len,buf_tmp);
             send_tcpserver(local_id,remote_id,buf_tmp,send_len);
@@ -444,16 +451,12 @@ uint8_t ADB_TCP_Send(uint8_t *buf,uint16_t len,uint8_t dev_class)
 
             printf("TCP KeyBoard: ");
             printf_byte(buf_tmp,send_len);
-
         }
-
-
-
-
-
         return 0;
     }else{
         return 1;
     }
+
+
 }
 
