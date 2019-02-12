@@ -269,7 +269,12 @@ int ADB_RecvFrame(apacket *p)
         {
             printf("tcpserver connect fail\r\n");
             adb_c_s = ADB_CONNECT_TCPSERVER_FAIL;
+        }else if(adb_c_s == ADB_EXIT_SHELL_SUCCESS_WAIT_END)
+        {
+            printf("exit shell success\r\n");
+            adb_c_s = ADB_EXIT_SHELL_SUCCESS;
         }
+
 
         is_close = true;
         break;
@@ -306,7 +311,6 @@ int ADB_RecvFrame(apacket *p)
                 {
                     adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_TRUE_WAIT_END;
                 }
-                
             }
             if(strstr((const char *)p->data,(const char *)shell_end_str) != NULL)
             {
@@ -318,7 +322,6 @@ int ADB_RecvFrame(apacket *p)
                     printf("package is not running\r\n");
                     adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_FALSE;
                 }
-
             }
         }else if(adb_c_s == ADB_START_PACKAGE_WAIT || adb_c_s == ADB_START_PACKAGE_SUCCESS_WAIT_END)
         {
@@ -326,7 +329,7 @@ int ADB_RecvFrame(apacket *p)
                 
                 adb_c_s = ADB_START_PACKAGE_SUCCESS_WAIT_END;
             }
-            if(strstr((const char *)p->data,(const char *)"INSTRUMENTATION_STATUS_CODE") != NULL)
+            if(strstr((const char *)p->data,(const char *)CHECK_PACKAGE_START_STR) != NULL)
             {
                 if(adb_c_s == ADB_START_PACKAGE_SUCCESS_WAIT_END)
                 {
@@ -357,6 +360,19 @@ int ADB_RecvFrame(apacket *p)
                 adb_c_s = ADB_GOTO_SHELL_FAIL;
             }
 
+        }else if(adb_c_s == ADB_EXIT_SHELL_WAIT)
+        {
+            if(strstr((const char *)p->data,(const char *)"exit") != NULL)
+            {
+                adb_c_s = ADB_EXIT_SHELL_SUCCESS_WAIT_END;
+            }else{
+                adb_c_s = ADB_EXIT_SHELL_FAIL;
+            }
+            
+        }else if(adb_c_s == ADB_EXIT_SHELL_SUCCESS_WAIT_END)
+        {
+            adb_c_s = ADB_EXIT_SHELL_FAIL;
+            
         }
         send_recv_tcpserver_okay(local_id,remote_id);
         break;
@@ -397,12 +413,22 @@ void ADB_Process(void)
         adb_c_s = ADB_START_PACKAGE_WAIT;
         break;       
 
+        // case ADB_CHECK_PACKAGE_ISRUNING_TRUE:
+        // send_shell(local_id,remote_id,(uint8_t *)"exit");
+        // adb_c_s = ADB_EXIT_SHELL_WAIT;
+        // break;     
+
         case ADB_CHECK_PACKAGE_ISRUNING_TRUE:
         local_id++;
         remote_id = 0;
         send_connect_tcpserver(local_id,remote_id,(uint8_t *)"1989");
         adb_c_s = ADB_CONNECT_TCPSERVER_WAIT;
-        break;     
+        break; 
+
+        // case ADB_EXIT_SHELL_FAIL:
+        // send_shell(local_id,remote_id,(uint8_t *)"exit");
+        // adb_c_s = ADB_EXIT_SHELL_WAIT;
+        // break; 
 
         case ADB_START_PACKAGE_SUCCESS:
         send_shell(local_id,remote_id,(uint8_t *)CHECK_PACKAGE_ISRUNING_STR);
@@ -423,7 +449,7 @@ void ADB_Process(void)
 uint8_t ADB_TCP_Send(uint8_t *buf,uint16_t len,uint8_t dev_class)
 {
     unsigned char buf_tmp[100];
-    unsigned char send_len = 0,s = 0;
+    unsigned char send_len = 0;
 
     if(adb_c_s == ADB_CONNECT_TCPSERVER_SUCCESS && is_tcp_send_done == true)
     {

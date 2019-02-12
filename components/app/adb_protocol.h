@@ -25,10 +25,18 @@ typedef enum
 }
 ADB_Status;
 
-#define PACKAGE_STR                   "com.guanglun.uiatuomatordemo"
-#define CHECK_PACKAGE_STR             "pm list packages com.guanglun.uiatuomatordemo"
-#define CHECK_PACKAGE_ISRUNING_STR    "ps | grep com.guanglun.uiatuomatordemo"
-#define START_PACKAGE_STR             "am instrument -w -r -e package com.guanglun.uiatuomatordemo -e debug false com.guanglun.uiatuomatordemo.test/android.support.test.runner.AndroidJUnitRunner &"
+// #define PACKAGE_STR                   "com.guanglun.uiatuomatordemo"
+// #define CHECK_PACKAGE_STR             "pm list packages com.guanglun.uiatuomatordemo"
+// #define CHECK_PACKAGE_ISRUNING_STR    "ps | grep com.guanglun.uiatuomatordemo"
+// #define START_PACKAGE_STR             "am instrument -w -r -e package com.guanglun.uiatuomatordemo -e debug false com.guanglun.uiatuomatordemo.test/android.support.test.runner.AndroidJUnitRunner &"
+// #define CHECK_PACKAGE_START_STR       "INSTRUMENTATION_STATUS_CODE"
+
+#define PACKAGE_STR                   "ATouchService"
+#define CHECK_PACKAGE_STR             "ls /data/local/tmp/ATouchService"
+#define CHECK_PACKAGE_ISRUNING_STR    "ps | grep ATouchService"
+#define START_PACKAGE_STR             "/data/local/tmp/ATouchService &"
+#define CHECK_PACKAGE_START_STR       "ATouchService is runing"
+
 typedef enum
 {
   ADB_DISCONNECT = 0,
@@ -37,6 +45,11 @@ typedef enum
   ADB_GOTO_SHELL_WAIT,
   ADB_GOTO_SHELL_SUCCESS,
   ADB_GOTO_SHELL_FAIL,
+
+  ADB_EXIT_SHELL_WAIT,
+  ADB_EXIT_SHELL_SUCCESS_WAIT_END,
+  ADB_EXIT_SHELL_SUCCESS,
+  ADB_EXIT_SHELL_FAIL,
 
   ADB_CHECK_PACKAGE_WAIT,
   ADB_CHECK_PACKAGE_SUCCESS_WAIT_END,
