@@ -81,7 +81,8 @@ main.o: /home/share/esp32/project/ESP32_CH374U/main/main.c \
  /home/share/esp32/esp-idf/components/newlib/include/limits.h \
  /home/share/esp32/esp-idf/components/freertos/include/freertos/list.h \
  /home/share/esp32/esp-idf/components/freertos/include/freertos/queue.h \
- /home/share/esp32/project/ESP32_CH374U/components/app/usb_hub.h
+ /home/share/esp32/project/ESP32_CH374U/components/app/usb_hub.h \
+ /home/share/esp32/project/ESP32_CH374U/components/blufi/esp_blufi.h
 
 /home/share/esp32/esp-idf/components/newlib/include/stdio.h:
 
@@ -248,4 +249,6 @@ main.o: /home/share/esp32/project/ESP32_CH374U/main/main.c \
 /home/share/esp32/esp-idf/components/freertos/include/freertos/queue.h:
 
 /home/share/esp32/project/ESP32_CH374U/components/app/usb_hub.h:
+
+/home/share/esp32/project/ESP32_CH374U/components/blufi/esp_blufi.h:
 /home/share/esp32/project/ESP32_CH374U/main/./main.c:
