@@ -5,7 +5,6 @@
 unsigned char cmd_creat(unsigned char cmd,unsigned char *in_buffer,unsigned char in_len,unsigned char *out_buffer)
 {
     unsigned char i = 0;
-    unsigned char buffer[100];
     unsigned char check = 0;
 
     out_buffer[0] = 0xAA;

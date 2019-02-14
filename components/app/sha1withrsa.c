@@ -48,7 +48,7 @@ static int myrand( void *rng_state, unsigned char *output, size_t len )
 }
 #endif /* MBEDTLS_PKCS1_V15 */
 
-void SHA1withRSA(uint8_t *input_buffer,uint16_t input_len,uint8_t *output_buffer)
+int SHA1withRSA(uint8_t *input_buffer,uint16_t input_len,uint8_t *output_buffer)
 {
 	int ret;
 	mbedtls_mpi K;
@@ -89,5 +89,7 @@ void SHA1withRSA(uint8_t *input_buffer,uint16_t input_len,uint8_t *output_buffer
 
     mbedtls_mpi_free( &K );
     mbedtls_rsa_free( &rsa );
+
+    return ret;
 }
 

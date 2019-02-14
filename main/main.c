@@ -6,11 +6,11 @@
 #include "freertos/queue.h"
 
 #include "usb_hub.h"
-#include "esp_blufi.h"
+#include "esp_bluetooth.h"
 
 void app_main()
 {
-    esp_blufi_init();
+    esp_bluetooth_init();
     xTaskCreate(usb_hub_task, "usb_hub_task", 8*1024, NULL, 10, NULL);
 
     while(1) {
