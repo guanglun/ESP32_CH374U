@@ -14,7 +14,7 @@
 #include "adb_protocol.h"
 #include "CH374INC.H"
 
-uint8_t status_buf[3] = {1,0,0};
+uint8_t status_buf[3] = {0,0,0};
 
 void set_status(uint8_t index,uint8_t value)
 {

@@ -88,7 +88,8 @@ app/adb_device.o: \
  /home/share/esp32/project/ESP32_CH374U/components/hal/ch374u_hal.h \
  /home/share/esp32/project/ESP32_CH374U/components/app/adb_device.h \
  /home/share/esp32/project/ESP32_CH374U/components/app/adb_protocol.h \
- /home/share/esp32/project/ESP32_CH374U/components/app/scmd.h
+ /home/share/esp32/project/ESP32_CH374U/components/app/scmd.h \
+ /home/share/esp32/project/ESP32_CH374U/components/bluetooth/esp_bluetooth.h
 
 /home/share/esp32/esp-idf/components/newlib/include/stdio.h:
 
@@ -267,4 +268,6 @@ app/adb_device.o: \
 /home/share/esp32/project/ESP32_CH374U/components/app/adb_protocol.h:
 
 /home/share/esp32/project/ESP32_CH374U/components/app/scmd.h:
+
+/home/share/esp32/project/ESP32_CH374U/components/bluetooth/esp_bluetooth.h:
 /home/share/esp32/project/ESP32_CH374U/components/app/adb_device.c:

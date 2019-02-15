@@ -14,6 +14,8 @@
 #include "CH374INC.H"
 #include "scmd.h"
 
+#include "esp_bluetooth.h"
+
 uint8_t shell_end_str[20];
 
 uint8_t is_first_recv_auth_token = 1;
@@ -476,6 +478,32 @@ uint8_t ADB_TCP_Send(uint8_t *buf,uint16_t len,uint8_t dev_class)
             send_tcpserver(local_id,remote_id,buf_tmp,send_len);
 
             printf("TCP KeyBoard: ");
+            printf_byte(buf_tmp,send_len);
+        }
+        return 0;
+    }else if(get_bluetooth_status() == 1)
+    {
+        if(dev_class == 0x00)
+        {
+            
+            send_len = cmd_creat(0x00,buf,len,buf_tmp);
+            esp_bluetooth_send(buf_tmp,send_len);
+
+            printf("BLUE Status: ");
+            printf_byte(buf_tmp,send_len);
+        }
+        else if(dev_class == DEV_MOUSE)
+        {
+            send_len = cmd_creat(0x02,buf,len,buf_tmp);
+            esp_bluetooth_send(buf_tmp,send_len);
+
+            printf("BLUE Mouse: ");
+            printf_byte(buf_tmp,send_len);
+        }else if(dev_class == DEV_KEYBOARD){
+            send_len = cmd_creat(0x03,buf,len,buf_tmp);
+            esp_bluetooth_send(buf_tmp,send_len);
+
+            printf("BLUE KeyBoard: ");
             printf_byte(buf_tmp,send_len);
         }
         return 0;

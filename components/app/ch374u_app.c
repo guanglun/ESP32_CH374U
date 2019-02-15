@@ -462,6 +462,9 @@ void DisableRootHubPort(uint8_t index) // 关闭指定的ROOT-HUB端口,实际�
 	}else if(RootHubDev[index].DeviceType == DEV_KEYBOARD)
 	{
 		set_status(1,0);
+	}else if(RootHubDev[index].DeviceType == DEV_ADB)
+	{
+		set_status(0,0);
 	}
 
 	RootHubDev[index].DeviceStatus = ROOT_DEV_DISCONNECT;
@@ -798,6 +801,7 @@ uint8_t InitADBDevice(uint8_t cfg, uint8_t index)
 		RootHubDev[index].DeviceStatus = ROOT_DEV_SUCCESS;
 		SetUsbSpeed(true); // 默认为全速
 		printf("ADB Ready\n");
+		set_status(0,1);
 		adb_connect();
 		return (DEV_ADB); /* U盘初始化成功 */
 	}
