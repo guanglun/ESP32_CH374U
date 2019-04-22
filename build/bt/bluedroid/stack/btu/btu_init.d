@@ -113,6 +113,8 @@ bluedroid/stack/btu/btu_init.o: \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/l2cap/include/l2c_int.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/btm_api.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/hcidefs.h \
+ /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/sdp_api.h \
+ /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/sdpdefs.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/smp_api.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/l2c_api.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/l2cdefs.h \
@@ -125,6 +127,7 @@ bluedroid/stack/btu/btu_init.o: \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/btm_ble_api.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/common/include/common/bt_common_types.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/btm/include/btm_int.h \
+ /home/share/esp32/esp-idf/components/bt/bluedroid/stack/sdp/include/sdpint.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/gatt_api.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/gattdefs.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/gatt/include/gatt_int.h \
@@ -356,6 +359,10 @@ bluedroid/stack/btu/btu_init.o: \
 
 /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/hcidefs.h:
 
+/home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/sdp_api.h:
+
+/home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/sdpdefs.h:
+
 /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/smp_api.h:
 
 /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/l2c_api.h:
@@ -379,6 +386,8 @@ bluedroid/stack/btu/btu_init.o: \
 /home/share/esp32/esp-idf/components/bt/bluedroid/common/include/common/bt_common_types.h:
 
 /home/share/esp32/esp-idf/components/bt/bluedroid/stack/btm/include/btm_int.h:
+
+/home/share/esp32/esp-idf/components/bt/bluedroid/stack/sdp/include/sdpint.h:
 
 /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/gatt_api.h:
 

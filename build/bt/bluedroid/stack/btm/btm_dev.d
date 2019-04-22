@@ -108,6 +108,8 @@ bluedroid/stack/btm/btm_dev.o: \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/hcidefs.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/btu.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/btm_api.h \
+ /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/sdp_api.h \
+ /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/sdpdefs.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/smp_api.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/btm/include/btm_int.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/rfcdefs.h \
@@ -338,6 +340,10 @@ bluedroid/stack/btm/btm_dev.o: \
 /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/btu.h:
 
 /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/btm_api.h:
+
+/home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/sdp_api.h:
+
+/home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/sdpdefs.h:
 
 /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/smp_api.h:
 

@@ -100,9 +100,9 @@ bluedroid/btc/core/btc_dm.o: \
  /home/share/esp32/esp-idf/components/bt/bluedroid/bta/include/bta/bta_api.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/btm_api.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/hcidefs.h \
- /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/smp_api.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/sdp_api.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/sdpdefs.h \
+ /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/smp_api.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/btm_ble_api.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/common/include/common/bt_common_types.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/btc/include/btc/btc_main.h \
@@ -125,7 +125,9 @@ bluedroid/btc/core/btc_dm.o: \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/gatt_api.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/gattdefs.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/osi/include/osi/allocator.h \
- /home/share/esp32/esp-idf/components/bt/bluedroid/btc/include/btc/btc_manage.h
+ /home/share/esp32/esp-idf/components/bt/bluedroid/btc/include/btc/btc_manage.h \
+ /home/share/esp32/esp-idf/components/bt/bluedroid/btc/profile/std/include/btc_gap_bt.h \
+ /home/share/esp32/esp-idf/components/bt/bluedroid/bta/include/bta/utl.h
 
 /home/share/esp32/esp-idf/components/bt/bluedroid/common/include/common/bt_target.h:
 
@@ -327,11 +329,11 @@ bluedroid/btc/core/btc_dm.o: \
 
 /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/hcidefs.h:
 
-/home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/smp_api.h:
-
 /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/sdp_api.h:
 
 /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/sdpdefs.h:
+
+/home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/smp_api.h:
 
 /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/btm_ble_api.h:
 
@@ -378,4 +380,8 @@ bluedroid/btc/core/btc_dm.o: \
 /home/share/esp32/esp-idf/components/bt/bluedroid/osi/include/osi/allocator.h:
 
 /home/share/esp32/esp-idf/components/bt/bluedroid/btc/include/btc/btc_manage.h:
+
+/home/share/esp32/esp-idf/components/bt/bluedroid/btc/profile/std/include/btc_gap_bt.h:
+
+/home/share/esp32/esp-idf/components/bt/bluedroid/bta/include/bta/utl.h:
 /home/share/esp32/esp-idf/components/bt/bluedroid/btc/core/btc_dm.c:

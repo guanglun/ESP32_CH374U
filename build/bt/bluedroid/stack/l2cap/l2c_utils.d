@@ -109,6 +109,8 @@ bluedroid/stack/l2cap/l2c_utils.o: \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/l2cdefs.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/l2cap/include/l2c_int.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/btm_api.h \
+ /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/sdp_api.h \
+ /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/sdpdefs.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/smp_api.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/l2c_api.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/osi/include/osi/list.h \
@@ -341,6 +343,10 @@ bluedroid/stack/l2cap/l2c_utils.o: \
 /home/share/esp32/esp-idf/components/bt/bluedroid/stack/l2cap/include/l2c_int.h:
 
 /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/btm_api.h:
+
+/home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/sdp_api.h:
+
+/home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/sdpdefs.h:
 
 /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/smp_api.h:
 

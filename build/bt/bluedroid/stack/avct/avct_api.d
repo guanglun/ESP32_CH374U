@@ -42,6 +42,8 @@ bluedroid/stack/avct/avct_api.o: \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/l2cdefs.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/hcidefs.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/btm_api.h \
+ /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/sdp_api.h \
+ /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/sdpdefs.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/smp_api.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/avct_api.h \
  /home/share/esp32/esp-idf/components/bt/bluedroid/stack/avct/include/avct_int.h \
@@ -135,6 +137,10 @@ bluedroid/stack/avct/avct_api.o: \
 /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/hcidefs.h:
 
 /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/btm_api.h:
+
+/home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/sdp_api.h:
+
+/home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/sdpdefs.h:
 
 /home/share/esp32/esp-idf/components/bt/bluedroid/stack/include/stack/smp_api.h:
 
