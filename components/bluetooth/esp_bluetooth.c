@@ -74,10 +74,10 @@ static void esp_spp_cb(esp_spp_cb_event_t event, esp_spp_cb_param_t *param)
         break;
     case ESP_SPP_DATA_IND_EVT:
 #if (SPP_SHOW_MODE == SPP_SHOW_DATA)
-bt_handle = param->data_ind.handle;
+        bt_handle = param->data_ind.handle;
         //ESP_LOGI(SPP_TAG, "ESP_SPP_DATA_IND_EVT len=%d handle=%d",param->data_ind.len, param->data_ind.handle);
-        esp_log_buffer_hex("",param->data_ind.data,param->data_ind.len);
-        esp_spp_write(param->data_ind.handle, param->data_ind.len, param->data_ind.data);
+        //esp_log_buffer_hex("",param->data_ind.data,param->data_ind.len);
+        //esp_spp_write(param->data_ind.handle, param->data_ind.len, param->data_ind.data);
 #else
         gettimeofday(&time_new, NULL);
         data_num += param->data_ind.len;
@@ -94,7 +94,7 @@ bt_handle = param->data_ind.handle;
         break;
     case ESP_SPP_SRV_OPEN_EVT:
         //ESP_LOGI(SPP_TAG, "ESP_SPP_SRV_OPEN_EVT");
-        gettimeofday(&time_old, NULL);
+        //gettimeofday(&time_old, NULL);
         printf("bt connect\r\n");
         bt_handle = param->data_ind.handle;
         is_connect = 1;
@@ -153,11 +153,11 @@ void esp_bt_gap_cb(esp_bt_gap_cb_event_t event, esp_bt_gap_cb_param_t *param)
 
 int esp_bluetooth_send(uint8_t *buf,int len)
 {
-    uint8_t flasg[] = "hello!!\r\n";
 
     if(is_connect == 1)
     {
-        esp_spp_write(bt_handle,sizeof(flasg), flasg);                                    
+        //while(esp_spp_write(bt_handle,len, buf) != ESP_OK);     
+        esp_spp_write(bt_handle,len, buf);                          
     }
 
 

@@ -49,7 +49,7 @@ void usb_hub_task(void* arg)
         if(timer_count >= 100)
         {
             timer_count = 0;
-            ADB_TCP_Send(status_buf,3,0x00);
+            //ADB_TCP_Send(status_buf,3,0x00);
         }
 
         vTaskDelay(10/ portTICK_RATE_MS);

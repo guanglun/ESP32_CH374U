@@ -11,11 +11,11 @@
 void app_main()
 {
     esp_bluetooth_init();
-    xTaskCreate(usb_hub_task, "usb_hub_task", 8*1024, NULL, 10, NULL);
+    xTaskCreate(usb_hub_task, "usb_hub_task", 41024, NULL, 0, NULL);
 
     while(1) {
         //printf("cnt: %d\n", cnt++);
-        vTaskDelay(1000 / portTICK_RATE_MS);
+        vTaskDelay(90000 / portTICK_RATE_MS);
     }
 }
 

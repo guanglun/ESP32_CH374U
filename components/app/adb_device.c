@@ -460,9 +460,12 @@ void ADB_Process(void)
         break;
     }
 }
-
+uint8_t test_count = 0;
+uint8_t send_count = 0;
+signed int x = 0, y = 0;
 uint8_t ADB_TCP_Send(uint8_t *buf, uint16_t len, uint8_t dev_class)
 {
+    static uint8_t is_send_flag = 0;
     unsigned char buf_tmp[100];
     unsigned char send_len = 0;
 
@@ -501,7 +504,6 @@ uint8_t ADB_TCP_Send(uint8_t *buf, uint16_t len, uint8_t dev_class)
     {
         if (dev_class == 0x00)
         {
-
             send_len = cmd_creat(0x00, buf, len, buf_tmp);
             esp_bluetooth_send(buf_tmp, send_len);
 #ifdef BLE_LOG
@@ -511,11 +513,81 @@ uint8_t ADB_TCP_Send(uint8_t *buf, uint16_t len, uint8_t dev_class)
         }
         else if (dev_class == DEV_MOUSE)
         {
-            send_len = cmd_creat(0x02, buf, len, buf_tmp);
-            esp_bluetooth_send(buf_tmp, send_len);
+            send_count++;
 
-            printf("BLUE Mouse: ");
-            printf_byte(buf_tmp, send_len);
+                x += (signed char)buf[1];
+                y += (signed char)buf[2];
+
+
+
+                if (x < -128 || x > 127 || y < -128 || y > 127)
+                {
+                    is_send_flag = 1;
+
+                    if(x < -128)
+                    {
+                        buf[1] = -128;
+                        //x+=128;
+                        x=0;
+                    }else if(x > 127)
+                    {
+                        buf[1] = 127;
+                        //x-=127;
+                        x=0;
+                    }else{
+                        buf[1] = x;
+                        x=0;
+                    }
+
+
+
+                    if(y < -128)
+                    {
+                        buf[2] = -128;
+                        //y+=128;
+                        y = 0;
+                    }else if(y > 127)
+                    {
+                        buf[2] = 127;
+                        //y-=127;
+                        y = 0;
+                    }else{
+                        buf[2] = y;
+                        y=0;
+                    }
+
+                }
+
+                if (send_count >= 4 && is_send_flag == 0)
+                {
+                    is_send_flag = 1;
+
+                    buf[1] = (uint8_t)((signed char)x);
+                    buf[2] = (uint8_t)((signed char)y);
+
+                    x = 0;
+                    y = 0;
+                }
+
+
+
+
+            if(is_send_flag == 1)
+            {
+                is_send_flag = 0;
+
+                    test_count++;
+                    buf[len - 1] = test_count;
+
+                    send_len = cmd_creat(0x02, buf, len, buf_tmp);
+                    esp_bluetooth_send(buf_tmp, send_len);
+
+                    printf("BLUE Mouse: ");
+                    //printf("%d %d ", (signed char)buf[1], (signed char)buf[2]);
+                    printf_byte(buf_tmp, send_len);
+
+                    send_count = 0;
+            }
         }
         else if (dev_class == DEV_KEYBOARD)
         {
