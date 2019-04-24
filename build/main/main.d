@@ -81,8 +81,56 @@ main.o: /home/share/esp32/project/ESP32_CH374U/main/main.c \
  /home/share/esp32/esp-idf/components/newlib/include/limits.h \
  /home/share/esp32/esp-idf/components/freertos/include/freertos/list.h \
  /home/share/esp32/esp-idf/components/freertos/include/freertos/queue.h \
+ /home/share/esp32/esp-idf/components/esp32/include/esp_wifi.h \
+ /home/share/esp32/esp-idf/components/esp32/include/rom/queue.h \
+ /home/share/esp32/esp-idf/components/esp32/include/esp_wifi_types.h \
+ /home/share/esp32/esp-idf/components/esp32/include/esp_interface.h \
+ /home/share/esp32/esp-idf/components/esp32/include/esp_wifi_crypto_types.h \
+ /home/share/esp32/esp-idf/components/esp_event/include/esp_event.h \
+ /home/share/esp32/esp-idf/components/freertos/include/freertos/semphr.h \
+ /home/share/esp32/esp-idf/components/freertos/include/freertos/queue.h \
+ /home/share/esp32/esp-idf/components/esp_event/include/esp_event_base.h \
+ /home/share/esp32/esp-idf/components/esp32/include/esp_event_legacy.h \
+ /home/share/esp32/esp-idf/components/tcpip_adapter/include/tcpip_adapter.h \
+ /home/share/esp32/esp-idf/components/esp32/include/rom/queue.h \
+ /home/share/esp32/esp-idf/components/esp32/include/esp_wifi_types.h \
+ /home/share/esp32/esp-idf/components/lwip/lwip/src/include/lwip/ip_addr.h \
+ /home/share/esp32/esp-idf/components/lwip/lwip/src/include/lwip/opt.h \
+ /home/share/esp32/esp-idf/components/lwip/port/esp32/include/lwipopts.h \
+ /home/share/esp32/esp-idf/components/newlib/platform_include/time.h \
+ /home/share/esp32/esp-idf/components/newlib/include/time.h \
+ /home/share/esp32/esp-idf/components/newlib/include/machine/time.h \
+ /home/share/esp32/esp-idf/components/newlib/include/unistd.h \
+ /home/share/esp32/esp-idf/components/newlib/platform_include/sys/unistd.h \
+ /home/share/esp32/esp-idf/components/newlib/include/sys/unistd.h \
+ /home/share/esp32/esp-idf/components/newlib/include/sys/time.h \
+ /home/share/esp32/esp-idf/components/newlib/include/sys/fcntl.h \
+ /home/share/esp32/esp-idf/components/newlib/include/sys/_default_fcntl.h \
+ /home/share/esp32/esp-idf/components/newlib/include/sys/stat.h \
+ /home/share/esp32/esp-idf/components/vfs/include/sys/ioctl.h \
+ /home/share/esp32/esp-idf/components/newlib/platform_include/sys/select.h \
+ /home/share/esp32/esp-idf/components/esp32/include/esp_task.h \
+ /home/share/esp32/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
+ /home/share/esp32/esp-idf/components/lwip/port/esp32/include/netif/dhcp_state.h \
+ /home/share/esp32/esp-idf/components/lwip/lwip/src/include/lwip/debug.h \
+ /home/share/esp32/esp-idf/components/lwip/lwip/src/include/lwip/arch.h \
+ /home/share/esp32/esp-idf/components/lwip/port/esp32/include/arch/cc.h \
+ /home/share/esp32/esp-idf/components/newlib/platform_include/errno.h \
+ /home/share/esp32/esp-idf/components/newlib/include/errno.h \
+ /home/share/esp32/esp-idf/components/newlib/include/sys/errno.h \
+ /home/share/esp32/esp-idf/components/lwip/port/esp32/include/arch/sys_arch.h \
+ /home/share/esp32/esp-idf/components/lwip/port/esp32/include/arch/vfs_lwip.h \
+ /home/share/esp32/esp-idf/components/newlib/include/inttypes.h \
+ /home/share/esp32/esp-idf/components/lwip/lwip/src/include/lwip/def.h \
+ /home/share/esp32/esp-idf/components/lwip/lwip/src/include/lwip/ip4_addr.h \
+ /home/share/esp32/esp-idf/components/lwip/lwip/src/include/lwip/ip6_addr.h \
+ /home/share/esp32/esp-idf/components/lwip/lwip/src/include/lwip/def.h \
+ /home/share/esp32/esp-idf/components/lwip/include/apps/dhcpserver/dhcpserver.h \
+ /home/share/esp32/esp-idf/components/esp32/include/esp_wifi_os_adapter.h \
  /home/share/esp32/project/ESP32_CH374U/components/app/usb_hub.h \
- /home/share/esp32/project/ESP32_CH374U/components/bluetooth/esp_bluetooth.h
+ /home/share/esp32/project/ESP32_CH374U/components/bluetooth/esp_bluetooth.h \
+ /home/share/esp32/project/ESP32_CH374U/components/app/adb_device.h \
+ /home/share/esp32/project/ESP32_CH374U/components/app/adb_protocol.h
 
 /home/share/esp32/esp-idf/components/newlib/include/stdio.h:
 
@@ -248,7 +296,103 @@ main.o: /home/share/esp32/project/ESP32_CH374U/main/main.c \
 
 /home/share/esp32/esp-idf/components/freertos/include/freertos/queue.h:
 
+/home/share/esp32/esp-idf/components/esp32/include/esp_wifi.h:
+
+/home/share/esp32/esp-idf/components/esp32/include/rom/queue.h:
+
+/home/share/esp32/esp-idf/components/esp32/include/esp_wifi_types.h:
+
+/home/share/esp32/esp-idf/components/esp32/include/esp_interface.h:
+
+/home/share/esp32/esp-idf/components/esp32/include/esp_wifi_crypto_types.h:
+
+/home/share/esp32/esp-idf/components/esp_event/include/esp_event.h:
+
+/home/share/esp32/esp-idf/components/freertos/include/freertos/semphr.h:
+
+/home/share/esp32/esp-idf/components/freertos/include/freertos/queue.h:
+
+/home/share/esp32/esp-idf/components/esp_event/include/esp_event_base.h:
+
+/home/share/esp32/esp-idf/components/esp32/include/esp_event_legacy.h:
+
+/home/share/esp32/esp-idf/components/tcpip_adapter/include/tcpip_adapter.h:
+
+/home/share/esp32/esp-idf/components/esp32/include/rom/queue.h:
+
+/home/share/esp32/esp-idf/components/esp32/include/esp_wifi_types.h:
+
+/home/share/esp32/esp-idf/components/lwip/lwip/src/include/lwip/ip_addr.h:
+
+/home/share/esp32/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:
+
+/home/share/esp32/esp-idf/components/lwip/port/esp32/include/lwipopts.h:
+
+/home/share/esp32/esp-idf/components/newlib/platform_include/time.h:
+
+/home/share/esp32/esp-idf/components/newlib/include/time.h:
+
+/home/share/esp32/esp-idf/components/newlib/include/machine/time.h:
+
+/home/share/esp32/esp-idf/components/newlib/include/unistd.h:
+
+/home/share/esp32/esp-idf/components/newlib/platform_include/sys/unistd.h:
+
+/home/share/esp32/esp-idf/components/newlib/include/sys/unistd.h:
+
+/home/share/esp32/esp-idf/components/newlib/include/sys/time.h:
+
+/home/share/esp32/esp-idf/components/newlib/include/sys/fcntl.h:
+
+/home/share/esp32/esp-idf/components/newlib/include/sys/_default_fcntl.h:
+
+/home/share/esp32/esp-idf/components/newlib/include/sys/stat.h:
+
+/home/share/esp32/esp-idf/components/vfs/include/sys/ioctl.h:
+
+/home/share/esp32/esp-idf/components/newlib/platform_include/sys/select.h:
+
+/home/share/esp32/esp-idf/components/esp32/include/esp_task.h:
+
+/home/share/esp32/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
+
+/home/share/esp32/esp-idf/components/lwip/port/esp32/include/netif/dhcp_state.h:
+
+/home/share/esp32/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:
+
+/home/share/esp32/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:
+
+/home/share/esp32/esp-idf/components/lwip/port/esp32/include/arch/cc.h:
+
+/home/share/esp32/esp-idf/components/newlib/platform_include/errno.h:
+
+/home/share/esp32/esp-idf/components/newlib/include/errno.h:
+
+/home/share/esp32/esp-idf/components/newlib/include/sys/errno.h:
+
+/home/share/esp32/esp-idf/components/lwip/port/esp32/include/arch/sys_arch.h:
+
+/home/share/esp32/esp-idf/components/lwip/port/esp32/include/arch/vfs_lwip.h:
+
+/home/share/esp32/esp-idf/components/newlib/include/inttypes.h:
+
+/home/share/esp32/esp-idf/components/lwip/lwip/src/include/lwip/def.h:
+
+/home/share/esp32/esp-idf/components/lwip/lwip/src/include/lwip/ip4_addr.h:
+
+/home/share/esp32/esp-idf/components/lwip/lwip/src/include/lwip/ip6_addr.h:
+
+/home/share/esp32/esp-idf/components/lwip/lwip/src/include/lwip/def.h:
+
+/home/share/esp32/esp-idf/components/lwip/include/apps/dhcpserver/dhcpserver.h:
+
+/home/share/esp32/esp-idf/components/esp32/include/esp_wifi_os_adapter.h:
+
 /home/share/esp32/project/ESP32_CH374U/components/app/usb_hub.h:
 
 /home/share/esp32/project/ESP32_CH374U/components/bluetooth/esp_bluetooth.h:
+
+/home/share/esp32/project/ESP32_CH374U/components/app/adb_device.h:
+
+/home/share/esp32/project/ESP32_CH374U/components/app/adb_protocol.h:
 /home/share/esp32/project/ESP32_CH374U/main/./main.c:

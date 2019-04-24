@@ -93,8 +93,7 @@ esp_http_client.o: \
  /home/share/esp32/esp-idf/components/nghttp/port/include/http_parser.h \
  /home/share/esp32/esp-idf/components/newlib/platform_include/errno.h \
  /home/share/esp32/esp-idf/components/newlib/include/errno.h \
- /home/share/esp32/esp-idf/components/newlib/include/sys/errno.h \
- /home/share/esp32/esp-idf/components/tcp_transport/include/esp_transport_ssl.h
+ /home/share/esp32/esp-idf/components/newlib/include/sys/errno.h
 
 /home/share/esp32/esp-idf/components/newlib/include/string.h:
 
@@ -283,6 +282,4 @@ esp_http_client.o: \
 /home/share/esp32/esp-idf/components/newlib/include/errno.h:
 
 /home/share/esp32/esp-idf/components/newlib/include/sys/errno.h:
-
-/home/share/esp32/esp-idf/components/tcp_transport/include/esp_transport_ssl.h:
 /home/share/esp32/esp-idf/components/esp_http_client/./esp_http_client.c:

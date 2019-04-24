@@ -25,6 +25,7 @@
 
 char is_connect = 0;
 uint16_t bt_handle = 0;
+uint8_t send_status = 0,is_send_ok = 1;
 
 static const esp_spp_mode_t esp_spp_mode = ESP_SPP_MODE_CB;
 
@@ -87,10 +88,20 @@ static void esp_spp_cb(esp_spp_cb_event_t event, esp_spp_cb_param_t *param)
 #endif
         break;
     case ESP_SPP_CONG_EVT:
+        if(param->cong.cong)
+        {
+            send_status = 1;
+        }else{
+            send_status = 0;
+        }
         //ESP_LOGI(SPP_TAG, "ESP_SPP_CONG_EVT");
+        //ESP_LOGI(SPP_TAG,"ESP_SPP_CONG_EVT: %s", param->cong.cong?"CONGESTED":"FREE");
+        printf("ESP_SPP_CONG_EVT: %s\r\n", param->cong.cong?"CONGESTED":"FREE");
         break;
     case ESP_SPP_WRITE_EVT:
+        is_send_ok = 1;
         //ESP_LOGI(SPP_TAG, "ESP_SPP_WRITE_EVT");
+        printf("ESP_SPP_WRITE_EVT\r\n");
         break;
     case ESP_SPP_SRV_OPEN_EVT:
         //ESP_LOGI(SPP_TAG, "ESP_SPP_SRV_OPEN_EVT");
@@ -154,9 +165,19 @@ void esp_bt_gap_cb(esp_bt_gap_cb_event_t event, esp_bt_gap_cb_param_t *param)
 int esp_bluetooth_send(uint8_t *buf,int len)
 {
 
-    if(is_connect == 1)
+    if(is_connect == 1)// && send_status == 0 && is_send_ok == 1)
     {
-        //while(esp_spp_write(bt_handle,len, buf) != ESP_OK);     
+        while(send_status == 1)
+        {
+            printf("1");
+            vTaskDelay(4 / portTICK_RATE_MS);
+        }
+        while(is_send_ok == 0)
+        {
+            printf("2");
+            vTaskDelay(4 / portTICK_RATE_MS);
+        }
+        is_send_ok = 0;
         esp_spp_write(bt_handle,len, buf);                          
     }
 

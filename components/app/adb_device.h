@@ -11,5 +11,6 @@ int ADB_RecvFrame(apacket *p);
 int ADB_RecvData(uint8_t *buf, uint8_t len);
 void ADB_Process(void);
 uint8_t ADB_TCP_Send(uint8_t *buf,uint16_t len,uint8_t dev_class);
+void bt_send_task(void *arg);
 
 #endif
