@@ -16,7 +16,7 @@ void app_main()
     esp_bluetooth_init();
 
     //xTaskCreate(bt_send_task, "bt_send_task", 4*1024, NULL, 1, NULL);
-    xTaskCreate(usb_hub_task, "usb_hub_task", 4*1024, NULL, 0, NULL);
+    xTaskCreate(usb_hub_task, "usb_hub_task", 8*1024, NULL, 0, NULL);
 
     while(1) {
         //printf("cnt: %d\n", cnt++);

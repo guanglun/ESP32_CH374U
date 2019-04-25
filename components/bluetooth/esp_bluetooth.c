@@ -6,6 +6,12 @@
 #include "nvs_flash.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "freertos/queue.h"
+#include "freertos/semphr.h"
+#include "freertos/event_groups.h"
+#include "freertos/xtensa_api.h"
+#include "freertos/portmacro.h"
+#include "freertos/xtensa_api.h"
 #include "esp_log.h"
 #include "esp_bt.h"
 #include "esp_bt_main.h"
@@ -13,172 +19,455 @@
 #include "esp_bt_device.h"
 #include "esp_spp_api.h"
 
-#include "time.h"
-#include "sys/time.h"
 
-#define SPP_TAG "SPP_ACCEPTOR_DEMO"
-#define SPP_SERVER_NAME "SPP_SERVER"
-#define EXCAMPLE_DEVICE_NAME "ATOUCH_BLUE"
-#define SPP_SHOW_DATA 1
-#define SPP_SHOW_SPEED 0
-#define SPP_SHOW_MODE SPP_SHOW_DATA    /*Choose show mode: show data or speed*/
+uint8_t is_connect = 0;
 
-char is_connect = 0;
-uint16_t bt_handle = 0;
-uint8_t send_status = 0,is_send_ok = 1;
+const char * _spp_server_name = "ATOUCH_BLUE";
 
-static const esp_spp_mode_t esp_spp_mode = ESP_SPP_MODE_CB;
+#define RX_QUEUE_SIZE 10
+#define TX_QUEUE_SIZE 512
+static uint32_t _spp_client = 0;
+static xQueueHandle _spp_rx_queue = NULL;
+static xQueueHandle _spp_tx_queue = NULL;
+static SemaphoreHandle_t _spp_tx_done = NULL;
+static TaskHandle_t _spp_task_handle = NULL;
+static EventGroupHandle_t _spp_event_group = NULL;
+static bool secondConnectionAttempt;
+static esp_spp_cb_t * custom_spp_callback = NULL;
 
-static struct timeval time_new, time_old;
-static long data_num = 0;
+#define SPP_TX_MAX 330
+uint8_t _spp_tx_buffer[SPP_TX_MAX];
+uint16_t _spp_tx_buffer_len = 0;
 
-static const esp_spp_sec_t sec_mask = ESP_SPP_SEC_AUTHENTICATE;
-static const esp_spp_role_t role_slave = ESP_SPP_ROLE_SLAVE;
+#define SPP_RUNNING     0x01
+#define SPP_CONNECTED   0x02
+#define SPP_CONGESTED   0x04
 
-static void print_speed(void)
-{
-    float time_old_s = time_old.tv_sec + time_old.tv_usec / 1000000.0;
-    float time_new_s = time_new.tv_sec + time_new.tv_usec / 1000000.0;
-    float time_interval = time_new_s - time_old_s;
-    float speed = data_num * 8 / time_interval / 1000.0;
-    //ESP_LOGI(SPP_TAG, "speed(%fs ~ %fs): %f kbit/s" , time_old_s, time_new_s, speed);
-    data_num = 0;
-    time_old.tv_sec = time_new.tv_sec;
-    time_old.tv_usec = time_new.tv_usec;
+
+
+//////////
+bool btStarted(){
+    return (esp_bt_controller_get_status() == ESP_BT_CONTROLLER_STATUS_ENABLED);
 }
+
+bool btStart(){
+    esp_bt_controller_config_t cfg = BT_CONTROLLER_INIT_CONFIG_DEFAULT();
+    if(esp_bt_controller_get_status() == ESP_BT_CONTROLLER_STATUS_ENABLED){
+        return true;
+    }
+    if(esp_bt_controller_get_status() == ESP_BT_CONTROLLER_STATUS_IDLE){
+        esp_bt_controller_init(&cfg);
+        while(esp_bt_controller_get_status() == ESP_BT_CONTROLLER_STATUS_IDLE){}
+    }
+    if(esp_bt_controller_get_status() == ESP_BT_CONTROLLER_STATUS_INITED){
+        if (esp_bt_controller_enable(ESP_BT_MODE_CLASSIC_BT)) {
+            printf("BT Enable failed");
+            return false;
+        }
+    }
+    if(esp_bt_controller_get_status() == ESP_BT_CONTROLLER_STATUS_ENABLED){
+        return true;
+    }
+    printf("BT Start failed");
+    return false;
+}
+
+bool btStop(){
+    if(esp_bt_controller_get_status() == ESP_BT_CONTROLLER_STATUS_IDLE){
+        return true;
+    }
+    if(esp_bt_controller_get_status() == ESP_BT_CONTROLLER_STATUS_ENABLED){
+        if (esp_bt_controller_disable()) {
+            printf("BT Disable failed");
+            return false;
+        }
+        while(esp_bt_controller_get_status() == ESP_BT_CONTROLLER_STATUS_ENABLED);
+    }
+    if(esp_bt_controller_get_status() == ESP_BT_CONTROLLER_STATUS_INITED){
+        return true;
+    }
+    printf("BT Stop failed");
+    return false;
+}
+////////////
+typedef struct {
+        size_t len;
+        uint8_t data[];
+} spp_packet_t;
+
+static esp_err_t _spp_queue_packet(uint8_t *data, size_t len){
+    if(!data || !len){
+        //log_w("No data provided");
+        return ESP_OK;
+    }
+    spp_packet_t * packet = (spp_packet_t*)malloc(sizeof(spp_packet_t) + len);
+    if(!packet){
+        printf("SPP TX Packet Malloc Failed!");
+        return ESP_FAIL;
+    }
+    packet->len = len;
+    memcpy(packet->data, data, len);
+    if (xQueueSend(_spp_tx_queue, &packet, portMAX_DELAY) != pdPASS) {
+        printf("SPP TX Queue Send Failed!");
+        free(packet);
+        return ESP_FAIL;
+    }
+    return ESP_OK;
+}
+
+
+
+static bool _spp_send_buffer(){
+    if((xEventGroupWaitBits(_spp_event_group, SPP_CONGESTED, pdFALSE, pdTRUE, portMAX_DELAY) & SPP_CONGESTED)){
+        esp_err_t err = esp_spp_write(_spp_client, _spp_tx_buffer_len, _spp_tx_buffer);
+        if(err != ESP_OK){
+            printf("SPP Write Failed! [0x%X]", err);
+            return false;
+        }
+        _spp_tx_buffer_len = 0;
+        if(xSemaphoreTake(_spp_tx_done, portMAX_DELAY) != pdTRUE){
+            printf("SPP Ack Failed!");
+            return false;
+        }
+        return true;
+    }
+    return false;
+}
+
+static void _spp_tx_task(void * arg){
+    spp_packet_t *packet = NULL;
+    size_t len = 0, to_send = 0;
+    uint8_t * data = NULL;
+    for (;;) {
+        if(_spp_tx_queue && xQueueReceive(_spp_tx_queue, &packet, portMAX_DELAY) == pdTRUE && packet){
+            if(packet->len <= (SPP_TX_MAX - _spp_tx_buffer_len)){
+                memcpy(_spp_tx_buffer+_spp_tx_buffer_len, packet->data, packet->len);
+                _spp_tx_buffer_len+=packet->len;
+                free(packet);
+                packet = NULL;
+                if(SPP_TX_MAX == _spp_tx_buffer_len || uxQueueMessagesWaiting(_spp_tx_queue) == 0){
+                    _spp_send_buffer();
+                }
+            } else {
+                len = packet->len;
+                data = packet->data;
+                to_send = SPP_TX_MAX - _spp_tx_buffer_len;
+                memcpy(_spp_tx_buffer+_spp_tx_buffer_len, data, to_send);
+                _spp_tx_buffer_len = SPP_TX_MAX;
+                data += to_send;
+                len -= to_send;
+                _spp_send_buffer();
+                while(len >= SPP_TX_MAX){
+                    memcpy(_spp_tx_buffer, data, SPP_TX_MAX);
+                    _spp_tx_buffer_len = SPP_TX_MAX;
+                    data += SPP_TX_MAX;
+                    len -= SPP_TX_MAX;
+                    _spp_send_buffer();
+                }
+                if(len){
+                    memcpy(_spp_tx_buffer, data, len);
+                    _spp_tx_buffer_len += len;
+                    free(packet);
+                    packet = NULL;
+                    if(uxQueueMessagesWaiting(_spp_tx_queue) == 0){
+                        _spp_send_buffer();
+                    }
+                }
+            }
+        } else {
+            printf("Something went horribly wrong");
+        }
+    }
+    vTaskDelete(NULL);
+    _spp_task_handle = NULL;
+}
+
 
 static void esp_spp_cb(esp_spp_cb_event_t event, esp_spp_cb_param_t *param)
 {
-    switch (event) {
+    switch (event)
+    {
     case ESP_SPP_INIT_EVT:
-        //ESP_LOGI(SPP_TAG, "ESP_SPP_INIT_EVT");
-        esp_bt_dev_set_device_name(EXCAMPLE_DEVICE_NAME);
+        printf("ESP_SPP_INIT_EVT");
         esp_bt_gap_set_scan_mode(ESP_BT_SCAN_MODE_CONNECTABLE_DISCOVERABLE);
-        esp_spp_start_srv(sec_mask,role_slave, 0, SPP_SERVER_NAME);
+        esp_spp_start_srv(ESP_SPP_SEC_NONE, ESP_SPP_ROLE_SLAVE, 0, _spp_server_name);
+        xEventGroupSetBits(_spp_event_group, SPP_RUNNING);
         break;
-    case ESP_SPP_DISCOVERY_COMP_EVT:
-        //ESP_LOGI(SPP_TAG, "ESP_SPP_DISCOVERY_COMP_EVT");
-        break;
-    case ESP_SPP_OPEN_EVT:
-        //ESP_LOGI(SPP_TAG, "ESP_SPP_OPEN_EVT");
-        break;
-    case ESP_SPP_CLOSE_EVT:
-        //ESP_LOGI(SPP_TAG, "ESP_SPP_CLOSE_EVT");
-        is_connect = 0;
-        printf("bt disconnect\r\n");
-        break;
-    case ESP_SPP_START_EVT:
-        //ESP_LOGI(SPP_TAG, "ESP_SPP_START_EVT");
-        break;
-    case ESP_SPP_CL_INIT_EVT:
-        //ESP_LOGI(SPP_TAG, "ESP_SPP_CL_INIT_EVT");
-        break;
-    case ESP_SPP_DATA_IND_EVT:
-#if (SPP_SHOW_MODE == SPP_SHOW_DATA)
-        bt_handle = param->data_ind.handle;
-        //ESP_LOGI(SPP_TAG, "ESP_SPP_DATA_IND_EVT len=%d handle=%d",param->data_ind.len, param->data_ind.handle);
-        //esp_log_buffer_hex("",param->data_ind.data,param->data_ind.len);
-        //esp_spp_write(param->data_ind.handle, param->data_ind.len, param->data_ind.data);
-#else
-        gettimeofday(&time_new, NULL);
-        data_num += param->data_ind.len;
-        if (time_new.tv_sec - time_old.tv_sec >= 3) {
-            print_speed();
+
+    case ESP_SPP_SRV_OPEN_EVT://Server connection open
+        if (!_spp_client){
+            _spp_client = param->open.handle;
+        } else {
+            secondConnectionAttempt = true;
+            esp_spp_disconnect(param->open.handle);
         }
-#endif
+        xEventGroupSetBits(_spp_event_group, SPP_CONNECTED);
+        printf("ESP_SPP_SRV_OPEN_EVT");
         break;
-    case ESP_SPP_CONG_EVT:
-        if(param->cong.cong)
-        {
-            send_status = 1;
-        }else{
-            send_status = 0;
+
+    case ESP_SPP_CLOSE_EVT://Client connection closed
+        if(secondConnectionAttempt) {
+            secondConnectionAttempt = false;
+        } else {
+            _spp_client = 0;
         }
-        //ESP_LOGI(SPP_TAG, "ESP_SPP_CONG_EVT");
-        //ESP_LOGI(SPP_TAG,"ESP_SPP_CONG_EVT: %s", param->cong.cong?"CONGESTED":"FREE");
-        printf("ESP_SPP_CONG_EVT: %s\r\n", param->cong.cong?"CONGESTED":"FREE");
+        xEventGroupClearBits(_spp_event_group, SPP_CONNECTED);
+        printf("ESP_SPP_CLOSE_EVT");
         break;
-    case ESP_SPP_WRITE_EVT:
-        is_send_ok = 1;
-        //ESP_LOGI(SPP_TAG, "ESP_SPP_WRITE_EVT");
-        printf("ESP_SPP_WRITE_EVT\r\n");
+
+    case ESP_SPP_CONG_EVT://connection congestion status changed
+        if(param->cong.cong){
+            xEventGroupClearBits(_spp_event_group, SPP_CONGESTED);
+        } else {
+            xEventGroupSetBits(_spp_event_group, SPP_CONGESTED);
+        }
+        //log_v("ESP_SPP_CONG_EVT: %s", param->cong.cong?"CONGESTED":"FREE");
         break;
-    case ESP_SPP_SRV_OPEN_EVT:
-        //ESP_LOGI(SPP_TAG, "ESP_SPP_SRV_OPEN_EVT");
-        //gettimeofday(&time_old, NULL);
-        printf("bt connect\r\n");
-        bt_handle = param->data_ind.handle;
-        is_connect = 1;
+
+    case ESP_SPP_WRITE_EVT://write operation completed
+        if(param->write.cong){
+            xEventGroupClearBits(_spp_event_group, SPP_CONGESTED);
+        }
+        xSemaphoreGive(_spp_tx_done);//we can try to send another packet
+        //log_v("ESP_SPP_WRITE_EVT: %u %s", param->write.len, param->write.cong?"CONGESTED":"FREE");
+        break;
+
+    case ESP_SPP_DATA_IND_EVT://connection received data
+        //log_v("ESP_SPP_DATA_IND_EVT len=%d handle=%d", param->data_ind.len, param->data_ind.handle);
+        //esp_//log_buffer_hex("",param->data_ind.data,param->data_ind.len); //for low level debug
+        //ets_printf("r:%u\n", param->data_ind.len);
+
+        if (_spp_rx_queue != NULL){
+            for (int i = 0; i < param->data_ind.len; i++){
+                if(xQueueSend(_spp_rx_queue, param->data_ind.data + i, (TickType_t)0) != pdTRUE){
+                    printf("RX Full! Discarding %u bytes", param->data_ind.len - i);
+                    break;
+                }
+            }
+        }
+        break;
+
+        //should maybe delete those.
+    case ESP_SPP_DISCOVERY_COMP_EVT://discovery complete
+        printf("ESP_SPP_DISCOVERY_COMP_EVT");
+        break;
+    case ESP_SPP_OPEN_EVT://Client connection open
+        printf("ESP_SPP_OPEN_EVT");
+        break;
+    case ESP_SPP_START_EVT://server started
+        printf("ESP_SPP_START_EVT");
+        break;
+    case ESP_SPP_CL_INIT_EVT://client initiated a connection
+        printf("ESP_SPP_CL_INIT_EVT");
         break;
     default:
         break;
     }
+    if(custom_spp_callback)(*custom_spp_callback)(event, param);
 }
 
-void esp_bt_gap_cb(esp_bt_gap_cb_event_t event, esp_bt_gap_cb_param_t *param)
+static bool _init_bt(const char *deviceName)
 {
-    switch (event) {
-    case ESP_BT_GAP_AUTH_CMPL_EVT:{
-        if (param->auth_cmpl.stat == ESP_BT_STATUS_SUCCESS) {
-            //ESP_LOGI(SPP_TAG, "authentication success: %s", param->auth_cmpl.device_name);
-            esp_log_buffer_hex(SPP_TAG, param->auth_cmpl.bda, ESP_BD_ADDR_LEN);
-        } else {
-            ESP_LOGE(SPP_TAG, "authentication failed, status:%d", param->auth_cmpl.stat);
+    esp_err_t ret = nvs_flash_init();
+    if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND)
+    {
+        ESP_ERROR_CHECK(nvs_flash_erase());
+        ret = nvs_flash_init();
+    }
+    ESP_ERROR_CHECK(ret);
+
+    if(!_spp_event_group){
+        _spp_event_group = xEventGroupCreate();
+        if(!_spp_event_group){
+            printf("SPP Event Group Create Failed!");
+            return false;
         }
-        break;
+        xEventGroupClearBits(_spp_event_group, 0xFFFFFF);
+        xEventGroupSetBits(_spp_event_group, SPP_CONGESTED);
     }
-    case ESP_BT_GAP_PIN_REQ_EVT:{
-        //ESP_LOGI(SPP_TAG, "ESP_BT_GAP_PIN_REQ_EVT min_16_digit:%d", param->pin_req.min_16_digit);
-        if (param->pin_req.min_16_digit) {
-            //ESP_LOGI(SPP_TAG, "Input pin code: 0000 0000 0000 0000");
-            esp_bt_pin_code_t pin_code = {0};
-            esp_bt_gap_pin_reply(param->pin_req.bda, true, 16, pin_code);
-        } else {
-            //ESP_LOGI(SPP_TAG, "Input pin code: 1234");
-            esp_bt_pin_code_t pin_code;
-            pin_code[0] = '1';
-            pin_code[1] = '2';
-            pin_code[2] = '3';
-            pin_code[3] = '4';
-            esp_bt_gap_pin_reply(param->pin_req.bda, true, 4, pin_code);
+    if (_spp_rx_queue == NULL){
+        _spp_rx_queue = xQueueCreate(RX_QUEUE_SIZE, sizeof(uint8_t)); //initialize the queue
+        if (_spp_rx_queue == NULL){
+            printf("RX Queue Create Failed");
+            return false;
         }
-        break;
     }
-    case ESP_BT_GAP_CFM_REQ_EVT:
-        //ESP_LOGI(SPP_TAG, "ESP_BT_GAP_CFM_REQ_EVT Please compare the numeric value: %d", param->cfm_req.num_val);
-        esp_bt_gap_ssp_confirm_reply(param->cfm_req.bda, true);
-        break;
-    case ESP_BT_GAP_KEY_NOTIF_EVT:
-        //ESP_LOGI(SPP_TAG, "ESP_BT_GAP_KEY_NOTIF_EVT passkey:%d", param->key_notif.passkey);
-        break;
-    case ESP_BT_GAP_KEY_REQ_EVT:
-        //ESP_LOGI(SPP_TAG, "ESP_BT_GAP_KEY_REQ_EVT Please enter passkey!");
-        break;
-    default: {
-        //ESP_LOGI(SPP_TAG, "event: %d", event);
-        break;
+    if (_spp_tx_queue == NULL){
+        _spp_tx_queue = xQueueCreate(TX_QUEUE_SIZE, sizeof(spp_packet_t*)); //initialize the queue
+        if (_spp_tx_queue == NULL){
+            printf("TX Queue Create Failed");
+            return false;
+        }
     }
+    if(_spp_tx_done == NULL){
+        _spp_tx_done = xSemaphoreCreateBinary();
+        if (_spp_tx_done == NULL){
+            printf("TX Semaphore Create Failed");
+            return false;
+        }
+        xSemaphoreTake(_spp_tx_done, 0);
     }
-    return;
+
+    if(!_spp_task_handle){
+        xTaskCreate(_spp_tx_task, "spp_tx", 4096, NULL, 10, &_spp_task_handle);
+        if(!_spp_task_handle){
+            printf("Network Event Task Start Failed!");
+            return false;
+        }
+    }
+
+    if (!btStarted() && !btStart()){
+        printf("initialize controller failed");
+        return false;
+    }
+    
+    esp_bluedroid_status_t bt_state = esp_bluedroid_get_status();
+    if (bt_state == ESP_BLUEDROID_STATUS_UNINITIALIZED){
+        if (esp_bluedroid_init()) {
+            printf("initialize bluedroid failed");
+            return false;
+        }
+    }
+    
+    if (bt_state != ESP_BLUEDROID_STATUS_ENABLED){
+        if (esp_bluedroid_enable()) {
+            printf("enable bluedroid failed");
+            return false;
+        }
+    }
+
+    if (esp_spp_register_callback(esp_spp_cb) != ESP_OK){
+        printf("spp register failed");
+        return false;
+    }
+
+    if (esp_spp_init(ESP_SPP_MODE_CB) != ESP_OK){
+        printf("spp init failed");
+        return false;
+    }
+
+    esp_bt_dev_set_device_name(deviceName);
+
+    // the default BTA_DM_COD_LOUDSPEAKER does not work with the macOS BT stack
+    esp_bt_cod_t cod;
+    cod.major = 0b00001;
+    cod.minor = 0b000100;
+    cod.service = 0b00000010110;
+    if (esp_bt_gap_set_cod(cod, ESP_BT_INIT_COD) != ESP_OK) {
+        printf("set cod failed");
+        return false;
+    }
+
+    return true;
+}
+
+static bool _stop_bt()
+{
+    if (btStarted()){
+        if(_spp_client)
+            esp_spp_disconnect(_spp_client);
+        esp_spp_deinit();
+        esp_bluedroid_disable();
+        esp_bluedroid_deinit();
+        //btStop();
+    }
+    _spp_client = 0;
+    if(_spp_task_handle){
+        vTaskDelete(_spp_task_handle);
+        _spp_task_handle = NULL;
+    }
+    if(_spp_event_group){
+        vEventGroupDelete(_spp_event_group);
+        _spp_event_group = NULL;
+    }
+    if(_spp_rx_queue){
+        vQueueDelete(_spp_rx_queue);
+        //ToDo: clear RX queue when in packet mode
+        _spp_rx_queue = NULL;
+    }
+    if(_spp_tx_queue){
+        spp_packet_t *packet = NULL;
+        while(xQueueReceive(_spp_tx_queue, &packet, 0) == pdTRUE){
+            free(packet);
+        }
+        vQueueDelete(_spp_tx_queue);
+        _spp_tx_queue = NULL;
+    }
+    if (_spp_tx_done) {
+        vSemaphoreDelete(_spp_tx_done);
+        _spp_tx_done = NULL;
+    }
+    return true;
+}
+
+
+
+int bt_available(void)
+{
+    if (_spp_rx_queue == NULL){
+        return 0;
+    }
+    return uxQueueMessagesWaiting(_spp_rx_queue);
+}
+
+int bt_peek(void)
+{
+    uint8_t c;
+    if (_spp_rx_queue && xQueuePeek(_spp_rx_queue, &c, 0)){
+        return c;
+    }
+    return -1;
+}
+
+bool bt_hasClient(void)
+{
+    return _spp_client > 0;
+}
+
+int bt_read(void)
+{
+    uint8_t c = 0;
+    if (_spp_rx_queue && xQueueReceive(_spp_rx_queue, &c, 0)){
+        return c;
+    }
+    return -1;
+}
+
+size_t bt_write(const uint8_t *buffer, size_t size)
+{
+    if (!_spp_client){
+        return 0;
+    }
+    return (_spp_queue_packet((uint8_t *)buffer, size) == ESP_OK) ? size : 0;
+}
+
+void bt_flush()
+{
+    while(bt_read() >= 0){}
+}
+
+void bt_end()
+{
+    _stop_bt();
+}
+
+esp_err_t bt_register_callback(esp_spp_cb_t * callback)
+{
+    custom_spp_callback = callback;
+    return ESP_OK;
+}
+
+void esp_bluetooth_init(void)
+{
+    _init_bt(_spp_server_name);
 }
 
 int esp_bluetooth_send(uint8_t *buf,int len)
 {
 
-    if(is_connect == 1)// && send_status == 0 && is_send_ok == 1)
+    //if(is_connect == 1)// && send_status == 0 && is_send_ok == 1)
     {
-        while(send_status == 1)
-        {
-            printf("1");
-            vTaskDelay(4 / portTICK_RATE_MS);
-        }
-        while(is_send_ok == 0)
-        {
-            printf("2");
-            vTaskDelay(4 / portTICK_RATE_MS);
-        }
-        is_send_ok = 0;
-        esp_spp_write(bt_handle,len, buf);                          
+        bt_write(buf,len);                          
     }
 
 
@@ -187,66 +476,9 @@ int esp_bluetooth_send(uint8_t *buf,int len)
 
 char get_bluetooth_status(void)
 {
-    return is_connect;
-}
-
-void esp_bluetooth_init(void)
-{
-    esp_err_t ret = nvs_flash_init();
-    if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
-        ESP_ERROR_CHECK(nvs_flash_erase());
-        ret = nvs_flash_init();
+    if (!_spp_client){
+        return 0;
+    }else{
+        return 1;
     }
-    ESP_ERROR_CHECK( ret );
-
-    ESP_ERROR_CHECK(esp_bt_controller_mem_release(ESP_BT_MODE_BLE));
-
-    esp_bt_controller_config_t bt_cfg = BT_CONTROLLER_INIT_CONFIG_DEFAULT();
-    if ((ret = esp_bt_controller_init(&bt_cfg)) != ESP_OK) {
-        ESP_LOGE(SPP_TAG, "%s initialize controller failed: %s\n", __func__, esp_err_to_name(ret));
-        return;
-    }
-
-    if ((ret = esp_bt_controller_enable(ESP_BT_MODE_CLASSIC_BT)) != ESP_OK) {
-        ESP_LOGE(SPP_TAG, "%s enable controller failed: %s\n", __func__, esp_err_to_name(ret));
-        return;
-    }
-
-    if ((ret = esp_bluedroid_init()) != ESP_OK) {
-        ESP_LOGE(SPP_TAG, "%s initialize bluedroid failed: %s\n", __func__, esp_err_to_name(ret));
-        return;
-    }
-
-    if ((ret = esp_bluedroid_enable()) != ESP_OK) {
-        ESP_LOGE(SPP_TAG, "%s enable bluedroid failed: %s\n", __func__, esp_err_to_name(ret));
-        return;
-    }
-
-    if ((ret = esp_bt_gap_register_callback(esp_bt_gap_cb)) != ESP_OK) {
-        ESP_LOGE(SPP_TAG, "%s gap register failed: %s\n", __func__, esp_err_to_name(ret));
-        return;
-    }
-
-    if ((ret = esp_spp_register_callback(esp_spp_cb)) != ESP_OK) {
-        ESP_LOGE(SPP_TAG, "%s spp register failed: %s\n", __func__, esp_err_to_name(ret));
-        return;
-    }
-
-    if ((ret = esp_spp_init(esp_spp_mode)) != ESP_OK) {
-        ESP_LOGE(SPP_TAG, "%s spp init failed: %s\n", __func__, esp_err_to_name(ret));
-        return;
-    }
-
-    /* Set default parameters for Secure Simple Pairing */
-    esp_bt_sp_param_t param_type = ESP_BT_SP_IOCAP_MODE;
-    esp_bt_io_cap_t iocap = ESP_BT_IO_CAP_IO;
-    esp_bt_gap_set_security_param(param_type, &iocap, sizeof(uint8_t));
-
-    /*
-     * Set default parameters for Legacy Pairing
-     * Use variable pin, input pin code when pairing
-     */
-    esp_bt_pin_type_t pin_type = ESP_BT_PIN_TYPE_VARIABLE;
-    esp_bt_pin_code_t pin_code;
-    esp_bt_gap_set_pin(pin_type, 0, pin_code);
 }
