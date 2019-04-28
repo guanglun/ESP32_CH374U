@@ -37,12 +37,15 @@ bluedroid/main/bte_init.o: \
  /home/share/esp32/esp-idf-v3.2/components/log/include/esp_log_internal.h \
  /home/share/esp32/esp-idf-v3.2/components/newlib/include/string.h \
  /home/share/esp32/esp-idf-v3.2/components/newlib/include/sys/string.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/port_api.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/gap_api.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdpdefs.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/profiles_api.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/btm_api.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/common/include/common/bt_defs.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/hcidefs.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdp_api.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/smp_api.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/l2c_api.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/l2cdefs.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/gatt_api.h \
@@ -178,6 +181,8 @@ bluedroid/main/bte_init.o: \
 
 /home/share/esp32/esp-idf-v3.2/components/newlib/include/sys/string.h:
 
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/port_api.h:
+
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/gap_api.h:
 
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdpdefs.h:
@@ -189,6 +194,10 @@ bluedroid/main/bte_init.o: \
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/common/include/common/bt_defs.h:
 
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/hcidefs.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdp_api.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/smp_api.h:
 
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/l2c_api.h:
 

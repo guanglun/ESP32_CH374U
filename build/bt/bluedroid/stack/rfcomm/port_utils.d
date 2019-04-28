@@ -50,6 +50,9 @@ bluedroid/stack/rfcomm/port_utils.o: \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/rfcomm/include/port_int.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/btm/include/btm_int.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/btm_api.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdp_api.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdpdefs.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/smp_api.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/btm/include/btm_ble_int.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/btm_ble_api.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/common/include/common/bt_common_types.h \
@@ -213,6 +216,12 @@ bluedroid/stack/rfcomm/port_utils.o: \
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/btm/include/btm_int.h:
 
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/btm_api.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdp_api.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdpdefs.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/smp_api.h:
 
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/btm/include/btm_ble_int.h:
 

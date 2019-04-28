@@ -3,7 +3,7 @@
 
 #include "adb_protocol.h"
 
-//#define ADB_LOG
+#define ADB_LOG
 
 int usb_send_packet(amessage *msg, uint8_t *buffer,uint8_t flag);
 void adb_connect(void);

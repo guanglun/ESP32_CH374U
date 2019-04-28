@@ -104,6 +104,7 @@ bluedroid/btc/core/btc_task.o: \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/hcidefs.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdp_api.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdpdefs.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/smp_api.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/btm_ble_api.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/common/include/common/bt_common_types.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/btc/include/btc/btc_dev.h \
@@ -130,7 +131,17 @@ bluedroid/btc/core/btc_task.o: \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/bta/include/bta/bta_gatt_api.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/gatt_api.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/gattdefs.h \
- /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/osi/include/osi/list.h
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/osi/include/osi/list.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/btc/include/btc/btc_profile_queue.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/btc/profile/std/include/btc_gap_bt.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/api/include/api/esp_gap_bt_api.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/bta/include/bta/utl.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/btc/profile/std/include/btc_spp.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/api/include/api/esp_spp_api.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/bta/include/bta/bta_jv_api.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/l2c_api.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/l2cdefs.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/rfcdefs.h
 
 /home/share/esp32/esp-idf-v3.2/components/newlib/include/stdlib.h:
 
@@ -340,6 +351,8 @@ bluedroid/btc/core/btc_task.o: \
 
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdpdefs.h:
 
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/smp_api.h:
+
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/btm_ble_api.h:
 
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/common/include/common/bt_common_types.h:
@@ -393,4 +406,24 @@ bluedroid/btc/core/btc_task.o: \
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/gattdefs.h:
 
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/osi/include/osi/list.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/btc/include/btc/btc_profile_queue.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/btc/profile/std/include/btc_gap_bt.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/api/include/api/esp_gap_bt_api.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/bta/include/bta/utl.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/btc/profile/std/include/btc_spp.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/api/include/api/esp_spp_api.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/bta/include/bta/bta_jv_api.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/l2c_api.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/l2cdefs.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/rfcdefs.h:
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/btc/core/btc_task.c:

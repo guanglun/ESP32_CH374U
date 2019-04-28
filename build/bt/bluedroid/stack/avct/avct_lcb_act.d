@@ -47,6 +47,9 @@ bluedroid/stack/avct/avct_lcb_act.o: \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/osi/include/osi/fixed_queue.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/osi/include/osi/list.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/btm_api.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdp_api.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdpdefs.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/smp_api.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/osi/include/osi/allocator.h \
  /home/share/esp32/esp-idf-v3.2/components/heap/include/esp_heap_caps.h \
  /home/share/esp32/esp-idf-v3.2/components/heap/include/multi_heap.h
@@ -144,6 +147,12 @@ bluedroid/stack/avct/avct_lcb_act.o: \
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/osi/include/osi/list.h:
 
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/btm_api.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdp_api.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdpdefs.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/smp_api.h:
 
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/osi/include/osi/allocator.h:
 

@@ -43,6 +43,9 @@ bluedroid/stack/smp/smp_act.o: \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/hcidefs.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/rfcdefs.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/btm_api.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdp_api.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdpdefs.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/smp_api.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/btm/include/btm_ble_int.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/osi/include/osi/fixed_queue.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/osi/include/osi/list.h \
@@ -106,6 +109,7 @@ bluedroid/stack/smp/smp_act.o: \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/l2c_api.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/l2cdefs.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/smp/include/smp_int.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/btu.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/smp/include/p_256_ecc_pp.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/smp/include/p_256_multprecision.h
 
@@ -194,6 +198,12 @@ bluedroid/stack/smp/smp_act.o: \
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/rfcdefs.h:
 
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/btm_api.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdp_api.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdpdefs.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/smp_api.h:
 
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/btm/include/btm_ble_int.h:
 
@@ -320,6 +330,8 @@ bluedroid/stack/smp/smp_act.o: \
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/l2cdefs.h:
 
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/smp/include/smp_int.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/btu.h:
 
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/smp/include/p_256_ecc_pp.h:
 

@@ -1044,11 +1044,13 @@ void QueryADB_Send(uint8_t *buf, uint8_t len, uint8_t flag)
 
                 Write374Block(RAM_HOST_TRAN, len, buf);
                 Write374Byte(REG_USB_LENGTH, len);
-                // printf("================================ADB SEND================================\r\n");
-                // printf_byte(buf, len);
-                // printf_byte_str(buf, len);
-                // printf("========================================================================\r\n");
-                s = WaitHostTransact374(RootHubDev[count].Endp_Out, DEF_USB_PID_OUT, RootHubDev[count].send_tog_flag, 100);
+
+                printf("================================ADB SEND================================\r\n");
+                printf_byte(buf, len);
+                printf_byte_str(buf, len);
+                printf("========================================================================\r\n");
+
+                s = WaitHostTransact374(RootHubDev[count].Endp_Out, DEF_USB_PID_OUT, RootHubDev[count].send_tog_flag, 1000);
                 if (s == USB_INT_SUCCESS)
                 {
                     RootHubDev[count].send_tog_flag = !RootHubDev[count].send_tog_flag;
@@ -1078,10 +1080,12 @@ uint8_t QueryADB_Recv(uint8_t index, uint16_t loop_value)
             RootHubDev[index].recv_tog_flag = !RootHubDev[index].recv_tog_flag;
             len = Read374Byte(REG_USB_LENGTH);
             Read374Block(RAM_HOST_RECV, len, TempBuf);
+
             // printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ADB RECV>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\r\n");
             // printf_byte(TempBuf, len);
             // printf_byte_str(TempBuf, len);
             // printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\r\n");
+
             ADB_RecvData(TempBuf, len);
             return 0;
         }

@@ -49,7 +49,8 @@ bluedroid/stack/sdp/sdp_discovery.o: \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/common/include/common/bt_defs.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/l2c_api.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/btu.h \
- /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/btm_api.h
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/btm_api.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/smp_api.h
 
 /home/share/esp32/esp-idf-v3.2/components/newlib/include/stdlib.h:
 
@@ -150,4 +151,6 @@ bluedroid/stack/sdp/sdp_discovery.o: \
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/btu.h:
 
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/btm_api.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/smp_api.h:
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/sdp/sdp_discovery.c:

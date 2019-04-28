@@ -85,6 +85,7 @@ int printf_adb_frame(amessage *msg, uint8_t *buffer, bool is_recv)
     return 0;
 }
 
+#define MAX_DATA_LEN 64
 int usb_send_packet(amessage *msg, uint8_t *buffer, uint8_t flag)
 {
 
@@ -97,10 +98,11 @@ int usb_send_packet(amessage *msg, uint8_t *buffer, uint8_t flag)
 #endif
 
     QueryADB_Send((uint8_t *)msg, sizeof(amessage), 0);
+    //vTaskDelay(100 / portTICK_RATE_MS);
 
-    for (i_count = 0; i_count < msg->data_length; i_count += 64)
+    for (i_count = 0; i_count < msg->data_length; i_count += MAX_DATA_LEN)
     {
-        if ((msg->data_length - i_count) <= 64)
+        if ((msg->data_length - i_count) <= MAX_DATA_LEN)
         {
 
             QueryADB_Send((uint8_t *)(buffer + i_count), msg->data_length - i_count, flag);
@@ -109,10 +111,11 @@ int usb_send_packet(amessage *msg, uint8_t *buffer, uint8_t flag)
         }
         else
         {
-            QueryADB_Send((uint8_t *)(buffer + i_count), 64, 0);
+            QueryADB_Send((uint8_t *)(buffer + i_count), MAX_DATA_LEN, 0);
             //printf_byte((uint8_t *)(buffer + i_count), 64);
             //printf_byte_str((uint8_t *)(buffer + i_count), 64);
         }
+        //vTaskDelay(100 / portTICK_RATE_MS);
     }
     is_close = false;
 
@@ -460,12 +463,14 @@ void ADB_Process(void)
         break;
     }
 }
+
 uint8_t test_count = 0;
 uint8_t send_count = 0;
 uint8_t send_temp[256];
 uint8_t send_temp_len = 0;
 uint8_t send_lock = 0;
 signed int x = 0, y = 0;
+
 uint8_t ADB_TCP_Send(uint8_t *buf, uint16_t len, uint8_t dev_class)
 {
     static uint8_t is_send_flag = 0;

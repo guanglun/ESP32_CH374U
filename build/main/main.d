@@ -130,7 +130,8 @@ main.o: /home/share/esp32/project/ESP32_CH374U/main/main.c \
  /home/share/esp32/project/ESP32_CH374U/components/app/usb_hub.h \
  /home/share/esp32/project/ESP32_CH374U/components/bluetooth/esp_bluetooth.h \
  /home/share/esp32/project/ESP32_CH374U/components/app/adb_device.h \
- /home/share/esp32/project/ESP32_CH374U/components/app/adb_protocol.h
+ /home/share/esp32/project/ESP32_CH374U/components/app/adb_protocol.h \
+ /home/share/esp32/project/ESP32_CH374U/components/app/sha1withrsa.h
 
 /home/share/esp32/esp-idf-v3.2/components/newlib/include/stdio.h:
 
@@ -395,4 +396,6 @@ main.o: /home/share/esp32/project/ESP32_CH374U/main/main.c \
 /home/share/esp32/project/ESP32_CH374U/components/app/adb_device.h:
 
 /home/share/esp32/project/ESP32_CH374U/components/app/adb_protocol.h:
+
+/home/share/esp32/project/ESP32_CH374U/components/app/sha1withrsa.h:
 /home/share/esp32/project/ESP32_CH374U/main/./main.c:

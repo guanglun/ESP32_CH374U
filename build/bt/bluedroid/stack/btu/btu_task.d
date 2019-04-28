@@ -99,6 +99,9 @@ bluedroid/stack/btu/btu_task.o: \
  /home/share/esp32/esp-idf-v3.2/components/freertos/include/freertos/queue.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/btm_api.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/hcidefs.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdp_api.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdpdefs.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/smp_api.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/btm/include/btm_int.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/rfcdefs.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/btm/include/btm_ble_int.h \
@@ -114,14 +117,17 @@ bluedroid/stack/btu/btu_task.o: \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/l2c_api.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/l2cdefs.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/osi/include/osi/osi.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/sdp/include/sdpint.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/port_api.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/port_ext.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/gap/include/gap_int.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/gap_api.h \
- /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdpdefs.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/profiles_api.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/gatt_api.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/gattdefs.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/bta/include/bta/bta_sys.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/gatt/include/gatt_int.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/smp/include/smp_int.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/btm/include/btm_ble_int.h
 
 /home/share/esp32/esp-idf-v3.2/components/newlib/include/string.h:
@@ -322,6 +328,12 @@ bluedroid/stack/btu/btu_task.o: \
 
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/hcidefs.h:
 
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdp_api.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdpdefs.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/smp_api.h:
+
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/btm/include/btm_int.h:
 
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/rfcdefs.h:
@@ -352,11 +364,15 @@ bluedroid/stack/btu/btu_task.o: \
 
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/osi/include/osi/osi.h:
 
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/sdp/include/sdpint.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/port_api.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/port_ext.h:
+
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/gap/include/gap_int.h:
 
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/gap_api.h:
-
-/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdpdefs.h:
 
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/profiles_api.h:
 
@@ -367,6 +383,8 @@ bluedroid/stack/btu/btu_task.o: \
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/bta/include/bta/bta_sys.h:
 
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/gatt/include/gatt_int.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/smp/include/smp_int.h:
 
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/btm/include/btm_ble_int.h:
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/btu/btu_task.c:

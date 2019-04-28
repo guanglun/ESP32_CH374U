@@ -39,6 +39,9 @@ bluedroid/bta/sys/utl.o: \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/common/include/common/bt_target.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/dyn_mem.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/hcidefs.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdp_api.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdpdefs.h \
+ /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/smp_api.h \
  /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/osi/include/osi/allocator.h \
  /home/share/esp32/esp-idf-v3.2/components/heap/include/esp_heap_caps.h \
  /home/share/esp32/esp-idf-v3.2/components/heap/include/multi_heap.h
@@ -120,6 +123,12 @@ bluedroid/bta/sys/utl.o: \
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/dyn_mem.h:
 
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/hcidefs.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdp_api.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/sdpdefs.h:
+
+/home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/stack/include/stack/smp_api.h:
 
 /home/share/esp32/esp-idf-v3.2/components/bt/bluedroid/osi/include/osi/allocator.h:
 
