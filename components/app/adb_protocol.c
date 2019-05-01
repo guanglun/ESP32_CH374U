@@ -95,8 +95,6 @@ void send_auth_response(apacket *p)
     SHA1withRSA(p->data, p->msg.data_length, RSABuffer);
 
     usb_send_packet(&msg, RSABuffer,0);
-
-    //adb_connect();
 }
 
 void send_auth_publickey(apacket *p)
@@ -232,7 +230,17 @@ void send_recv_tcpserver_okay(uint32_t local,uint32_t remote)
     usb_send_packet(&msg, NULL,0);   
 }
 
+void send_okay(uint32_t local,uint32_t remote)
+{
+    amessage msg;
 
+    msg.command = A_OKAY;
+    msg.arg0 = local;
+    msg.arg1 = remote;
+    msg.data_length = 0;
+
+    usb_send_packet(&msg, NULL,0);   
+}
 
 
 

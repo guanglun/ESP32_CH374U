@@ -126,5 +126,6 @@ void send_open_shell(uint32_t local,uint32_t remote,uint8_t *buf);
 void send_connect_tcpserver(uint32_t local,uint32_t remote,uint8_t *port_buf);
 void send_tcpserver(uint32_t local,uint32_t remote,uint8_t *buf,uint16_t len);
 void send_recv_tcpserver_okay(uint32_t local,uint32_t remote);
+void send_okay(uint32_t local,uint32_t remote);
 
 #endif

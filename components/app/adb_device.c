@@ -98,7 +98,6 @@ int usb_send_packet(amessage *msg, uint8_t *buffer, uint8_t flag)
 #endif
 
     QueryADB_Send((uint8_t *)msg, sizeof(amessage), 0);
-    //vTaskDelay(100 / portTICK_RATE_MS);
 
     for (i_count = 0; i_count < msg->data_length; i_count += MAX_DATA_LEN)
     {
@@ -106,6 +105,11 @@ int usb_send_packet(amessage *msg, uint8_t *buffer, uint8_t flag)
         {
 
             QueryADB_Send((uint8_t *)(buffer + i_count), msg->data_length - i_count, flag);
+//小米青春版数据最后是64字节的话无法成功发送，通过下面语句解决
+            if((msg->data_length) - i_count == 64)
+            {
+                send_okay(0,0);
+            }
             //printf_byte((uint8_t *)(buffer + i_count), msg->data_length - i_count);
             //printf_byte_str((uint8_t *)(buffer + i_count), msg->data_length - i_count);
         }
@@ -115,7 +119,6 @@ int usb_send_packet(amessage *msg, uint8_t *buffer, uint8_t flag)
             //printf_byte((uint8_t *)(buffer + i_count), 64);
             //printf_byte_str((uint8_t *)(buffer + i_count), 64);
         }
-        //vTaskDelay(100 / portTICK_RATE_MS);
     }
     is_close = false;
 
@@ -473,7 +476,7 @@ signed int x = 0, y = 0;
 
 uint8_t ADB_TCP_Send(uint8_t *buf, uint16_t len, uint8_t dev_class)
 {
-    static uint8_t is_send_flag = 0;
+    //static uint8_t is_send_flag = 0;
     unsigned char buf_tmp[100];
     unsigned char send_len = 0;
 

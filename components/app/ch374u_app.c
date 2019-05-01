@@ -37,7 +37,7 @@ S_RootHubDev RootHubDev[HUB_DEV_NUM];
 S_DevOnHubPort DevOnHubPort[3][4]; // 假定:不超过三个外部HUB,每个外部HUB不超过4个端口(多了不管)
 
 uint8_t CtrlBuf[8];
-uint8_t TempBuf[1024];
+uint8_t TempBuf[1024*4];
 
 void mDelaymS(uint16_t t)
 {
@@ -885,6 +885,12 @@ void ParseConfigDescr(uint8_t index, uint8_t *config_descr)
         for (endp_count = 0; endp_count < itf_descr->bNumEndpoints; endp_count++)
         {
             printf("\t\t==========EndpDescr %d Start==========\r\n", endp_count);
+
+            while(config_descr_buffer[0] != 0x07)
+            {
+                config_descr_buffer += config_descr_buffer[0];
+            }
+
             endp_descr = (PUSB_ENDP_DESCR)config_descr_buffer;
             if (RootHubDev[index].DeviceType != DEV_ERROR && itf_ok_flag == true)
             {
@@ -1045,10 +1051,10 @@ void QueryADB_Send(uint8_t *buf, uint8_t len, uint8_t flag)
                 Write374Block(RAM_HOST_TRAN, len, buf);
                 Write374Byte(REG_USB_LENGTH, len);
 
-                printf("================================ADB SEND================================\r\n");
-                printf_byte(buf, len);
-                printf_byte_str(buf, len);
-                printf("========================================================================\r\n");
+                // printf("================================ADB SEND================================\r\n");
+                // printf_byte(buf, len);
+                // printf_byte_str(buf, len);
+                // printf("========================================================================\r\n");
 
                 s = WaitHostTransact374(RootHubDev[count].Endp_Out, DEF_USB_PID_OUT, RootHubDev[count].send_tog_flag, 1000);
                 if (s == USB_INT_SUCCESS)
@@ -1111,7 +1117,8 @@ void QueryMouse(uint8_t index)
         {
             Read374Block(RAM_HOST_RECV, len, TempBuf); // 取出数据并打印
 
-            if (len >= 4)
+            //为兼容thinkpad的无线鼠标
+            if (len > 4)
             {
                 TempBuf[0] = TempBuf[1];
                 TempBuf[1] = TempBuf[2];
