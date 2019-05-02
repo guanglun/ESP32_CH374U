@@ -17,6 +17,7 @@
 #include "esp_bluetooth.h"
 
 uint8_t shell_end_str[20];
+uint8_t shell_tmp_str[4096];
 
 uint8_t is_first_recv_auth_token = 1;
 ADBTxRx_S adb_rx_s, adb_tx_s;
@@ -105,10 +106,10 @@ int usb_send_packet(amessage *msg, uint8_t *buffer, uint8_t flag)
         {
 
             QueryADB_Send((uint8_t *)(buffer + i_count), msg->data_length - i_count, flag);
-//小米青春版数据最后是64字节的话无法成功发送，通过下面语句解决
-            if((msg->data_length) - i_count == 64)
+            //小米青春版数据最后是64字节的话无法成功发送，通过下面语句解决
+            if ((msg->data_length) - i_count == 64)
             {
-                send_okay(0,0);
+                send_okay(0, 0);
             }
             //printf_byte((uint8_t *)(buffer + i_count), msg->data_length - i_count);
             //printf_byte_str((uint8_t *)(buffer + i_count), msg->data_length - i_count);
@@ -134,6 +135,41 @@ void adb_connect(void)
     adb_c_s = ADB_DISCONNECT;
     is_first_recv_auth_token = 1;
     send_cnxn_connect();
+}
+
+void adb_shell_recv_reset(void)
+{
+    shell_tmp_str[0] = '\0';
+}
+
+uint8_t * adb_shell_recv(uint8_t * recv_data)
+{
+    strcat((const char *)shell_tmp_str, (const char *)recv_data);
+
+    if (strstr((const char *)shell_tmp_str, (const char *)shell_end_str) != NULL)
+    {
+        printf("================>\r\n%s\r\n================<\r\n", shell_tmp_str);
+        return recv_data;
+    }else{
+        return NULL;
+    }
+    return NULL;
+}
+
+int get_str_count(char * tar_str,char *found_str)
+{
+    int count = 0;
+    char *str_tmp = tar_str;
+    
+    str_tmp = strstr(str_tmp,found_str);
+    while(str_tmp != NULL)
+    {
+        str_tmp += strlen(found_str);
+        count++;
+        str_tmp = strstr(str_tmp,found_str);
+    }
+    //printf("get_str_count:%d\r\n",count);
+    return count;
 }
 
 int ADB_RecvData(uint8_t *buf, uint8_t len)
@@ -293,66 +329,61 @@ int ADB_RecvFrame(apacket *p)
         break;
 
     case A_WRTE:
-        if (adb_c_s == ADB_CHECK_PACKAGE_WAIT || adb_c_s == ADB_CHECK_PACKAGE_SUCCESS_WAIT_END)
+        if (adb_c_s == ADB_CHECK_PACKAGE_WAIT)
         {
-            if (strstr((const char *)p->data, PACKAGE_STR) != NULL)
+            if(adb_shell_recv(p->data) != NULL)
             {
-                if (strstr((const char *)p->data, CHECK_PACKAGE_STR) == NULL)
-                {
-                    adb_c_s = ADB_CHECK_PACKAGE_SUCCESS_WAIT_END;
-                }
-            }
-
-            if (strstr((const char *)p->data, (const char *)shell_end_str) != NULL)
-            {
-                if (adb_c_s == ADB_CHECK_PACKAGE_SUCCESS_WAIT_END)
+                if(strstr((const char *) shell_tmp_str,"No such file or directory") == NULL)
                 {
                     printf("package found\r\n");
                     adb_c_s = ADB_CHECK_PACKAGE_SUCCESS;
-                }
-                else
-                {
+                }else{
                     printf("package not found\r\n");
                     adb_c_s = ADB_CHECK_PACKAGE_FAIL;
                 }
             }
-        }
-        else if (adb_c_s == ADB_CHECK_PACKAGE_ISRUNING_WAIT || adb_c_s == ADB_CHECK_PACKAGE_ISRUNING_TRUE_WAIT_END)
+        }     
+        else if (adb_c_s == ADB_CHECK_PACKAGE_ISRUNING_WAIT)
         {
-            if (strstr((const char *)p->data, PACKAGE_STR) != NULL)
+
+            if(adb_shell_recv(p->data) != NULL)
             {
-                if (strstr((const char *)p->data, CHECK_PACKAGE_ISRUNING_STR) == NULL)
-                {
-                    adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_TRUE_WAIT_END;
-                }
-            }
-            if (strstr((const char *)p->data, (const char *)shell_end_str) != NULL)
-            {
-                if (adb_c_s == ADB_CHECK_PACKAGE_ISRUNING_TRUE_WAIT_END)
+                if(get_str_count((char *) shell_tmp_str,(char *)PACKAGE_STR) >= 2)
                 {
                     printf("package is running\r\n");
                     adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_TRUE;
-                }
-                else
-                {
+                }else{
                     printf("package is not running\r\n");
                     adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_FALSE;
                 }
             }
         }
-        else if (adb_c_s == ADB_START_PACKAGE_WAIT || adb_c_s == ADB_START_PACKAGE_SUCCESS_WAIT_END)
+        else if (adb_c_s == ADB_CHECK_PACKAGE_ISRUNING_WAIT2)
         {
-            if (strstr((const char *)p->data, (const char *)shell_end_str) != NULL)
-            {
 
-                adb_c_s = ADB_START_PACKAGE_SUCCESS_WAIT_END;
-            }
-            if (strstr((const char *)p->data, (const char *)CHECK_PACKAGE_START_STR) != NULL)
+            if(adb_shell_recv(p->data) != NULL)
             {
-                if (adb_c_s == ADB_START_PACKAGE_SUCCESS_WAIT_END)
+                if(get_str_count((char *) shell_tmp_str,(char *)PACKAGE_STR) >= 2)
+                {
+                    printf("package is running2\r\n");
+                    adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_TRUE2;
+                }else{
+                    printf("package is not running2\r\n");
+                    adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_FALSE2;
+                }
+            }
+        }        
+        else if (adb_c_s == ADB_START_PACKAGE_WAIT)
+        {
+            if(adb_shell_recv(p->data) != NULL)
+            {
+                if(get_str_count((char *) shell_tmp_str,(char *)PACKAGE_WITH_PATH_STR) == 1)
                 {
                     printf("package start success\r\n");
                     adb_c_s = ADB_START_PACKAGE_SUCCESS;
+                }else{
+                    printf("package start fail\r\n");
+                    adb_c_s = ADB_START_PACKAGE_FAIL;
                 }
             }
         }
@@ -395,6 +426,34 @@ int ADB_RecvFrame(apacket *p)
         {
             adb_c_s = ADB_EXIT_SHELL_FAIL;
         }
+        else if (adb_c_s == ADB_CP_PACKAGE_WAIT)
+        {
+            if(adb_shell_recv(p->data) != NULL)
+            {
+                if(get_str_count((char *) shell_tmp_str,(char *)PACKAGE_STR) == 1)
+                {
+                    printf("cp package success\r\n");
+                    adb_c_s = ADB_CP_PACKAGE_SUCCESS;
+                }else{
+                    printf("cp package fail\r\n");
+                    adb_c_s = ADB_CP_PACKAGE_FAIL;
+                }
+            }
+        }
+        else if (adb_c_s == ADB_CHMOD_PACKAGE_WAIT)
+        {
+            if(adb_shell_recv(p->data) != NULL)
+            {
+                if(get_str_count((char *) shell_tmp_str,(char *)PACKAGE_STR) == 1)
+                {
+                    printf("chmod package success\r\n");
+                    adb_c_s = ADB_CHMOD_PACKAGE_SUCCESS;
+                }else{
+                    printf("chmod package fail\r\n");
+                    adb_c_s = ADB_CHMOD_PACKAGE_FAIL;
+                }
+            }
+        }
         send_recv_tcpserver_okay(local_id, remote_id);
         break;
 
@@ -419,17 +478,49 @@ void ADB_Process(void)
 
         break;
 
-    case ADB_GOTO_SHELL_SUCCESS: //进入adb shell之后首先检查是否安装uiauto
+    case ADB_GOTO_SHELL_SUCCESS: //检测ATouchService
+        adb_shell_recv_reset();
         send_shell(local_id, remote_id, (uint8_t *)CHECK_PACKAGE_STR);
         adb_c_s = ADB_CHECK_PACKAGE_WAIT;
         break;
 
-    case ADB_CHECK_PACKAGE_SUCCESS: //检查到已安装后检查是否在uiauto运行
+    case ADB_CP_PACKAGE_SUCCESS:
+        adb_shell_recv_reset();
+        // send_shell(local_id, remote_id, (uint8_t *)CHMOD_PACKAGE_STR);
+        // adb_c_s = ADB_CHMOD_PACKAGE_WAIT;
+        send_shell(local_id, remote_id, (uint8_t *)CHECK_PACKAGE_STR);
+        adb_c_s = ADB_CHECK_PACKAGE_WAIT;
+        break;
+
+    case ADB_CHMOD_PACKAGE_SUCCESS:
+        adb_shell_recv_reset();
         send_shell(local_id, remote_id, (uint8_t *)CHECK_PACKAGE_ISRUNING_STR);
         adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_WAIT;
         break;
 
+    case ADB_CHECK_PACKAGE_FAIL: //未检测到ATouchService
+        adb_shell_recv_reset();
+        send_shell(local_id, remote_id, (uint8_t *)CP_PACKAGE_STR);
+        adb_c_s = ADB_CP_PACKAGE_WAIT;
+        break;
+
+    case ADB_CHECK_PACKAGE_SUCCESS: //检测到ATouchService
+        adb_shell_recv_reset();
+        // send_shell(local_id, remote_id, (uint8_t *)CHECK_PACKAGE_ISRUNING_STR);
+        // adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_WAIT;
+
+        send_shell(local_id, remote_id, (uint8_t *)CHMOD_PACKAGE_STR);
+        adb_c_s = ADB_CHMOD_PACKAGE_WAIT;
+        break;
+
     case ADB_CHECK_PACKAGE_ISRUNING_FALSE:
+        adb_shell_recv_reset();
+        send_shell(local_id, remote_id, (uint8_t *)CHECK_PACKAGE_ISRUNING_STR2);
+        adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_WAIT2;
+        break;
+
+    case ADB_CHECK_PACKAGE_ISRUNING_FALSE2:
+        adb_shell_recv_reset();
         send_shell(local_id, remote_id, (uint8_t *)START_PACKAGE_STR);
         adb_c_s = ADB_START_PACKAGE_WAIT;
         break;
@@ -440,23 +531,23 @@ void ADB_Process(void)
         // break;
 
     case ADB_CHECK_PACKAGE_ISRUNING_TRUE:
+    case ADB_CHECK_PACKAGE_ISRUNING_TRUE2:
+        adb_shell_recv_reset();
         local_id++;
         remote_id = 0;
+
         send_connect_tcpserver(local_id, remote_id, (uint8_t *)"1989");
         adb_c_s = ADB_CONNECT_TCPSERVER_WAIT;
         break;
 
-        // case ADB_EXIT_SHELL_FAIL:
-        // send_shell(local_id,remote_id,(uint8_t *)"exit");
-        // adb_c_s = ADB_EXIT_SHELL_WAIT;
-        // break;
-
     case ADB_START_PACKAGE_SUCCESS:
+        adb_shell_recv_reset();
         send_shell(local_id, remote_id, (uint8_t *)CHECK_PACKAGE_ISRUNING_STR);
         adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_WAIT;
         break;
 
     case ADB_CONNECT_TCPSERVER_FAIL:
+        adb_shell_recv_reset();
         send_connect_tcpserver(local_id, remote_id, (uint8_t *)"1989");
         adb_c_s = ADB_CONNECT_TCPSERVER_WAIT;
 
@@ -540,8 +631,6 @@ uint8_t ADB_TCP_Send(uint8_t *buf, uint16_t len, uint8_t dev_class)
 
             // send_lock = 0;
 
-
-
             // if(send_count >= 4)
             // {
             //     send_count = 0;
@@ -605,15 +694,15 @@ uint8_t ADB_TCP_Send(uint8_t *buf, uint16_t len, uint8_t dev_class)
             // {
             //     is_send_flag = 0;
 
-                    test_count++;
-                    buf[len - 1] = test_count;
+            test_count++;
+            buf[len - 1] = test_count;
 
-                    send_len = cmd_creat(0x02, buf, len, buf_tmp);
-                    esp_bluetooth_send(buf_tmp, send_len);
+            send_len = cmd_creat(0x02, buf, len, buf_tmp);
+            esp_bluetooth_send(buf_tmp, send_len);
 
-                    printf("BLUE Mouse: ");
-                    //printf("%d %d ", (signed char)buf[1], (signed char)buf[2]);
-                    printf_byte(buf_tmp, send_len);
+            printf("BLUE Mouse: ");
+            //printf("%d %d ", (signed char)buf[1], (signed char)buf[2]);
+            printf_byte(buf_tmp, send_len);
 
             //         send_count = 0;
             // }

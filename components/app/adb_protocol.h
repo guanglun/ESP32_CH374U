@@ -32,10 +32,15 @@ ADB_Status;
 // #define CHECK_PACKAGE_START_STR       "INSTRUMENTATION_STATUS_CODE"
 
 #define PACKAGE_STR                   "ATouchService"
+#define PACKAGE_WITH_PATH_STR         "/data/local/tmp/ATouchService"
 #define CHECK_PACKAGE_STR             "ls /data/local/tmp/ATouchService"
 #define CHECK_PACKAGE_ISRUNING_STR    "ps | grep ATouchService"
+#define CHECK_PACKAGE_ISRUNING_STR2    "ps -A | grep ATouchService"
 #define START_PACKAGE_STR             "/data/local/tmp/ATouchService &"
 #define CHECK_PACKAGE_START_STR       "ATouchService is runing"
+
+#define CP_PACKAGE_STR                "cp /mnt/sdcard/ATouch/ATouchService /data/local/tmp"
+#define CHMOD_PACKAGE_STR             "chmod 777 /data/local/tmp/ATouchService"
 
 typedef enum
 {
@@ -45,6 +50,14 @@ typedef enum
   ADB_GOTO_SHELL_WAIT,
   ADB_GOTO_SHELL_SUCCESS,
   ADB_GOTO_SHELL_FAIL,
+
+  ADB_CP_PACKAGE_WAIT,
+  ADB_CP_PACKAGE_SUCCESS,
+  ADB_CP_PACKAGE_FAIL,
+
+  ADB_CHMOD_PACKAGE_WAIT,
+  ADB_CHMOD_PACKAGE_SUCCESS,
+  ADB_CHMOD_PACKAGE_FAIL,
 
   ADB_EXIT_SHELL_WAIT,
   ADB_EXIT_SHELL_SUCCESS_WAIT_END,
@@ -57,9 +70,12 @@ typedef enum
   ADB_CHECK_PACKAGE_FAIL,
 
   ADB_CHECK_PACKAGE_ISRUNING_WAIT,
-  ADB_CHECK_PACKAGE_ISRUNING_TRUE_WAIT_END,
   ADB_CHECK_PACKAGE_ISRUNING_TRUE,
   ADB_CHECK_PACKAGE_ISRUNING_FALSE,
+
+  ADB_CHECK_PACKAGE_ISRUNING_WAIT2,
+  ADB_CHECK_PACKAGE_ISRUNING_TRUE2,
+  ADB_CHECK_PACKAGE_ISRUNING_FALSE2,
 
   ADB_START_PACKAGE_WAIT,
   ADB_START_PACKAGE_SUCCESS_WAIT_END,
