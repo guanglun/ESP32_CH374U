@@ -13,6 +13,7 @@
 #include "adb_device.h"
 #include "CH374INC.H"
 #include "usb_hub.h"
+#include "led_hal.h"
 
 #define HUB_DEV_NUM (3)
 // 附加的USB操作状态定义
@@ -619,6 +620,7 @@ void AnalyzeRootHub(void) // 分析ROOT-HUB状态,处理ROOT-HUB端口的设备�
             DisableRootHubPort(0);                           // 关闭端口
             RootHubDev[0].DeviceStatus = ROOT_DEV_CONNECTED; //置连接标志
             printf("HUB 0 device in\r\n");
+            LED_USB0_LOW();
         }
     }
     else
@@ -628,6 +630,7 @@ void AnalyzeRootHub(void) // 分析ROOT-HUB状态,处理ROOT-HUB端口的设备�
 
             DisableRootHubPort(0); // 关闭端口
             printf("HUB 0 device out\r\n");
+            LED_USB0_HIGH();
         }
     }
 
@@ -638,6 +641,7 @@ void AnalyzeRootHub(void) // 分析ROOT-HUB状态,处理ROOT-HUB端口的设备�
             DisableRootHubPort(1);                           // 关闭端口
             RootHubDev[1].DeviceStatus = ROOT_DEV_CONNECTED; //置连接标志
             printf("HUB 1 device in\r\n");
+            LED_USB1_LOW();
         }
     }
     else
@@ -646,6 +650,7 @@ void AnalyzeRootHub(void) // 分析ROOT-HUB状态,处理ROOT-HUB端口的设备�
         {
             DisableRootHubPort(1); // 关闭端口
             printf("HUB 1 device out\r\n");
+            LED_USB1_HIGH();
         }
     }
 
@@ -656,6 +661,7 @@ void AnalyzeRootHub(void) // 分析ROOT-HUB状态,处理ROOT-HUB端口的设备�
             DisableRootHubPort(2);                           // 关闭端口
             RootHubDev[2].DeviceStatus = ROOT_DEV_CONNECTED; //置连接标志
             printf("HUB 2 device in\r\n");
+            LED_USB2_LOW();
         }
     }
     else
@@ -664,6 +670,7 @@ void AnalyzeRootHub(void) // 分析ROOT-HUB状态,处理ROOT-HUB端口的设备�
         {
             DisableRootHubPort(2); // 关闭端口
             printf("HUB 2 device out\r\n");
+            LED_USB2_HIGH();
         }
     }
 }

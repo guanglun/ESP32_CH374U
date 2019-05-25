@@ -144,7 +144,7 @@ void adb_shell_recv_reset(void)
 
 uint8_t * adb_shell_recv(uint8_t * recv_data)
 {
-    strcat((const char *)shell_tmp_str, (const char *)recv_data);
+    strcat((char *)shell_tmp_str, (const char *)recv_data);
 
     if (strstr((const char *)shell_tmp_str, (const char *)shell_end_str) != NULL)
     {
@@ -377,14 +377,14 @@ int ADB_RecvFrame(apacket *p)
         {
             if(adb_shell_recv(p->data) != NULL)
             {
-                if(get_str_count((char *) shell_tmp_str,(char *)PACKAGE_WITH_PATH_STR) == 1)
-                {
+                // if(get_str_count((char *) shell_tmp_str,(char *)PACKAGE_WITH_PATH_STR) == 1)
+                // {
                     printf("package start success\r\n");
                     adb_c_s = ADB_START_PACKAGE_SUCCESS;
-                }else{
-                    printf("package start fail\r\n");
-                    adb_c_s = ADB_START_PACKAGE_FAIL;
-                }
+                // }else{
+                //     printf("package start fail\r\n");
+                //     adb_c_s = ADB_START_PACKAGE_FAIL;
+                // }
             }
         }
         else if (adb_c_s == ADB_CONNECT_TCPSERVER_SUCCESS)
@@ -523,6 +523,8 @@ void ADB_Process(void)
         adb_shell_recv_reset();
         send_shell(local_id, remote_id, (uint8_t *)START_PACKAGE_STR);
         adb_c_s = ADB_START_PACKAGE_WAIT;
+
+        //vTaskDelay(2000 / portTICK_RATE_MS);
         break;
 
         // case ADB_CHECK_PACKAGE_ISRUNING_TRUE:
@@ -535,7 +537,6 @@ void ADB_Process(void)
         adb_shell_recv_reset();
         local_id++;
         remote_id = 0;
-
         send_connect_tcpserver(local_id, remote_id, (uint8_t *)"1989");
         adb_c_s = ADB_CONNECT_TCPSERVER_WAIT;
         break;

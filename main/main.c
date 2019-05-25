@@ -12,24 +12,46 @@
 #include "adb_device.h"
 
 #include "sha1withrsa.h"
+#include "led_hal.h"
+#include "upgrade.h"
+#include "version.h"
 
-//uint8_t output_buffer[4096];
+const uint8_t VERSION[3] = {VERSION_MASTER,VERSION_RELEASE,VERSION_DEBUG};
 
 void app_main()
 {
-    //uint8_t test_in[] = {0x82,0x8d,0x99,0xb9,0x0b,0x90,0x55,0xd5,0x11,0x8d,0xd6,0x2e,0xac,0x05,0x1f,0x33,0x0b,0x24,0x6f,0xa9};
+    led_init();
 
-    esp_bluetooth_init();
+    printf("==============================================\r\n");
+    printf("===   version:%d.%d.%d\r\n",VERSION[0],VERSION[1],VERSION[2]);
+    printf("==============================================\r\n");
 
-    //xTaskCreate(bt_send_task, "bt_send_task", 4*1024, NULL, 1, NULL);
-    xTaskCreate(usb_hub_task, "usb_hub_task", 16*1024, NULL, 6, NULL);
+    if(KEY_READ() == 0x00)
+    {
+        upgrade_init();
 
+        LED_USB0_LOW();
+        LED_USB1_LOW();
+        LED_USB2_LOW();
 
-    //SHA1withRSA(test_in,sizeof(test_in),output_buffer);
+        while(1) 
+        {
+            LED_STATUS_LOW();
+            vTaskDelay(20 / portTICK_RATE_MS);
+            LED_STATUS_HIGH();
+            vTaskDelay(480 / portTICK_RATE_MS);
+        }        
+    }
+    else
+    {
+        esp_bluetooth_init();
+        xTaskCreate(usb_hub_task, "usb_hub_task", 16*1024, NULL, 6, NULL);
 
-    while(1) {
-        //printf("cnt: %d\n", cnt++);
-        vTaskDelay(90000 / portTICK_RATE_MS);
+        while(1) 
+        {
+            led_status_turn();
+            vTaskDelay(1000 / portTICK_RATE_MS);
+        }        
     }
 }
 

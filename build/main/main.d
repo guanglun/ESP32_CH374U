@@ -131,7 +131,10 @@ main.o: /home/share/esp32/project/ESP32_CH374U/main/main.c \
  /home/share/esp32/project/ESP32_CH374U/components/bluetooth/esp_bluetooth.h \
  /home/share/esp32/project/ESP32_CH374U/components/app/adb_device.h \
  /home/share/esp32/project/ESP32_CH374U/components/app/adb_protocol.h \
- /home/share/esp32/project/ESP32_CH374U/components/app/sha1withrsa.h
+ /home/share/esp32/project/ESP32_CH374U/components/app/sha1withrsa.h \
+ /home/share/esp32/project/ESP32_CH374U/components/hal/led_hal.h \
+ /home/share/esp32/project/ESP32_CH374U/components/app/upgrade.h \
+ /home/share/esp32/project/ESP32_CH374U/main/version.h
 
 /home/share/esp32/esp-idf-v3.2/components/newlib/include/stdio.h:
 
@@ -398,4 +401,10 @@ main.o: /home/share/esp32/project/ESP32_CH374U/main/main.c \
 /home/share/esp32/project/ESP32_CH374U/components/app/adb_protocol.h:
 
 /home/share/esp32/project/ESP32_CH374U/components/app/sha1withrsa.h:
+
+/home/share/esp32/project/ESP32_CH374U/components/hal/led_hal.h:
+
+/home/share/esp32/project/ESP32_CH374U/components/app/upgrade.h:
+
+/home/share/esp32/project/ESP32_CH374U/main/version.h:
 /home/share/esp32/project/ESP32_CH374U/main/./main.c:

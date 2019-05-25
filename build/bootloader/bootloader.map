@@ -50,8 +50,8 @@ Discarded input sections
  .text          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
  .data          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
  .bss           0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
- .xt.lit        0x0000000000000000       0x18 /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
- .xt.prop       0x0000000000000000       0xb4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
+ .xt.lit        0x0000000000000000        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
+ .xt.prop       0x0000000000000000       0x54 /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
  .literal.__assert_func
                 0x0000000000000000       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
  .text          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
@@ -59,13 +59,13 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
  .text.__assert_func
                 0x0000000000000000       0x23 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
- .xt.lit        0x0000000000000000       0x60 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
- .xt.prop       0x0000000000000000      0x60c /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+ .xt.lit        0x0000000000000000       0x20 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+ .xt.prop       0x0000000000000000      0x240 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
  .text          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
  .data          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
  .bss           0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
  .xt.lit        0x0000000000000000        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
- .xt.prop       0x0000000000000000       0x78 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
+ .xt.prop       0x0000000000000000       0x54 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
  .text          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
  .data          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
  .bss           0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
@@ -74,10 +74,10 @@ Discarded input sections
  .text          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
  .data          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
  .bss           0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
- .xt.lit        0x0000000000000000       0x48 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
- .xt.prop       0x0000000000000000      0x594 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+ .xt.lit        0x0000000000000000       0x38 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+ .xt.prop       0x0000000000000000      0x4d4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
  .literal.bootloader_flash_write
-                0x0000000000000000       0x40 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x0000000000000000       0x34 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
  .literal.bootloader_flash_erase_sector
                 0x0000000000000000        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
  .literal.bootloader_flash_erase_range
@@ -86,13 +86,13 @@ Discarded input sections
  .data          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
  .bss           0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
  .text.bootloader_flash_write
-                0x0000000000000000       0xb2 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x0000000000000000       0xa6 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
  .text.bootloader_flash_erase_sector
-                0x0000000000000000       0x16 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x0000000000000000       0x1b /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
  .text.bootloader_flash_erase_range
-                0x0000000000000000       0x6a /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- .xt.lit        0x0000000000000000       0x48 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- .xt.prop       0x0000000000000000      0x3f0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x0000000000000000       0x60 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .xt.lit        0x0000000000000000       0x30 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .xt.prop       0x0000000000000000      0x2e8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
  .literal.write_status_8b_wrsr2
                 0x0000000000000000        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
  .literal.read_status_8b_rdsr2
@@ -109,10 +109,8 @@ Discarded input sections
                 0x0000000000000000       0x18 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
  .literal.read_status_8b_xmc25qu64a
                 0x0000000000000000       0x14 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
- .literal.enable_qio_mode
-                0x0000000000000000       0x30 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
  .literal.bootloader_enable_qio_mode
-                0x0000000000000000       0x2c /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+                0x0000000000000000       0x50 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
  .text          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
  .data          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
  .bss           0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
@@ -132,110 +130,100 @@ Discarded input sections
                 0x0000000000000000       0x42 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
  .text.read_status_8b_xmc25qu64a
                 0x0000000000000000       0x3a /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
- .rodata.str1.4
-                0x0000000000000000       0xe6 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
- .text.enable_qio_mode
-                0x0000000000000000       0x84 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+ .rodata.str1.1
+                0x0000000000000000       0xd9 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
  .text.bootloader_enable_qio_mode
-                0x0000000000000000       0xf4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+                0x0000000000000000      0x167 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
  .rodata.chip_data
                 0x0000000000000000       0x6c /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
- .xt.lit        0x0000000000000000       0x60 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
- .xt.prop       0x0000000000000000      0x300 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+ .xt.lit        0x0000000000000000       0x58 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+ .xt.prop       0x0000000000000000      0x2c4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
  .literal.bootloader_common_check_long_hold_gpio
                 0x0000000000000000       0x28 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
  .literal.bootloader_common_label_search
                 0x0000000000000000       0x18 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
  .literal.bootloader_common_erase_part_type_data
-                0x0000000000000000       0x60 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+                0x0000000000000000       0x64 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
  .literal.bootloader_common_get_sha256_of_partition
                 0x0000000000000000       0x34 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
  .text          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
  .data          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
  .bss           0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
  .text.bootloader_common_check_long_hold_gpio
-                0x0000000000000000       0xac /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
- .rodata.str1.4
-                0x0000000000000000      0x112 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+                0x0000000000000000       0x9e /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+ .rodata.str1.1
+                0x0000000000000000      0x10b /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
  .text.bootloader_common_label_search
-                0x0000000000000000       0xac /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+                0x0000000000000000       0xb0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
  .text.bootloader_common_erase_part_type_data
-                0x0000000000000000      0x126 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+                0x0000000000000000      0x131 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
  .text.bootloader_common_get_sha256_of_partition
-                0x0000000000000000       0xc7 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+                0x0000000000000000       0xbf /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
  .xt.lit        0x0000000000000000       0x30 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
- .xt.prop       0x0000000000000000      0x36c /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+ .xt.prop       0x0000000000000000      0x2d0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
  .text          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
  .data          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
  .bss           0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
  .xt.lit        0x0000000000000000        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- .xt.prop       0x0000000000000000      0x144 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .xt.prop       0x0000000000000000      0x120 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
  .literal.esp_image_verify
                 0x0000000000000000        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .literal.esp_image_verify_bootloader
+                0x0000000000000000        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
  .literal.esp_image_verify_bootloader_data
                 0x0000000000000000        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .literal.esp_image_verify_bootloader
-                0x0000000000000000        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
  .text          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
  .data          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
  .bss           0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
  .text.esp_image_verify
                 0x0000000000000000       0x14 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
  .rodata        0x0000000000000000        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .text.esp_image_verify_bootloader_data
-                0x0000000000000000       0x25 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
  .text.esp_image_verify_bootloader
-                0x0000000000000000       0x1e /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .xt.lit        0x0000000000000000       0x70 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .xt.prop       0x0000000000000000      0x7bc /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                0x0000000000000000       0x2d /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .text.esp_image_verify_bootloader_data
+                0x0000000000000000       0x24 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .xt.lit        0x0000000000000000       0x30 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .xt.prop       0x0000000000000000      0x5a0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
  .text          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
  .data          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
  .bss           0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
  .xt.lit        0x0000000000000000       0x18 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .xt.prop       0x0000000000000000      0x1f8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ .xt.prop       0x0000000000000000      0x1c8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
  .literal.esp_log_buffer_hex_internal
-                0x0000000000000000       0x50 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
+                0x0000000000000000       0x40 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
  .literal.esp_log_buffer_char_internal
-                0x0000000000000000       0x50 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
+                0x0000000000000000       0x40 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
  .literal.esp_log_buffer_hexdump_internal
-                0x0000000000000000       0x78 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
+                0x0000000000000000       0x7c /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
  .text          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
  .data          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
  .bss           0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
- .rodata.str1.4
-                0x0000000000000000       0xa6 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
+ .rodata.str1.1
+                0x0000000000000000       0x95 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
  .text.esp_log_buffer_hex_internal
-                0x0000000000000000      0x11a /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
+                0x0000000000000000       0xe7 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
  .text.esp_log_buffer_char_internal
-                0x0000000000000000      0x107 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
+                0x0000000000000000       0xdc /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
  .text.esp_log_buffer_hexdump_internal
-                0x0000000000000000      0x1da /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
+                0x0000000000000000      0x180 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
  .xt.lit        0x0000000000000000       0x20 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
- .xt.prop       0x0000000000000000      0x354 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
- .literal.spi_cache_mode_switch
-                0x0000000000000000       0x38 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .literal.esp_rom_spiflash_erase_chip_internal
-                0x0000000000000000       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .literal.esp_rom_spiflash_erase_block_internal
-                0x0000000000000000       0x18 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .literal.esp_rom_spiflash_erase_sector_internal
-                0x0000000000000000       0x18 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .literal.esp_rom_spiflash_enable_write
-                0x0000000000000000       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .literal.esp_rom_spiflash_program_page_internal
-                0x0000000000000000       0x24 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .xt.prop       0x0000000000000000      0x2dc /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
+ .literal.esp_rom_spiflash_enable_write$constprop$6
+                0x0000000000000000       0x14 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .literal.esp_rom_spiflash_program_page_internal$constprop$4
+                0x0000000000000000       0x28 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .literal.esp_rom_spiflash_lock
                 0x0000000000000000       0x18 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .literal.esp_rom_spiflash_config_readmode
-                0x0000000000000000       0x30 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000000000000       0x50 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .literal.esp_rom_spiflash_erase_chip
-                0x0000000000000000        0xc /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000000000000       0x18 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .literal.esp_rom_spiflash_erase_block
-                0x0000000000000000       0x20 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000000000000       0x34 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .literal.esp_rom_spiflash_erase_sector
-                0x0000000000000000       0x20 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000000000000       0x34 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .literal.esp_rom_spiflash_write
-                0x0000000000000000       0x28 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000000000000       0x24 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .literal.esp_rom_spiflash_write_encrypted
                 0x0000000000000000       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .literal.esp_rom_spiflash_erase_area
@@ -243,43 +231,35 @@ Discarded input sections
  .text          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .data          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .bss           0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .text.spi_cache_mode_switch
-                0x0000000000000000      0x266 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .text.esp_rom_spiflash_erase_chip_internal
-                0x0000000000000000       0x30 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .text.esp_rom_spiflash_erase_block_internal
-                0x0000000000000000       0x3c /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .text.esp_rom_spiflash_erase_sector_internal
-                0x0000000000000000       0x44 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .text.esp_rom_spiflash_enable_write
-                0x0000000000000000       0x3d /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .text.esp_rom_spiflash_program_page_internal
-                0x0000000000000000       0xee /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .text.esp_rom_spiflash_enable_write$constprop$6
+                0x0000000000000000       0x41 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .text.esp_rom_spiflash_program_page_internal$constprop$4
+                0x0000000000000000       0xce /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .text.esp_rom_spiflash_lock
-                0x0000000000000000       0x4e /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000000000000       0x4c /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .text.esp_rom_spiflash_config_readmode
-                0x0000000000000000       0xa0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .rodata.esp_rom_spiflash_config_readmode
-                0x0000000000000000       0x18 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000000000000      0x287 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .text.esp_rom_spiflash_erase_chip
-                0x0000000000000000       0x24 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000000000000       0x3a /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .text.esp_rom_spiflash_erase_block
-                0x0000000000000000       0x66 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000000000000       0x88 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .text.esp_rom_spiflash_erase_sector
-                0x0000000000000000       0x65 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000000000000       0x8d /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .text.esp_rom_spiflash_write
-                0x0000000000000000       0xca /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000000000000       0xa2 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .text.esp_rom_spiflash_write_encrypted
-                0x0000000000000000       0x5a /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000000000000       0x51 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .text.esp_rom_spiflash_erase_area
-                0x0000000000000000       0xbe /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .xt.lit        0x0000000000000000       0xa8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .xt.prop       0x0000000000000000      0xb1c /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000000000000       0x96 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .rodata.CSWTCH$38
+                0x0000000000000000       0x18 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .xt.lit        0x0000000000000000       0x80 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .xt.prop       0x0000000000000000      0x78c /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .text          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(cpu_util.o)
  .data          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(cpu_util.o)
  .bss           0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(cpu_util.o)
  .xt.lit        0x0000000000000000        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(cpu_util.o)
- .xt.prop       0x0000000000000000       0xc0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(cpu_util.o)
+ .xt.prop       0x0000000000000000       0xa8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(cpu_util.o)
  .literal.rtc_wdt_flashboot_mode_enable
                 0x0000000000000000        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
  .literal.rtc_wdt_feed
@@ -307,14 +287,14 @@ Discarded input sections
  .data          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
  .bss           0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
  .text.rtc_init
-                0x0000000000000000      0x344 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
+                0x0000000000000000      0x338 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
  .xt.lit        0x0000000000000000       0x18 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
  .xt.prop       0x0000000000000000       0xfc /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
  .text          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
  .data          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
  .bss           0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
  .xt.lit        0x0000000000000000       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
- .xt.prop       0x0000000000000000      0x1b0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
+ .xt.prop       0x0000000000000000      0x1a4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
  .text          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(gpio_periph.o)
  .data          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(gpio_periph.o)
  .bss           0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(gpio_periph.o)
@@ -331,7 +311,7 @@ Discarded input sections
  .data          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
  .bss           0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
  .text.rtc_clk_cal
-                0x0000000000000000       0x52 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
+                0x0000000000000000       0x54 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
  .text.rtc_time_us_to_slowclk
                 0x0000000000000000       0x1f /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
  .text.rtc_time_slowclk_to_us
@@ -339,13 +319,13 @@ Discarded input sections
  .text.rtc_time_get
                 0x0000000000000000       0x50 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
  .xt.lit        0x0000000000000000       0x30 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
- .xt.prop       0x0000000000000000      0x270 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .xt.prop       0x0000000000000000      0x21c /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
  .literal.rtc_clk_32k_enable_external
                 0x0000000000000000        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .literal.rtc_clk_32k_bootstrap
                 0x0000000000000000       0x34 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .literal.rtc_clk_32k_enabled
-                0x0000000000000000        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000000000000        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .literal.rtc_clk_apll_enable
                 0x0000000000000000       0x50 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .literal.rtc_clk_cpu_freq_from_mhz_internal
@@ -370,21 +350,21 @@ Discarded input sections
  .data          0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .bss           0x0000000000000000        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .text.rtc_clk_32k_enable_external
-                0x0000000000000000       0x12 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000000000000        0xf /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .text.rtc_clk_32k_bootstrap
-                0x0000000000000000       0xa2 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000000000000       0x9c /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .text.rtc_clk_32k_enabled
-                0x0000000000000000       0x1a /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000000000000       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .text.rtc_clk_apll_enable
-                0x0000000000000000      0x15a /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000000000000      0x14a /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .text.rtc_clk_cpu_freq_from_mhz_internal
-                0x0000000000000000       0x4c /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000000000000       0x43 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .text.rtc_clk_cpu_freq_from_mhz
                 0x0000000000000000       0x11 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .text.rtc_clk_cpu_freq_value
-                0x0000000000000000       0x55 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000000000000       0x52 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .text.rtc_clk_cpu_freq_to_config
-                0x0000000000000000       0x7d /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000000000000       0x79 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .text.rtc_clk_cpu_freq_get
                 0x0000000000000000       0x1c /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .text.rtc_clk_cpu_freq_set_xtal
@@ -392,11 +372,11 @@ Discarded input sections
  .text.rtc_clk_cpu_freq_set
                 0x0000000000000000       0x17 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .text.rtc_clk_cpu_freq_set_config_fast
-                0x0000000000000000       0x36 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000000000000       0x38 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .text.rtc_clk_cpu_freq_set_fast
                 0x0000000000000000       0x17 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .xt.lit        0x0000000000000000      0x120 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .xt.prop       0x0000000000000000      0xcc0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .xt.lit        0x0000000000000000      0x110 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .xt.prop       0x0000000000000000      0xab0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .data          0x0000000000000000        0x0 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
  .bss           0x0000000000000000        0x0 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
  .xt.lit        0x0000000000000000        0x8 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
@@ -430,439 +410,344 @@ LOAD /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/li
 END GROUP
 
 .iram_loader.text
-                0x0000000040078000     0x26f1
+                0x0000000040078000     0x2245
                 0x0000000040078000                . = ALIGN (0x10)
                 0x0000000040078000                _loader_text_start = ABSOLUTE (.)
  *(.stub .gnu.warning .gnu.linkonce.literal.* .gnu.linkonce.t.*.literal .gnu.linkonce.t.*)
  *(.iram1 .iram1.*)
  .iram1.literal
-                0x0000000040078000       0x40 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
-                                         0x5c (size before relaxing)
- .iram1.literal
-                0x0000000040078040       0x18 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(cpu_util.o)
+                0x0000000040078000       0x18 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(cpu_util.o)
                                          0x2c (size before relaxing)
  .literal.esp_log_early_timestamp
-                0x0000000040078058        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
- .literal       0x0000000040078060        0x8 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
+                0x0000000040078018        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
+ .literal       0x0000000040078020        0x8 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
  .literal.bootloader_common_ota_select_crc
-                0x0000000040078068        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+                0x0000000040078028        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
  .literal.bootloader_common_ota_select_valid
-                0x000000004007806c        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+                0x000000004007802c        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
                                           0x4 (size before relaxing)
- .literal.spi_to_esp_err
-                0x000000004007806c        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- .literal.bootloader_flash_read_allow_decrypt
-                0x0000000040078074       0x28 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
-                                         0x30 (size before relaxing)
- .literal.bootloader_flash_read_no_decrypt
-                0x000000004007809c        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
-                                         0x14 (size before relaxing)
  .literal.bootloader_mmap
-                0x000000004007809c       0x18 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x000000004007802c       0x38 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
                                          0x50 (size before relaxing)
  .literal.bootloader_munmap
-                0x00000000400780b4        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x0000000040078064        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
                                          0x14 (size before relaxing)
  .literal.bootloader_flash_read
-                0x00000000400780b8        0xc /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
-                                         0x30 (size before relaxing)
+                0x000000004007806c       0x14 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                                         0x60 (size before relaxing)
  .literal.bootloader_fill_random
-                0x00000000400780c4        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+                0x0000000040078080        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
  .literal.bootloader_random_enable
-                0x00000000400780cc       0x78 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+                0x0000000040078088       0x78 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
  .literal.bootloader_random_disable
-                0x0000000040078144       0x1c /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+                0x0000000040078100       0x1c /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
                                          0x4c (size before relaxing)
- .literal.log_invalid_app_partition
-                0x0000000040078160       0x14 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                         0x2c (size before relaxing)
- .literal.try_load_partition
-                0x0000000040078174        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                         0x14 (size before relaxing)
- .literal.set_cache_and_start_app
-                0x0000000040078178        0xc /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                         0x30 (size before relaxing)
- .literal.unpack_load_app
-                0x0000000040078184       0x1c /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                         0x34 (size before relaxing)
  .literal.load_image
-                0x00000000400781a0        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                         0x18 (size before relaxing)
+                0x000000004007811c       0x30 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                                         0x70 (size before relaxing)
+ .literal.log_invalid_app_partition
+                0x000000004007814c       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                                         0x28 (size before relaxing)
+ .literal.try_load_partition
+                0x000000004007815c        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                                         0x14 (size before relaxing)
  .literal.bootloader_utility_load_partition_table
-                0x00000000400781a4       0x44 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                0x0000000040078160       0x44 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
                                          0x88 (size before relaxing)
  .literal.bootloader_utility_get_selected_boot_partition
-                0x00000000400781e8       0x1c /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                         0x70 (size before relaxing)
+                0x00000000400781a4       0x1c /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                                         0x64 (size before relaxing)
  .literal.bootloader_reset
-                0x0000000040078204        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                0x00000000400781c0        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
                                          0x14 (size before relaxing)
  .literal.bootloader_utility_load_boot_image
-                0x000000004007820c       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                         0x64 (size before relaxing)
+                0x00000000400781c8       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                                         0x54 (size before relaxing)
  .literal.bootloader_sha256_start
-                0x000000004007821c        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                0x00000000400781d8        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
  .literal.bootloader_sha256_data
-                0x0000000040078224       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                0x00000000400781e0       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
                                          0x18 (size before relaxing)
  .literal.bootloader_sha256_finish
-                0x0000000040078234        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
-                                         0x24 (size before relaxing)
- .literal.should_map
-                0x000000004007823c        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                         0x10 (size before relaxing)
- .literal.verify_image_header
-                0x000000004007823c       0x14 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                         0x2c (size before relaxing)
- .literal.verify_segment_header
-                0x0000000040078250        0xc /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                0x00000000400781f0        0xc /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
                                          0x28 (size before relaxing)
- .literal.verify_checksum
-                0x000000004007825c        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                         0x1c (size before relaxing)
- .literal.process_segment_data
-                0x0000000040078260        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                         0x24 (size before relaxing)
- .literal.debug_log_hash
-                0x0000000040078268        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                          0x4 (size before relaxing)
- .literal.verify_simple_hash
-                0x0000000040078268       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                         0x3c (size before relaxing)
  .literal.should_load
-                0x0000000040078278       0x14 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                         0x1c (size before relaxing)
- .literal.process_segment
-                0x000000004007828c       0x2c /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                         0x74 (size before relaxing)
+                0x00000000400781fc       0x14 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                                         0x28 (size before relaxing)
  .literal.image_load
-                0x00000000400782b8       0x14 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                         0x88 (size before relaxing)
+                0x0000000040078210       0x78 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                                        0x180 (size before relaxing)
  .literal.bootloader_load_image
-                0x00000000400782cc        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                0x0000000040078288        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
                                           0x4 (size before relaxing)
  .literal.esp_partition_table_verify
-                0x00000000400782cc       0x30 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
-                                         0x5c (size before relaxing)
+                0x0000000040078288       0x30 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+                                         0x58 (size before relaxing)
  .literal.esp_rom_spiflash_read_status
-                0x00000000400782fc        0xc /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x00000000400782b8       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                          0x14 (size before relaxing)
  .literal.esp_rom_spiflash_wait_idle
-                0x0000000040078308        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x00000000400782c8        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                           0xc (size before relaxing)
- .literal.esp_rom_spiflash_read_data
-                0x0000000040078310       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                                         0x18 (size before relaxing)
  .literal.esp_rom_spiflash_read_statushigh
-                0x0000000040078320        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x00000000400782d0        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                           0xc (size before relaxing)
  .literal.esp_rom_spiflash_write_status
-                0x0000000040078324        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x00000000400782d4        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                          0x14 (size before relaxing)
  .literal.esp_rom_spiflash_unlock
-                0x0000000040078324        0xc /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x00000000400782d4        0xc /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                          0x28 (size before relaxing)
  .literal.esp_rom_spiflash_read
-                0x0000000040078330       0x38 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                                         0x5c (size before relaxing)
+                0x00000000400782e0       0x48 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                                         0x70 (size before relaxing)
  .literal.rtc_wdt_get_protect_status
-                0x0000000040078368        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
+                0x0000000040078328        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
  .literal.rtc_wdt_protect_off
-                0x0000000040078370        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
+                0x0000000040078330        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
                                           0x8 (size before relaxing)
  .literal.rtc_wdt_protect_on
-                0x0000000040078374        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
+                0x0000000040078334        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
                                           0x4 (size before relaxing)
  .literal.rtc_wdt_enable
-                0x0000000040078374        0xc /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
+                0x0000000040078334        0xc /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
                                          0x10 (size before relaxing)
  .literal.rtc_wdt_set_time
-                0x0000000040078380       0x18 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
+                0x0000000040078340       0x18 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
                                          0x20 (size before relaxing)
  .literal.rtc_wdt_set_stage
-                0x0000000040078398       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
+                0x0000000040078358       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
                                          0x14 (size before relaxing)
  .literal.rtc_wdt_disable
-                0x00000000400783a8        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
+                0x0000000040078368        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
                                          0x2c (size before relaxing)
  .literal.rtc_wdt_set_length_of_reset_signal
-                0x00000000400783ac        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
+                0x000000004007836c        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
                                           0xc (size before relaxing)
- .iram1         0x00000000400783b4      0x22b /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
- *fill*         0x00000000400785df        0x1 
- .iram1         0x00000000400785e0      0x113 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(cpu_util.o)
-                0x00000000400785e0                esp_cpu_stall
-                0x0000000040078674                esp_cpu_unstall
-                0x00000000400786c8                esp_cpu_reset
-                0x00000000400786ec                esp_cpu_in_ocd_debug_mode
- *fill*         0x00000000400786f3        0x0 
+ .iram1         0x0000000040078374       0xef /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(cpu_util.o)
+                0x0000000040078374                esp_cpu_stall
+                0x00000000400783f8                esp_cpu_unstall
+                0x000000004007843c                esp_cpu_reset
+                0x000000004007845c                esp_cpu_in_ocd_debug_mode
  *liblog.a:(.literal .text .literal.* .text.*)
- *fill*         0x00000000400786f3        0x1 
+ *fill*         0x0000000040078463        0x1 
  .text.esp_log_early_timestamp
-                0x00000000400786f4       0x1f /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
-                0x00000000400786f4                esp_log_timestamp
-                0x00000000400786f4                esp_log_early_timestamp
- *fill*         0x0000000040078713        0x0 
+                0x0000000040078464       0x1f /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
+                0x0000000040078464                esp_log_timestamp
+                0x0000000040078464                esp_log_early_timestamp
+ *fill*         0x0000000040078483        0x0 
  *libgcc.a:(.literal .text .literal.* .text.*)
- *fill*         0x0000000040078713        0x1 
- .text          0x0000000040078714       0x26 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
-                0x0000000040078714                __bswapsi2
- *fill*         0x000000004007873a        0x0 
- *fill*         0x000000004007873a        0x2 
- .text          0x000000004007873c      0x281 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
-                0x000000004007873c                __udivdi3
+ *fill*         0x0000000040078483        0x1 
+ .text          0x0000000040078484       0x26 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
+                0x0000000040078484                __bswapsi2
+ *fill*         0x00000000400784aa        0x0 
+ *fill*         0x00000000400784aa        0x2 
+ .text          0x00000000400784ac      0x281 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+                0x00000000400784ac                __udivdi3
  *libbootloader_support.a:bootloader_common.*(.literal .text .literal.* .text.*)
- *fill*         0x00000000400789bd        0x3 
+ *fill*         0x000000004007872d        0x3 
  .text.bootloader_common_ota_select_crc
-                0x00000000400789c0       0x14 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
-                0x00000000400789c0                bootloader_common_ota_select_crc
+                0x0000000040078730       0x14 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+                0x0000000040078730                bootloader_common_ota_select_crc
  .text.bootloader_common_ota_select_valid
-                0x00000000400789d4       0x20 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
-                                         0x24 (size before relaxing)
-                0x00000000400789d4                bootloader_common_ota_select_valid
- *fill*         0x00000000400789f4        0x0 
+                0x0000000040078744       0x1e /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+                0x0000000040078744                bootloader_common_ota_select_valid
+ *fill*         0x0000000040078762        0x0 
  *libbootloader_support.a:bootloader_flash.*(.literal .text .literal.* .text.*)
- .text.spi_to_esp_err
-                0x00000000400789f4       0x22 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- *fill*         0x0000000040078a16        0x2 
- .text.bootloader_flash_read_allow_decrypt
-                0x0000000040078a18       0x97 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
-                                         0x9b (size before relaxing)
- *fill*         0x0000000040078aaf        0x1 
- .text.bootloader_flash_read_no_decrypt
-                0x0000000040078ab0       0x32 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
-                                         0x36 (size before relaxing)
- *fill*         0x0000000040078ae2        0x2 
+ *fill*         0x0000000040078762        0x2 
  .text.bootloader_mmap
-                0x0000000040078ae4       0xb4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
-                                         0xbc (size before relaxing)
-                0x0000000040078ae4                bootloader_mmap
+                0x0000000040078764       0xaf /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                                         0xb3 (size before relaxing)
+                0x0000000040078764                bootloader_mmap
+ *fill*         0x0000000040078813        0x1 
  .text.bootloader_munmap
-                0x0000000040078b98       0x36 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
-                0x0000000040078b98                bootloader_munmap
- *fill*         0x0000000040078bce        0x2 
+                0x0000000040078814       0x32 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x0000000040078814                bootloader_munmap
+ *fill*         0x0000000040078846        0x2 
  .text.bootloader_flash_read
-                0x0000000040078bd0       0x86 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
-                0x0000000040078bd0                bootloader_flash_read
- *fill*         0x0000000040078c56        0x0 
- *fill*         0x0000000040078c56        0x0 
- *fill*         0x0000000040078c56        0x0 
- *fill*         0x0000000040078c56        0x0 
+                0x0000000040078848      0x116 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                                        0x11a (size before relaxing)
+                0x0000000040078848                bootloader_flash_read
+ *fill*         0x000000004007895e        0x0 
+ *fill*         0x000000004007895e        0x0 
+ *fill*         0x000000004007895e        0x0 
  *libbootloader_support.a:bootloader_random.*(.literal .text .literal.* .text.*)
- *fill*         0x0000000040078c56        0x2 
+ *fill*         0x000000004007895e        0x2 
  .text.bootloader_fill_random
-                0x0000000040078c58       0x59 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
-                0x0000000040078c58                bootloader_fill_random
- *fill*         0x0000000040078cb1        0x3 
+                0x0000000040078960       0x49 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+                0x0000000040078960                bootloader_fill_random
+ *fill*         0x00000000400789a9        0x3 
  .text.bootloader_random_enable
-                0x0000000040078cb4      0x1d5 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
-                0x0000000040078cb4                bootloader_random_enable
- *fill*         0x0000000040078e89        0x3 
+                0x00000000400789ac      0x1d5 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+                0x00000000400789ac                bootloader_random_enable
+ *fill*         0x0000000040078b81        0x3 
  .text.bootloader_random_disable
-                0x0000000040078e8c      0x11c /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
-                0x0000000040078e8c                bootloader_random_disable
- *fill*         0x0000000040078fa8        0x0 
- *fill*         0x0000000040078fa8        0x0 
- *fill*         0x0000000040078fa8        0x0 
+                0x0000000040078b84      0x11c /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+                0x0000000040078b84                bootloader_random_disable
+ *fill*         0x0000000040078ca0        0x0 
+ *fill*         0x0000000040078ca0        0x0 
+ *fill*         0x0000000040078ca0        0x0 
  *libbootloader_support.a:bootloader_utility.*(.literal .text .literal.* .text.*)
- .text.log_invalid_app_partition
-                0x0000000040078fa8       0x57 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                         0x5b (size before relaxing)
- *fill*         0x0000000040078fff        0x1 
- .text.try_load_partition
-                0x0000000040079000       0x31 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                         0x35 (size before relaxing)
- *fill*         0x0000000040079031        0x3 
- .text.set_cache_and_start_app
-                0x0000000040079034       0xda /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
- *fill*         0x000000004007910e        0x2 
- .text.unpack_load_app
-                0x0000000040079110       0xb0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                         0xb4 (size before relaxing)
  .text.load_image
-                0x00000000400791c0       0x1e /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                         0x26 (size before relaxing)
- *fill*         0x00000000400791de        0x2 
+                0x0000000040078ca0      0x181 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                                        0x185 (size before relaxing)
+ *fill*         0x0000000040078e21        0x3 
+ .text.log_invalid_app_partition
+                0x0000000040078e24       0x4e /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                                         0x56 (size before relaxing)
+ *fill*         0x0000000040078e72        0x2 
+ .text.try_load_partition
+                0x0000000040078e74       0x2e /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                                         0x32 (size before relaxing)
+ *fill*         0x0000000040078ea2        0x2 
  .text.bootloader_utility_load_partition_table
-                0x00000000400791e0      0x168 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                        0x184 (size before relaxing)
-                0x00000000400791e0                bootloader_utility_load_partition_table
+                0x0000000040078ea4      0x160 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                                        0x17c (size before relaxing)
+                0x0000000040078ea4                bootloader_utility_load_partition_table
  .text.bootloader_utility_get_selected_boot_partition
-                0x0000000040079348      0x148 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                        0x154 (size before relaxing)
-                0x0000000040079348                bootloader_utility_get_selected_boot_partition
+                0x0000000040079004      0x11a /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                                        0x12e (size before relaxing)
+                0x0000000040079004                bootloader_utility_get_selected_boot_partition
+ *fill*         0x000000004007911e        0x2 
  .text.bootloader_reset
-                0x0000000040079490       0x2b /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                0x0000000040079490                bootloader_reset
- *fill*         0x00000000400794bb        0x1 
+                0x0000000040079120       0x2b /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                0x0000000040079120                bootloader_reset
+ *fill*         0x000000004007914b        0x1 
  .text.bootloader_utility_load_boot_image
-                0x00000000400794bc       0xdb /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                         0xff (size before relaxing)
-                0x00000000400794bc                bootloader_utility_load_boot_image
- *fill*         0x0000000040079597        0x1 
+                0x000000004007914c       0xd2 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                                         0xf6 (size before relaxing)
+                0x000000004007914c                bootloader_utility_load_boot_image
+ *fill*         0x000000004007921e        0x2 
  .text.index_to_partition
-                0x0000000040079598       0x48 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
- *fill*         0x00000000400795e0        0x0 
- *fill*         0x00000000400795e0        0x0 
- *fill*         0x00000000400795e0        0x0 
- *fill*         0x00000000400795e0        0x0 
- *fill*         0x00000000400795e0        0x0 
+                0x0000000040079220       0x45 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+ *fill*         0x0000000040079265        0x0 
+ *fill*         0x0000000040079265        0x0 
+ *fill*         0x0000000040079265        0x0 
+ *fill*         0x0000000040079265        0x0 
+ *fill*         0x0000000040079265        0x0 
  *libbootloader_support.a:bootloader_sha.*(.literal .text .literal.* .text.*)
+ *fill*         0x0000000040079265        0x3 
  .text.bootloader_sha256_start
-                0x00000000400795e0       0x12 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
-                0x00000000400795e0                bootloader_sha256_start
- *fill*         0x00000000400795f2        0x2 
+                0x0000000040079268       0x12 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                0x0000000040079268                bootloader_sha256_start
+ *fill*         0x000000004007927a        0x2 
  .text.bootloader_sha256_data
-                0x00000000400795f4       0x79 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
-                0x00000000400795f4                bootloader_sha256_data
- *fill*         0x000000004007966d        0x3 
+                0x000000004007927c       0x81 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                0x000000004007927c                bootloader_sha256_data
+ *fill*         0x00000000400792fd        0x3 
  .text.bootloader_sha256_finish
-                0x0000000040079670       0x7c /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
-                                         0x88 (size before relaxing)
-                0x0000000040079670                bootloader_sha256_finish
- *fill*         0x00000000400796ec        0x0 
- *fill*         0x00000000400796ec        0x0 
- *fill*         0x00000000400796ec        0x0 
+                0x0000000040079300       0x78 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                                         0x80 (size before relaxing)
+                0x0000000040079300                bootloader_sha256_finish
+ *fill*         0x0000000040079378        0x0 
+ *fill*         0x0000000040079378        0x0 
+ *fill*         0x0000000040079378        0x0 
  .text.bootloader_sha256_hex_to_str
-                0x00000000400796ec       0x72 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
-                0x00000000400796ec                bootloader_sha256_hex_to_str
+                0x0000000040079378       0x69 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                0x0000000040079378                bootloader_sha256_hex_to_str
  *libbootloader_support.a:efuse.*(.literal .text .literal.* .text.*)
  *libbootloader_support.a:esp_image_format.*(.literal .text .literal.* .text.*)
- *fill*         0x000000004007975e        0x2 
- .text.should_map
-                0x0000000040079760       0x30 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .text.verify_image_header
-                0x0000000040079790       0x7e /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- *fill*         0x000000004007980e        0x2 
- .text.verify_segment_header
-                0x0000000040079810       0x71 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                         0x79 (size before relaxing)
- *fill*         0x0000000040079881        0x3 
- .text.verify_checksum
-                0x0000000040079884       0x87 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                         0x8f (size before relaxing)
- *fill*         0x000000004007990b        0x1 
- .text.process_segment_data
-                0x000000004007990c       0xa4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                         0xb0 (size before relaxing)
- .text.debug_log_hash
-                0x00000000400799b0       0x16 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- *fill*         0x00000000400799c6        0x2 
- .text.verify_simple_hash
-                0x00000000400799c8       0x69 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                         0x80 (size before relaxing)
- *fill*         0x0000000040079a31        0x3 
+ *fill*         0x00000000400793e1        0x3 
  .text.should_load
-                0x0000000040079a34       0x4c /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                         0x50 (size before relaxing)
- .text.process_segment
-                0x0000000040079a80      0x17f /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                        0x18f (size before relaxing)
- *fill*         0x0000000040079bff        0x1 
+                0x00000000400793e4       0x76 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ *fill*         0x000000004007945a        0x2 
  .text.image_load
-                0x0000000040079c00      0x28a /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                        0x2aa (size before relaxing)
- *fill*         0x0000000040079e8a        0x2 
+                0x000000004007945c      0x634 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                                        0x6a8 (size before relaxing)
  .text.bootloader_load_image
-                0x0000000040079e8c       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                0x0000000040079a90       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
                                          0x14 (size before relaxing)
-                0x0000000040079e8c                bootloader_load_image
- *fill*         0x0000000040079e9c        0x0 
- *fill*         0x0000000040079e9c        0x0 
- *fill*         0x0000000040079e9c        0x0 
- *fill*         0x0000000040079e9c        0x0 
- *fill*         0x0000000040079e9c        0x0 
- *fill*         0x0000000040079e9c        0x0 
- *fill*         0x0000000040079e9c        0x0 
+                0x0000000040079a90                bootloader_load_image
+ *fill*         0x0000000040079aa0        0x0 
+ *fill*         0x0000000040079aa0        0x0 
  *libbootloader_support.a:flash_encrypt.*(.literal .text .literal.* .text.*)
  *libbootloader_support.a:flash_partitions.*(.literal .text .literal.* .text.*)
  .text.esp_partition_table_verify
-                0x0000000040079e9c      0x143 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
-                                        0x14f (size before relaxing)
-                0x0000000040079e9c                esp_partition_table_verify
+                0x0000000040079aa0      0x127 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+                                        0x132 (size before relaxing)
+                0x0000000040079aa0                esp_partition_table_verify
  *libbootloader_support.a:secure_boot.*(.literal .text .literal.* .text.*)
  *libbootloader_support.a:secure_boot_signatures.*(.literal .text .literal.* .text.*)
  *libmicro-ecc.a:*.*(.literal .text .literal.* .text.*)
  *libspi_flash.a:*.*(.literal .text .literal.* .text.*)
- *fill*         0x0000000040079fdf        0x1 
+ *fill*         0x0000000040079bc7        0x1 
  .text.esp_rom_spiflash_read_status
-                0x0000000040079fe0       0x61 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                0x0000000040079fe0                esp_rom_spiflash_read_status
- *fill*         0x000000004007a041        0x3 
+                0x0000000040079bc8       0x5b /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000040079bc8                esp_rom_spiflash_read_status
+ *fill*         0x0000000040079c23        0x1 
  .text.esp_rom_spiflash_wait_idle
-                0x000000004007a044       0x32 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                0x000000004007a044                esp_rom_spiflash_wait_idle
- *fill*         0x000000004007a076        0x2 
- .text.esp_rom_spiflash_read_data
-                0x000000004007a078       0xe2 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- *fill*         0x000000004007a15a        0x2 
+                0x0000000040079c24       0x30 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000040079c24                esp_rom_spiflash_wait_idle
  .text.esp_rom_spiflash_read_statushigh
-                0x000000004007a15c       0x21 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                0x000000004007a15c                esp_rom_spiflash_read_statushigh
- *fill*         0x000000004007a17d        0x3 
+                0x0000000040079c54       0x21 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000040079c54                esp_rom_spiflash_read_statushigh
+ *fill*         0x0000000040079c75        0x3 
  .text.esp_rom_spiflash_write_status
-                0x000000004007a180       0x34 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                                         0x38 (size before relaxing)
-                0x000000004007a180                esp_rom_spiflash_write_status
+                0x0000000040079c78       0x2f /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                                         0x33 (size before relaxing)
+                0x0000000040079c78                esp_rom_spiflash_write_status
+ *fill*         0x0000000040079ca7        0x1 
  .text.esp_rom_spiflash_unlock
-                0x000000004007a1b4       0x6a /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                                         0x7e (size before relaxing)
-                0x000000004007a1b4                esp_rom_spiflash_unlock
- *fill*         0x000000004007a21e        0x2 
+                0x0000000040079ca8       0x66 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                                         0x72 (size before relaxing)
+                0x0000000040079ca8                esp_rom_spiflash_unlock
+ *fill*         0x0000000040079d0e        0x2 
  .text.esp_rom_spiflash_read
-                0x000000004007a220      0x284 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                0x000000004007a220                esp_rom_spiflash_read
- *fill*         0x000000004007a4a4        0x0 
- *fill*         0x000000004007a4a4        0x0 
- *fill*         0x000000004007a4a4        0x0 
- *fill*         0x000000004007a4a4        0x0 
- *fill*         0x000000004007a4a4        0x0 
- *fill*         0x000000004007a4a4        0x0 
+                0x0000000040079d10      0x2e5 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                                        0x2e9 (size before relaxing)
+                0x0000000040079d10                esp_rom_spiflash_read
+ *fill*         0x0000000040079ff5        0x0 
+ *fill*         0x0000000040079ff5        0x0 
+ *fill*         0x0000000040079ff5        0x0 
+ *fill*         0x0000000040079ff5        0x0 
+ *fill*         0x0000000040079ff5        0x0 
  *libsoc.a:rtc_wdt.*(.literal .text .literal.* .text.*)
+ *fill*         0x0000000040079ff5        0x3 
  .text.rtc_wdt_get_protect_status
-                0x000000004007a4a4       0x19 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
-                0x000000004007a4a4                rtc_wdt_get_protect_status
- *fill*         0x000000004007a4bd        0x3 
+                0x0000000040079ff8       0x19 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
+                0x0000000040079ff8                rtc_wdt_get_protect_status
+ *fill*         0x000000004007a011        0x3 
  .text.rtc_wdt_protect_off
-                0x000000004007a4c0       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
-                0x000000004007a4c0                rtc_wdt_protect_off
+                0x000000004007a014       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
+                0x000000004007a014                rtc_wdt_protect_off
  .text.rtc_wdt_protect_on
-                0x000000004007a4d0        0xf /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
-                0x000000004007a4d0                rtc_wdt_protect_on
- *fill*         0x000000004007a4df        0x1 
+                0x000000004007a024        0xf /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
+                0x000000004007a024                rtc_wdt_protect_on
+ *fill*         0x000000004007a033        0x1 
  .text.rtc_wdt_enable
-                0x000000004007a4e0       0x2b /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
-                0x000000004007a4e0                rtc_wdt_enable
- *fill*         0x000000004007a50b        0x1 
+                0x000000004007a034       0x2b /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
+                0x000000004007a034                rtc_wdt_enable
+ *fill*         0x000000004007a05f        0x1 
  .text.rtc_wdt_set_time
-                0x000000004007a50c       0x59 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
+                0x000000004007a060       0x59 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
                                          0x5d (size before relaxing)
-                0x000000004007a50c                rtc_wdt_set_time
- *fill*         0x000000004007a565        0x3 
+                0x000000004007a060                rtc_wdt_set_time
+ *fill*         0x000000004007a0b9        0x3 
  .text.rtc_wdt_set_stage
-                0x000000004007a568       0xb1 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
-                0x000000004007a568                rtc_wdt_set_stage
- *fill*         0x000000004007a619        0x3 
+                0x000000004007a0bc       0xb1 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
+                0x000000004007a0bc                rtc_wdt_set_stage
+ *fill*         0x000000004007a16d        0x3 
  .text.rtc_wdt_disable
-                0x000000004007a61c       0x6a /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
+                0x000000004007a170       0x6a /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
                                          0x7e (size before relaxing)
-                0x000000004007a61c                rtc_wdt_disable
- *fill*         0x000000004007a686        0x2 
+                0x000000004007a170                rtc_wdt_disable
+ *fill*         0x000000004007a1da        0x2 
  .text.rtc_wdt_set_length_of_reset_signal
-                0x000000004007a688       0x69 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
-                0x000000004007a688                rtc_wdt_set_length_of_reset_signal
- *fill*         0x000000004007a6f1        0x0 
- *fill*         0x000000004007a6f1        0x0 
- *fill*         0x000000004007a6f1        0x0 
- *fill*         0x000000004007a6f1        0x0 
- *fill*         0x000000004007a6f1        0x0 
- *fill*         0x000000004007a6f1        0x0 
+                0x000000004007a1dc       0x69 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
+                0x000000004007a1dc                rtc_wdt_set_length_of_reset_signal
+ *fill*         0x000000004007a245        0x0 
+ *fill*         0x000000004007a245        0x0 
+ *fill*         0x000000004007a245        0x0 
+ *fill*         0x000000004007a245        0x0 
+ *fill*         0x000000004007a245        0x0 
+ *fill*         0x000000004007a245        0x0 
+ *fill*         0x000000004007a245        0x0 
  *(.fini.literal)
  *(.fini)
  *(.gnu.version)
-                0x000000004007a6f1                _loader_text_end = ABSOLUTE (.)
+                0x000000004007a245                _loader_text_end = ABSOLUTE (.)
 
-.iram.text      0x0000000040080400     0x1963
+.iram.text      0x0000000040080400     0x183f
                 0x0000000040080400                . = ALIGN (0x10)
  *(.entry.text)
  *(.init.literal)
@@ -870,348 +755,275 @@ END GROUP
                 0x0000000040080400                _stext = .
                 0x0000000040080400                _text_start = ABSOLUTE (.)
  *(.literal .text .literal.* .text.* .stub .gnu.warning .gnu.linkonce.literal.* .gnu.linkonce.t.*.literal .gnu.linkonce.t.*)
- .literal.selected_boot_partition
-                0x0000000040080400        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
-                                          0x4 (size before relaxing)
- .literal.select_partition_number
-                0x0000000040080400        0xc /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
-                                         0x18 (size before relaxing)
  .literal.call_start_cpu0
-                0x000000004008040c        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
-                                         0x18 (size before relaxing)
- .literal.wdt_reset_cpu0_info_enable
-                0x0000000040080410        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+                0x0000000040080400       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
+                                         0x28 (size before relaxing)
  .literal.wdt_reset_info_dump
-                0x0000000040080414       0x5c /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
-                                         0x6c (size before relaxing)
- .literal.print_flash_info
-                0x0000000040080470       0x4c /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+                0x0000000040080410       0x5c /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
                                          0x68 (size before relaxing)
- .literal.vddsdio_configure
-                0x00000000400804bc        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
-                                          0xc (size before relaxing)
- .literal.uart_console_configure
-                0x00000000400804c0       0x18 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
-                                         0x1c (size before relaxing)
- .literal.wdt_reset_check
-                0x00000000400804d8        0xc /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
-                                         0x30 (size before relaxing)
- .literal.update_flash_config
-                0x00000000400804e4       0x20 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
- .literal.bootloader_main
-                0x0000000040080504       0x34 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
-                                         0xb4 (size before relaxing)
  .literal.bootloader_init
-                0x0000000040080538       0x28 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
-                                         0x44 (size before relaxing)
+                0x000000004008046c      0x114 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+                                        0x1e4 (size before relaxing)
  .literal.abort
-                0x0000000040080560        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+                0x0000000040080580        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
                                          0x10 (size before relaxing)
  .literal.bootloader_clock_configure
-                0x0000000040080568       0x14 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
+                0x0000000040080588       0x14 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
                                          0x2c (size before relaxing)
  .literal.execute_flash_command
-                0x000000004008057c       0x38 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+                0x000000004008059c       0x34 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
                                          0x3c (size before relaxing)
  .literal.bootloader_read_flash_id
-                0x00000000400805b4        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+                0x00000000400805d0        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
                                           0x8 (size before relaxing)
  .literal.rtc_vddsdio_get_config
-                0x00000000400805b8       0x2c /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
-                                         0x30 (size before relaxing)
+                0x00000000400805d4        0xc /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
+                                         0x10 (size before relaxing)
  .literal.rtc_vddsdio_set_config
-                0x00000000400805e4        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
+                0x00000000400805e0        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
                                           0x8 (size before relaxing)
  .literal.rtc_clk_xtal_freq_estimate
-                0x00000000400805e4       0x20 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
+                0x00000000400805e0       0x20 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
                                          0x4c (size before relaxing)
  .literal.rtc_clk_init
-                0x0000000040080604       0x48 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
-                                         0xa4 (size before relaxing)
+                0x0000000040080600       0x44 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
+                                         0xa8 (size before relaxing)
  .literal.rtc_clk_cal_internal
-                0x000000004008064c       0x2c /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
-                                         0x54 (size before relaxing)
+                0x0000000040080644       0x30 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
+                                         0x50 (size before relaxing)
  .literal.rtc_clk_cal_ratio
-                0x0000000040080678        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
+                0x0000000040080674        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
                                           0x8 (size before relaxing)
  .literal.rtc_clk_wait_for_slow_cycle
-                0x0000000040080678        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
-                                         0x20 (size before relaxing)
- .literal.rtc_clk_32k_enable_common
-                0x0000000040080680       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                                         0x14 (size before relaxing)
- .literal.rtc_clk_bbpll_disable
-                0x0000000040080690        0xc /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                                         0x10 (size before relaxing)
- .literal.rtc_clk_bbpll_enable
-                0x000000004008069c        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040080674        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
                                          0x1c (size before relaxing)
+ .literal.rtc_clk_bbpll_disable
+                0x000000004008067c        0xc /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                                         0x10 (size before relaxing)
+ .literal.rtc_clk_cpu_freq_to_pll_mhz
+                0x0000000040080688       0x20 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                                         0x3c (size before relaxing)
+ .literal.rtc_clk_32k_enable_common$constprop$7
+                0x00000000400806a8       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                                         0x14 (size before relaxing)
  .literal.rtc_clk_32k_enable
-                0x00000000400806a4        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400806b8        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0xc (size before relaxing)
  .literal.rtc_clk_8m_enable
-                0x00000000400806a8        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400806bc        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x10 (size before relaxing)
  .literal.rtc_clk_8m_enabled
-                0x00000000400806b0        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400806c4        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0x4 (size before relaxing)
  .literal.rtc_clk_8md256_enabled
-                0x00000000400806b0        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400806c4        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0x4 (size before relaxing)
  .literal.rtc_clk_slow_freq_set
-                0x00000000400806b0        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400806c4        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0xc (size before relaxing)
  .literal.rtc_clk_slow_freq_get
-                0x00000000400806b4        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400806c8        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0x4 (size before relaxing)
  .literal.rtc_clk_slow_freq_get_hz
-                0x00000000400806b4        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400806c8        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x10 (size before relaxing)
  .literal.rtc_clk_fast_freq_set
-                0x00000000400806b4        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400806c8        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0xc (size before relaxing)
  .literal.rtc_clk_fast_freq_get
-                0x00000000400806b4        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400806c8        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0x4 (size before relaxing)
  .literal.rtc_clk_bbpll_configure
-                0x00000000400806b4        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                                         0x3c (size before relaxing)
+                0x00000000400806c8        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                                         0x38 (size before relaxing)
  .literal.rtc_clk_xtal_freq_get
-                0x00000000400806bc        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400806d0        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0x8 (size before relaxing)
  .literal.rtc_clk_cpu_freq_mhz_to_config
-                0x00000000400806c0        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400806d4        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0x4 (size before relaxing)
  .literal.rtc_clk_cpu_freq_get_config
-                0x00000000400806c0        0xc /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                                         0x30 (size before relaxing)
+                0x00000000400806d4        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                                         0x24 (size before relaxing)
  .literal.rtc_clk_xtal_freq_update
-                0x00000000400806cc        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400806dc        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0x8 (size before relaxing)
  .literal.rtc_clk_apb_freq_update
-                0x00000000400806d0        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400806e0        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                                          0x4 (size before relaxing)
  .literal.rtc_clk_cpu_freq_to_xtal
-                0x00000000400806d4        0xc /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                                         0x30 (size before relaxing)
- .literal.rtc_clk_cpu_freq_to_pll_mhz
-                0x00000000400806e0        0xc /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                                         0x3c (size before relaxing)
- .literal.rtc_clk_cpu_freq_to_8m
-                0x00000000400806ec        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                                         0x28 (size before relaxing)
+                0x00000000400806e0        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                                         0x2c (size before relaxing)
  .literal.rtc_clk_cpu_freq_set_config
-                0x00000000400806f0        0x0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                                         0x30 (size before relaxing)
+                0x00000000400806e0        0xc /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                                         0x68 (size before relaxing)
  .literal.rtc_clk_apb_freq_get
-                0x00000000400806f0        0x4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400806ec        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x10 (size before relaxing)
- .text.selected_boot_partition
-                0x00000000400806f4        0xc /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
-                                         0x10 (size before relaxing)
- .text.select_partition_number
-                0x0000000040080700       0x30 /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
-                                         0x34 (size before relaxing)
  .text.call_start_cpu0
-                0x0000000040080730       0x35 /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
-                                         0x3c (size before relaxing)
-                0x0000000040080730                call_start_cpu0
- *fill*         0x0000000040080765        0x3 
- .text.wdt_reset_cpu0_info_enable
-                0x0000000040080768       0x27 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
- *fill*         0x000000004008078f        0x1 
+                0x00000000400806f4       0x51 /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
+                                         0x59 (size before relaxing)
+                0x00000000400806f4                call_start_cpu0
+ *fill*         0x0000000040080745        0x3 
  .text.wdt_reset_info_dump
-                0x0000000040080790       0xe6 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
- *fill*         0x0000000040080876        0x2 
- .text.print_flash_info
-                0x0000000040080878       0xf6 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
- *fill*         0x000000004008096e        0x2 
- .text.vddsdio_configure
-                0x0000000040080970       0x33 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
-                                         0x37 (size before relaxing)
- *fill*         0x00000000400809a3        0x1 
- .text.uart_console_configure
-                0x00000000400809a4       0x36 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
-                                         0x3a (size before relaxing)
- *fill*         0x00000000400809da        0x2 
- .text.wdt_reset_check
-                0x00000000400809dc       0xa2 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
-                                         0xae (size before relaxing)
- *fill*         0x0000000040080a7e        0x2 
- .text.update_flash_config
-                0x0000000040080a80       0x68 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
- .text.bootloader_main
-                0x0000000040080ae8      0x110 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
-                                        0x15c (size before relaxing)
+                0x0000000040080748       0xe2 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+                                         0xe6 (size before relaxing)
+ *fill*         0x000000004008082a        0x2 
  .text.bootloader_init
-                0x0000000040080bf8       0xd2 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
-                0x0000000040080bf8                bootloader_init
- *fill*         0x0000000040080cca        0x2 
- .text.abort    0x0000000040080ccc       0x2c /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+                0x000000004008082c      0x530 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+                                        0x588 (size before relaxing)
+                0x000000004008082c                bootloader_init
+ .text.abort    0x0000000040080d5c       0x2c /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
                                          0x2f (size before relaxing)
-                0x0000000040080ccc                abort
- *fill*         0x0000000040080cf8        0x0 
+                0x0000000040080d5c                abort
+ *fill*         0x0000000040080d88        0x0 
  .text.bootloader_clock_configure
-                0x0000000040080cf8       0x8e /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
-                                         0x96 (size before relaxing)
-                0x0000000040080cf8                bootloader_clock_configure
- *fill*         0x0000000040080d86        0x2 
+                0x0000000040080d88       0x8a /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
+                                         0x92 (size before relaxing)
+                0x0000000040080d88                bootloader_clock_configure
+ *fill*         0x0000000040080e12        0x2 
  .text.execute_flash_command
-                0x0000000040080d88      0x190 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+                0x0000000040080e14      0x165 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+ *fill*         0x0000000040080f79        0x3 
  .text.bootloader_read_flash_id
-                0x0000000040080f18       0x27 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+                0x0000000040080f7c       0x27 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
                                          0x2b (size before relaxing)
-                0x0000000040080f18                bootloader_read_flash_id
- *fill*         0x0000000040080f3f        0x1 
+                0x0000000040080f7c                bootloader_read_flash_id
+ *fill*         0x0000000040080fa3        0x1 
  .text.rtc_vddsdio_get_config
-                0x0000000040080f40      0x104 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
-                0x0000000040080f40                rtc_vddsdio_get_config
+                0x0000000040080fa4       0x98 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
+                0x0000000040080fa4                rtc_vddsdio_get_config
  .text.rtc_vddsdio_set_config
-                0x0000000040081044       0x46 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
-                0x0000000040081044                rtc_vddsdio_set_config
- *fill*         0x000000004008108a        0x2 
+                0x000000004008103c       0x46 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
+                0x000000004008103c                rtc_vddsdio_set_config
+ *fill*         0x0000000040081082        0x2 
  .text.rtc_clk_xtal_freq_estimate
-                0x000000004008108c       0xa6 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
-                                         0xb2 (size before relaxing)
- *fill*         0x0000000040081132        0x2 
+                0x0000000040081084       0x9c /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
+                                         0xac (size before relaxing)
  .text.rtc_clk_init
-                0x0000000040081134      0x1da /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
-                                        0x20a (size before relaxing)
-                0x0000000040081134                rtc_clk_init
- *fill*         0x000000004008130e        0x2 
+                0x0000000040081120      0x1dd /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
+                                        0x210 (size before relaxing)
+                0x0000000040081120                rtc_clk_init
+ *fill*         0x00000000400812fd        0x3 
  .text.rtc_clk_cal_internal
-                0x0000000040081310      0x1ac /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
-                                        0x1b4 (size before relaxing)
+                0x0000000040081300      0x172 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
+                                        0x17e (size before relaxing)
+ *fill*         0x0000000040081472        0x2 
  .text.rtc_clk_cal_ratio
-                0x00000000400814bc       0x20 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
+                0x0000000040081474       0x20 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
                                          0x24 (size before relaxing)
-                0x00000000400814bc                rtc_clk_cal_ratio
+                0x0000000040081474                rtc_clk_cal_ratio
  .text.rtc_clk_wait_for_slow_cycle
-                0x00000000400814dc       0x79 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
-                0x00000000400814dc                rtc_clk_wait_for_slow_cycle
- *fill*         0x0000000040081555        0x3 
- .text.rtc_clk_32k_enable_common
-                0x0000000040081558       0x81 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
- *fill*         0x00000000400815d9        0x3 
+                0x0000000040081494       0x68 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
+                0x0000000040081494                rtc_clk_wait_for_slow_cycle
  .text.rtc_clk_bbpll_disable
-                0x00000000400815dc       0x3e /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
- *fill*         0x000000004008161a        0x2 
- .text.rtc_clk_bbpll_enable
-                0x000000004008161c       0x66 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
- *fill*         0x0000000040081682        0x2 
- .text.rtc_clk_32k_enable
-                0x0000000040081684       0x2d /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x0000000040081684                rtc_clk_32k_enable
- *fill*         0x00000000400816b1        0x3 
- .text.rtc_clk_8m_enable
-                0x00000000400816b4       0x9b /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x00000000400816b4                rtc_clk_8m_enable
- *fill*         0x000000004008174f        0x1 
- .text.rtc_clk_8m_enabled
-                0x0000000040081750       0x19 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x0000000040081750                rtc_clk_8m_enabled
- *fill*         0x0000000040081769        0x3 
- .text.rtc_clk_8md256_enabled
-                0x000000004008176c       0x1a /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x000000004008176c                rtc_clk_8md256_enabled
- *fill*         0x0000000040081786        0x2 
- .text.rtc_clk_slow_freq_set
-                0x0000000040081788       0x48 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x0000000040081788                rtc_clk_slow_freq_set
- .text.rtc_clk_slow_freq_get
-                0x00000000400817d0       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x00000000400817d0                rtc_clk_slow_freq_get
- .text.rtc_clk_slow_freq_get_hz
-                0x00000000400817e0       0x29 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x00000000400817e0                rtc_clk_slow_freq_get_hz
- *fill*         0x0000000040081809        0x3 
- .text.rtc_clk_fast_freq_set
-                0x000000004008180c       0x2a /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x000000004008180c                rtc_clk_fast_freq_set
- *fill*         0x0000000040081836        0x2 
- .text.rtc_clk_fast_freq_get
-                0x0000000040081838       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x0000000040081838                rtc_clk_fast_freq_get
- .text.rtc_clk_bbpll_configure
-                0x0000000040081848      0x189 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                                        0x18d (size before relaxing)
-                0x0000000040081848                rtc_clk_bbpll_configure
- *fill*         0x00000000400819d1        0x3 
- .text.rtc_clk_xtal_freq_get
-                0x00000000400819d4       0x35 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x00000000400819d4                rtc_get_xtal
-                0x00000000400819d4                rtc_clk_xtal_freq_get
- *fill*         0x0000000040081a09        0x3 
- .text.rtc_clk_cpu_freq_mhz_to_config
-                0x0000000040081a0c       0x61 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x0000000040081a0c                rtc_clk_cpu_freq_mhz_to_config
- *fill*         0x0000000040081a6d        0x3 
- .text.rtc_clk_cpu_freq_get_config
-                0x0000000040081a70       0xa9 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                                         0xb5 (size before relaxing)
-                0x0000000040081a70                rtc_clk_cpu_freq_get_config
- *fill*         0x0000000040081b19        0x3 
- .text.rtc_clk_xtal_freq_update
-                0x0000000040081b1c       0x2c /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x0000000040081b1c                rtc_clk_xtal_freq_update
- .text.rtc_clk_apb_freq_update
-                0x0000000040081b48       0x19 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x0000000040081b48                rtc_clk_apb_freq_update
- *fill*         0x0000000040081b61        0x3 
- .text.rtc_clk_cpu_freq_to_xtal
-                0x0000000040081b64       0x97 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                                         0x9b (size before relaxing)
-                0x0000000040081b64                rtc_clk_cpu_freq_to_xtal
- *fill*         0x0000000040081bfb        0x1 
+                0x00000000400814fc       0x3a /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ *fill*         0x0000000040081536        0x2 
  .text.rtc_clk_cpu_freq_to_pll_mhz
-                0x0000000040081bfc       0x8c /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040081538       0x8c /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x94 (size before relaxing)
- .text.rtc_clk_cpu_freq_to_8m
-                0x0000000040081c88       0x58 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                                         0x5c (size before relaxing)
+ .text.rtc_clk_32k_enable_common$constprop$7
+                0x00000000400815c4       0x78 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .text.rtc_clk_32k_enable
+                0x000000004008163c       0x29 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004008163c                rtc_clk_32k_enable
+ *fill*         0x0000000040081665        0x3 
+ .text.rtc_clk_8m_enable
+                0x0000000040081668       0x7e /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040081668                rtc_clk_8m_enable
+ *fill*         0x00000000400816e6        0x2 
+ .text.rtc_clk_8m_enabled
+                0x00000000400816e8       0x15 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400816e8                rtc_clk_8m_enabled
+ *fill*         0x00000000400816fd        0x3 
+ .text.rtc_clk_8md256_enabled
+                0x0000000040081700       0x15 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040081700                rtc_clk_8md256_enabled
+ *fill*         0x0000000040081715        0x3 
+ .text.rtc_clk_slow_freq_set
+                0x0000000040081718       0x44 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040081718                rtc_clk_slow_freq_set
+ .text.rtc_clk_slow_freq_get
+                0x000000004008175c       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004008175c                rtc_clk_slow_freq_get
+ .text.rtc_clk_slow_freq_get_hz
+                0x000000004008176c       0x26 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004008176c                rtc_clk_slow_freq_get_hz
+ *fill*         0x0000000040081792        0x2 
+ .text.rtc_clk_fast_freq_set
+                0x0000000040081794       0x2a /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040081794                rtc_clk_fast_freq_set
+ *fill*         0x00000000400817be        0x2 
+ .text.rtc_clk_fast_freq_get
+                0x00000000400817c0       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400817c0                rtc_clk_fast_freq_get
+ .text.rtc_clk_bbpll_configure
+                0x00000000400817d0      0x164 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400817d0                rtc_clk_bbpll_configure
+ .text.rtc_clk_xtal_freq_get
+                0x0000000040081934       0x26 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040081934                rtc_get_xtal
+                0x0000000040081934                rtc_clk_xtal_freq_get
+ *fill*         0x000000004008195a        0x2 
+ .text.rtc_clk_cpu_freq_mhz_to_config
+                0x000000004008195c       0x56 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                                         0x5a (size before relaxing)
+                0x000000004008195c                rtc_clk_cpu_freq_mhz_to_config
+ *fill*         0x00000000400819b2        0x2 
+ .text.rtc_clk_cpu_freq_get_config
+                0x00000000400819b4       0x8b /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                                         0x93 (size before relaxing)
+                0x00000000400819b4                rtc_clk_cpu_freq_get_config
+ *fill*         0x0000000040081a3f        0x1 
+ .text.rtc_clk_xtal_freq_update
+                0x0000000040081a40       0x29 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040081a40                rtc_clk_xtal_freq_update
+ *fill*         0x0000000040081a69        0x3 
+ .text.rtc_clk_apb_freq_update
+                0x0000000040081a6c       0x19 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040081a6c                rtc_clk_apb_freq_update
+ *fill*         0x0000000040081a85        0x3 
+ .text.rtc_clk_cpu_freq_to_xtal
+                0x0000000040081a88       0x79 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                                         0x7d (size before relaxing)
+                0x0000000040081a88                rtc_clk_cpu_freq_to_xtal
+ *fill*         0x0000000040081b01        0x3 
  .text.rtc_clk_cpu_freq_set_config
-                0x0000000040081ce0       0x5b /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                                         0x76 (size before relaxing)
-                0x0000000040081ce0                rtc_clk_cpu_freq_set_config
- *fill*         0x0000000040081d3b        0x1 
+                0x0000000040081b04      0x112 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                                        0x12a (size before relaxing)
+                0x0000000040081b04                rtc_clk_cpu_freq_set_config
+ *fill*         0x0000000040081c16        0x2 
  .text.rtc_clk_apb_freq_get
-                0x0000000040081d3c       0x27 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x0000000040081d3c                rtc_clk_apb_freq_get
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
- *fill*         0x0000000040081d63        0x0 
+                0x0000000040081c18       0x27 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040081c18                rtc_clk_apb_freq_get
+ *fill*         0x0000000040081c3f        0x0 
+ *fill*         0x0000000040081c3f        0x0 
+ *fill*         0x0000000040081c3f        0x0 
+ *fill*         0x0000000040081c3f        0x0 
+ *fill*         0x0000000040081c3f        0x0 
+ *fill*         0x0000000040081c3f        0x0 
+ *fill*         0x0000000040081c3f        0x0 
+ *fill*         0x0000000040081c3f        0x0 
+ *fill*         0x0000000040081c3f        0x0 
+ *fill*         0x0000000040081c3f        0x0 
+ *fill*         0x0000000040081c3f        0x0 
+ *fill*         0x0000000040081c3f        0x0 
+ *fill*         0x0000000040081c3f        0x0 
+ *fill*         0x0000000040081c3f        0x0 
+ *fill*         0x0000000040081c3f        0x0 
+ *fill*         0x0000000040081c3f        0x0 
+ *fill*         0x0000000040081c3f        0x0 
+ *fill*         0x0000000040081c3f        0x0 
+ *fill*         0x0000000040081c3f        0x0 
+ *fill*         0x0000000040081c3f        0x0 
+ *fill*         0x0000000040081c3f        0x0 
+ *fill*         0x0000000040081c3f        0x0 
  *(.iram .iram.*)
  *(.fini.literal)
  *(.fini)
  *(.gnu.version)
-                0x0000000040081d63                _text_end = ABSOLUTE (.)
-                0x0000000040081d63                _etext = .
+                0x0000000040081c3f                _text_end = ABSOLUTE (.)
+                0x0000000040081c3f                _etext = .
 
 .dram0.bss      0x000000003fff0000       0x18
                 0x000000003fff0000                . = ALIGN (0x8)
@@ -1258,80 +1070,82 @@ END GROUP
  *(.jcr)
                 0x000000003fff001c                _data_end = ABSOLUTE (.)
 
-.dram0.rodata   0x000000003fff001c     0x15c8
+.dram0.rodata   0x000000003fff001c     0x14e8
                 0x000000003fff001c                _rodata_start = ABSOLUTE (.)
  *(.rodata)
  .rodata        0x000000003fff001c       0x14 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
  .rodata        0x000000003fff0030        0x8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
  *(.rodata.*)
- .rodata.str1.4
-                0x000000003fff0038       0x3b /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
- *fill*         0x000000003fff0073        0x1 
- .rodata.str1.4
-                0x000000003fff0074      0x382 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
-                                        0x38a (size before relaxing)
- *fill*         0x000000003fff03f6        0x2 
- .rodata.str1.4
-                0x000000003fff03f8      0x5b1 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                        0x5b9 (size before relaxing)
- *fill*         0x000000003fff09a9        0x3 
- .rodata.str1.4
-                0x000000003fff09ac      0x28e /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- *fill*         0x000000003fff0c3a        0x2 
- .rodata.str1.4
-                0x000000003fff0c3c      0x163 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- *fill*         0x000000003fff0d9f        0x1 
- .rodata.str1.4
-                0x000000003fff0da0      0x4d6 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                        0x516 (size before relaxing)
- *fill*         0x000000003fff1276        0x2 
+ .rodata.str1.1
+                0x000000003fff0038       0x38 /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
+ .rodata.str1.1
+                0x000000003fff0070      0x35f /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+                                        0x364 (size before relaxing)
+ .rodata.CSWTCH$37
+                0x000000003fff03cf        0x5 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+ .rodata.CSWTCH$24
+                0x000000003fff03d4       0x14 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+ .rodata.CSWTCH$23
+                0x000000003fff03e8       0x40 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+ .rodata.str1.1
+                0x000000003fff0428      0x580 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                                        0x585 (size before relaxing)
+ .rodata.str1.1
+                0x000000003fff09a8      0x27d /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ *fill*         0x000000003fff0c25        0x3 
+ .rodata.CSWTCH$18
+                0x000000003fff0c28        0xc /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .rodata.str1.1
+                0x000000003fff0c34      0x15c /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .rodata.str1.1
+                0x000000003fff0d90      0x41f /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                                        0x45a (size before relaxing)
  .rodata.padding$3887
-                0x000000003fff1278       0x40 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .rodata.str1.4
-                0x000000003fff12b8      0x1cb /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
- *fill*         0x000000003fff1483        0x1 
+                0x000000003fff11af       0x40 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ .rodata.str1.1
+                0x000000003fff11ef      0x1bc /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
+ *fill*         0x000000003fff13ab        0x1 
  .rodata.rtc_clk_xtal_freq_estimate
-                0x000000003fff1484       0x64 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
- .rodata.str1.4
-                0x000000003fff14e8       0x55 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
- *fill*         0x000000003fff153d        0x3 
- .rodata.str1.4
-                0x000000003fff1540       0xa4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                                         0xa1 (size before relaxing)
+                0x000000003fff13ac       0x64 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
+ .rodata.str1.1
+                0x000000003fff1410       0x52 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .rodata.str1.1
+                0x000000003fff1462       0xa0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
  *(.gnu.linkonce.r.*)
  *(.rodata1)
-                0x000000003fff15e4                __XT_EXCEPTION_TABLE_ = ABSOLUTE (.)
+                0x000000003fff1502                __XT_EXCEPTION_TABLE_ = ABSOLUTE (.)
  *(.xt_except_table)
  *(.gcc_except_table)
  *(.gnu.linkonce.e.*)
  *(.gnu.version_r)
  *(.eh_frame)
-                0x000000003fff15e4                . = ((. + 0x3) & 0xfffffffffffffffc)
-                0x000000003fff15e4                __init_array_start = ABSOLUTE (.)
+                0x000000003fff1504                . = ((. + 0x3) & 0xfffffffffffffffc)
+ *fill*         0x000000003fff1502        0x2 
+                0x000000003fff1504                __init_array_start = ABSOLUTE (.)
  *crtbegin.*(.ctors)
  *(EXCLUDE_FILE(*crtend.*) .ctors)
  *(SORT(.ctors.*))
  *(.ctors)
-                0x000000003fff15e4                __init_array_end = ABSOLUTE (.)
+                0x000000003fff1504                __init_array_end = ABSOLUTE (.)
  *crtbegin.*(.dtors)
  *(EXCLUDE_FILE(*crtend.*) .dtors)
  *(SORT(.dtors.*))
  *(.dtors)
-                0x000000003fff15e4                __XT_EXCEPTION_DESCS_ = ABSOLUTE (.)
+                0x000000003fff1504                __XT_EXCEPTION_DESCS_ = ABSOLUTE (.)
  *(.xt_except_desc)
  *(.gnu.linkonce.h.*)
-                0x000000003fff15e4                __XT_EXCEPTION_DESCS_END__ = ABSOLUTE (.)
+                0x000000003fff1504                __XT_EXCEPTION_DESCS_END__ = ABSOLUTE (.)
  *(.xt_except_desc_end)
  *(.dynamic)
  *(.gnu.version_d)
-                0x000000003fff15e4                _rodata_end = ABSOLUTE (.)
-                0x000000003fff15e4                _lit4_start = ABSOLUTE (.)
+                0x000000003fff1504                _rodata_end = ABSOLUTE (.)
+                0x000000003fff1504                _lit4_start = ABSOLUTE (.)
  *(*.lit4)
  *(.lit4.*)
  *(.gnu.linkonce.lit4.*)
-                0x000000003fff15e4                _lit4_end = ABSOLUTE (.)
-                0x000000003fff15e4                . = ALIGN (0x4)
-                0x000000003fff15e4                _heap_start = ABSOLUTE (.)
+                0x000000003fff1504                _lit4_end = ABSOLUTE (.)
+                0x000000003fff1504                . = ALIGN (0x4)
+                0x000000003fff1504                _heap_start = ABSOLUTE (.)
                 [!provide]                        PROVIDE (Add2SelfBigHex256, 0x40015b7c)
                 [!provide]                        PROVIDE (AddBigHex256, 0x40015b28)
                 [!provide]                        PROVIDE (AddBigHexModP256, 0x40015c98)
@@ -2962,7 +2776,7 @@ END GROUP
                 [!provide]                        PROVIDE (strchr, 0x4000c53c)
                 [!provide]                        PROVIDE (strcmp, 0x40001274)
                 [!provide]                        PROVIDE (strcoll, 0x40001398)
-                [!provide]                        PROVIDE (strcpy, 0x400013ac)
+                0x00000000400013ac                PROVIDE (strcpy, 0x400013ac)
                 0x000000004000c558                PROVIDE (strcspn, 0x4000c558)
                 [!provide]                        PROVIDE (strdup, 0x4000143c)
                 [!provide]                        PROVIDE (_strdup_r, 0x40001450)
@@ -3052,192 +2866,193 @@ END GROUP
                 0x000000004005da9c                PROVIDE (MD5Update, 0x4005da9c)
 OUTPUT(/home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader.elf elf32-xtensa-le)
 
-.debug_frame    0x0000000000000000     0x10e0
- .debug_frame   0x0000000000000000       0x58 /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
- .debug_frame   0x0000000000000058      0x130 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
- .debug_frame   0x0000000000000188       0x28 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
- .debug_frame   0x00000000000001b0       0x58 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .debug_frame   0x0000000000000208      0x100 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
- .debug_frame   0x0000000000000308       0xe8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- .debug_frame   0x00000000000003f0      0x130 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
- .debug_frame   0x0000000000000520       0xa0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
- .debug_frame   0x00000000000005c0       0x28 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- .debug_frame   0x00000000000005e8      0x160 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .debug_frame   0x0000000000000748       0x70 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .debug_frame   0x00000000000007b8       0x70 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
- .debug_frame   0x0000000000000828      0x208 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .debug_frame   0x0000000000000a30       0x70 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(cpu_util.o)
- .debug_frame   0x0000000000000aa0      0x130 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
- .debug_frame   0x0000000000000bd0       0x58 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
- .debug_frame   0x0000000000000c28       0x40 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
- .debug_frame   0x0000000000000c68       0xb8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
- .debug_frame   0x0000000000000d20      0x370 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .debug_frame   0x0000000000001090       0x28 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .debug_frame   0x00000000000010b8       0x28 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+.debug_frame    0x0000000000000000      0xdf8
+ .debug_frame   0x0000000000000000       0x28 /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
+ .debug_frame   0x0000000000000028       0x70 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+ .debug_frame   0x0000000000000098       0x28 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
+ .debug_frame   0x00000000000000c0       0x58 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .debug_frame   0x0000000000000118       0xd0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+ .debug_frame   0x00000000000001e8       0xa0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .debug_frame   0x0000000000000288      0x118 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+ .debug_frame   0x00000000000003a0       0xa0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+ .debug_frame   0x0000000000000440       0x28 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .debug_frame   0x0000000000000468       0xa0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .debug_frame   0x0000000000000508       0x70 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ .debug_frame   0x0000000000000578       0x70 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
+ .debug_frame   0x00000000000005e8      0x190 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_frame   0x0000000000000778       0x70 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(cpu_util.o)
+ .debug_frame   0x00000000000007e8      0x130 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
+ .debug_frame   0x0000000000000918       0x58 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
+ .debug_frame   0x0000000000000970       0x40 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
+ .debug_frame   0x00000000000009b0       0xb8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .debug_frame   0x0000000000000a68      0x340 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .debug_frame   0x0000000000000da8       0x28 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
+ .debug_frame   0x0000000000000dd0       0x28 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
-.debug_info     0x0000000000000000     0xd70f
- .debug_info    0x0000000000000000      0x337 /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
- .debug_info    0x0000000000000337     0x15c3 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
- .debug_info    0x00000000000018fa      0x2d7 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
- .debug_info    0x0000000000001bd1      0x1fe /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .debug_info    0x0000000000001dcf     0x1476 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
- .debug_info    0x0000000000003245      0xd14 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- .debug_info    0x0000000000003f59     0x2adb /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
- .debug_info    0x0000000000006a34      0xaf0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
- .debug_info    0x0000000000007524      0x526 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- .debug_info    0x0000000000007a4a     0x1521 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .debug_info    0x0000000000008f6b      0x39a /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .debug_info    0x0000000000009305      0x900 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
- .debug_info    0x0000000000009c05      0xaf5 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .debug_info    0x000000000000a6fa       0xf5 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(cpu_util.o)
- .debug_info    0x000000000000a7ef      0x408 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
- .debug_info    0x000000000000abf7      0x339 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
- .debug_info    0x000000000000af30      0x7ce /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
- .debug_info    0x000000000000b6fe       0x95 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(gpio_periph.o)
- .debug_info    0x000000000000b793      0x473 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
- .debug_info    0x000000000000bc06     0x1474 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .debug_info    0x000000000000d07a       0xcd /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .debug_info    0x000000000000d147      0x5c8 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+.debug_info     0x0000000000000000     0xd5b7
+ .debug_info    0x0000000000000000      0x32f /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
+ .debug_info    0x000000000000032f     0x15d2 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+ .debug_info    0x0000000000001901      0x2d8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
+ .debug_info    0x0000000000001bd9      0x1fe /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .debug_info    0x0000000000001dd7     0x13a7 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+ .debug_info    0x000000000000317e      0xbe4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .debug_info    0x0000000000003d62     0x2af1 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+ .debug_info    0x0000000000006853      0xb59 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+ .debug_info    0x00000000000073ac      0x4ef /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .debug_info    0x000000000000789b     0x167f /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .debug_info    0x0000000000008f1a      0x398 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ .debug_info    0x00000000000092b2      0x5f9 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
+ .debug_info    0x00000000000098ab      0xbbe /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_info    0x000000000000a469       0xf7 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(cpu_util.o)
+ .debug_info    0x000000000000a560      0x408 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
+ .debug_info    0x000000000000a968      0x339 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
+ .debug_info    0x000000000000aca1      0x7ce /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
+ .debug_info    0x000000000000b46f       0x95 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(gpio_periph.o)
+ .debug_info    0x000000000000b504      0x446 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .debug_info    0x000000000000b94a     0x15d8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .debug_info    0x000000000000cf22       0xcd /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
+ .debug_info    0x000000000000cfef      0x5c8 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
-.debug_abbrev   0x0000000000000000     0x2924
- .debug_abbrev  0x0000000000000000      0x15a /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
- .debug_abbrev  0x000000000000015a      0x3fb /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
- .debug_abbrev  0x0000000000000555      0x150 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
- .debug_abbrev  0x00000000000006a5      0x107 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .debug_abbrev  0x00000000000007ac      0x38f /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
- .debug_abbrev  0x0000000000000b3b      0x26e /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- .debug_abbrev  0x0000000000000da9      0x38e /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
- .debug_abbrev  0x0000000000001137      0x1e4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
- .debug_abbrev  0x000000000000131b      0x17b /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- .debug_abbrev  0x0000000000001496      0x2e1 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .debug_abbrev  0x0000000000001777      0x1a4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .debug_abbrev  0x000000000000191b      0x1f3 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
- .debug_abbrev  0x0000000000001b0e      0x22e /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .debug_abbrev  0x0000000000001d3c       0x76 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(cpu_util.o)
- .debug_abbrev  0x0000000000001db2      0x147 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
- .debug_abbrev  0x0000000000001ef9      0x135 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
- .debug_abbrev  0x000000000000202e      0x203 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
- .debug_abbrev  0x0000000000002231       0x5b /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(gpio_periph.o)
- .debug_abbrev  0x000000000000228c      0x19b /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
- .debug_abbrev  0x0000000000002427      0x33e /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .debug_abbrev  0x0000000000002765       0x60 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .debug_abbrev  0x00000000000027c5      0x15f /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+.debug_abbrev   0x0000000000000000     0x2bba
+ .debug_abbrev  0x0000000000000000      0x16c /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
+ .debug_abbrev  0x000000000000016c      0x3b2 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+ .debug_abbrev  0x000000000000051e      0x163 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
+ .debug_abbrev  0x0000000000000681      0x116 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .debug_abbrev  0x0000000000000797      0x398 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+ .debug_abbrev  0x0000000000000b2f      0x267 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .debug_abbrev  0x0000000000000d96      0x3a1 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+ .debug_abbrev  0x0000000000001137      0x253 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+ .debug_abbrev  0x000000000000138a      0x186 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .debug_abbrev  0x0000000000001510      0x3bc /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .debug_abbrev  0x00000000000018cc      0x193 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ .debug_abbrev  0x0000000000001a5f      0x1e3 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
+ .debug_abbrev  0x0000000000001c42      0x2e1 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_abbrev  0x0000000000001f23       0x85 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(cpu_util.o)
+ .debug_abbrev  0x0000000000001fa8      0x147 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
+ .debug_abbrev  0x00000000000020ef      0x146 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
+ .debug_abbrev  0x0000000000002235      0x205 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
+ .debug_abbrev  0x000000000000243a       0x5b /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(gpio_periph.o)
+ .debug_abbrev  0x0000000000002495      0x199 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .debug_abbrev  0x000000000000262e      0x3cd /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .debug_abbrev  0x00000000000029fb       0x60 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
+ .debug_abbrev  0x0000000000002a5b      0x15f /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
-.debug_loc      0x0000000000000000     0x5cc1
- .debug_loc     0x0000000000000000       0x84 /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
- .debug_loc     0x0000000000000084      0x761 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
- .debug_loc     0x00000000000007e5       0x79 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
- .debug_loc     0x000000000000085e       0x45 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .debug_loc     0x00000000000008a3      0x9ad /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
- .debug_loc     0x0000000000001250      0x708 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- .debug_loc     0x0000000000001958      0x232 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
- .debug_loc     0x0000000000001b8a      0x3e6 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
- .debug_loc     0x0000000000001f70      0x1b6 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- .debug_loc     0x0000000000002126      0xbd1 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .debug_loc     0x0000000000002cf7      0x1ff /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .debug_loc     0x0000000000002ef6      0x4ad /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
- .debug_loc     0x00000000000033a3      0xa20 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .debug_loc     0x0000000000003dc3      0x2e5 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
- .debug_loc     0x00000000000040a8      0x245 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
- .debug_loc     0x00000000000042ed      0x1d6 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
- .debug_loc     0x00000000000044c3      0x227 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
- .debug_loc     0x00000000000046ea      0xbce /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .debug_loc     0x00000000000052b8       0x21 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .debug_loc     0x00000000000052d9      0x9e8 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+.debug_loc      0x0000000000000000     0x5302
+ .debug_loc     0x0000000000000000       0xc7 /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
+ .debug_loc     0x00000000000000c7      0x5c6 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+ .debug_loc     0x000000000000068d       0x5e /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
+ .debug_loc     0x00000000000006eb       0x45 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .debug_loc     0x0000000000000730      0x6a2 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+ .debug_loc     0x0000000000000dd2      0x4a9 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .debug_loc     0x000000000000127b      0x23c /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+ .debug_loc     0x00000000000014b7      0x37b /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+ .debug_loc     0x0000000000001832      0x15c /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .debug_loc     0x000000000000198e      0xb2a /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .debug_loc     0x00000000000024b8      0x35a /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ .debug_loc     0x0000000000002812      0x247 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
+ .debug_loc     0x0000000000002a59      0x785 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_loc     0x00000000000031de       0x21 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(cpu_util.o)
+ .debug_loc     0x00000000000031ff      0x2e5 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
+ .debug_loc     0x00000000000034e4      0x419 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
+ .debug_loc     0x00000000000038fd      0x244 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
+ .debug_loc     0x0000000000003b41      0x2b0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .debug_loc     0x0000000000003df1      0xb08 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .debug_loc     0x00000000000048f9       0x21 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
+ .debug_loc     0x000000000000491a      0x9e8 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
-.debug_aranges  0x0000000000000000      0x740
+.debug_aranges  0x0000000000000000      0x648
  .debug_aranges
-                0x0000000000000000       0x30 /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
+                0x0000000000000000       0x20 /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
  .debug_aranges
-                0x0000000000000030       0x78 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+                0x0000000000000020       0x38 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
  .debug_aranges
-                0x00000000000000a8       0x20 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
+                0x0000000000000058       0x20 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
  .debug_aranges
-                0x00000000000000c8       0x30 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+                0x0000000000000078       0x30 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
  .debug_aranges
-                0x00000000000000f8       0x68 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                0x00000000000000a8       0x58 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
  .debug_aranges
-                0x0000000000000160       0x60 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x0000000000000100       0x48 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
  .debug_aranges
-                0x00000000000001c0       0x78 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+                0x0000000000000148       0x70 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
  .debug_aranges
-                0x0000000000000238       0x48 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+                0x00000000000001b8       0x48 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
  .debug_aranges
-                0x0000000000000280       0x20 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+                0x0000000000000200       0x20 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
  .debug_aranges
-                0x00000000000002a0       0x88 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                0x0000000000000220       0x48 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
  .debug_aranges
-                0x0000000000000328       0x38 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                0x0000000000000268       0x38 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
  .debug_aranges
-                0x0000000000000360       0x38 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
+                0x00000000000002a0       0x38 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
  .debug_aranges
-                0x0000000000000398       0xc0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x00000000000002d8       0x98 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .debug_aranges
-                0x0000000000000458       0x38 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(cpu_util.o)
+                0x0000000000000370       0x38 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(cpu_util.o)
  .debug_aranges
-                0x0000000000000490       0x78 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
+                0x00000000000003a8       0x78 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
  .debug_aranges
-                0x0000000000000508       0x30 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
+                0x0000000000000420       0x30 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
  .debug_aranges
-                0x0000000000000538       0x28 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
+                0x0000000000000450       0x28 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
  .debug_aranges
-                0x0000000000000560       0x18 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(gpio_periph.o)
+                0x0000000000000478       0x18 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(gpio_periph.o)
  .debug_aranges
-                0x0000000000000578       0x50 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
+                0x0000000000000490       0x50 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
  .debug_aranges
-                0x00000000000005c8      0x138 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000000004e0      0x128 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .debug_aranges
-                0x0000000000000700       0x20 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
+                0x0000000000000608       0x20 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
  .debug_aranges
-                0x0000000000000720       0x20 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+                0x0000000000000628       0x20 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
-.debug_ranges   0x0000000000000000      0x738
- .debug_ranges  0x0000000000000000       0x20 /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
- .debug_ranges  0x0000000000000020       0x68 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
- .debug_ranges  0x0000000000000088       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
- .debug_ranges  0x0000000000000098       0x20 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .debug_ranges  0x00000000000000b8       0x70 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
- .debug_ranges  0x0000000000000128       0x50 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- .debug_ranges  0x0000000000000178       0x68 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
- .debug_ranges  0x00000000000001e0       0x80 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
- .debug_ranges  0x0000000000000260       0x58 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- .debug_ranges  0x00000000000002b8       0xa8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .debug_ranges  0x0000000000000360       0x58 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .debug_ranges  0x00000000000003b8       0x28 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
- .debug_ranges  0x00000000000003e0       0xb0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .debug_ranges  0x0000000000000490       0x28 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(cpu_util.o)
- .debug_ranges  0x00000000000004b8       0x68 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
- .debug_ranges  0x0000000000000520       0x20 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
- .debug_ranges  0x0000000000000540       0x18 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
- .debug_ranges  0x0000000000000558       0x40 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
- .debug_ranges  0x0000000000000598      0x140 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .debug_ranges  0x00000000000006d8       0x60 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+.debug_ranges   0x0000000000000000      0x9e8
+ .debug_ranges  0x0000000000000000       0x10 /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
+ .debug_ranges  0x0000000000000010       0x88 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+ .debug_ranges  0x0000000000000098       0x28 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
+ .debug_ranges  0x00000000000000c0       0x80 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .debug_ranges  0x0000000000000140       0xf0 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+ .debug_ranges  0x0000000000000230       0x68 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .debug_ranges  0x0000000000000298       0x78 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+ .debug_ranges  0x0000000000000310       0x80 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+ .debug_ranges  0x0000000000000390       0x40 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .debug_ranges  0x00000000000003d0      0x198 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .debug_ranges  0x0000000000000568       0x58 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ .debug_ranges  0x00000000000005c0       0x40 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
+ .debug_ranges  0x0000000000000600       0xd8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_ranges  0x00000000000006d8       0x28 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(cpu_util.o)
+ .debug_ranges  0x0000000000000700       0x68 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
+ .debug_ranges  0x0000000000000768       0x68 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
+ .debug_ranges  0x00000000000007d0       0x30 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
+ .debug_ranges  0x0000000000000800       0x40 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .debug_ranges  0x0000000000000840      0x148 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .debug_ranges  0x0000000000000988       0x60 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
-.debug_line     0x0000000000000000     0x735d
- .debug_line    0x0000000000000000      0x317 /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
- .debug_line    0x0000000000000317      0x9dd /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
- .debug_line    0x0000000000000cf4      0x229 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
- .debug_line    0x0000000000000f1d      0x394 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .debug_line    0x00000000000012b1      0x972 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
- .debug_line    0x0000000000001c23      0x66b /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- .debug_line    0x000000000000228e      0x557 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
- .debug_line    0x00000000000027e5      0x683 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
- .debug_line    0x0000000000002e68      0x350 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- .debug_line    0x00000000000031b8      0xb64 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .debug_line    0x0000000000003d1c      0x424 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .debug_line    0x0000000000004140      0x4ee /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
- .debug_line    0x000000000000462e      0xad4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .debug_line    0x0000000000005102      0x18d /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(cpu_util.o)
- .debug_line    0x000000000000528f      0x473 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
- .debug_line    0x0000000000005702      0x3d8 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
- .debug_line    0x0000000000005ada      0x3d3 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
- .debug_line    0x0000000000005ead      0x102 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(gpio_periph.o)
- .debug_line    0x0000000000005faf      0x418 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
- .debug_line    0x00000000000063c7      0xd7f /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .debug_line    0x0000000000007146       0x89 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .debug_line    0x00000000000071cf      0x18e /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+.debug_line     0x0000000000000000     0x6f55
+ .debug_line    0x0000000000000000      0x2ca /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
+ .debug_line    0x00000000000002ca      0x857 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+ .debug_line    0x0000000000000b21      0x257 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
+ .debug_line    0x0000000000000d78      0x402 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .debug_line    0x000000000000117a      0x8fe /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+ .debug_line    0x0000000000001a78      0x5b6 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .debug_line    0x000000000000202e      0x584 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+ .debug_line    0x00000000000025b2      0x697 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+ .debug_line    0x0000000000002c49      0x328 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .debug_line    0x0000000000002f71      0x9c4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .debug_line    0x0000000000003935      0x414 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ .debug_line    0x0000000000003d49      0x4be /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
+ .debug_line    0x0000000000004207      0xa28 /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_line    0x0000000000004c2f      0x18d /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(cpu_util.o)
+ .debug_line    0x0000000000004dbc      0x473 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
+ .debug_line    0x000000000000522f      0x40e /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
+ .debug_line    0x000000000000563d      0x3e6 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
+ .debug_line    0x0000000000005a23      0x102 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(gpio_periph.o)
+ .debug_line    0x0000000000005b25      0x438 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .debug_line    0x0000000000005f5d      0xde1 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .debug_line    0x0000000000006d3e       0x89 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
+ .debug_line    0x0000000000006dc7      0x18e /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
-.debug_str      0x0000000000000000     0x4aa0
+.debug_str      0x0000000000000000     0x4b20
  .debug_str     0x0000000000000000      0x30d /home/share/esp32/project/ESP32_CH374U/build/bootloader/main/libmain.a(bootloader_start.o)
                                         0x371 (size before relaxing)
  .debug_str     0x000000000000030d      0xac7 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
@@ -3253,34 +3068,34 @@ OUTPUT(/home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader.elf el
  .debug_str     0x0000000000001692     0x1885 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
                                        0x1bc4 (size before relaxing)
  .debug_str     0x0000000000002f17      0x34a /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
-                                        0x7a2 (size before relaxing)
+                                        0x7a9 (size before relaxing)
  .debug_str     0x0000000000003261       0xb4 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
                                         0x3cf (size before relaxing)
  .debug_str     0x0000000000003315      0x2dc /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
                                         0xa3c (size before relaxing)
  .debug_str     0x00000000000035f1      0x110 /home/share/esp32/project/ESP32_CH374U/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
                                         0x34d (size before relaxing)
- .debug_str     0x0000000000003701      0x198 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
-                                        0x354 (size before relaxing)
- .debug_str     0x0000000000003899      0x36d /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_str     0x0000000000003701      0x1a9 /home/share/esp32/project/ESP32_CH374U/build/bootloader/log/liblog.a(log.o)
+                                        0x36c (size before relaxing)
+ .debug_str     0x00000000000038aa      0x36d /home/share/esp32/project/ESP32_CH374U/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                         0x753 (size before relaxing)
- .debug_str     0x0000000000003c06       0x72 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(cpu_util.o)
+ .debug_str     0x0000000000003c17       0x72 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(cpu_util.o)
                                         0x17e (size before relaxing)
- .debug_str     0x0000000000003c78      0x193 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
+ .debug_str     0x0000000000003c89      0x202 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_wdt.o)
                                         0x51d (size before relaxing)
- .debug_str     0x0000000000003e0b       0xc2 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
+ .debug_str     0x0000000000003e8b       0xc2 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_init.o)
                                         0x247 (size before relaxing)
- .debug_str     0x0000000000003ecd      0x2be /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
+ .debug_str     0x0000000000003f4d      0x2be /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk_init.o)
                                         0x6b6 (size before relaxing)
- .debug_str     0x000000000000418b       0x42 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(gpio_periph.o)
+ .debug_str     0x000000000000420b       0x42 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(gpio_periph.o)
                                         0x148 (size before relaxing)
- .debug_str     0x00000000000041cd      0x16a /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .debug_str     0x000000000000424d      0x16a /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_time.o)
                                         0x441 (size before relaxing)
- .debug_str     0x0000000000004337      0x555 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .debug_str     0x00000000000043b7      0x555 /home/share/esp32/project/ESP32_CH374U/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                         0xafd (size before relaxing)
- .debug_str     0x000000000000488c      0x138 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
+ .debug_str     0x000000000000490c      0x138 /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
                                         0x1de (size before relaxing)
- .debug_str     0x00000000000049c4       0xdc /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+ .debug_str     0x0000000000004a44       0xdc /home/share/esp32/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
                                         0x258 (size before relaxing)
 
 .comment        0x0000000000000000       0x3a
