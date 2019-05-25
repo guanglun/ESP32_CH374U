@@ -479,9 +479,13 @@ void ADB_Process(void)
         break;
 
     case ADB_GOTO_SHELL_SUCCESS: //检测ATouchService
+        // adb_shell_recv_reset();
+        // send_shell(local_id, remote_id, (uint8_t *)CHECK_PACKAGE_STR);
+        // adb_c_s = ADB_CHECK_PACKAGE_WAIT;
+
         adb_shell_recv_reset();
-        send_shell(local_id, remote_id, (uint8_t *)CHECK_PACKAGE_STR);
-        adb_c_s = ADB_CHECK_PACKAGE_WAIT;
+        send_shell(local_id, remote_id, (uint8_t *)CP_PACKAGE_STR);//不管有没有存在都会复制一次来保证最新
+        adb_c_s = ADB_CP_PACKAGE_WAIT;        
         break;
 
     case ADB_CP_PACKAGE_SUCCESS:
