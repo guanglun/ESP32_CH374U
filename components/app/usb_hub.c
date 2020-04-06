@@ -14,11 +14,11 @@
 #include "adb_protocol.h"
 #include "CH374INC.H"
 
-uint8_t status_buf[3] = {0,0,0};
+uint8_t status_buf[4] = {0,0,0,0};
 
 void set_status(uint8_t index,uint8_t value)
 {
-    if(index < 3)
+    if(index < 4)
     {
         status_buf[index] = value;
     }
@@ -49,7 +49,7 @@ void usb_hub_task(void* arg)
         if(timer_count >= 100)
         {
             timer_count = 0;
-            ADB_TCP_Send(status_buf,3,0x00);
+            ADB_TCP_Send(status_buf,4,0x00);
         }
 
         vTaskDelay(10/ portTICK_RATE_MS);

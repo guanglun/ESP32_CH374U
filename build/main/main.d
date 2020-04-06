@@ -134,7 +134,13 @@ main.o: /home/share/esp32/project/ESP32_CH374U/main/main.c \
  /home/share/esp32/project/ESP32_CH374U/components/app/sha1withrsa.h \
  /home/share/esp32/project/ESP32_CH374U/components/hal/led_hal.h \
  /home/share/esp32/project/ESP32_CH374U/components/app/upgrade.h \
- /home/share/esp32/project/ESP32_CH374U/main/version.h
+ /home/share/esp32/project/ESP32_CH374U/main/version.h \
+ /home/share/esp32/project/ESP32_CH374U/components/wifi/esp_wifi_station.h \
+ /home/share/esp32/esp-idf-v3.2/components/nvs_flash/include/nvs_flash.h \
+ /home/share/esp32/esp-idf-v3.2/components/nvs_flash/include/nvs.h \
+ /home/share/esp32/esp-idf-v3.2/components/spi_flash/include/esp_partition.h \
+ /home/share/esp32/esp-idf-v3.2/components/spi_flash/include/esp_spi_flash.h \
+ /home/share/esp32/esp-idf-v3.2/components/nvs_flash/include/nvs.h
 
 /home/share/esp32/esp-idf-v3.2/components/newlib/include/stdio.h:
 
@@ -407,4 +413,16 @@ main.o: /home/share/esp32/project/ESP32_CH374U/main/main.c \
 /home/share/esp32/project/ESP32_CH374U/components/app/upgrade.h:
 
 /home/share/esp32/project/ESP32_CH374U/main/version.h:
+
+/home/share/esp32/project/ESP32_CH374U/components/wifi/esp_wifi_station.h:
+
+/home/share/esp32/esp-idf-v3.2/components/nvs_flash/include/nvs_flash.h:
+
+/home/share/esp32/esp-idf-v3.2/components/nvs_flash/include/nvs.h:
+
+/home/share/esp32/esp-idf-v3.2/components/spi_flash/include/esp_partition.h:
+
+/home/share/esp32/esp-idf-v3.2/components/spi_flash/include/esp_spi_flash.h:
+
+/home/share/esp32/esp-idf-v3.2/components/nvs_flash/include/nvs.h:
 /home/share/esp32/project/ESP32_CH374U/main/./main.c:

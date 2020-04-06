@@ -15,9 +15,13 @@
 #include "scmd.h"
 
 #include "esp_bluetooth.h"
+#include "esp_wifi_station.h"
 
 uint8_t shell_end_str[20];
 uint8_t shell_tmp_str[4096];
+
+char pid[8];
+char pid_kill = 0;
 
 uint8_t is_first_recv_auth_token = 1;
 ADBTxRx_S adb_rx_s, adb_tx_s;
@@ -27,6 +31,40 @@ uint32_t local_id = 1, remote_id = 0;
 ADB_Connect_Status adb_c_s = ADB_DISCONNECT;
 
 bool is_close = true, is_tcp_send_done = true;
+
+int find_pid_str(char *str,char *pid)
+{
+    int i = 0,i_cnt = 0,flg = 0;
+    
+
+    str = strstr(str, "shell");
+    printf("start found \"%s\"\r\n",str);
+    while(str[i++] != '\0')
+    {
+        if((flg == 0) && (str[i] == ' '))
+        {
+            flg = 1;
+        }else if((flg == 1) && (str[i] == ' ')){
+
+        }else if((flg == 1) && (str[i] != ' ')){
+            flg = 2;
+            pid[i_cnt++] = str[i];
+        }else if((flg == 2) && (str[i] != ' ')){
+            pid[i_cnt++] = str[i];
+        }else if((flg == 2) && (str[i] == ' ')){
+            pid[i_cnt++] = '\0';
+            return 0;
+        }
+
+        if(str[i] == '\r')
+        {
+            flg = 0;
+            i_cnt = 0;
+        }
+    }
+    pid[0] = '\0';
+    return -1;
+}
 
 int printf_adb_frame(amessage *msg, uint8_t *buffer, bool is_recv)
 {
@@ -350,7 +388,18 @@ int ADB_RecvFrame(apacket *p)
             {
                 if(get_str_count((char *) shell_tmp_str,(char *)PACKAGE_STR) >= 2)
                 {
+
+
+
                     printf("package is running\r\n");
+
+
+                    if(find_pid_str((char *)shell_tmp_str,pid) == 0)
+                    {
+                        printf("found pid %s\r\n",pid);
+                    }
+
+
                     adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_TRUE;
                 }else{
                     printf("package is not running\r\n");
@@ -366,6 +415,12 @@ int ADB_RecvFrame(apacket *p)
                 if(get_str_count((char *) shell_tmp_str,(char *)PACKAGE_STR) >= 2)
                 {
                     printf("package is running2\r\n");
+
+                    
+                    if(find_pid_str((char *)shell_tmp_str,pid) == 0)
+                    {
+                        printf("found pid %s\r\n",pid);
+                    }
                     adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_TRUE2;
                 }else{
                     printf("package is not running2\r\n");
@@ -389,7 +444,8 @@ int ADB_RecvFrame(apacket *p)
         }
         else if (adb_c_s == ADB_CONNECT_TCPSERVER_SUCCESS)
         {
-            printf("recv tcpserver data\r\n");
+            printf("recv tcpserver data %s\r\n",p->data);       
+            set_wifi_info((char *)p->data);  
         }
         else if (adb_c_s == ADB_GOTO_SHELL_WAIT)
         {
@@ -411,6 +467,20 @@ int ADB_RecvFrame(apacket *p)
                 adb_c_s = ADB_GOTO_SHELL_FAIL;
             }
         }
+        else if (adb_c_s == ADB_CHECK_PACKAGE_KILL_PID_WAIT)
+        {
+            if(adb_shell_recv(p->data) != NULL)
+            {
+                if(get_str_count((char *) shell_tmp_str,(char *)PACKAGE_STR) >= 2)
+                {
+                    printf("kill pid %s success\r\n",pid);
+                    adb_c_s = ADB_CHECK_PACKAGE_KILL_PID_TRUE;
+                }else{
+                    printf("kill pid %s success\r\n",pid);
+                    adb_c_s = ADB_CHECK_PACKAGE_KILL_PID_TRUE;
+                }
+            }
+        }        
         else if (adb_c_s == ADB_EXIT_SHELL_WAIT)
         {
             if (strstr((const char *)p->data, (const char *)"exit") != NULL)
@@ -436,7 +506,9 @@ int ADB_RecvFrame(apacket *p)
                     adb_c_s = ADB_CP_PACKAGE_SUCCESS;
                 }else{
                     printf("cp package fail\r\n");
+                    //此处如果拷贝失败可能是Text file busy文件已经正在被使用。
                     adb_c_s = ADB_CP_PACKAGE_FAIL;
+                    //adb_c_s = ADB_CP_PACKAGE_SUCCESS;
                 }
             }
         }
@@ -475,7 +547,7 @@ void ADB_Process(void)
 
         send_just_open_shell(local_id, remote_id);
         adb_c_s = ADB_GOTO_SHELL_WAIT;
-
+        pid_kill = 0;
         break;
 
     case ADB_GOTO_SHELL_SUCCESS: //检测ATouchService
@@ -494,6 +566,15 @@ void ADB_Process(void)
         // adb_c_s = ADB_CHMOD_PACKAGE_WAIT;
         send_shell(local_id, remote_id, (uint8_t *)CHECK_PACKAGE_STR);
         adb_c_s = ADB_CHECK_PACKAGE_WAIT;
+        break;
+
+    case ADB_CP_PACKAGE_FAIL:
+        if(pid_kill == 0)
+            pid_kill = 1;
+
+        adb_shell_recv_reset();
+        send_shell(local_id, remote_id, (uint8_t *)CHECK_PACKAGE_ISRUNING_STR);
+        adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_WAIT;
         break;
 
     case ADB_CHMOD_PACKAGE_SUCCESS:
@@ -538,11 +619,25 @@ void ADB_Process(void)
 
     case ADB_CHECK_PACKAGE_ISRUNING_TRUE:
     case ADB_CHECK_PACKAGE_ISRUNING_TRUE2:
-        adb_shell_recv_reset();
-        local_id++;
-        remote_id = 0;
-        send_connect_tcpserver(local_id, remote_id, (uint8_t *)"1989");
-        adb_c_s = ADB_CONNECT_TCPSERVER_WAIT;
+
+        if(pid_kill == 1 && pid[0] != '\0')
+        {
+            char str[80];
+            strcpy (str,KILL_PID_STR);
+            strcat (str,pid);
+            adb_shell_recv_reset();
+            send_shell(local_id, remote_id, (uint8_t *)str);
+            pid_kill = 2;
+            adb_c_s = ADB_CHECK_PACKAGE_KILL_PID_WAIT;
+        }else{
+            
+            adb_shell_recv_reset();
+            local_id++;
+            remote_id = 0;
+            send_connect_tcpserver(local_id, remote_id, (uint8_t *)"1989");
+            adb_c_s = ADB_CONNECT_TCPSERVER_WAIT;
+        }
+        
         break;
 
     case ADB_START_PACKAGE_SUCCESS:
@@ -558,6 +653,12 @@ void ADB_Process(void)
 
         break;
 
+    case ADB_CHECK_PACKAGE_KILL_PID_TRUE:
+    case ADB_CHECK_PACKAGE_KILL_PID_FALSE:
+        adb_shell_recv_reset();
+        send_shell(local_id, remote_id, (uint8_t *)CP_PACKAGE_STR);//不管有没有存在都会复制一次来保证最新
+        adb_c_s = ADB_CP_PACKAGE_WAIT;        
+        break;
     default:
         break;
     }
@@ -586,7 +687,7 @@ uint8_t ADB_TCP_Send(uint8_t *buf, uint16_t len, uint8_t dev_class)
             send_len = cmd_creat(0x00, buf, len, buf_tmp);
             send_tcpserver(local_id, remote_id, buf_tmp, send_len);
 
-            printf("TCP Status: ");
+            printf("ADB TCP Status: ");
             printf_byte(buf_tmp, send_len);
         }
         else if (dev_class == DEV_MOUSE)
@@ -594,7 +695,7 @@ uint8_t ADB_TCP_Send(uint8_t *buf, uint16_t len, uint8_t dev_class)
             send_len = cmd_creat(0x02, buf, len, buf_tmp);
             send_tcpserver(local_id, remote_id, buf_tmp, send_len);
 
-            printf("TCP Mouse: ");
+            printf("ADB TCP Mouse: ");
             printf_byte(buf_tmp, send_len);
         }
         else if (dev_class == DEV_KEYBOARD)
@@ -602,7 +703,35 @@ uint8_t ADB_TCP_Send(uint8_t *buf, uint16_t len, uint8_t dev_class)
             send_len = cmd_creat(0x03, buf, len, buf_tmp);
             send_tcpserver(local_id, remote_id, buf_tmp, send_len);
 
-            printf("TCP KeyBoard: ");
+            printf("ADB TCP KeyBoard: ");
+            printf_byte(buf_tmp, send_len);
+        }
+        return 0;
+    }else if(is_wifi_socket_connect == true)
+    {
+        if (dev_class == 0x00)
+        {
+
+            send_len = cmd_creat(0x00, buf, len, buf_tmp);
+            wifi_socket_send((char *)buf_tmp, send_len);
+
+            printf("WIFI TCP Status: ");
+            printf_byte(buf_tmp, send_len);
+        }
+        else if (dev_class == DEV_MOUSE)
+        {
+            send_len = cmd_creat(0x02, buf, len, buf_tmp);
+            wifi_socket_send((char *)buf_tmp, send_len);
+
+            printf("WIFI TCP Mouse: ");
+            printf_byte(buf_tmp, send_len);
+        }
+        else if (dev_class == DEV_KEYBOARD)
+        {
+            send_len = cmd_creat(0x03, buf, len, buf_tmp);
+            wifi_socket_send((char *)buf_tmp, send_len);
+
+            printf("WIFI TCP KeyBoard: ");
             printf_byte(buf_tmp, send_len);
         }
         return 0;
