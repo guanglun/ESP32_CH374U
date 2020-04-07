@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "scmd.h": "c",
-        "adb_protocol.h": "c",
-        "usb_hub.h": "c",
-        "esp_bluetooth.h": "c"
-    }
-}
