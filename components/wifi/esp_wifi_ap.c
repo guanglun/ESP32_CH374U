@@ -31,12 +31,12 @@ static esp_err_t event_handler(void *ctx, system_event_t *event)
     switch (event->event_id)
     {
     case SYSTEM_EVENT_AP_STACONNECTED:
-        printf("station:" MACSTR " join, AID=%d\r\n",
+        ESP_LOGI("ATouch", "station:" MACSTR " join, AID=%d\r\n",
                MAC2STR(event->event_info.sta_connected.mac),
                event->event_info.sta_connected.aid);
         break;
     case SYSTEM_EVENT_AP_STADISCONNECTED:
-        printf("station:" MACSTR "leave, AID=%d\r\n",
+        ESP_LOGI("ATouch", "station:" MACSTR "leave, AID=%d\r\n",
                MAC2STR(event->event_info.sta_disconnected.mac),
                event->event_info.sta_disconnected.aid);
         break;
@@ -84,7 +84,7 @@ void wifi_init_softap(void)
     ESP_ERROR_CHECK(esp_wifi_set_config(ESP_IF_WIFI_AP, &wifi_config));
     ESP_ERROR_CHECK(esp_wifi_start());
 
-    printf("wifi_init_softap finished.SSID:%s password:%s\r\n",
+    ESP_LOGI("ATouch", "wifi_init_softap finished.SSID:%s password:%s\r\n",
            EXAMPLE_ESP_WIFI_SSID, EXAMPLE_ESP_WIFI_PASS);
 
     xTaskCreate(tcp_server_task, "tcp_server", 8192, NULL, 5, NULL);
@@ -113,26 +113,26 @@ void tcp_server_task(void *pvParameters)
         int listen_sock = socket(addr_family, SOCK_STREAM, ip_protocol);
         if (listen_sock < 0)
         {
-            printf("Unable to create socket: errno %d\r\n", errno);
+            ESP_LOGI("ATouch", "Unable to create socket: errno %d\r\n", errno);
             break;
         }
-        printf("Socket created\r\n");
+        ESP_LOGI("ATouch", "Socket created\r\n");
 
         int err = bind(listen_sock, (struct sockaddr *)&destAddr, sizeof(destAddr));
         if (err != 0)
         {
-            printf("Socket unable to bind: errno %d\r\n", errno);
+            ESP_LOGI("ATouch", "Socket unable to bind: errno %d\r\n", errno);
             break;
         }
-        printf("Socket binded");
+        ESP_LOGI("ATouch", "Socket binded");
 
         err = listen(listen_sock, 1);
         if (err != 0)
         {
-            printf("Error occured during listen: errno %d\r\n", errno);
+            ESP_LOGI("ATouch", "Error occured during listen: errno %d\r\n", errno);
             break;
         }
-        printf("Socket listening\r\n");
+        ESP_LOGI("ATouch", "Socket listening\r\n");
 
         while (1)
         {
@@ -141,16 +141,16 @@ void tcp_server_task(void *pvParameters)
             int sock = accept(listen_sock, (struct sockaddr *)&sourceAddr, &addrLen);
             if (sock < 0)
             {
-                printf("Unable to accept connection: errno %d\r\n", errno);
+                ESP_LOGI("ATouch", "Unable to accept connection: errno %d\r\n", errno);
                 break;
             }
-            printf("Socket accepted\r\n");
+            ESP_LOGI("ATouch", "Socket accepted\r\n");
 
             recv_len = recv(sock, rx_buffer, sizeof(rx_buffer) - 1, 0);
             // Error occured during receiving
             if (recv_len == 8)
             {
-                printf("recv\r\n");
+                ESP_LOGI("ATouch", "recv\r\n");
                 printf_byte(rx_buffer, recv_len);
 
                 if (((rx_buffer[0] == 0x00) && (rx_buffer[1] == 0x01) && (rx_buffer[2] == 0x02) && (rx_buffer[3] == 0x03)) != 0)
@@ -160,7 +160,7 @@ void tcp_server_task(void *pvParameters)
                     size |= (rx_buffer[5] << 16);
                     size |= (rx_buffer[6] << 8);
                     size |= (rx_buffer[7] << 0);
-                    printf("\r\nfile size:%d\r\n", size);
+                    ESP_LOGI("ATouch", "\r\nfile size:%d\r\n", size);
                     recv_count = 0;
                     upgrade_start();
                     int err = send(sock, rx_buffer, 8, 0);
@@ -171,7 +171,7 @@ void tcp_server_task(void *pvParameters)
             }
             else if (recv_len == 0)
             {
-                printf("Connection closed\r\n");
+                ESP_LOGI("ATouch", "Connection closed\r\n");
                 break;
             }
 
@@ -180,9 +180,9 @@ void tcp_server_task(void *pvParameters)
                 recv_len = recv(sock, rx_buffer, sizeof(rx_buffer) - 1, 0);
                 recv_count += recv_len;
                 upgrade_write((char *)rx_buffer, recv_len);
-                printf("recv %d %d %d ", size, recv_count, recv_len);
+                ESP_LOGI("ATouch", "recv %d %d %d ", size, recv_count, recv_len);
                 printf_byte(rx_buffer, 10);
-                printf("\r\n");
+                ESP_LOGI("ATouch", "\r\n");
 
                 int err = send(sock, rx_buffer, 8, 0);
                 if (err < 0)
@@ -196,11 +196,11 @@ void tcp_server_task(void *pvParameters)
                 rx_buffer[1] = 'k';
                 send(sock, rx_buffer, 2, 0);
 
-                printf("Prepare to restart system!\r\n");
+                ESP_LOGI("ATouch", "Prepare to restart system!\r\n");
 
                 vTaskDelay(1000 / portTICK_RATE_MS);
 
-                printf("restart system!\r\n");
+                ESP_LOGI("ATouch", "restart system!\r\n");
                 esp_restart();    
                 
             }else{
@@ -214,7 +214,7 @@ void tcp_server_task(void *pvParameters)
 
             if (sock != -1)
             {
-                printf("Shutting down socket and restarting...\r\n");
+                ESP_LOGI("ATouch", "Shutting down socket and restarting...\r\n");
                 shutdown(sock, 0);
                 close(sock);
             }

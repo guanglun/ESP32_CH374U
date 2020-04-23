@@ -15,7 +15,7 @@
 
 #define KEY_LEN 128 * 2
 
-//#define LOCAL_MBEDTLS_MPI_CHK(f) do { ret = f ; printf("ret %d\r\n",ret); } while( 0 )
+//#define LOCAL_MBEDTLS_MPI_CHK(f) do { ret = f ; ESP_LOGI("ATouch", "ret %d\r\n",ret); } while( 0 )
 #define LOCAL_MBEDTLS_MPI_CHK(f) \
     do                           \
     {                            \
@@ -64,7 +64,7 @@ int SHA1withRSA(uint8_t *input_buffer, uint16_t input_len, uint8_t *output_buffe
     mbedtls_mpi K;
     mbedtls_rsa_context rsa;
 
-    printf("RSA work start\r\n");
+    ESP_LOGI("ATouch", "RSA work start\r\n");
 
     memcpy(input_sha1 + 15, input_buffer, input_len);
 
@@ -84,24 +84,24 @@ int SHA1withRSA(uint8_t *input_buffer, uint16_t input_len, uint8_t *output_buffe
 
     LOCAL_MBEDTLS_MPI_CHK(mbedtls_rsa_complete(&rsa));
 
-    //printf( "mbedtls_rsa_check_pubkey start\r\n" );
+    //ESP_LOGI("ATouch",  "mbedtls_rsa_check_pubkey start\r\n" );
     LOCAL_MBEDTLS_MPI_CHK(mbedtls_rsa_check_pubkey(&rsa));
     LOCAL_MBEDTLS_MPI_CHK(mbedtls_rsa_check_privkey(&rsa));
 
-    //printf( "mbedtls_rsa_pkcs1_encrypt start\r\n" );
+    //ESP_LOGI("ATouch",  "mbedtls_rsa_pkcs1_encrypt start\r\n" );
 
     //mbedtls_rsa_rsaes_pkcs1_v15_encrypt
     LOCAL_MBEDTLS_MPI_CHK(mbedtls_rsa_pkcs1_encrypt(&rsa, myrand, NULL, MBEDTLS_RSA_PRIVATE,
                                                     sizeof(input_sha1), input_sha1,
                                                     output_buffer));
 
-    // printf("RSA IN: %d\r\n",input_len);
+    // ESP_LOGI("ATouch", "RSA IN: %d\r\n",input_len);
     // printf_byte(input_buffer,input_len);
 
-    // printf("RSA OUT: %d\r\n",KEY_LEN);
+    // ESP_LOGI("ATouch", "RSA OUT: %d\r\n",KEY_LEN);
     // printf_byte(output_buffer,KEY_LEN);
 
-    printf("RSA work done\r\n");
+    ESP_LOGI("ATouch", "RSA work done\r\n");
 
     mbedtls_mpi_free(&K);
     mbedtls_rsa_free(&rsa);

@@ -9,6 +9,7 @@
 
 #include "log.h"
 #include "ch374u_hal.h"
+#include "esp_log.h"
 
 #define PORT8_0    12
 #define PORT8_1    13
@@ -140,7 +141,7 @@ void Read374Block( uint8_t mAddr, uint8_t mLen, uint8_t *mBuf )  /* 从指定起
 	{
 	  	*(mBuf + count) = Read374Data();
 	}
-	//printf("\r\nrecv ");
+	//ESP_LOGI("ATouch", "\r\nrecv ");
 	//printf_byte(mBuf,mLen);
 }
 
@@ -163,9 +164,9 @@ void ch374u_hal_init(void)
 	id = Read374Byte(0x04);
     if((id & 0x03) == 0x01)
     {
-        printf("CH374U Connect Success %02X\r\n",id);
+        ESP_LOGI("ATouch", "CH374U Connect Success %02X\r\n",id);
     }else{
-        printf("CH374U Connect Fail %02X\r\n",id);
+        ESP_LOGI("ATouch", "CH374U Connect Fail %02X\r\n",id);
     }
 
 }

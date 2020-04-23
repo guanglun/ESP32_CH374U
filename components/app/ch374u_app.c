@@ -485,7 +485,7 @@ void DisableRootHubPort(uint8_t index) // 关闭指定的ROOT-HUB端口,实际�
     {
         Write374Byte(REG_HUB_SETUP, Read374Byte(REG_HUB_SETUP) & 0xF0); // 清除有关HUB0的控制数据,实际上不需要清除
     }
-    //	printf( "HUB %01x close\n",(uint16_t)index );
+    //	ESP_LOGI("ATouch",  "HUB %01x close\n",(uint16_t)index );
 }
 
 void ResetRootHubPort(uint8_t index) // 检测到设备后,复位相应端口的总线,为枚举设备准备,设置为默认为全速
@@ -619,7 +619,7 @@ void AnalyzeRootHub(void) // 分析ROOT-HUB状态,处理ROOT-HUB端口的设备�
         {
             DisableRootHubPort(0);                           // 关闭端口
             RootHubDev[0].DeviceStatus = ROOT_DEV_CONNECTED; //置连接标志
-            printf("HUB 0 device in\r\n");
+            ESP_LOGI("ATouch", "HUB 0 device in\r\n");
             LED_USB0_LOW();
         }
     }
@@ -629,7 +629,7 @@ void AnalyzeRootHub(void) // 分析ROOT-HUB状态,处理ROOT-HUB端口的设备�
         {
 
             DisableRootHubPort(0); // 关闭端口
-            printf("HUB 0 device out\r\n");
+            ESP_LOGI("ATouch", "HUB 0 device out\r\n");
             LED_USB0_HIGH();
         }
     }
@@ -640,7 +640,7 @@ void AnalyzeRootHub(void) // 分析ROOT-HUB状态,处理ROOT-HUB端口的设备�
         {
             DisableRootHubPort(1);                           // 关闭端口
             RootHubDev[1].DeviceStatus = ROOT_DEV_CONNECTED; //置连接标志
-            printf("HUB 1 device in\r\n");
+            ESP_LOGI("ATouch", "HUB 1 device in\r\n");
             LED_USB1_LOW();
         }
     }
@@ -649,7 +649,7 @@ void AnalyzeRootHub(void) // 分析ROOT-HUB状态,处理ROOT-HUB端口的设备�
         if (RootHubDev[1].DeviceStatus >= ROOT_DEV_CONNECTED)
         {
             DisableRootHubPort(1); // 关闭端口
-            printf("HUB 1 device out\r\n");
+            ESP_LOGI("ATouch", "HUB 1 device out\r\n");
             LED_USB1_HIGH();
         }
     }
@@ -660,7 +660,7 @@ void AnalyzeRootHub(void) // 分析ROOT-HUB状态,处理ROOT-HUB端口的设备�
         {
             DisableRootHubPort(2);                           // 关闭端口
             RootHubDev[2].DeviceStatus = ROOT_DEV_CONNECTED; //置连接标志
-            printf("HUB 2 device in\r\n");
+            ESP_LOGI("ATouch", "HUB 2 device in\r\n");
             LED_USB2_LOW();
         }
     }
@@ -669,7 +669,7 @@ void AnalyzeRootHub(void) // 分析ROOT-HUB状态,处理ROOT-HUB端口的设备�
         if (RootHubDev[2].DeviceStatus >= ROOT_DEV_CONNECTED)
         {
             DisableRootHubPort(2); // 关闭端口
-            printf("HUB 2 device out\r\n");
+            ESP_LOGI("ATouch", "HUB 2 device out\r\n");
             LED_USB2_HIGH();
         }
     }
@@ -697,80 +697,80 @@ uint8_t AnalyzeHidIntEndp(void) // 从描述符中分析出HID中断端点的地
 
 void PrintfDeviceDescr(PUSB_DEV_DESCR dev_descr)
 {
-    printf("==========DeviceDescr Start==========\r\n");
-    printf("bLength:\t\t%02X\r\n", dev_descr->bLength);
-    printf("bDescriptorType:\t%02X\r\n", dev_descr->bDescriptorType);
-    printf("bcdUSBL:\t\t%02X\r\n", dev_descr->bcdUSBL);
-    printf("bcdUSBH:\t\t%02X\r\n", dev_descr->bcdUSBH);
-    printf("bDeviceClass:\t\t%02X\r\n", dev_descr->bDeviceClass);
-    printf("bDeviceSubClass:\t%02X\r\n", dev_descr->bDeviceSubClass);
-    printf("bDeviceProtocol:\t%02X\r\n", dev_descr->bDeviceProtocol);
-    printf("bMaxPacketSize0:\t%02X\r\n", dev_descr->bMaxPacketSize0);
-    printf("idVendorL:\t\t%02X\r\n", dev_descr->idVendorL);
-    printf("idVendorH:\t\t%02X\r\n", dev_descr->idVendorH);
-    printf("idProductL:\t\t%02X\r\n", dev_descr->idProductL);
-    printf("idProductH:\t\t%02X\r\n", dev_descr->idProductH);
-    printf("bcdDeviceL:\t\t%02X\r\n", dev_descr->bcdDeviceL);
-    printf("bcdDeviceH:\t\t%02X\r\n", dev_descr->bcdDeviceH);
-    printf("iManufacturer:\t\t%02X\r\n", dev_descr->iManufacturer);
-    printf("iProduct:\t\t%02X\r\n", dev_descr->iProduct);
-    printf("iSerialNumber:\t\t%02X\r\n", dev_descr->iSerialNumber);
-    printf("bNumConfigurations:\t%02X\r\n", dev_descr->bNumConfigurations);
-    printf("==========DeviceDescr End==========\r\n");
+    ESP_LOGI("ATouch", "==========DeviceDescr Start==========\r\n");
+    ESP_LOGI("ATouch", "bLength:\t\t%02X\r\n", dev_descr->bLength);
+    ESP_LOGI("ATouch", "bDescriptorType:\t%02X\r\n", dev_descr->bDescriptorType);
+    ESP_LOGI("ATouch", "bcdUSBL:\t\t%02X\r\n", dev_descr->bcdUSBL);
+    ESP_LOGI("ATouch", "bcdUSBH:\t\t%02X\r\n", dev_descr->bcdUSBH);
+    ESP_LOGI("ATouch", "bDeviceClass:\t\t%02X\r\n", dev_descr->bDeviceClass);
+    ESP_LOGI("ATouch", "bDeviceSubClass:\t%02X\r\n", dev_descr->bDeviceSubClass);
+    ESP_LOGI("ATouch", "bDeviceProtocol:\t%02X\r\n", dev_descr->bDeviceProtocol);
+    ESP_LOGI("ATouch", "bMaxPacketSize0:\t%02X\r\n", dev_descr->bMaxPacketSize0);
+    ESP_LOGI("ATouch", "idVendorL:\t\t%02X\r\n", dev_descr->idVendorL);
+    ESP_LOGI("ATouch", "idVendorH:\t\t%02X\r\n", dev_descr->idVendorH);
+    ESP_LOGI("ATouch", "idProductL:\t\t%02X\r\n", dev_descr->idProductL);
+    ESP_LOGI("ATouch", "idProductH:\t\t%02X\r\n", dev_descr->idProductH);
+    ESP_LOGI("ATouch", "bcdDeviceL:\t\t%02X\r\n", dev_descr->bcdDeviceL);
+    ESP_LOGI("ATouch", "bcdDeviceH:\t\t%02X\r\n", dev_descr->bcdDeviceH);
+    ESP_LOGI("ATouch", "iManufacturer:\t\t%02X\r\n", dev_descr->iManufacturer);
+    ESP_LOGI("ATouch", "iProduct:\t\t%02X\r\n", dev_descr->iProduct);
+    ESP_LOGI("ATouch", "iSerialNumber:\t\t%02X\r\n", dev_descr->iSerialNumber);
+    ESP_LOGI("ATouch", "bNumConfigurations:\t%02X\r\n", dev_descr->bNumConfigurations);
+    ESP_LOGI("ATouch", "==========DeviceDescr End==========\r\n");
 }
 
 void PrintfConfigDescr(PUSB_CFG_DESCR config_descr)
 {
 
-    printf("bLength:\t\t%02X\r\n", config_descr->bLength);
-    printf("bDescriptorType:\t%02X\r\n", config_descr->bDescriptorType);
-    printf("wTotalLengthL:\t\t%02X\r\n", config_descr->wTotalLengthL);
-    printf("wTotalLengthH:\t\t%02X\r\n", config_descr->wTotalLengthH);
-    printf("bNumInterfaces:\t\t%02X\r\n", config_descr->bNumInterfaces);
-    printf("bConfigurationValue:\t%02X\r\n", config_descr->bConfigurationValue);
-    printf("iConfiguration:\t\t%02X\r\n", config_descr->iConfiguration);
-    printf("bmAttributes:\t\t%02X\r\n", config_descr->bmAttributes);
-    printf("MaxPower:\t\t%02X\r\n", config_descr->MaxPower);
+    ESP_LOGI("ATouch", "bLength:\t\t%02X\r\n", config_descr->bLength);
+    ESP_LOGI("ATouch", "bDescriptorType:\t%02X\r\n", config_descr->bDescriptorType);
+    ESP_LOGI("ATouch", "wTotalLengthL:\t\t%02X\r\n", config_descr->wTotalLengthL);
+    ESP_LOGI("ATouch", "wTotalLengthH:\t\t%02X\r\n", config_descr->wTotalLengthH);
+    ESP_LOGI("ATouch", "bNumInterfaces:\t\t%02X\r\n", config_descr->bNumInterfaces);
+    ESP_LOGI("ATouch", "bConfigurationValue:\t%02X\r\n", config_descr->bConfigurationValue);
+    ESP_LOGI("ATouch", "iConfiguration:\t\t%02X\r\n", config_descr->iConfiguration);
+    ESP_LOGI("ATouch", "bmAttributes:\t\t%02X\r\n", config_descr->bmAttributes);
+    ESP_LOGI("ATouch", "MaxPower:\t\t%02X\r\n", config_descr->MaxPower);
 }
 
 void PrintfItfDescr(PUSB_ITF_DESCR itf_descr)
 {
 
-    printf("\tbLength:\t\t%02X\r\n", itf_descr->bLength);
-    printf("\tbDescriptorType:\t%02X\r\n", itf_descr->bDescriptorType);
-    printf("\tbInterfaceNumber:\t%02X\r\n", itf_descr->bInterfaceNumber);
-    printf("\tbAlternateSetting:\t%02X\r\n", itf_descr->bAlternateSetting);
-    printf("\tbNumEndpoints:\t\t%02X\r\n", itf_descr->bNumEndpoints);
-    printf("\tbInterfaceClass:\t%02X\r\n", itf_descr->bInterfaceClass);
-    printf("\tbInterfaceSubClass:\t%02X\r\n", itf_descr->bInterfaceSubClass);
-    printf("\tbInterfaceProtocol:\t%02X\r\n", itf_descr->bInterfaceProtocol);
-    printf("\tiInterface:\t\t%02X\r\n", itf_descr->iInterface);
+    ESP_LOGI("ATouch", "\tbLength:\t\t%02X\r\n", itf_descr->bLength);
+    ESP_LOGI("ATouch", "\tbDescriptorType:\t%02X\r\n", itf_descr->bDescriptorType);
+    ESP_LOGI("ATouch", "\tbInterfaceNumber:\t%02X\r\n", itf_descr->bInterfaceNumber);
+    ESP_LOGI("ATouch", "\tbAlternateSetting:\t%02X\r\n", itf_descr->bAlternateSetting);
+    ESP_LOGI("ATouch", "\tbNumEndpoints:\t\t%02X\r\n", itf_descr->bNumEndpoints);
+    ESP_LOGI("ATouch", "\tbInterfaceClass:\t%02X\r\n", itf_descr->bInterfaceClass);
+    ESP_LOGI("ATouch", "\tbInterfaceSubClass:\t%02X\r\n", itf_descr->bInterfaceSubClass);
+    ESP_LOGI("ATouch", "\tbInterfaceProtocol:\t%02X\r\n", itf_descr->bInterfaceProtocol);
+    ESP_LOGI("ATouch", "\tiInterface:\t\t%02X\r\n", itf_descr->iInterface);
 }
 
 void PrintfHIDDescr(PUSB_HID_DESCR hid_descr)
 {
-    printf("\t==========HIDDescr Start==========\r\n");
-    printf("\tbLength:\t\t%02X\r\n", hid_descr->bLength);
-    printf("\tbDescriptorType:\t%02X\r\n", hid_descr->bDescriptorType);
-    printf("\tbcdHIDL:\t\t%02X\r\n", hid_descr->bcdHIDL);
-    printf("\tbcdHIDH:\t\t%02X\r\n", hid_descr->bcdHIDH);
-    printf("\tbCountryCode:\t\t%02X\r\n", hid_descr->bCountryCode);
-    printf("\tbNumDescriptors:\t%02X\r\n", hid_descr->bNumDescriptors);
-    printf("\tbDescriptorType2:\t%02X\r\n", hid_descr->bDescriptorType2);
-    printf("\tbDescriptorLengthL:\t%02X\r\n", hid_descr->bDescriptorLengthL);
-    printf("\tbDescriptorLengthH:\t%02X\r\n", hid_descr->bDescriptorLengthH);
-    printf("\t==========HIDDescr End==========\r\n");
+    ESP_LOGI("ATouch", "\t==========HIDDescr Start==========\r\n");
+    ESP_LOGI("ATouch", "\tbLength:\t\t%02X\r\n", hid_descr->bLength);
+    ESP_LOGI("ATouch", "\tbDescriptorType:\t%02X\r\n", hid_descr->bDescriptorType);
+    ESP_LOGI("ATouch", "\tbcdHIDL:\t\t%02X\r\n", hid_descr->bcdHIDL);
+    ESP_LOGI("ATouch", "\tbcdHIDH:\t\t%02X\r\n", hid_descr->bcdHIDH);
+    ESP_LOGI("ATouch", "\tbCountryCode:\t\t%02X\r\n", hid_descr->bCountryCode);
+    ESP_LOGI("ATouch", "\tbNumDescriptors:\t%02X\r\n", hid_descr->bNumDescriptors);
+    ESP_LOGI("ATouch", "\tbDescriptorType2:\t%02X\r\n", hid_descr->bDescriptorType2);
+    ESP_LOGI("ATouch", "\tbDescriptorLengthL:\t%02X\r\n", hid_descr->bDescriptorLengthL);
+    ESP_LOGI("ATouch", "\tbDescriptorLengthH:\t%02X\r\n", hid_descr->bDescriptorLengthH);
+    ESP_LOGI("ATouch", "\t==========HIDDescr End==========\r\n");
 }
 void PrintfEndpDescr(PUSB_ENDP_DESCR endp_descr)
 {
 
-    printf("\t\tbLength:\t\t%02X\r\n", endp_descr->bLength);
-    printf("\t\tbDescriptorType:\t%02X\r\n", endp_descr->bDescriptorType);
-    printf("\t\tbEndpointAddress:\t%02X\r\n", endp_descr->bEndpointAddress);
-    printf("\t\tbmAttributes:\t\t%02X\r\n", endp_descr->bmAttributes);
-    printf("\t\twMaxPacketSize:\t\t%02X\r\n", endp_descr->wMaxPacketSize);
-    printf("\t\twMaxPacketSize1:\t%02X\r\n", endp_descr->wMaxPacketSize1);
-    printf("\t\tbInterval:\t\t%02X\r\n", endp_descr->bInterval);
+    ESP_LOGI("ATouch", "\t\tbLength:\t\t%02X\r\n", endp_descr->bLength);
+    ESP_LOGI("ATouch", "\t\tbDescriptorType:\t%02X\r\n", endp_descr->bDescriptorType);
+    ESP_LOGI("ATouch", "\t\tbEndpointAddress:\t%02X\r\n", endp_descr->bEndpointAddress);
+    ESP_LOGI("ATouch", "\t\tbmAttributes:\t\t%02X\r\n", endp_descr->bmAttributes);
+    ESP_LOGI("ATouch", "\t\twMaxPacketSize:\t\t%02X\r\n", endp_descr->wMaxPacketSize);
+    ESP_LOGI("ATouch", "\t\twMaxPacketSize1:\t%02X\r\n", endp_descr->wMaxPacketSize1);
+    ESP_LOGI("ATouch", "\t\tbInterval:\t\t%02X\r\n", endp_descr->bInterval);
 }
 
 uint8_t InitHIDDevice(uint8_t cfg, uint8_t index, uint8_t InterfaceProtocol)
@@ -784,14 +784,14 @@ uint8_t InitHIDDevice(uint8_t cfg, uint8_t index, uint8_t InterfaceProtocol)
         if (InterfaceProtocol == 1)
         {
             //							进一步初始化,例如设备键盘指示灯LED等
-            printf("USB-Keyboard Ready\n");
+            ESP_LOGI("ATouch", "USB-Keyboard Ready\n");
             set_status(1, 1);
             return (DEV_KEYBOARD); /* 键盘初始化成功 */
         }
         else if (InterfaceProtocol == 2)
         {
             //							为了以后查询鼠标状态,应该分析描述符,取得中断端口的地址,长度等信息
-            printf("USB-Mouse Ready\n");
+            ESP_LOGI("ATouch", "USB-Mouse Ready\n");
             set_status(2, 1);
             return (DEV_MOUSE); /* 鼠标初始化成功 */
         }
@@ -808,7 +808,7 @@ uint8_t InitADBDevice(uint8_t cfg, uint8_t index)
     {
         RootHubDev[index].DeviceStatus = ROOT_DEV_SUCCESS;
         SetUsbSpeed(true); // 默认为全速
-        printf("ADB Ready\n");
+        ESP_LOGI("ATouch", "ADB Ready\n");
         set_status(0, 1);
         adb_connect();
         return (DEV_ADB); /* U盘初始化成功 */
@@ -825,7 +825,7 @@ uint8_t GetStringDescr(uint8_t str_index) // 获取设备描述符
     s = HostCtrlTransfer374(SetupGetStrDescr, str_buf, &len); // 执行控制传输
     if (s == USB_INT_SUCCESS)
     {
-        printf("GetStringDescr: ");
+        ESP_LOGI("ATouch", "GetStringDescr: ");
         printf_byte_str(str_buf, len);
     }
     return (s);
@@ -846,7 +846,7 @@ void ParseConfigDescr(uint8_t index, uint8_t *config_descr)
 
     printf_byte(config_descr_buffer, cfg_descr->wTotalLengthL);
 
-    printf("==========ConfigDescr Start==========\r\n");
+    ESP_LOGI("ATouch", "==========ConfigDescr Start==========\r\n");
 
     PrintfConfigDescr(cfg_descr);
 
@@ -854,12 +854,12 @@ void ParseConfigDescr(uint8_t index, uint8_t *config_descr)
     config_descr_buffer += 9;
     for (itf_count = 0; itf_count < cfg_descr->bNumInterfaces; itf_count++)
     {
-        printf("\t==========ItfDescr %d Start==========\r\n", itf_count);
+        ESP_LOGI("ATouch", "\t==========ItfDescr %d Start==========\r\n", itf_count);
         itf_descr = (PUSB_ITF_DESCR)config_descr_buffer;
 
         PrintfItfDescr(itf_descr);
         GetStringDescr(itf_descr->iInterface);
-        printf("%02X %02X %02X \r\n", RootHubDev[index].dev_descr.bDeviceClass, itf_descr->bInterfaceClass, itf_descr->bInterfaceSubClass);
+        ESP_LOGI("ATouch", "%02X %02X %02X \r\n", RootHubDev[index].dev_descr.bDeviceClass, itf_descr->bInterfaceClass, itf_descr->bInterfaceSubClass);
 
         config_descr_buffer += 9;
 
@@ -891,7 +891,7 @@ void ParseConfigDescr(uint8_t index, uint8_t *config_descr)
 
         for (endp_count = 0; endp_count < itf_descr->bNumEndpoints; endp_count++)
         {
-            printf("\t\t==========EndpDescr %d Start==========\r\n", endp_count);
+            ESP_LOGI("ATouch", "\t\t==========EndpDescr %d Start==========\r\n", endp_count);
 
             while(config_descr_buffer[0] != 0x07)
             {
@@ -913,19 +913,19 @@ void ParseConfigDescr(uint8_t index, uint8_t *config_descr)
 
             PrintfEndpDescr(endp_descr);
             config_descr_buffer += 7;
-            printf("\t\t==========EndpDescr End==========\r\n");
+            ESP_LOGI("ATouch", "\t\t==========EndpDescr End==========\r\n");
         }
         itf_ok_flag = false;
-        printf("\t==========ItfDescr End==========\r\n");
+        ESP_LOGI("ATouch", "\t==========ItfDescr End==========\r\n");
     }
-    printf("==========ConfigDescr End==========\r\n");
+    ESP_LOGI("ATouch", "==========ConfigDescr End==========\r\n");
 }
 
 uint8_t InitDevice(uint8_t index) // 初始化/枚举指定ROOT-HUB端口的USB设备
 {
     uint8_t i, s;
 
-    printf("Start reset HUB%01d port\n", index);
+    ESP_LOGI("ATouch", "Start reset HUB%01d port\n", index);
     ResetRootHubPort(index); //检测到设备后,复位相应端口的USB总线
     for (i = 0, s = 0; i < 100; i++)
     { // 等待USB设备复位后重新连接
@@ -942,21 +942,21 @@ uint8_t InitDevice(uint8_t index) // 初始化/枚举指定ROOT-HUB端口的USB�
     if (i)
     { // 复位后设备没有连接
         DisableRootHubPort(index);
-        printf("Disable HUB%01d port because of disconnect\r\n", index);
+        ESP_LOGI("ATouch", "Disable HUB%01d port because of disconnect\r\n", index);
         return DEV_ERROR;
     }
 
     if (RootHubDev[index].DeviceSpeed)
     {
-        printf("full speed\r\n");
+        ESP_LOGI("ATouch", "full speed\r\n");
     }
     else
     {
-        printf("low speed\r\n");
+        ESP_LOGI("ATouch", "low speed\r\n");
     }
 
     SetUsbSpeed(RootHubDev[index].DeviceSpeed); // 设置当前USB速度
-    printf("GetDeviceDescr @HUB%1d:\r\n", (uint16_t)index);
+    ESP_LOGI("ATouch", "GetDeviceDescr @HUB%1d:\r\n", (uint16_t)index);
 
     s = GetDeviceDescr(TempBuf); // 获取设备描述符
     if (s == USB_INT_SUCCESS)
@@ -972,15 +972,15 @@ uint8_t InitDevice(uint8_t index) // 初始化/枚举指定ROOT-HUB端口的USB�
         if (s == USB_INT_SUCCESS)
         {
             RootHubDev[index].DeviceAddress = index + ((PUSB_SETUP_REQ)SetupSetUsbAddr)->wValueL; // 保存USB地址
-            printf("SetDeviceAddress:%02X\r\n", RootHubDev[index].DeviceAddress);
-            printf("GetConfigDescr: ");
+            ESP_LOGI("ATouch", "SetDeviceAddress:%02X\r\n", RootHubDev[index].DeviceAddress);
+            ESP_LOGI("ATouch", "GetConfigDescr: ");
             s = GetConfigDescr(TempBuf); // 获取配置描述符
             if (s == USB_INT_SUCCESS)
             {
                 ParseConfigDescr(index, TempBuf);
                 if (RootHubDev[index].DeviceType == DEV_ADB)
                 {
-                    printf("Found ADB Device\r\n");
+                    ESP_LOGI("ATouch", "Found ADB Device\r\n");
                     return InitADBDevice(RootHubDev[index].cfg_descr.bConfigurationValue, index);
                 }
                 else if (RootHubDev[index].DeviceType == DEV_KEYBOARD)
@@ -994,7 +994,7 @@ uint8_t InitDevice(uint8_t index) // 初始化/枚举指定ROOT-HUB端口的USB�
             }
         }
 
-        printf("InitDevice Error = %02X\n", (uint16_t)s);
+        ESP_LOGI("ATouch", "InitDevice Error = %02X\n", (uint16_t)s);
         RootHubDev[index].DeviceStatus = ROOT_DEV_FAILED;
         SetUsbSpeed(true); // 默认为全速
 
@@ -1034,7 +1034,7 @@ void NewDeviceEnum(void)
         { // 刚插入设备尚未初始化
             RootHubDev[device_count].recv_tog_flag = false;
             RootHubDev[device_count].send_tog_flag = false;
-            printf("NewDeviceEnum Found Device %d\r\n", device_count);
+            ESP_LOGI("ATouch", "NewDeviceEnum Found Device %d\r\n", device_count);
             mDelaymS(200);            // 由于USB设备刚插入尚未稳定，故等待USB设备数百毫秒，消除插拔抖动
             InitDevice(device_count); // 初始化/枚举指定HUB端口的USB设备
         }
@@ -1058,10 +1058,10 @@ void QueryADB_Send(uint8_t *buf, uint8_t len, uint8_t flag)
                 Write374Block(RAM_HOST_TRAN, len, buf);
                 Write374Byte(REG_USB_LENGTH, len);
 
-                // printf("================================ADB SEND================================\r\n");
+                // ESP_LOGI("ATouch", "================================ADB SEND================================\r\n");
                 // printf_byte(buf, len);
                 // printf_byte_str(buf, len);
-                // printf("========================================================================\r\n");
+                // ESP_LOGI("ATouch", "========================================================================\r\n");
 
                 s = WaitHostTransact374(RootHubDev[count].Endp_Out, DEF_USB_PID_OUT, RootHubDev[count].send_tog_flag, 1000);
                 if (s == USB_INT_SUCCESS)
@@ -1094,10 +1094,10 @@ uint8_t QueryADB_Recv(uint8_t index, uint16_t loop_value)
             len = Read374Byte(REG_USB_LENGTH);
             Read374Block(RAM_HOST_RECV, len, TempBuf);
 
-            // printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ADB RECV>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\r\n");
+            // ESP_LOGI("ATouch", ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ADB RECV>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\r\n");
             // printf_byte(TempBuf, len);
             // printf_byte_str(TempBuf, len);
-            // printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\r\n");
+            // ESP_LOGI("ATouch", ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\r\n");
 
             ADB_RecvData(TempBuf, len);
             return 0;
@@ -1136,14 +1136,14 @@ void QueryMouse(uint8_t index)
 
             if (ADB_TCP_Send(TempBuf, len, DEV_MOUSE) != 0)
             {
-                printf(">>Mouse data: ");
+                ESP_LOGI("ATouch", ">>Mouse data: ");
                 printf_byte(TempBuf, len);
             }
         }
     }
     else if (s != (0x20 | USB_INT_RET_NAK))
     {
-        printf("Mouse error %02x\n", (uint16_t)s); // 可能是断开了
+        ESP_LOGI("ATouch", "Mouse error %02x\n", (uint16_t)s); // 可能是断开了
     }
 }
 
@@ -1167,14 +1167,14 @@ void QueryKeyboard(uint8_t index)
 
             if (ADB_TCP_Send(TempBuf, len, DEV_KEYBOARD) != 0)
             {
-                printf(">>KeyBoard data: ");
+                ESP_LOGI("ATouch", ">>KeyBoard data: ");
                 printf_byte(TempBuf, len);
             }
         }
     }
     else if (s != (0x20 | USB_INT_RET_NAK))
     {
-        printf("KeyBoard error %02x\n", (uint16_t)s); // 可能是断开了
+        ESP_LOGI("ATouch", "KeyBoard error %02x\n", (uint16_t)s); // 可能是断开了
     }
 }
 
@@ -1208,14 +1208,14 @@ void DeviceLoop(void)
 // 		uint16_t loc = 0;
 // 		uint8_t inter_flag_reg = 0;
 
-// 		printf("Start CH374U Host\n");
+// 		ESP_LOGI("ATouch", "Start CH374U Host\n");
 // 		for (n = 0; n < 3; n++)
 // 			RootHubDev[n].DeviceStatus = ROOT_DEV_DISCONNECT; // 清空
 // 		count = 0;
 
 // 		Init374Host(); // 初始化USB主机
 
-// 		printf("Wait Device In\n");
+// 		ESP_LOGI("ATouch", "Wait Device In\n");
 
 // 		while (1)
 // 		{
@@ -1241,7 +1241,7 @@ void DeviceLoop(void)
 // 				{ // 找到了
 // 					n = loc >> 8;
 // 					loc &= 0xFF;
-// 					printf("Access ADB %02X %02X\n", n, loc);
+// 					ESP_LOGI("ATouch", "Access ADB %02X %02X\n", n, loc);
 // 					SelectHubPort(n, loc); // 选择操作指定的ROOT-HUB端口,设置当前USB速度以及被操作设备的USB地址
 // 										   //					对U盘进行操作,调用CH374LIB或者HostCtrlTransfer374,HostTransact374等
 // 					SetUsbSpeed(true);	 // 默认为全速
@@ -1258,7 +1258,7 @@ void DeviceLoop(void)
 // 					s = WaitHostTransact374(0x03, DEF_USB_PID_OUT, false, 1000);
 // 					if (s == USB_INT_SUCCESS)
 // 					{
-// 						printf("Success\r\n");
+// 						ESP_LOGI("ATouch", "Success\r\n");
 // 						len = sizeof(bufferB);
 // 						Write374Block(RAM_HOST_TRAN, len, bufferB);
 // 						Write374Byte(REG_USB_LENGTH, len);
@@ -1266,29 +1266,29 @@ void DeviceLoop(void)
 // 						s = WaitHostTransact374(0x03, DEF_USB_PID_OUT, true, 1000);
 // 						if (s == USB_INT_SUCCESS)
 // 						{
-// 							printf("Success\r\n");
+// 							ESP_LOGI("ATouch", "Success\r\n");
 // 							mDelaymS(10);
 // 							s = WaitHostTransact374(0x84, DEF_USB_PID_IN, false, 1000);
 // 							if (s == USB_INT_SUCCESS)
 // 							{
 // 								len = Read374Byte(REG_USB_LENGTH);
-// 								printf("Success %d\r\n", len);
+// 								ESP_LOGI("ATouch", "Success %d\r\n", len);
 // 								Read374Block(RAM_HOST_RECV, len, buffer2);
 // 								printf_byte(buffer2, len);
 // 							}
 // 							else
 // 							{
-// 								printf("Fail\r\n");
+// 								ESP_LOGI("ATouch", "Fail\r\n");
 // 							}
 // 						}
 // 						else
 // 						{
-// 							printf("Fail\r\n");
+// 							ESP_LOGI("ATouch", "Fail\r\n");
 // 						}
 // 					}
 // 					else
 // 					{
-// 						printf("Fail\r\n");
+// 						ESP_LOGI("ATouch", "Fail\r\n");
 // 					}
 
 // 					// len = out_endp_size;
@@ -1306,7 +1306,7 @@ void DeviceLoop(void)
 // 				{ // 找到了,如果有两个MOUSE如何处理?
 // 					n = loc >> 8;
 // 					loc &= 0xFF;
-// 					//printf( "Query Mouse\n" );
+// 					//ESP_LOGI("ATouch",  "Query Mouse\n" );
 // 					SelectHubPort(n, loc);											// 选择操作指定的ROOT-HUB端口,设置当前USB速度以及被操作设备的USB地址
 // 					i = loc ? DevOnHubPort[n][loc - 1].GpVar : RootHubDev[n].GpVar; // 中断端点的地址,位7用于同步标志位
 // 					if (i & 0x7F)
@@ -1329,17 +1329,17 @@ void DeviceLoop(void)
 // 							if (i)
 // 							{
 // 								Read374Block(RAM_HOST_RECV, i, TempBuf); // 取出数据并打印
-// 								printf("Mouse data: ");
+// 								ESP_LOGI("ATouch", "Mouse data: ");
 // 								for (s = 0; s < i; s++)
-// 									printf("0x%02X ", *(TempBuf + s));
-// 								printf("\n");
+// 									ESP_LOGI("ATouch", "0x%02X ", *(TempBuf + s));
+// 								ESP_LOGI("ATouch", "\n");
 // 							}
 // 						}
 // 						else if (s != (0x20 | USB_INT_RET_NAK))
-// 							printf("Mouse error %02x\n", (uint16_t)s); // 可能是断开了
+// 							ESP_LOGI("ATouch", "Mouse error %02x\n", (uint16_t)s); // 可能是断开了
 // 					}
 // 					else
-// 						printf("Mouse no interrupt endpoint\n");
+// 						ESP_LOGI("ATouch", "Mouse no interrupt endpoint\n");
 // 					SetUsbSpeed(true); // 默认为全速
 // 				}
 // 				break;

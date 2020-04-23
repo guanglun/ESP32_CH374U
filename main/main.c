@@ -19,11 +19,21 @@
 
 #include "nvs_flash.h"
 #include "nvs.h"
+#include "esp_log.h"
+#include "driver/uart.h"            // for the uart driver access
+#include "uart.h"
 
 const uint8_t VERSION[3] = {VERSION_MASTER,VERSION_RELEASE,VERSION_DEBUG};
 
+
 void app_main()
 {
+    
+    uart_init();
+    //esp_log_level_set("*", ESP_LOG_INFO);
+
+    // is_uart_connect = true;
+    esp_log_level_set("*", ESP_LOG_NONE);
 
     esp_err_t err = nvs_flash_init();
     if (err == ESP_ERR_NVS_NO_FREE_PAGES || err == ESP_ERR_NVS_NEW_VERSION_FOUND) {
@@ -36,9 +46,9 @@ void app_main()
 
     led_init();
 
-    printf("==============================================\r\n");
-    printf("===   version:%d.%d.%d\r\n",VERSION[0],VERSION[1],VERSION[2]);
-    printf("==============================================\r\n");
+    ESP_LOGI("ATouch", "==============================================\r\n");
+    ESP_LOGI("ATouch", "===   version:%d.%d.%d\r\n",VERSION[0],VERSION[1],VERSION[2]);
+    ESP_LOGI("ATouch", "==============================================\r\n");
 
     if(KEY_READ() == 0x00)
     {

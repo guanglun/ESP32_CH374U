@@ -61,14 +61,14 @@ bool btStart(){
     }
     if(esp_bt_controller_get_status() == ESP_BT_CONTROLLER_STATUS_INITED){
         if (esp_bt_controller_enable(ESP_BT_MODE_CLASSIC_BT)) {
-            printf("BT Enable failed");
+            ESP_LOGI("ATouch", "BT Enable failed");
             return false;
         }
     }
     if(esp_bt_controller_get_status() == ESP_BT_CONTROLLER_STATUS_ENABLED){
         return true;
     }
-    printf("BT Start failed");
+    ESP_LOGI("ATouch", "BT Start failed");
     return false;
 }
 
@@ -78,7 +78,7 @@ bool btStop(){
     }
     if(esp_bt_controller_get_status() == ESP_BT_CONTROLLER_STATUS_ENABLED){
         if (esp_bt_controller_disable()) {
-            printf("BT Disable failed");
+            ESP_LOGI("ATouch", "BT Disable failed");
             return false;
         }
         while(esp_bt_controller_get_status() == ESP_BT_CONTROLLER_STATUS_ENABLED);
@@ -86,7 +86,7 @@ bool btStop(){
     if(esp_bt_controller_get_status() == ESP_BT_CONTROLLER_STATUS_INITED){
         return true;
     }
-    printf("BT Stop failed");
+    ESP_LOGI("ATouch", "BT Stop failed");
     return false;
 }
 ////////////
@@ -102,13 +102,13 @@ static esp_err_t _spp_queue_packet(uint8_t *data, size_t len){
     }
     spp_packet_t * packet = (spp_packet_t*)malloc(sizeof(spp_packet_t) + len);
     if(!packet){
-        printf("SPP TX Packet Malloc Failed!");
+        ESP_LOGI("ATouch", "SPP TX Packet Malloc Failed!");
         return ESP_FAIL;
     }
     packet->len = len;
     memcpy(packet->data, data, len);
     if (xQueueSend(_spp_tx_queue, &packet, portMAX_DELAY) != pdPASS) {
-        printf("SPP TX Queue Send Failed!");
+        ESP_LOGI("ATouch", "SPP TX Queue Send Failed!");
         free(packet);
         return ESP_FAIL;
     }
@@ -121,12 +121,12 @@ static bool _spp_send_buffer(){
     if((xEventGroupWaitBits(_spp_event_group, SPP_CONGESTED, pdFALSE, pdTRUE, portMAX_DELAY) & SPP_CONGESTED)){
         esp_err_t err = esp_spp_write(_spp_client, _spp_tx_buffer_len, _spp_tx_buffer);
         if(err != ESP_OK){
-            printf("SPP Write Failed! [0x%X]", err);
+            ESP_LOGI("ATouch", "SPP Write Failed! [0x%X]", err);
             return false;
         }
         _spp_tx_buffer_len = 0;
         if(xSemaphoreTake(_spp_tx_done, portMAX_DELAY) != pdTRUE){
-            printf("SPP Ack Failed!");
+            ESP_LOGI("ATouch", "SPP Ack Failed!");
             return false;
         }
         return true;
@@ -175,7 +175,7 @@ static void _spp_tx_task(void * arg){
                 }
             }
         } else {
-            printf("Something went horribly wrong");
+            ESP_LOGI("ATouch", "Something went horribly wrong");
         }
     }
     vTaskDelete(NULL);
@@ -188,7 +188,7 @@ static void esp_spp_cb(esp_spp_cb_event_t event, esp_spp_cb_param_t *param)
     switch (event)
     {
     case ESP_SPP_INIT_EVT:
-        printf("ESP_SPP_INIT_EVT");
+        ESP_LOGI("ATouch", "ESP_SPP_INIT_EVT");
         esp_bt_gap_set_scan_mode(ESP_BT_SCAN_MODE_CONNECTABLE_DISCOVERABLE);
         esp_spp_start_srv(ESP_SPP_SEC_NONE, ESP_SPP_ROLE_SLAVE, 0, _spp_server_name);
         xEventGroupSetBits(_spp_event_group, SPP_RUNNING);
@@ -202,7 +202,7 @@ static void esp_spp_cb(esp_spp_cb_event_t event, esp_spp_cb_param_t *param)
             esp_spp_disconnect(param->open.handle);
         }
         xEventGroupSetBits(_spp_event_group, SPP_CONNECTED);
-        printf("ESP_SPP_SRV_OPEN_EVT");
+        ESP_LOGI("ATouch", "ESP_SPP_SRV_OPEN_EVT");
         break;
 
     case ESP_SPP_CLOSE_EVT://Client connection closed
@@ -212,7 +212,7 @@ static void esp_spp_cb(esp_spp_cb_event_t event, esp_spp_cb_param_t *param)
             _spp_client = 0;
         }
         xEventGroupClearBits(_spp_event_group, SPP_CONNECTED);
-        printf("ESP_SPP_CLOSE_EVT");
+        ESP_LOGI("ATouch", "ESP_SPP_CLOSE_EVT");
         break;
 
     case ESP_SPP_CONG_EVT://connection congestion status changed
@@ -235,12 +235,12 @@ static void esp_spp_cb(esp_spp_cb_event_t event, esp_spp_cb_param_t *param)
     case ESP_SPP_DATA_IND_EVT://connection received data
         //log_v("ESP_SPP_DATA_IND_EVT len=%d handle=%d", param->data_ind.len, param->data_ind.handle);
         //esp_//log_buffer_hex("",param->data_ind.data,param->data_ind.len); //for low level debug
-        //ets_printf("r:%u\n", param->data_ind.len);
+        //ets_ESP_LOGI("ATouch", "r:%u\n", param->data_ind.len);
 
         if (_spp_rx_queue != NULL){
             for (int i = 0; i < param->data_ind.len; i++){
                 if(xQueueSend(_spp_rx_queue, param->data_ind.data + i, (TickType_t)0) != pdTRUE){
-                    printf("RX Full! Discarding %u bytes", param->data_ind.len - i);
+                    ESP_LOGI("ATouch", "RX Full! Discarding %u bytes", param->data_ind.len - i);
                     break;
                 }
             }
@@ -249,16 +249,16 @@ static void esp_spp_cb(esp_spp_cb_event_t event, esp_spp_cb_param_t *param)
 
         //should maybe delete those.
     case ESP_SPP_DISCOVERY_COMP_EVT://discovery complete
-        printf("ESP_SPP_DISCOVERY_COMP_EVT");
+        ESP_LOGI("ATouch", "ESP_SPP_DISCOVERY_COMP_EVT");
         break;
     case ESP_SPP_OPEN_EVT://Client connection open
-        printf("ESP_SPP_OPEN_EVT");
+        ESP_LOGI("ATouch", "ESP_SPP_OPEN_EVT");
         break;
     case ESP_SPP_START_EVT://server started
-        printf("ESP_SPP_START_EVT");
+        ESP_LOGI("ATouch", "ESP_SPP_START_EVT");
         break;
     case ESP_SPP_CL_INIT_EVT://client initiated a connection
-        printf("ESP_SPP_CL_INIT_EVT");
+        ESP_LOGI("ATouch", "ESP_SPP_CL_INIT_EVT");
         break;
     default:
         break;
@@ -279,7 +279,7 @@ static bool _init_bt(const char *deviceName)
     if(!_spp_event_group){
         _spp_event_group = xEventGroupCreate();
         if(!_spp_event_group){
-            printf("SPP Event Group Create Failed!");
+            ESP_LOGI("ATouch", "SPP Event Group Create Failed!");
             return false;
         }
         xEventGroupClearBits(_spp_event_group, 0xFFFFFF);
@@ -288,21 +288,21 @@ static bool _init_bt(const char *deviceName)
     if (_spp_rx_queue == NULL){
         _spp_rx_queue = xQueueCreate(RX_QUEUE_SIZE, sizeof(uint8_t)); //initialize the queue
         if (_spp_rx_queue == NULL){
-            printf("RX Queue Create Failed");
+            ESP_LOGI("ATouch", "RX Queue Create Failed");
             return false;
         }
     }
     if (_spp_tx_queue == NULL){
         _spp_tx_queue = xQueueCreate(TX_QUEUE_SIZE, sizeof(spp_packet_t*)); //initialize the queue
         if (_spp_tx_queue == NULL){
-            printf("TX Queue Create Failed");
+            ESP_LOGI("ATouch", "TX Queue Create Failed");
             return false;
         }
     }
     if(_spp_tx_done == NULL){
         _spp_tx_done = xSemaphoreCreateBinary();
         if (_spp_tx_done == NULL){
-            printf("TX Semaphore Create Failed");
+            ESP_LOGI("ATouch", "TX Semaphore Create Failed");
             return false;
         }
         xSemaphoreTake(_spp_tx_done, 0);
@@ -311,38 +311,38 @@ static bool _init_bt(const char *deviceName)
     if(!_spp_task_handle){
         xTaskCreate(_spp_tx_task, "spp_tx", 4096, NULL, 10, &_spp_task_handle);
         if(!_spp_task_handle){
-            printf("Network Event Task Start Failed!");
+            ESP_LOGI("ATouch", "Network Event Task Start Failed!");
             return false;
         }
     }
 
     if (!btStarted() && !btStart()){
-        printf("initialize controller failed");
+        ESP_LOGI("ATouch", "initialize controller failed");
         return false;
     }
     
     esp_bluedroid_status_t bt_state = esp_bluedroid_get_status();
     if (bt_state == ESP_BLUEDROID_STATUS_UNINITIALIZED){
         if (esp_bluedroid_init()) {
-            printf("initialize bluedroid failed");
+            ESP_LOGI("ATouch", "initialize bluedroid failed");
             return false;
         }
     }
     
     if (bt_state != ESP_BLUEDROID_STATUS_ENABLED){
         if (esp_bluedroid_enable()) {
-            printf("enable bluedroid failed");
+            ESP_LOGI("ATouch", "enable bluedroid failed");
             return false;
         }
     }
 
     if (esp_spp_register_callback(esp_spp_cb) != ESP_OK){
-        printf("spp register failed");
+        ESP_LOGI("ATouch", "spp register failed");
         return false;
     }
 
     if (esp_spp_init(ESP_SPP_MODE_CB) != ESP_OK){
-        printf("spp init failed");
+        ESP_LOGI("ATouch", "spp init failed");
         return false;
     }
 
@@ -354,7 +354,7 @@ static bool _init_bt(const char *deviceName)
     cod.minor = 0b000100;
     cod.service = 0b00000010110;
     if (esp_bt_gap_set_cod(cod, ESP_BT_INIT_COD) != ESP_OK) {
-        printf("set cod failed");
+        ESP_LOGI("ATouch", "set cod failed");
         return false;
     }
 

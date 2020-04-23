@@ -16,6 +16,8 @@
 
 #include "esp_bluetooth.h"
 #include "esp_wifi_station.h"
+#include "esp_log.h"
+#include "uart.h"
 
 uint8_t shell_end_str[20];
 uint8_t shell_tmp_str[4096];
@@ -38,7 +40,7 @@ int find_pid_str(char *str,char *pid)
     
 
     str = strstr(str, "shell");
-    printf("start found \"%s\"\r\n",str);
+    ESP_LOGI("ATouch", "start found \"%s\"\r\n",str);
     while(str[i++] != '\0')
     {
         if((flg == 0) && (str[i] == ' '))
@@ -68,56 +70,56 @@ int find_pid_str(char *str,char *pid)
 
 int printf_adb_frame(amessage *msg, uint8_t *buffer, bool is_recv)
 {
-    printf(">>>\r\n");
+    ESP_LOGI("ATouch", ">>>\r\n");
     if (is_recv == true)
     {
-        printf("ADB RECV: ");
+        ESP_LOGI("ATouch", "ADB RECV: ");
     }
     else
     {
-        printf("ADB SEND: ");
+        ESP_LOGI("ATouch", "ADB SEND: ");
     }
     switch (msg->command)
     {
     case A_SYNC:
-        printf("SYNC ");
+        ESP_LOGI("ATouch", "SYNC ");
         break;
 
     case A_CNXN: /* CONNECT(version, maxdata, "system-id-string") */
-        printf("CNXN ");
+        ESP_LOGI("ATouch", "CNXN ");
         break;
 
     case A_AUTH:
-        printf("AUTH \r\n");
+        ESP_LOGI("ATouch", "AUTH \r\n");
 
         return 0;
 
         break;
 
     case A_OPEN: /* OPEN(local-id, 0, "destination") */
-        printf("OPEN ");
+        ESP_LOGI("ATouch", "OPEN ");
         break;
 
     case A_OKAY: /* READY(local-id, remote-id, "") */
-        printf("OKAY ");
+        ESP_LOGI("ATouch", "OKAY ");
 
         break;
 
     case A_CLSE: /* CLOSE(local-id, remote-id, "") */
-        printf("CLOSE ");
+        ESP_LOGI("ATouch", "CLOSE ");
         break;
 
     case A_WRTE:
-        printf("WRTE ");
+        ESP_LOGI("ATouch", "WRTE ");
 
         break;
 
     default:
-        printf("handle_packet: what is %08x?!", msg->command);
+        ESP_LOGI("ATouch", "handle_packet: what is %08x?!", msg->command);
         break;
     }
 
-    printf("\r\n");
+    ESP_LOGI("ATouch", "\r\n");
     //printf_byte((uint8_t *)msg, sizeof(amessage));
     printf_byte_str(buffer, msg->data_length);
     //printf_byte(buffer, msg->data_length);
@@ -186,7 +188,7 @@ uint8_t * adb_shell_recv(uint8_t * recv_data)
 
     if (strstr((const char *)shell_tmp_str, (const char *)shell_end_str) != NULL)
     {
-        printf("================>\r\n%s\r\n================<\r\n", shell_tmp_str);
+        ESP_LOGI("ATouch", "================>\r\n%s\r\n================<\r\n", shell_tmp_str);
         return recv_data;
     }else{
         return NULL;
@@ -206,7 +208,7 @@ int get_str_count(char * tar_str,char *found_str)
         count++;
         str_tmp = strstr(str_tmp,found_str);
     }
-    //printf("get_str_count:%d\r\n",count);
+    //ESP_LOGI("ATouch", "get_str_count:%d\r\n",count);
     return count;
 }
 
@@ -275,12 +277,12 @@ reset:
 int ADB_RecvFrame(apacket *p)
 {
 
-    // printf("====================\r\n");
-    // printf("command\t0x%02X\r\n", p->msg.command);
-    // printf("arg0\t0x%02X\r\n", p->msg.arg0);
-    // printf("arg1\t0x%02X\r\n", p->msg.arg1);
-    // printf("length\t0x%02X\r\n", p->msg.data_length);
-    // printf("====================\r\n");
+    // ESP_LOGI("ATouch", "====================\r\n");
+    // ESP_LOGI("ATouch", "command\t0x%02X\r\n", p->msg.command);
+    // ESP_LOGI("ATouch", "arg0\t0x%02X\r\n", p->msg.arg0);
+    // ESP_LOGI("ATouch", "arg1\t0x%02X\r\n", p->msg.arg1);
+    // ESP_LOGI("ATouch", "length\t0x%02X\r\n", p->msg.data_length);
+    // ESP_LOGI("ATouch", "====================\r\n");
 
     *(p->data + p->msg.data_length) = '\0';
 
@@ -334,7 +336,7 @@ int ADB_RecvFrame(apacket *p)
 
         if (adb_c_s == ADB_CONNECT_TCPSERVER_WAIT)
         {
-            printf("tcpserver connect success\r\n");
+            ESP_LOGI("ATouch", "tcpserver connect success\r\n");
             adb_c_s = ADB_CONNECT_TCPSERVER_SUCCESS;
             remote_id = p->msg.arg0;
             local_id = p->msg.arg1;
@@ -342,7 +344,7 @@ int ADB_RecvFrame(apacket *p)
         }
         else if (adb_c_s == ADB_SEND_TCPSERVER_WAIT)
         {
-            printf("tcpserver send success\r\n");
+            ESP_LOGI("ATouch", "tcpserver send success\r\n");
             adb_c_s = ADB_SEND_TCPSERVER_SUCCESS;
         }
         else if (adb_c_s == ADB_CONNECT_TCPSERVER_SUCCESS)
@@ -354,12 +356,12 @@ int ADB_RecvFrame(apacket *p)
     case A_CLSE: /* CLOSE(local-id, remote-id, "") */
         if (adb_c_s == ADB_CONNECT_TCPSERVER_WAIT)
         {
-            printf("tcpserver connect fail\r\n");
+            ESP_LOGI("ATouch", "tcpserver connect fail\r\n");
             adb_c_s = ADB_CONNECT_TCPSERVER_FAIL;
         }
         else if (adb_c_s == ADB_EXIT_SHELL_SUCCESS_WAIT_END)
         {
-            printf("exit shell success\r\n");
+            ESP_LOGI("ATouch", "exit shell success\r\n");
             adb_c_s = ADB_EXIT_SHELL_SUCCESS;
         }
 
@@ -373,10 +375,10 @@ int ADB_RecvFrame(apacket *p)
             {
                 if(strstr((const char *) shell_tmp_str,"No such file or directory") == NULL)
                 {
-                    printf("package found\r\n");
+                    ESP_LOGI("ATouch", "package found\r\n");
                     adb_c_s = ADB_CHECK_PACKAGE_SUCCESS;
                 }else{
-                    printf("package not found\r\n");
+                    ESP_LOGI("ATouch", "package not found\r\n");
                     adb_c_s = ADB_CHECK_PACKAGE_FAIL;
                 }
             }
@@ -391,18 +393,18 @@ int ADB_RecvFrame(apacket *p)
 
 
 
-                    printf("package is running\r\n");
+                    ESP_LOGI("ATouch", "package is running\r\n");
 
 
                     if(find_pid_str((char *)shell_tmp_str,pid) == 0)
                     {
-                        printf("found pid %s\r\n",pid);
+                        ESP_LOGI("ATouch", "found pid %s\r\n",pid);
                     }
 
 
                     adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_TRUE;
                 }else{
-                    printf("package is not running\r\n");
+                    ESP_LOGI("ATouch", "package is not running\r\n");
                     adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_FALSE;
                 }
             }
@@ -414,16 +416,16 @@ int ADB_RecvFrame(apacket *p)
             {
                 if(get_str_count((char *) shell_tmp_str,(char *)PACKAGE_STR) >= 2)
                 {
-                    printf("package is running2\r\n");
+                    ESP_LOGI("ATouch", "package is running2\r\n");
 
                     
                     if(find_pid_str((char *)shell_tmp_str,pid) == 0)
                     {
-                        printf("found pid %s\r\n",pid);
+                        ESP_LOGI("ATouch", "found pid %s\r\n",pid);
                     }
                     adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_TRUE2;
                 }else{
-                    printf("package is not running2\r\n");
+                    ESP_LOGI("ATouch", "package is not running2\r\n");
                     adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_FALSE2;
                 }
             }
@@ -434,17 +436,17 @@ int ADB_RecvFrame(apacket *p)
             {
                 // if(get_str_count((char *) shell_tmp_str,(char *)PACKAGE_WITH_PATH_STR) == 1)
                 // {
-                    printf("package start success\r\n");
+                    ESP_LOGI("ATouch", "package start success\r\n");
                     adb_c_s = ADB_START_PACKAGE_SUCCESS;
                 // }else{
-                //     printf("package start fail\r\n");
+                //     ESP_LOGI("ATouch", "package start fail\r\n");
                 //     adb_c_s = ADB_START_PACKAGE_FAIL;
                 // }
             }
         }
         else if (adb_c_s == ADB_CONNECT_TCPSERVER_SUCCESS)
         {
-            printf("recv tcpserver data %s\r\n",p->data);       
+            ESP_LOGI("ATouch", "recv tcpserver data %s\r\n",p->data);       
             set_wifi_info((char *)p->data);  
         }
         else if (adb_c_s == ADB_GOTO_SHELL_WAIT)
@@ -459,11 +461,11 @@ int ADB_RecvFrame(apacket *p)
                 local_id = p->msg.arg1;
 
                 adb_c_s = ADB_GOTO_SHELL_SUCCESS;
-                printf("goto shell success %s\r\n", shell_end_str);
+                ESP_LOGI("ATouch", "goto shell success %s\r\n", shell_end_str);
             }
             else
             {
-                printf("goto shell fail\r\n");
+                ESP_LOGI("ATouch", "goto shell fail\r\n");
                 adb_c_s = ADB_GOTO_SHELL_FAIL;
             }
         }
@@ -473,10 +475,10 @@ int ADB_RecvFrame(apacket *p)
             {
                 if(get_str_count((char *) shell_tmp_str,(char *)PACKAGE_STR) >= 2)
                 {
-                    printf("kill pid %s success\r\n",pid);
+                    ESP_LOGI("ATouch", "kill pid %s success\r\n",pid);
                     adb_c_s = ADB_CHECK_PACKAGE_KILL_PID_TRUE;
                 }else{
-                    printf("kill pid %s success\r\n",pid);
+                    ESP_LOGI("ATouch", "kill pid %s success\r\n",pid);
                     adb_c_s = ADB_CHECK_PACKAGE_KILL_PID_TRUE;
                 }
             }
@@ -502,10 +504,10 @@ int ADB_RecvFrame(apacket *p)
             {
                 if(get_str_count((char *) shell_tmp_str,(char *)PACKAGE_STR) == 1)
                 {
-                    printf("cp package success\r\n");
+                    ESP_LOGI("ATouch", "cp package success\r\n");
                     adb_c_s = ADB_CP_PACKAGE_SUCCESS;
                 }else{
-                    printf("cp package fail\r\n");
+                    ESP_LOGI("ATouch", "cp package fail\r\n");
                     //此处如果拷贝失败可能是Text file busy文件已经正在被使用。
                     adb_c_s = ADB_CP_PACKAGE_FAIL;
                     //adb_c_s = ADB_CP_PACKAGE_SUCCESS;
@@ -518,10 +520,10 @@ int ADB_RecvFrame(apacket *p)
             {
                 if(get_str_count((char *) shell_tmp_str,(char *)PACKAGE_STR) == 1)
                 {
-                    printf("chmod package success\r\n");
+                    ESP_LOGI("ATouch", "chmod package success\r\n");
                     adb_c_s = ADB_CHMOD_PACKAGE_SUCCESS;
                 }else{
-                    printf("chmod package fail\r\n");
+                    ESP_LOGI("ATouch", "chmod package fail\r\n");
                     adb_c_s = ADB_CHMOD_PACKAGE_FAIL;
                 }
             }
@@ -530,7 +532,7 @@ int ADB_RecvFrame(apacket *p)
         break;
 
     default:
-        printf("handle_packet: what is %08x?!\r\n", p->msg.command);
+        ESP_LOGI("ATouch", "handle_packet: what is %08x?!\r\n", p->msg.command);
         break;
     }
 
@@ -687,7 +689,7 @@ uint8_t ADB_TCP_Send(uint8_t *buf, uint16_t len, uint8_t dev_class)
             send_len = cmd_creat(0x00, buf, len, buf_tmp);
             send_tcpserver(local_id, remote_id, buf_tmp, send_len);
 
-            printf("ADB TCP Status: ");
+            ESP_LOGI("ATouch", "ADB TCP Status: ");
             printf_byte(buf_tmp, send_len);
         }
         else if (dev_class == DEV_MOUSE)
@@ -695,7 +697,7 @@ uint8_t ADB_TCP_Send(uint8_t *buf, uint16_t len, uint8_t dev_class)
             send_len = cmd_creat(0x02, buf, len, buf_tmp);
             send_tcpserver(local_id, remote_id, buf_tmp, send_len);
 
-            printf("ADB TCP Mouse: ");
+            ESP_LOGI("ATouch", "ADB TCP Mouse: ");
             printf_byte(buf_tmp, send_len);
         }
         else if (dev_class == DEV_KEYBOARD)
@@ -703,7 +705,34 @@ uint8_t ADB_TCP_Send(uint8_t *buf, uint16_t len, uint8_t dev_class)
             send_len = cmd_creat(0x03, buf, len, buf_tmp);
             send_tcpserver(local_id, remote_id, buf_tmp, send_len);
 
-            printf("ADB TCP KeyBoard: ");
+            ESP_LOGI("ATouch", "ADB TCP KeyBoard: ");
+            printf_byte(buf_tmp, send_len);
+        }
+        return 0;
+    }else if(is_uart_connect == true)
+    {
+        if (dev_class == 0x00)
+        {
+            send_len = cmd_creat(0x00, buf, len, buf_tmp);
+            uart_send((char *)buf_tmp, send_len);
+
+            ESP_LOGI("ATouch", "UART Status: ");
+            printf_byte(buf_tmp, send_len);
+        }
+        else if (dev_class == DEV_MOUSE)
+        {
+            send_len = cmd_creat(0x02, buf, len, buf_tmp);
+            uart_send((char *)buf_tmp, send_len);
+
+            ESP_LOGI("ATouch", "UART Mouse: ");
+            printf_byte(buf_tmp, send_len);
+        }
+        else if (dev_class == DEV_KEYBOARD)
+        {
+            send_len = cmd_creat(0x03, buf, len, buf_tmp);
+            uart_send((char *)buf_tmp, send_len);
+
+            ESP_LOGI("ATouch", "UART KeyBoard: ");
             printf_byte(buf_tmp, send_len);
         }
         return 0;
@@ -715,7 +744,7 @@ uint8_t ADB_TCP_Send(uint8_t *buf, uint16_t len, uint8_t dev_class)
             send_len = cmd_creat(0x00, buf, len, buf_tmp);
             wifi_socket_send((char *)buf_tmp, send_len);
 
-            printf("WIFI TCP Status: ");
+            ESP_LOGI("ATouch", "WIFI TCP Status: ");
             printf_byte(buf_tmp, send_len);
         }
         else if (dev_class == DEV_MOUSE)
@@ -723,7 +752,7 @@ uint8_t ADB_TCP_Send(uint8_t *buf, uint16_t len, uint8_t dev_class)
             send_len = cmd_creat(0x02, buf, len, buf_tmp);
             wifi_socket_send((char *)buf_tmp, send_len);
 
-            printf("WIFI TCP Mouse: ");
+            ESP_LOGI("ATouch", "WIFI TCP Mouse: ");
             printf_byte(buf_tmp, send_len);
         }
         else if (dev_class == DEV_KEYBOARD)
@@ -731,7 +760,7 @@ uint8_t ADB_TCP_Send(uint8_t *buf, uint16_t len, uint8_t dev_class)
             send_len = cmd_creat(0x03, buf, len, buf_tmp);
             wifi_socket_send((char *)buf_tmp, send_len);
 
-            printf("WIFI TCP KeyBoard: ");
+            ESP_LOGI("ATouch", "WIFI TCP KeyBoard: ");
             printf_byte(buf_tmp, send_len);
         }
         return 0;
@@ -743,7 +772,7 @@ uint8_t ADB_TCP_Send(uint8_t *buf, uint16_t len, uint8_t dev_class)
             send_len = cmd_creat(0x00, buf, len, buf_tmp);
             esp_bluetooth_send(buf_tmp, send_len);
 #ifdef BLE_LOG
-            printf("BLUE Status: ");
+            ESP_LOGI("ATouch", "BLUE Status: ");
             printf_byte(buf_tmp, send_len);
 #endif
         }
@@ -769,8 +798,8 @@ uint8_t ADB_TCP_Send(uint8_t *buf, uint16_t len, uint8_t dev_class)
             // {
             //     send_count = 0;
             //     esp_bluetooth_send(send_temp, send_len*4);
-            //         printf("BLUE Mouse: ");
-            //         //printf("%d %d ", (signed char)buf[1], (signed char)buf[2]);
+            //         ESP_LOGI("ATouch", "BLUE Mouse: ");
+            //         //ESP_LOGI("ATouch", "%d %d ", (signed char)buf[1], (signed char)buf[2]);
             //         printf_byte(send_temp, send_len*4);
             // }
 
@@ -834,8 +863,8 @@ uint8_t ADB_TCP_Send(uint8_t *buf, uint16_t len, uint8_t dev_class)
             send_len = cmd_creat(0x02, buf, len, buf_tmp);
             esp_bluetooth_send(buf_tmp, send_len);
 
-            printf("BLUE Mouse: ");
-            //printf("%d %d ", (signed char)buf[1], (signed char)buf[2]);
+            ESP_LOGI("ATouch", "BLUE Mouse: ");
+            //ESP_LOGI("ATouch", "%d %d ", (signed char)buf[1], (signed char)buf[2]);
             printf_byte(buf_tmp, send_len);
 
             //         send_count = 0;
@@ -846,7 +875,7 @@ uint8_t ADB_TCP_Send(uint8_t *buf, uint16_t len, uint8_t dev_class)
             send_len = cmd_creat(0x03, buf, len, buf_tmp);
             esp_bluetooth_send(buf_tmp, send_len);
 
-            printf("BLUE KeyBoard: ");
+            ESP_LOGI("ATouch", "BLUE KeyBoard: ");
             printf_byte(buf_tmp, send_len);
         }
         return 0;
@@ -867,7 +896,7 @@ uint8_t ADB_TCP_Send(uint8_t *buf, uint16_t len, uint8_t dev_class)
 //             send_lock = 1;
 
 //             esp_bluetooth_send(send_temp, send_temp_len);
-//             printf("BLUE Mouse: ");
+//             ESP_LOGI("ATouch", "BLUE Mouse: ");
 //             printf_byte(send_temp, send_temp_len);
 //             send_count = 0;
 //             send_temp_len = 0;
