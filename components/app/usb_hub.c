@@ -13,6 +13,7 @@
 #include "adb_device.h"
 #include "adb_protocol.h"
 #include "CH374INC.H"
+#include "msg_send.h"
 
 uint8_t status_buf[4] = {0,0,0,0};
 
@@ -49,7 +50,7 @@ void usb_hub_task(void* arg)
         if(timer_count >= 100)
         {
             timer_count = 0;
-            ADB_TCP_Send(status_buf,4,0x00);
+            msg_send(status_buf,4,0x00);
         }
 
         vTaskDelay(10/ portTICK_RATE_MS);
