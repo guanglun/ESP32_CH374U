@@ -5,12 +5,15 @@
 
 //#define ADB_LOG
 
+extern ADB_Connect_Status adb_c_s;
+extern bool is_tcp_send_done;
+extern uint32_t local_id, remote_id;
+
 int usb_send_packet(amessage *msg, uint8_t *buffer,uint8_t flag);
 void adb_connect(void);
 int ADB_RecvFrame(apacket *p);
 int ADB_RecvData(uint8_t *buf, uint8_t len);
 void ADB_Process(void);
-uint8_t ADB_TCP_Send(uint8_t *buf,uint16_t len,uint8_t dev_class);
 void bt_send_task(void *arg);
 
 #endif

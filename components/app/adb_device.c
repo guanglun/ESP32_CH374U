@@ -561,7 +561,11 @@ void ADB_Process(void)
         send_shell(local_id, remote_id, (uint8_t *)CP_PACKAGE_STR);//不管有没有存在都会复制一次来保证最新
         adb_c_s = ADB_CP_PACKAGE_WAIT;        
         break;
-
+    case ADB_GOTO_SHELL_FAIL: //进入shell失败后重试
+        adb_shell_recv_reset();
+        send_just_open_shell(local_id, remote_id);
+        adb_c_s = ADB_GOTO_SHELL_WAIT;    
+        break;
     case ADB_CP_PACKAGE_SUCCESS:
         adb_shell_recv_reset();
         // send_shell(local_id, remote_id, (uint8_t *)CHMOD_PACKAGE_STR);
@@ -580,15 +584,10 @@ void ADB_Process(void)
         break;
 
     case ADB_CHMOD_PACKAGE_SUCCESS:
+    case ADB_CHMOD_PACKAGE_FAIL:
         adb_shell_recv_reset();
         send_shell(local_id, remote_id, (uint8_t *)CHECK_PACKAGE_ISRUNING_STR);
         adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_WAIT;
-        break;
-
-    case ADB_CHECK_PACKAGE_FAIL: //未检测到ATouchService
-        adb_shell_recv_reset();
-        send_shell(local_id, remote_id, (uint8_t *)CP_PACKAGE_STR);
-        adb_c_s = ADB_CP_PACKAGE_WAIT;
         break;
 
     case ADB_CHECK_PACKAGE_SUCCESS: //检测到ATouchService
@@ -599,13 +598,17 @@ void ADB_Process(void)
         send_shell(local_id, remote_id, (uint8_t *)CHMOD_PACKAGE_STR);
         adb_c_s = ADB_CHMOD_PACKAGE_WAIT;
         break;
+    case ADB_CHECK_PACKAGE_FAIL: //未检测到ATouchService
+        adb_shell_recv_reset();
+        send_shell(local_id, remote_id, (uint8_t *)CP_PACKAGE_STR);
+        adb_c_s = ADB_CP_PACKAGE_WAIT;
+        break;
 
     case ADB_CHECK_PACKAGE_ISRUNING_FALSE:
         adb_shell_recv_reset();
         send_shell(local_id, remote_id, (uint8_t *)CHECK_PACKAGE_ISRUNING_STR2);
         adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_WAIT2;
         break;
-
     case ADB_CHECK_PACKAGE_ISRUNING_FALSE2:
         adb_shell_recv_reset();
         send_shell(local_id, remote_id, (uint8_t *)START_PACKAGE_STR);
@@ -639,10 +642,10 @@ void ADB_Process(void)
             send_connect_tcpserver(local_id, remote_id, (uint8_t *)"1989");
             adb_c_s = ADB_CONNECT_TCPSERVER_WAIT;
         }
-        
         break;
 
     case ADB_START_PACKAGE_SUCCESS:
+    case ADB_START_PACKAGE_FAIL:
         adb_shell_recv_reset();
         send_shell(local_id, remote_id, (uint8_t *)CHECK_PACKAGE_ISRUNING_STR);
         adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_WAIT;
@@ -666,244 +669,3 @@ void ADB_Process(void)
     }
 }
 
-uint8_t test_count = 0;
-uint8_t send_count = 0;
-uint8_t send_temp[256];
-uint8_t send_temp_len = 0;
-uint8_t send_lock = 0;
-signed int x = 0, y = 0;
-
-uint8_t ADB_TCP_Send(uint8_t *buf, uint16_t len, uint8_t dev_class)
-{
-    //static uint8_t is_send_flag = 0;
-    unsigned char buf_tmp[100];
-    unsigned char send_len = 0;
-
-    if (adb_c_s == ADB_CONNECT_TCPSERVER_SUCCESS && is_tcp_send_done == true)
-    {
-        is_tcp_send_done = false;
-
-        if (dev_class == 0x00)
-        {
-
-            send_len = cmd_creat(0x00, buf, len, buf_tmp);
-            send_tcpserver(local_id, remote_id, buf_tmp, send_len);
-
-            ESP_LOGI("ATouch", "ADB TCP Status: ");
-            printf_byte(buf_tmp, send_len);
-        }
-        else if (dev_class == DEV_MOUSE)
-        {
-            send_len = cmd_creat(0x02, buf, len, buf_tmp);
-            send_tcpserver(local_id, remote_id, buf_tmp, send_len);
-
-            ESP_LOGI("ATouch", "ADB TCP Mouse: ");
-            printf_byte(buf_tmp, send_len);
-        }
-        else if (dev_class == DEV_KEYBOARD)
-        {
-            send_len = cmd_creat(0x03, buf, len, buf_tmp);
-            send_tcpserver(local_id, remote_id, buf_tmp, send_len);
-
-            ESP_LOGI("ATouch", "ADB TCP KeyBoard: ");
-            printf_byte(buf_tmp, send_len);
-        }
-        return 0;
-    }else if(is_uart_connect == true)
-    {
-        if (dev_class == 0x00)
-        {
-            send_len = cmd_creat(0x00, buf, len, buf_tmp);
-            uart_send((char *)buf_tmp, send_len);
-
-            ESP_LOGI("ATouch", "UART Status: ");
-            printf_byte(buf_tmp, send_len);
-        }
-        else if (dev_class == DEV_MOUSE)
-        {
-            send_len = cmd_creat(0x02, buf, len, buf_tmp);
-            uart_send((char *)buf_tmp, send_len);
-
-            ESP_LOGI("ATouch", "UART Mouse: ");
-            printf_byte(buf_tmp, send_len);
-        }
-        else if (dev_class == DEV_KEYBOARD)
-        {
-            send_len = cmd_creat(0x03, buf, len, buf_tmp);
-            uart_send((char *)buf_tmp, send_len);
-
-            ESP_LOGI("ATouch", "UART KeyBoard: ");
-            printf_byte(buf_tmp, send_len);
-        }
-        return 0;
-    }else if(is_wifi_socket_connect == true)
-    {
-        if (dev_class == 0x00)
-        {
-
-            send_len = cmd_creat(0x00, buf, len, buf_tmp);
-            wifi_socket_send((char *)buf_tmp, send_len);
-
-            ESP_LOGI("ATouch", "WIFI TCP Status: ");
-            printf_byte(buf_tmp, send_len);
-        }
-        else if (dev_class == DEV_MOUSE)
-        {
-            send_len = cmd_creat(0x02, buf, len, buf_tmp);
-            wifi_socket_send((char *)buf_tmp, send_len);
-
-            ESP_LOGI("ATouch", "WIFI TCP Mouse: ");
-            printf_byte(buf_tmp, send_len);
-        }
-        else if (dev_class == DEV_KEYBOARD)
-        {
-            send_len = cmd_creat(0x03, buf, len, buf_tmp);
-            wifi_socket_send((char *)buf_tmp, send_len);
-
-            ESP_LOGI("ATouch", "WIFI TCP KeyBoard: ");
-            printf_byte(buf_tmp, send_len);
-        }
-        return 0;
-    }
-    else if (get_bluetooth_status() == 1)
-    {
-        if (dev_class == 0x00)
-        {
-            send_len = cmd_creat(0x00, buf, len, buf_tmp);
-            esp_bluetooth_send(buf_tmp, send_len);
-#ifdef BLE_LOG
-            ESP_LOGI("ATouch", "BLUE Status: ");
-            printf_byte(buf_tmp, send_len);
-#endif
-        }
-        else if (dev_class == DEV_MOUSE)
-        {
-            // while(send_lock == 1);
-            // send_lock = 1;
-
-            // send_count++;
-
-            // test_count++;
-            // buf[len - 1] = test_count;
-
-            // send_len = cmd_creat(0x02, buf, len, buf_tmp);
-
-            // memcpy(send_temp + ((send_count - 1) * (send_len)), buf_tmp, send_len);
-
-            // send_temp_len += send_len;
-
-            // send_lock = 0;
-
-            // if(send_count >= 4)
-            // {
-            //     send_count = 0;
-            //     esp_bluetooth_send(send_temp, send_len*4);
-            //         ESP_LOGI("ATouch", "BLUE Mouse: ");
-            //         //ESP_LOGI("ATouch", "%d %d ", (signed char)buf[1], (signed char)buf[2]);
-            //         printf_byte(send_temp, send_len*4);
-            // }
-
-            //     x += (signed char)buf[1];
-            //     y += (signed char)buf[2];
-
-            //     if (x < -128 || x > 127 || y < -128 || y > 127)
-            //     {
-            //         is_send_flag = 1;
-
-            //         if(x < -128)
-            //         {
-            //             buf[1] = -128;
-            //             //x+=128;
-            //             x=0;
-            //         }else if(x > 127)
-            //         {
-            //             buf[1] = 127;
-            //             //x-=127;
-            //             x=0;
-            //         }else{
-            //             buf[1] = x;
-            //             x=0;
-            //         }
-
-            //         if(y < -128)
-            //         {
-            //             buf[2] = -128;
-            //             //y+=128;
-            //             y = 0;
-            //         }else if(y > 127)
-            //         {
-            //             buf[2] = 127;
-            //             //y-=127;
-            //             y = 0;
-            //         }else{
-            //             buf[2] = y;
-            //             y=0;
-            //         }
-
-            //     }
-
-            //     if (send_count >= 4 && is_send_flag == 0)
-            //     {
-            //         is_send_flag = 1;
-
-            //         buf[1] = (uint8_t)((signed char)x);
-            //         buf[2] = (uint8_t)((signed char)y);
-
-            //         x = 0;
-            //         y = 0;
-            //     }
-
-            // if(is_send_flag == 1)
-            // {
-            //     is_send_flag = 0;
-
-            test_count++;
-            buf[len - 1] = test_count;
-
-            send_len = cmd_creat(0x02, buf, len, buf_tmp);
-            esp_bluetooth_send(buf_tmp, send_len);
-
-            ESP_LOGI("ATouch", "BLUE Mouse: ");
-            //ESP_LOGI("ATouch", "%d %d ", (signed char)buf[1], (signed char)buf[2]);
-            printf_byte(buf_tmp, send_len);
-
-            //         send_count = 0;
-            // }
-        }
-        else if (dev_class == DEV_KEYBOARD)
-        {
-            send_len = cmd_creat(0x03, buf, len, buf_tmp);
-            esp_bluetooth_send(buf_tmp, send_len);
-
-            ESP_LOGI("ATouch", "BLUE KeyBoard: ");
-            printf_byte(buf_tmp, send_len);
-        }
-        return 0;
-    }
-    else
-    {
-        return 1;
-    }
-}
-
-// void bt_send_task(void *arg)
-// {
-//     while (1)
-//     {
-//         if (send_temp_len != 0)
-//         {
-//             while(send_lock == 1);
-//             send_lock = 1;
-
-//             esp_bluetooth_send(send_temp, send_temp_len);
-//             ESP_LOGI("ATouch", "BLUE Mouse: ");
-//             printf_byte(send_temp, send_temp_len);
-//             send_count = 0;
-//             send_temp_len = 0;
-//             send_lock = 0;
-//         }
-//         vTaskDelay(20 / portTICK_RATE_MS);
-//     }
-
-//     vTaskDelete(NULL);
-// }

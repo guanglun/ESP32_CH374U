@@ -14,6 +14,7 @@
 #include "CH374INC.H"
 #include "usb_hub.h"
 #include "led_hal.h"
+#include "msg_send.h"
 
 #define HUB_DEV_NUM (3)
 // 附加的USB操作状态定义
@@ -1134,7 +1135,7 @@ void QueryMouse(uint8_t index)
                 len = 4;
             }
 
-            if (ADB_TCP_Send(TempBuf, len, DEV_MOUSE) != 0)
+            if (msg_send(TempBuf, len, DEV_MOUSE) != 0)
             {
                 ESP_LOGI("ATouch", ">>Mouse data: ");
                 printf_byte(TempBuf, len);
@@ -1165,7 +1166,7 @@ void QueryKeyboard(uint8_t index)
         {
             Read374Block(RAM_HOST_RECV, len, TempBuf); // 取出数据并打印
 
-            if (ADB_TCP_Send(TempBuf, len, DEV_KEYBOARD) != 0)
+            if (msg_send(TempBuf, len, DEV_KEYBOARD) != 0)
             {
                 ESP_LOGI("ATouch", ">>KeyBoard data: ");
                 printf_byte(TempBuf, len);
