@@ -542,7 +542,7 @@ void ADB_Process(void)
     switch (adb_c_s)
     {
     case ADB_CONNECT: //ADB AUTH完成之后第一个状态
-    adb_shell_recv_reset();
+        adb_shell_recv_reset();
         send_just_open_shell(local_id, remote_id);
         adb_c_s = ADB_GOTO_SHELL_WAIT;
         pid_kill = 0;

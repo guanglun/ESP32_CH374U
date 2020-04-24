@@ -2,6 +2,10 @@
 
 ## ATouch项目中的硬件源码部分，ESP32+CH374U  
 
+<font size="10">
+[ATouch线上文档](http://guanglundz.com/atouch)  
+</font>
+
 * 串口指令（波特率115200 不加回车换行符）
 
 
