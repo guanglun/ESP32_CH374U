@@ -40,12 +40,12 @@ void get_adb_packet(amessage *msg, uint8_t *buf)
 int check_header(apacket *p)
 {
     if(p->msg.magic != (p->msg.command ^ 0xffffffff)) {
-        ESP_LOGI("ATouch", "check_header(): invalid magic\r\n");
+        ESP_LOGI("ATouch", "check_header(): invalid magic");
         return -1;
     }
 
     if(p->msg.data_length > MAX_PAYLOAD) {
-        ESP_LOGI("ATouch", "check_header(): %d > MAX_PAYLOAD\r\n", p->msg.data_length);
+        ESP_LOGI("ATouch", "check_header(): %d > MAX_PAYLOAD", p->msg.data_length);
         return -1;
     }
 

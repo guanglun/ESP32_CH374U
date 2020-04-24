@@ -235,7 +235,7 @@ static void esp_spp_cb(esp_spp_cb_event_t event, esp_spp_cb_param_t *param)
     case ESP_SPP_DATA_IND_EVT://connection received data
         //log_v("ESP_SPP_DATA_IND_EVT len=%d handle=%d", param->data_ind.len, param->data_ind.handle);
         //esp_//log_buffer_hex("",param->data_ind.data,param->data_ind.len); //for low level debug
-        //ets_ESP_LOGI("ATouch", "r:%u\n", param->data_ind.len);
+        //ets_ESP_LOGI("ATouch", "r:%u", param->data_ind.len);
 
         if (_spp_rx_queue != NULL){
             for (int i = 0; i < param->data_ind.len; i++){

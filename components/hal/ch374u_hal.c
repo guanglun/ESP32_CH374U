@@ -141,7 +141,7 @@ void Read374Block( uint8_t mAddr, uint8_t mLen, uint8_t *mBuf )  /* 从指定起
 	{
 	  	*(mBuf + count) = Read374Data();
 	}
-	//ESP_LOGI("ATouch", "\r\nrecv ");
+	//ESP_LOGD("ATouch", "\r\nrecv ");
 	//printf_byte(mBuf,mLen);
 }
 
@@ -164,9 +164,9 @@ void ch374u_hal_init(void)
 	id = Read374Byte(0x04);
     if((id & 0x03) == 0x01)
     {
-        ESP_LOGI("ATouch", "CH374U Connect Success %02X\r\n",id);
+        ESP_LOGI("ATouch", "CH374U Connect Success %02X",id);
     }else{
-        ESP_LOGI("ATouch", "CH374U Connect Fail %02X\r\n",id);
+        ESP_LOGI("ATouch", "CH374U Connect Fail %02X",id);
     }
 
 }

@@ -42,7 +42,7 @@ uint8_t msg_send(uint8_t *buf, uint16_t len, uint8_t dev_class)
             send_len = cmd_creat(0x00, buf, len, buf_tmp);
             send_tcpserver(local_id, remote_id, buf_tmp, send_len);
 
-            printf("ADB TCP Status: ");
+            ESP_LOGD("ATouch", "ADB TCP Status: ");
             printf_byte(buf_tmp, send_len);
         }
         else if (dev_class == DEV_MOUSE)
@@ -50,7 +50,7 @@ uint8_t msg_send(uint8_t *buf, uint16_t len, uint8_t dev_class)
             send_len = cmd_creat(0x02, buf, len, buf_tmp);
             send_tcpserver(local_id, remote_id, buf_tmp, send_len);
 
-            printf("ADB TCP Mouse: ");
+            ESP_LOGD("ATouch", "ADB TCP Mouse: ");
             printf_byte(buf_tmp, send_len);
         }
         else if (dev_class == DEV_KEYBOARD)
@@ -58,7 +58,7 @@ uint8_t msg_send(uint8_t *buf, uint16_t len, uint8_t dev_class)
             send_len = cmd_creat(0x03, buf, len, buf_tmp);
             send_tcpserver(local_id, remote_id, buf_tmp, send_len);
 
-            printf("ADB TCP KeyBoard: ");
+            ESP_LOGD("ATouch", "ADB TCP KeyBoard: ");
             printf_byte(buf_tmp, send_len);
         }
         return 0;
@@ -70,7 +70,7 @@ uint8_t msg_send(uint8_t *buf, uint16_t len, uint8_t dev_class)
             send_len = cmd_creat(0x00, buf, len, buf_tmp);
             wifi_socket_send((char *)buf_tmp, send_len);
 
-            printf("WIFI TCP Status: ");
+            ESP_LOGD("ATouch", "WIFI TCP Status: ");
             printf_byte(buf_tmp, send_len);
         }
         else if (dev_class == DEV_MOUSE)
@@ -78,7 +78,7 @@ uint8_t msg_send(uint8_t *buf, uint16_t len, uint8_t dev_class)
             send_len = cmd_creat(0x02, buf, len, buf_tmp);
             wifi_socket_send((char *)buf_tmp, send_len);
 
-            printf("WIFI TCP Mouse: ");
+            ESP_LOGD("ATouch", "WIFI TCP Mouse: ");
             printf_byte(buf_tmp, send_len);
         }
         else if (dev_class == DEV_KEYBOARD)
@@ -86,7 +86,7 @@ uint8_t msg_send(uint8_t *buf, uint16_t len, uint8_t dev_class)
             send_len = cmd_creat(0x03, buf, len, buf_tmp);
             wifi_socket_send((char *)buf_tmp, send_len);
 
-            printf("WIFI TCP KeyBoard: ");
+            ESP_LOGD("ATouch", "WIFI TCP KeyBoard: ");
             printf_byte(buf_tmp, send_len);
         }
         return 0;
@@ -98,99 +98,20 @@ uint8_t msg_send(uint8_t *buf, uint16_t len, uint8_t dev_class)
             send_len = cmd_creat(0x00, buf, len, buf_tmp);
             esp_bluetooth_send(buf_tmp, send_len);
 #ifdef BLE_LOG
-            printf("BLUE Status: ");
+            ESP_LOGD("ATouch", "BLUE Status: ");
             printf_byte(buf_tmp, send_len);
 #endif
         }
         else if (dev_class == DEV_MOUSE)
         {
-            // while(send_lock == 1);
-            // send_lock = 1;
-
-            // send_count++;
-
-            // test_count++;
-            // buf[len - 1] = test_count;
-
-            // send_len = cmd_creat(0x02, buf, len, buf_tmp);
-
-            // memcpy(send_temp + ((send_count - 1) * (send_len)), buf_tmp, send_len);
-
-            // send_temp_len += send_len;
-
-            // send_lock = 0;
-
-            // if(send_count >= 4)
-            // {
-            //     send_count = 0;
-            //     esp_bluetooth_send(send_temp, send_len*4);
-            //         printf("BLUE Mouse: ");
-            //         //printf("%d %d ", (signed char)buf[1], (signed char)buf[2]);
-            //         printf_byte(send_temp, send_len*4);
-            // }
-
-            //     x += (signed char)buf[1];
-            //     y += (signed char)buf[2];
-
-            //     if (x < -128 || x > 127 || y < -128 || y > 127)
-            //     {
-            //         is_send_flag = 1;
-
-            //         if(x < -128)
-            //         {
-            //             buf[1] = -128;
-            //             //x+=128;
-            //             x=0;
-            //         }else if(x > 127)
-            //         {
-            //             buf[1] = 127;
-            //             //x-=127;
-            //             x=0;
-            //         }else{
-            //             buf[1] = x;
-            //             x=0;
-            //         }
-
-            //         if(y < -128)
-            //         {
-            //             buf[2] = -128;
-            //             //y+=128;
-            //             y = 0;
-            //         }else if(y > 127)
-            //         {
-            //             buf[2] = 127;
-            //             //y-=127;
-            //             y = 0;
-            //         }else{
-            //             buf[2] = y;
-            //             y=0;
-            //         }
-
-            //     }
-
-            //     if (send_count >= 4 && is_send_flag == 0)
-            //     {
-            //         is_send_flag = 1;
-
-            //         buf[1] = (uint8_t)((signed char)x);
-            //         buf[2] = (uint8_t)((signed char)y);
-
-            //         x = 0;
-            //         y = 0;
-            //     }
-
-            // if(is_send_flag == 1)
-            // {
-            //     is_send_flag = 0;
-
             test_count++;
             buf[len - 1] = test_count;
 
             send_len = cmd_creat(0x02, buf, len, buf_tmp);
             esp_bluetooth_send(buf_tmp, send_len);
 
-            printf("BLUE Mouse: ");
-            //printf("%d %d ", (signed char)buf[1], (signed char)buf[2]);
+            ESP_LOGD("ATouch", "BLUE Mouse: ");
+            //ESP_LOGI("ATouch", "%d %d ", (signed char)buf[1], (signed char)buf[2]);
             printf_byte(buf_tmp, send_len);
 
             //         send_count = 0;
@@ -201,7 +122,7 @@ uint8_t msg_send(uint8_t *buf, uint16_t len, uint8_t dev_class)
             send_len = cmd_creat(0x03, buf, len, buf_tmp);
             esp_bluetooth_send(buf_tmp, send_len);
 
-            printf("BLUE KeyBoard: ");
+            ESP_LOGD("ATouch", "BLUE KeyBoard: ");
             printf_byte(buf_tmp, send_len);
         }
         return 0;
@@ -211,25 +132,3 @@ uint8_t msg_send(uint8_t *buf, uint16_t len, uint8_t dev_class)
         return 1;
     }
 }
-
-// void bt_send_task(void *arg)
-// {
-//     while (1)
-//     {
-//         if (send_temp_len != 0)
-//         {
-//             while(send_lock == 1);
-//             send_lock = 1;
-
-//             esp_bluetooth_send(send_temp, send_temp_len);
-//             printf("BLUE Mouse: ");
-//             printf_byte(send_temp, send_temp_len);
-//             send_count = 0;
-//             send_temp_len = 0;
-//             send_lock = 0;
-//         }
-//         vTaskDelay(20 / portTICK_RATE_MS);
-//     }
-
-//     vTaskDelete(NULL);
-// }

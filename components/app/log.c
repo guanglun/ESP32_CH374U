@@ -27,7 +27,7 @@ void printf_byte(uint8_t *buf,uint16_t len)
 		sprintf((char *)buffer_tmp, "%02X ",*(buf + count));
 		strcat((char *)buffer_log,(const char *)buffer_tmp);
 	}
-	ESP_LOGI("ATouch", "%s\r\n",buffer_log);
+	ESP_LOGD("ATouch", "%s",buffer_log);
 }
 
 void printf_byte_str(uint8_t *buf,uint16_t len)
@@ -42,5 +42,5 @@ void printf_byte_str(uint8_t *buf,uint16_t len)
 		sprintf((char *)buffer_tmp, "%c",*(buf + count));
 		strcat((char *)buffer_log,(const char *)buffer_tmp);
 	}
-	ESP_LOGI("ATouch", "%s\r\n",buffer_log);
+	ESP_LOGD("ATouch", "%s",buffer_log);
 }

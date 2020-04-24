@@ -135,7 +135,7 @@ static esp_err_t event_handler(void *ctx, system_event_t *event)
             s_retry_num++;
             ESP_LOGI(TAG, "retry to connect to the AP");
         }
-        ESP_LOGI(TAG, "connect to the AP fail\n");
+        ESP_LOGI(TAG, "connect to the AP fail");
         break;
     }
     default:

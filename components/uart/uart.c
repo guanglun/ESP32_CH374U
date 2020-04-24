@@ -11,8 +11,6 @@
 #include "driver/uart.h"            // for the uart driver access
 #include "uart.h"           
 
-static char TAG[] = "UART";
-
 #define uart_num  UART_NUM_0
 
 #ifndef size_t
@@ -49,37 +47,37 @@ void uart_task(void *pvParameters)
                     break;
                 //Event of HW FIFO overflow detected
                 case UART_FIFO_OVF:
-                    //ESP_LOGI(TAG, "hw fifo overflow\n");
+                    //ESP_LOGI(TAG, "hw fifo overflow");
                     //If fifo overflow happened, you should consider adding flow control for your application.
                     //We can read data out out the buffer, or directly flush the rx buffer.
                     uart_flush(uart_num);
                     break;
                 //Event of UART ring buffer full
                 case UART_BUFFER_FULL:
-                    //ESP_LOGI(TAG, "ring buffer full\n");
+                    //ESP_LOGI(TAG, "ring buffer full");
                     //If buffer full happened, you should consider encreasing your buffer size
                     //We can read data out out the buffer, or directly flush the rx buffer.
                     uart_flush(uart_num);
                     break;
                 //Event of UART RX break detected
                 case UART_BREAK:
-                    //ESP_LOGI(TAG, "uart rx break\n");
+                    //ESP_LOGI(TAG, "uart rx break");
                     break;
                 //Event of UART parity check error
                 case UART_PARITY_ERR:
-                    //ESP_LOGI(TAG, "uart parity error\n");
+                    //ESP_LOGI(TAG, "uart parity error");
                     break;
                 //Event of UART frame error
                 case UART_FRAME_ERR:
-                    //ESP_LOGI(TAG, "uart frame error\n");
+                    //ESP_LOGI(TAG, "uart frame error");
                     break;
                 //UART_PATTERN_DET
                 case UART_PATTERN_DET:
-                    //ESP_LOGI(TAG, "uart pattern detected\n");
+                    //ESP_LOGI(TAG, "uart pattern detected");
                     break;
                 //Others
                 default:
-                    //ESP_LOGI(TAG, "uart event type: %d\n", event.type);
+                    //ESP_LOGI(TAG, "uart event type: %d", event.type);
                     break;
             }
         }
@@ -99,18 +97,31 @@ void uart_recv_task(void *pvParameters)
         if(len == 4) {
             if(data[0] == 'o' && data[1] == 'p' && data[2] == 'e' && data[3] == 'n')
             {
-                //esp_log_level_set("*", ESP_LOG_NONE);
+                esp_log_level_set("*", ESP_LOG_NONE);
                 is_uart_connect = true;
-            }else if(data[0] == 'c' && data[1] == 'l' && data[2] == 'o' && data[3] == 's')
+            }
+        }else if(len == 5) {
+            if(data[0] == 'c' && data[1] == 'l' && data[2] == 'o' && data[3] == 's' && data[4] == 'e')
             {
-                //esp_log_level_set("*", ESP_LOG_INFO);
                 is_uart_connect = false;
-            }else if(data[0] == 'o' && data[1] == 'l' && data[2] == 'o' && data[3] == 'g')
-            {
-                esp_log_level_set("*", ESP_LOG_INFO);
-            }else if(data[0] == 'c' && data[1] == 'l' && data[2] == 'o' && data[3] == 'g')
+            }else if(data[0] == 's' && data[1] == 'l' && data[2] == 'o' && data[3] == 'g' && data[4] == 'n')
             {
                 esp_log_level_set("*", ESP_LOG_NONE);
+            }else if(data[0] == 's' && data[1] == 'l' && data[2] == 'o' && data[3] == 'g' && data[4] == 'e')
+            {
+                esp_log_level_set("*", ESP_LOG_ERROR);
+            }else if(data[0] == 's' && data[1] == 'l' && data[2] == 'o' && data[3] == 'g' && data[4] == 'w')
+            {
+                esp_log_level_set("*", ESP_LOG_WARN);
+            }else if(data[0] == 's' && data[1] == 'l' && data[2] == 'o' && data[3] == 'g' && data[4] == 'i')
+            {
+                esp_log_level_set("*", ESP_LOG_INFO);
+            }else if(data[0] == 's' && data[1] == 'l' && data[2] == 'o' && data[3] == 'g' && data[4] == 'd')
+            {
+                esp_log_level_set("*", ESP_LOG_DEBUG);
+            }else if(data[0] == 's' && data[1] == 'l' && data[2] == 'o' && data[3] == 'g' && data[4] == 'v')
+            {
+                esp_log_level_set("*", ESP_LOG_VERBOSE);
             }
         }
     } while(1);

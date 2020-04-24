@@ -33,7 +33,7 @@ void usb_hub_task(void* arg)
     uint16_t timer_count = 0;
     Init374Host(); // 初始化USB主机
 
-	ESP_LOGI("ATouch", "Wait Device In\n");
+	ESP_LOGI("ATouch", "Wait Device In");
 
     while(1)
     {
