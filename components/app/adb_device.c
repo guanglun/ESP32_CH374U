@@ -358,7 +358,7 @@ int ADB_RecvFrame(apacket *p)
     case A_CLSE: /* CLOSE(local-id, remote-id, "") */
         if (adb_c_s == ADB_CONNECT_TCPSERVER_WAIT)
         {
-            ESP_LOGI("ATouch", "tcpserver connect fail");
+            ESP_LOGE("ATouch", "tcpserver connect fail");
             adb_c_s = ADB_CONNECT_TCPSERVER_FAIL;
         }
         else if (adb_c_s == ADB_EXIT_SHELL_SUCCESS_WAIT_END)
@@ -380,7 +380,7 @@ int ADB_RecvFrame(apacket *p)
                     ESP_LOGI("ATouch", "package found");
                     adb_c_s = ADB_CHECK_PACKAGE_SUCCESS;
                 }else{
-                    ESP_LOGI("ATouch", "package not found");
+                    ESP_LOGE("ATouch", "package not found");
                     adb_c_s = ADB_CHECK_PACKAGE_FAIL;
                 }
             }
@@ -399,7 +399,7 @@ int ADB_RecvFrame(apacket *p)
                     }
                     adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_TRUE;
                 }else{
-                    ESP_LOGI("ATouch", "package is not running");
+                    ESP_LOGE("ATouch", "package is not running");
                     adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_FALSE;
                 }
             }
@@ -419,7 +419,7 @@ int ADB_RecvFrame(apacket *p)
                     }
                     adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_TRUE2;
                 }else{
-                    ESP_LOGI("ATouch", "package is not running2");
+                    ESP_LOGE("ATouch", "package is not running2");
                     adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_FALSE2;
                 }
             }
@@ -428,10 +428,20 @@ int ADB_RecvFrame(apacket *p)
         {
             if(adb_shell_recv(p->data) != NULL)
             {
-                // if(get_str_count((char *) shell_tmp_str,(char *)PACKAGE_WITH_PATH_STR) == 1)
-                // {
+                if(get_str_count((char *) shell_tmp_str,(char *)"not found") != NULL)
+                {
+                    ESP_LOGE("ATouch", "package start fail");
+                    adb_c_s = ADB_START_PACKAGE_FAIL;
+                }else{
                     ESP_LOGI("ATouch", "package start success");
                     adb_c_s = ADB_START_PACKAGE_SUCCESS;
+                }
+                
+
+                // if(get_str_count((char *) shell_tmp_str,(char *)PACKAGE_WITH_PATH_STR) == 1)
+                // {
+                    // ESP_LOGI("ATouch", "package start success");
+                    // adb_c_s = ADB_START_PACKAGE_SUCCESS;
                 // }else{
                 //     ESP_LOGI("ATouch", "package start fail");
                 //     adb_c_s = ADB_START_PACKAGE_FAIL;
@@ -448,7 +458,20 @@ int ADB_RecvFrame(apacket *p)
             char *ret;
             if(adb_shell_recv(p->data) != NULL)
             {
-                if ((ret = strchr((const char *)shell_tmp_str, ':')) != NULL)
+                // ESP_LOGI("ATouch", "++++TEST++++");
+                // ESP_LOGI("ATouch", "%s",shell_tmp_str);
+                // ESP_LOGI("ATouch", "++++TEST++++");
+
+                //goto shell之后需要使用指定id对话
+                remote_id = p->msg.arg0;
+                local_id = p->msg.arg1;
+
+                if ((ret = strstr((const char *)shell_tmp_str, "999")) != NULL)
+                {
+                    ESP_LOGE("ATouch", "goto shell resize");
+                    adb_c_s = ADB_GOTO_SHELL_RESIZE;
+                }
+                else if ((ret = strchr((const char *)shell_tmp_str, ':')) != NULL)
                 {
                     *ret = '\0';
                     memcpy(shell_end_str, shell_tmp_str, ((uint8_t *)ret - shell_tmp_str + 1));
@@ -457,10 +480,8 @@ int ADB_RecvFrame(apacket *p)
 
                     adb_c_s = ADB_GOTO_SHELL_SUCCESS;
                     ESP_LOGI("ATouch", "goto shell success %s", shell_end_str);
-                }
-                else
-                {
-                    ESP_LOGI("ATouch", "goto shell fail");
+                } else{
+                    ESP_LOGE("ATouch", "goto shell fail");
                     adb_c_s = ADB_GOTO_SHELL_FAIL;
                 }
             }
@@ -503,7 +524,7 @@ int ADB_RecvFrame(apacket *p)
                     ESP_LOGI("ATouch", "cp package success");
                     adb_c_s = ADB_CP_PACKAGE_SUCCESS;
                 }else{
-                    ESP_LOGI("ATouch", "cp package fail");
+                    ESP_LOGE("ATouch", "cp package fail");
                     //此处如果拷贝失败可能是Text file busy文件已经正在被使用。
                     adb_c_s = ADB_CP_PACKAGE_FAIL;
                     //adb_c_s = ADB_CP_PACKAGE_SUCCESS;
@@ -519,11 +540,18 @@ int ADB_RecvFrame(apacket *p)
                     ESP_LOGI("ATouch", "chmod package success");
                     adb_c_s = ADB_CHMOD_PACKAGE_SUCCESS;
                 }else{
-                    ESP_LOGI("ATouch", "chmod package fail");
+                    ESP_LOGE("ATouch", "chmod package fail");
                     adb_c_s = ADB_CHMOD_PACKAGE_FAIL;
                 }
             }
+        }else if (adb_c_s == ADB_NULL_STATUS)
+        {
+            if(adb_shell_recv(p->data) != NULL)
+            {
+
+            }
         }
+        
         send_recv_tcpserver_okay(local_id, remote_id);
         break;
 
@@ -536,6 +564,8 @@ int ADB_RecvFrame(apacket *p)
 
     return 0;
 }
+
+
 
 void ADB_Process(void)
 {
@@ -550,16 +580,18 @@ void ADB_Process(void)
 
     //goto shell result
     case ADB_GOTO_SHELL_SUCCESS: //检测ATouchService
-        // adb_shell_recv_reset();
-        // send_shell(local_id, remote_id, (uint8_t *)CHECK_PACKAGE_STR);
-        // adb_c_s = ADB_CHECK_PACKAGE_WAIT;
         adb_shell_recv_reset();
         send_shell(local_id, remote_id, (uint8_t *)CP_PACKAGE_STR);//不管有没有存在都会复制一次来保证最新
-        adb_c_s = ADB_CP_PACKAGE_WAIT;        
+        adb_c_s = ADB_CP_PACKAGE_WAIT;   
         break;
     case ADB_GOTO_SHELL_FAIL: //进入shell失败后重试
         adb_shell_recv_reset();
         send_just_open_shell(local_id, remote_id);
+        adb_c_s = ADB_GOTO_SHELL_WAIT;    
+        break;
+    case ADB_GOTO_SHELL_RESIZE: //进入shell接收到串口设置
+        adb_shell_recv_reset();
+        send_resize_reply(local_id, remote_id);
         adb_c_s = ADB_GOTO_SHELL_WAIT;    
         break;
 
@@ -640,10 +672,13 @@ void ADB_Process(void)
 
     //run package result (run ATouch)
     case ADB_START_PACKAGE_SUCCESS:
-    case ADB_START_PACKAGE_FAIL:
         adb_shell_recv_reset();
         send_shell(local_id, remote_id, (uint8_t *)CHECK_PACKAGE_ISRUNING_STR);
         adb_c_s = ADB_CHECK_PACKAGE_ISRUNING_WAIT;
+        break;
+    case ADB_START_PACKAGE_FAIL:
+        adb_shell_recv_reset();
+        ESP_LOGE("ATouch","ADB START PACKAGE FAIL,check install app or reboot the phone");
         break;
 
     //kill pid result

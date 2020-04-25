@@ -5,6 +5,8 @@
 
 //#define ADB_LOG
 
+#define ESC "\033"
+
 extern ADB_Connect_Status adb_c_s;
 extern bool is_tcp_send_done;
 extern uint32_t local_id, remote_id;

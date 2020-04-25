@@ -27,13 +27,15 @@ const uint8_t VERSION[3] = {VERSION_MASTER,VERSION_RELEASE,VERSION_DEBUG};
 
 void app_main()
 {
+    esp_log_level_set("*", ESP_LOG_INFO);
+    
     ESP_LOGI("ATouch", "==============================================");
     ESP_LOGI("ATouch", "===   version:%d.%d.%d ===",VERSION[0],VERSION[1],VERSION[2]);
     ESP_LOGI("ATouch", "==============================================");
 
     uart_init();
 
-    esp_log_level_set("*", ESP_LOG_INFO);
+    
     // is_uart_connect = true;
     //esp_log_level_set("*", ESP_LOG_NONE);
 

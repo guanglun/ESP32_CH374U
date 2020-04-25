@@ -71,3 +71,6 @@ APP下载地址：
 `make -j4 flash monitor`
 
 (To exit the serial monitor, type ``Ctrl-]``.)
+
+* BUG解决记录
+2020/4/25：解决一些手机打开ADB后/etc/mkshrc文件调用busybox的resize获取终端串口大小的问题

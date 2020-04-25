@@ -52,6 +52,7 @@ typedef enum
   ADB_GOTO_SHELL_WAIT,
   ADB_GOTO_SHELL_SUCCESS,
   ADB_GOTO_SHELL_FAIL,
+  ADB_GOTO_SHELL_RESIZE,
 
   ADB_CP_PACKAGE_WAIT,
   ADB_CP_PACKAGE_SUCCESS,
@@ -149,5 +150,6 @@ void send_connect_tcpserver(uint32_t local,uint32_t remote,uint8_t *port_buf);
 void send_tcpserver(uint32_t local,uint32_t remote,uint8_t *buf,uint16_t len);
 void send_recv_tcpserver_okay(uint32_t local,uint32_t remote);
 void send_okay(uint32_t local,uint32_t remote);
+void send_resize_reply(uint32_t local,uint32_t remote);
 
 #endif
