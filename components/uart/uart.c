@@ -154,7 +154,7 @@ void uart_init(void)
     //Set UART parameters
     uart_param_config(uart_num, &uart_config);
     //Set UART log level
-    esp_log_level_set("*", ESP_LOG_INFO);
+    //esp_log_level_set("*", ESP_LOG_INFO);
     //Install UART driver, and get the queue.
     uart_driver_install(uart_num, BUF_SIZE * 2, BUF_SIZE * 2, 10, &uart0_queue, 0);
     //Set UART pins,(-1: default pin, no change.)

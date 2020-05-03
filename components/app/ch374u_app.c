@@ -698,80 +698,83 @@ uint8_t AnalyzeHidIntEndp(void) // 从描述符中分析出HID中断端点的地
 
 void PrintfDeviceDescr(PUSB_DEV_DESCR dev_descr)
 {
-    ESP_LOGD("ATouch", "==========DeviceDescr Start==========");
-    ESP_LOGD("ATouch", "bLength:\t\t%02X", dev_descr->bLength);
-    ESP_LOGD("ATouch", "bDescriptorType:\t%02X", dev_descr->bDescriptorType);
-    ESP_LOGD("ATouch", "bcdUSBL:\t\t%02X", dev_descr->bcdUSBL);
-    ESP_LOGD("ATouch", "bcdUSBH:\t\t%02X", dev_descr->bcdUSBH);
-    ESP_LOGD("ATouch", "bDeviceClass:\t\t%02X", dev_descr->bDeviceClass);
-    ESP_LOGD("ATouch", "bDeviceSubClass:\t%02X", dev_descr->bDeviceSubClass);
-    ESP_LOGD("ATouch", "bDeviceProtocol:\t%02X", dev_descr->bDeviceProtocol);
-    ESP_LOGD("ATouch", "bMaxPacketSize0:\t%02X", dev_descr->bMaxPacketSize0);
-    ESP_LOGD("ATouch", "idVendorL:\t\t%02X", dev_descr->idVendorL);
-    ESP_LOGD("ATouch", "idVendorH:\t\t%02X", dev_descr->idVendorH);
-    ESP_LOGD("ATouch", "idProductL:\t\t%02X", dev_descr->idProductL);
-    ESP_LOGD("ATouch", "idProductH:\t\t%02X", dev_descr->idProductH);
-    ESP_LOGD("ATouch", "bcdDeviceL:\t\t%02X", dev_descr->bcdDeviceL);
-    ESP_LOGD("ATouch", "bcdDeviceH:\t\t%02X", dev_descr->bcdDeviceH);
-    ESP_LOGD("ATouch", "iManufacturer:\t\t%02X", dev_descr->iManufacturer);
-    ESP_LOGD("ATouch", "iProduct:\t\t%02X", dev_descr->iProduct);
-    ESP_LOGD("ATouch", "iSerialNumber:\t\t%02X", dev_descr->iSerialNumber);
-    ESP_LOGD("ATouch", "bNumConfigurations:\t%02X", dev_descr->bNumConfigurations);
-    ESP_LOGD("ATouch", "==========DeviceDescr End==========");
+    ESP_LOGI("ATouch", "==========DeviceDescr Start==========");
+    ESP_LOGI("ATouch", "bLength:\t\t%02X", dev_descr->bLength);
+    ESP_LOGI("ATouch", "bDescriptorType:\t%02X", dev_descr->bDescriptorType);
+    ESP_LOGI("ATouch", "bcdUSBL:\t\t%02X", dev_descr->bcdUSBL);
+    ESP_LOGI("ATouch", "bcdUSBH:\t\t%02X", dev_descr->bcdUSBH);
+    ESP_LOGI("ATouch", "bDeviceClass:\t\t%02X", dev_descr->bDeviceClass);
+    ESP_LOGI("ATouch", "bDeviceSubClass:\t%02X", dev_descr->bDeviceSubClass);
+    ESP_LOGI("ATouch", "bDeviceProtocol:\t%02X", dev_descr->bDeviceProtocol);
+    ESP_LOGI("ATouch", "bMaxPacketSize0:\t%02X", dev_descr->bMaxPacketSize0);
+    ESP_LOGI("ATouch", "idVendorL:\t\t%02X", dev_descr->idVendorL);
+    ESP_LOGI("ATouch", "idVendorH:\t\t%02X", dev_descr->idVendorH);
+    ESP_LOGI("ATouch", "idProductL:\t\t%02X", dev_descr->idProductL);
+    ESP_LOGI("ATouch", "idProductH:\t\t%02X", dev_descr->idProductH);
+    ESP_LOGI("ATouch", "bcdDeviceL:\t\t%02X", dev_descr->bcdDeviceL);
+    ESP_LOGI("ATouch", "bcdDeviceH:\t\t%02X", dev_descr->bcdDeviceH);
+    ESP_LOGI("ATouch", "iManufacturer:\t\t%02X", dev_descr->iManufacturer);
+    ESP_LOGI("ATouch", "iProduct:\t\t%02X", dev_descr->iProduct);
+    ESP_LOGI("ATouch", "iSerialNumber:\t\t%02X", dev_descr->iSerialNumber);
+    ESP_LOGI("ATouch", "bNumConfigurations:\t%02X", dev_descr->bNumConfigurations);
+    ESP_LOGI("ATouch", "==========DeviceDescr End==========");
 }
 
 void PrintfConfigDescr(PUSB_CFG_DESCR config_descr)
 {
-
-    ESP_LOGD("ATouch", "bLength:\t\t%02X", config_descr->bLength);
-    ESP_LOGD("ATouch", "bDescriptorType:\t%02X", config_descr->bDescriptorType);
-    ESP_LOGD("ATouch", "wTotalLengthL:\t\t%02X", config_descr->wTotalLengthL);
-    ESP_LOGD("ATouch", "wTotalLengthH:\t\t%02X", config_descr->wTotalLengthH);
-    ESP_LOGD("ATouch", "bNumInterfaces:\t\t%02X", config_descr->bNumInterfaces);
-    ESP_LOGD("ATouch", "bConfigurationValue:\t%02X", config_descr->bConfigurationValue);
-    ESP_LOGD("ATouch", "iConfiguration:\t\t%02X", config_descr->iConfiguration);
-    ESP_LOGD("ATouch", "bmAttributes:\t\t%02X", config_descr->bmAttributes);
-    ESP_LOGD("ATouch", "MaxPower:\t\t%02X", config_descr->MaxPower);
+    ESP_LOGI("ATouch", "==========ConfigDescr Start==========");
+    ESP_LOGI("ATouch", "bLength:\t\t%02X", config_descr->bLength);
+    ESP_LOGI("ATouch", "bDescriptorType:\t%02X", config_descr->bDescriptorType);
+    ESP_LOGI("ATouch", "wTotalLengthL:\t\t%02X", config_descr->wTotalLengthL);
+    ESP_LOGI("ATouch", "wTotalLengthH:\t\t%02X", config_descr->wTotalLengthH);
+    ESP_LOGI("ATouch", "bNumInterfaces:\t\t%02X", config_descr->bNumInterfaces);
+    ESP_LOGI("ATouch", "bConfigurationValue:\t%02X", config_descr->bConfigurationValue);
+    ESP_LOGI("ATouch", "iConfiguration:\t\t%02X", config_descr->iConfiguration);
+    ESP_LOGI("ATouch", "bmAttributes:\t\t%02X", config_descr->bmAttributes);
+    ESP_LOGI("ATouch", "MaxPower:\t\t%02X", config_descr->MaxPower);
+    ESP_LOGI("ATouch", "==========ConfigDescr End==========");
 }
 
 void PrintfItfDescr(PUSB_ITF_DESCR itf_descr)
 {
-
-    ESP_LOGD("ATouch", "\tbLength:\t\t%02X", itf_descr->bLength);
-    ESP_LOGD("ATouch", "\tbDescriptorType:\t%02X", itf_descr->bDescriptorType);
-    ESP_LOGD("ATouch", "\tbInterfaceNumber:\t%02X", itf_descr->bInterfaceNumber);
-    ESP_LOGD("ATouch", "\tbAlternateSetting:\t%02X", itf_descr->bAlternateSetting);
-    ESP_LOGD("ATouch", "\tbNumEndpoints:\t\t%02X", itf_descr->bNumEndpoints);
-    ESP_LOGD("ATouch", "\tbInterfaceClass:\t%02X", itf_descr->bInterfaceClass);
-    ESP_LOGD("ATouch", "\tbInterfaceSubClass:\t%02X", itf_descr->bInterfaceSubClass);
-    ESP_LOGD("ATouch", "\tbInterfaceProtocol:\t%02X", itf_descr->bInterfaceProtocol);
-    ESP_LOGD("ATouch", "\tiInterface:\t\t%02X", itf_descr->iInterface);
+    ESP_LOGI("ATouch", "\t==========ItfDescr Start==========");
+    ESP_LOGI("ATouch", "\tbLength:\t\t%02X", itf_descr->bLength);
+    ESP_LOGI("ATouch", "\tbDescriptorType:\t%02X", itf_descr->bDescriptorType);
+    ESP_LOGI("ATouch", "\tbInterfaceNumber:\t%02X", itf_descr->bInterfaceNumber);
+    ESP_LOGI("ATouch", "\tbAlternateSetting:\t%02X", itf_descr->bAlternateSetting);
+    ESP_LOGI("ATouch", "\tbNumEndpoints:\t\t%02X", itf_descr->bNumEndpoints);
+    ESP_LOGI("ATouch", "\tbInterfaceClass:\t%02X", itf_descr->bInterfaceClass);
+    ESP_LOGI("ATouch", "\tbInterfaceSubClass:\t%02X", itf_descr->bInterfaceSubClass);
+    ESP_LOGI("ATouch", "\tbInterfaceProtocol:\t%02X", itf_descr->bInterfaceProtocol);
+    ESP_LOGI("ATouch", "\tiInterface:\t\t%02X", itf_descr->iInterface);
+    ESP_LOGI("ATouch", "\t==========ItfDescr End==========");
 }
 
 void PrintfHIDDescr(PUSB_HID_DESCR hid_descr)
 {
-    ESP_LOGD("ATouch", "\t==========HIDDescr Start==========");
-    ESP_LOGD("ATouch", "\tbLength:\t\t%02X", hid_descr->bLength);
-    ESP_LOGD("ATouch", "\tbDescriptorType:\t%02X", hid_descr->bDescriptorType);
-    ESP_LOGD("ATouch", "\tbcdHIDL:\t\t%02X", hid_descr->bcdHIDL);
-    ESP_LOGD("ATouch", "\tbcdHIDH:\t\t%02X", hid_descr->bcdHIDH);
-    ESP_LOGD("ATouch", "\tbCountryCode:\t\t%02X", hid_descr->bCountryCode);
-    ESP_LOGD("ATouch", "\tbNumDescriptors:\t%02X", hid_descr->bNumDescriptors);
-    ESP_LOGD("ATouch", "\tbDescriptorType2:\t%02X", hid_descr->bDescriptorType2);
-    ESP_LOGD("ATouch", "\tbDescriptorLengthL:\t%02X", hid_descr->bDescriptorLengthL);
-    ESP_LOGD("ATouch", "\tbDescriptorLengthH:\t%02X", hid_descr->bDescriptorLengthH);
-    ESP_LOGD("ATouch", "\t==========HIDDescr End==========");
+    ESP_LOGI("ATouch", "\t\t==========HIDDescr Start==========");
+    ESP_LOGI("ATouch", "\t\tbLength:\t\t%02X", hid_descr->bLength);
+    ESP_LOGI("ATouch", "\t\tbDescriptorType:\t%02X", hid_descr->bDescriptorType);
+    ESP_LOGI("ATouch", "\t\tbcdHIDL:\t\t%02X", hid_descr->bcdHIDL);
+    ESP_LOGI("ATouch", "\t\tbcdHIDH:\t\t%02X", hid_descr->bcdHIDH);
+    ESP_LOGI("ATouch", "\t\tbCountryCode:\t\t%02X", hid_descr->bCountryCode);
+    ESP_LOGI("ATouch", "\t\tbNumDescriptors:\t%02X", hid_descr->bNumDescriptors);
+    ESP_LOGI("ATouch", "\t\tbDescriptorType2:\t%02X", hid_descr->bDescriptorType2);
+    ESP_LOGI("ATouch", "\t\tbDescriptorLengthL:\t%02X", hid_descr->bDescriptorLengthL);
+    ESP_LOGI("ATouch", "\t\tbDescriptorLengthH:\t%02X", hid_descr->bDescriptorLengthH);
+    ESP_LOGI("ATouch", "\t\t==========HIDDescr End==========");
 }
 void PrintfEndpDescr(PUSB_ENDP_DESCR endp_descr)
 {
-
-    ESP_LOGD("ATouch", "\t\tbLength:\t\t%02X", endp_descr->bLength);
-    ESP_LOGD("ATouch", "\t\tbDescriptorType:\t%02X", endp_descr->bDescriptorType);
-    ESP_LOGD("ATouch", "\t\tbEndpointAddress:\t%02X", endp_descr->bEndpointAddress);
-    ESP_LOGD("ATouch", "\t\tbmAttributes:\t\t%02X", endp_descr->bmAttributes);
-    ESP_LOGD("ATouch", "\t\twMaxPacketSize:\t\t%02X", endp_descr->wMaxPacketSize);
-    ESP_LOGD("ATouch", "\t\twMaxPacketSize1:\t%02X", endp_descr->wMaxPacketSize1);
-    ESP_LOGD("ATouch", "\t\tbInterval:\t\t%02X", endp_descr->bInterval);
+    ESP_LOGI("ATouch", "\t\t\t==========EndpDescr End==========");
+    ESP_LOGI("ATouch", "\t\t\tbLength:\t\t%02X", endp_descr->bLength);
+    ESP_LOGI("ATouch", "\t\t\tbDescriptorType:\t%02X", endp_descr->bDescriptorType);
+    ESP_LOGI("ATouch", "\t\t\tbEndpointAddress:\t%02X", endp_descr->bEndpointAddress);
+    ESP_LOGI("ATouch", "\t\t\tbmAttributes:\t\t%02X", endp_descr->bmAttributes);
+    ESP_LOGI("ATouch", "\t\t\twMaxPacketSize:\t\t%02X", endp_descr->wMaxPacketSize);
+    ESP_LOGI("ATouch", "\t\t\twMaxPacketSize1:\t%02X", endp_descr->wMaxPacketSize1);
+    ESP_LOGI("ATouch", "\t\t\tbInterval:\t\t%02X", endp_descr->bInterval);
+    ESP_LOGI("ATouch", "\t\t\t==========EndpDescr End==========");
 }
 
 uint8_t InitHIDDevice(uint8_t cfg, uint8_t index, uint8_t InterfaceProtocol)

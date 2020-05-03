@@ -141,8 +141,11 @@ void Read374Block( uint8_t mAddr, uint8_t mLen, uint8_t *mBuf )  /* 从指定起
 	{
 	  	*(mBuf + count) = Read374Data();
 	}
-	//ESP_LOGD("ATouch", "\r\nrecv ");
-	//printf_byte(mBuf,mLen);
+	ESP_LOGD("ATouch", "\r\nrecv ");
+	printf_byte(mBuf,mLen);
+
+	printf_byte_no_esp_log(mBuf,mLen);
+	printf("\r\n");
 }
 
 void Write374Block( uint8_t mAddr, uint8_t mLen, uint8_t *mBuf )  /* 向指定起始地址写入数据块 */
