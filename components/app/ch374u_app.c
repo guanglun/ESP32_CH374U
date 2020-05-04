@@ -15,6 +15,7 @@
 #include "usb_hub.h"
 #include "led_hal.h"
 #include "msg_send.h"
+#include "hid_report_descr_parser.h"
 
 #define HUB_DEV_NUM (3)
 // 附加的USB操作状态定义
@@ -39,7 +40,6 @@ uint8_t UsbDevEndpSize = DEFAULT_ENDP0_SIZE; /* USB设备的端点0的最大包�
 
 S_RootHubDev RootHubDev[HUB_DEV_NUM];
 S_DevOnHubPort DevOnHubPort[3][4]; // 假定:不超过三个外部HUB,每个外部HUB不超过4个端口(多了不管)
-
 
 uint8_t CtrlBuf[8];
 uint8_t TempBuf[1024 * 4];
@@ -365,13 +365,17 @@ uint8_t GetConfigDescr(uint8_t *buf) // 获取配置描述符
     return (s);
 }
 
-uint8_t GetReportDescr(uint8_t *buf, uint16_t len_r) // 获取Report描述符
+uint8_t GetReportDescr(uint8_t addr, uint8_t *buf, uint16_t len_r) // 获取Report描述符
 {
     uint8_t s, len = len_r;
 
     memcpy(CtrlBuf, SetupGetRepDescr, sizeof(SetupGetRepDescr));
-    ((PUSB_SETUP_REQ)CtrlBuf)->wLengthL = len;   // 完整配置描述符的总长度
+    ((PUSB_SETUP_REQ)CtrlBuf)->wValueL = 0;
+    ((PUSB_SETUP_REQ)CtrlBuf)->wLengthL = 0x15;//len;   // 完整配置描述符的总长度
+    ((PUSB_SETUP_REQ)CtrlBuf)->wLengthH = 0x01;
+    ((PUSB_SETUP_REQ)CtrlBuf)->bType = 0x81;//addr;     // 完整配置描述符的总长度
     s = HostCtrlTransfer374(CtrlBuf, buf, &len); // 执行控制传输
+    printf_byte_logi(CtrlBuf, 8);
     if (s == USB_INT_SUCCESS)
     {
         if (len < len_r)
@@ -855,11 +859,14 @@ uint8_t GetStringDescr(uint8_t str_index) // 获取设备描述符
 
 void ParseConfigDescr(uint8_t index, uint8_t *config_descr)
 {
+    int ret = 0;
+    bool is_mouse = false;
+    uint16_t report_descr_len = 0;
+
     uint8_t itf_count = 0, endp_count = 0;
     uint8_t *config_descr_buffer = config_descr;
     bool itf_ok_flag = false;
     uint8_t report_descr[255];
-    uint16_t report_descr_len = 0;
 
     PUSB_CFG_DESCR cfg_descr;
     PUSB_ITF_DESCR itf_descr;
@@ -887,23 +894,24 @@ void ParseConfigDescr(uint8_t index, uint8_t *config_descr)
 
         config_descr_buffer += 9;
 
+        is_mouse = false;
+
         if (itf_descr->bInterfaceClass == 0x03)
         {
             PrintfHIDDescr((PUSB_HID_DESCR)config_descr_buffer);
 
-            if(((PUSB_HID_DESCR)config_descr_buffer)->bDescriptorType2 == 0x22)
+            if (((PUSB_HID_DESCR)config_descr_buffer)->bDescriptorType2 == 0x22 &&
+                itf_descr->bInterfaceSubClass == 0x01 &&
+                itf_descr->bInterfaceProtocol == 0x02)
             {
+                is_mouse = true;
                 report_descr_len = (uint16_t)(((PUSB_HID_DESCR)config_descr_buffer)->bDescriptorLengthL | ((((PUSB_HID_DESCR)config_descr_buffer)->bDescriptorLengthH) << 8));
-                GetReportDescr(report_descr, report_descr_len);
-                ESP_LOGI("ATouch", "GetReportDescr %d %02X", report_descr_len, report_descr_len);
-                printf_byte_logi(report_descr, report_descr_len);
-                /*此处未加入HID Report描述符解析 也就是说对HID设备是适配性不好*/
             }
             config_descr_buffer += 9;
         }
 
         if (RootHubDev[index].dev_descr.bDeviceClass == 0x00 && itf_descr->bInterfaceClass == 0x03 && itf_descr->bInterfaceSubClass <= 0x01)
-        {   // 是HID类设备,键盘/鼠标等
+        { // 是HID类设备,键盘/鼠标等
             if (itf_descr->bInterfaceProtocol == 1)
             {
                 RootHubDev[index].DeviceType = DEV_KEYBOARD;
@@ -944,8 +952,26 @@ void ParseConfigDescr(uint8_t index, uint8_t *config_descr)
             }
 
             PrintfEndpDescr(endp_descr);
-            config_descr_buffer += 7;
+            
             ESP_LOGD("ATouch", "\t\t==========EndpDescr End==========");
+
+            if(is_mouse == true)
+            {
+                //do{
+                //    mDelaymS(200);    
+                    if(GetReportDescr(RootHubDev[index].Endp_In,report_descr, report_descr_len)!=USB_INT_SUCCESS)
+                    {
+                        ESP_LOGI("ATouch", "GetReportDescr Error");
+                    }
+                    ESP_LOGI("ATouch", "GetReportDescr Addr %02X %d %02X", RootHubDev[index].Endp_In,report_descr_len, report_descr_len);
+                    printf_byte_logi(report_descr, report_descr_len);
+                    /*此处加入HID Report描述符解析*/
+                    ret = hid_report_descr_parser((uint8_t *)report_descr, report_descr_len);
+                //}while(ret != 0);
+            }
+
+
+            config_descr_buffer += 7;
         }
         itf_ok_flag = false;
         ESP_LOGD("ATouch", "\t==========ItfDescr End==========");
@@ -1138,9 +1164,12 @@ uint8_t QueryADB_Recv(uint8_t index, uint16_t loop_value)
     return 1;
 }
 
+extern struct HID_MOUSE_REPORT_INDEX hid_mouse_rep_index;
+
 void QueryMouse(uint8_t index)
 {
     uint8_t s = 0, len = 0;
+    uint8_t mouse_send_tmp[4];
 
     SetHostUsbAddr(RootHubDev[index].DeviceAddress); // 设置USB主机当前操作的USB设备地址
     SetUsbSpeed(RootHubDev[index].DeviceSpeed);      // 设置当前USB速度
@@ -1156,20 +1185,15 @@ void QueryMouse(uint8_t index)
         {
             Read374Block(RAM_HOST_RECV, len, TempBuf); // 取出数据并打印
 
-            //为兼容thinkpad的无线鼠标
-            if (len > 4)
-            {
-                TempBuf[0] = TempBuf[1];
-                TempBuf[1] = TempBuf[2];
-                TempBuf[2] = TempBuf[4];
-                TempBuf[3] = TempBuf[6];
-                len = 4;
-            }
+            mouse_send_tmp[0] = TempBuf[hid_mouse_rep_index.button];
+            mouse_send_tmp[1] = TempBuf[hid_mouse_rep_index.x];
+            mouse_send_tmp[2] = TempBuf[hid_mouse_rep_index.y];
+            mouse_send_tmp[3] = TempBuf[hid_mouse_rep_index.wheel];
 
-            if (msg_send(TempBuf, len, DEV_MOUSE) != 0)
+            if (msg_send(mouse_send_tmp, 4, DEV_MOUSE) != 0)
             {
                 ESP_LOGD("ATouch", ">>Mouse data: ");
-                printf_byte(TempBuf, len);
+                printf_byte_logi(mouse_send_tmp, 4);
             }
         }
     }
