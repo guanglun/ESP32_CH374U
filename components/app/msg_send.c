@@ -13,6 +13,7 @@
 #include "adb_protocol.h"
 #include "CH374INC.H"
 #include "scmd.h"
+#include "uart.h"
 
 #include "esp_bluetooth.h"
 #include "esp_wifi_station.h"
@@ -59,6 +60,33 @@ uint8_t msg_send(uint8_t *buf, uint16_t len, uint8_t dev_class)
             send_tcpserver(local_id, remote_id, buf_tmp, send_len);
 
             ESP_LOGD("ATouch", "ADB TCP KeyBoard: ");
+            printf_byte(buf_tmp, send_len);
+        }
+        return 0;
+    }else if(is_uart_connect == true)
+    {
+        if (dev_class == 0x00)
+        {
+            send_len = cmd_creat(0x00, buf, len, buf_tmp);
+            uart_send((char *)buf_tmp, send_len);
+
+            ESP_LOGD("ATouch", "UART Status: ");
+            printf_byte(buf_tmp, send_len);
+        }
+        else if (dev_class == DEV_MOUSE)
+        {
+            send_len = cmd_creat(0x02, buf, len, buf_tmp);
+            uart_send((char *)buf_tmp, send_len);
+
+            ESP_LOGD("ATouch", "UART Mouse: ");
+            printf_byte(buf_tmp, send_len);
+        }
+        else if (dev_class == DEV_KEYBOARD)
+        {
+            send_len = cmd_creat(0x03, buf, len, buf_tmp);
+            uart_send((char *)buf_tmp, send_len);
+
+            ESP_LOGD("ATouch", "UART KeyBoard: ");
             printf_byte(buf_tmp, send_len);
         }
         return 0;
