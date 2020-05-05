@@ -167,7 +167,7 @@ int hid_report_descr_parser(uint8_t *buff, uint16_t len)
         }else if ((cmd == 0xA1) && (hid_report[hid_report_count].data.u32 == 0x00))
         {
             is_start++;
-        }else if ((cmd == 0xC0))
+        }else if ((cmd == 0xC0) && (buff[i] == 0xC0))
         {
             is_start = 0;
         }
@@ -246,16 +246,20 @@ int hid_report_descr_parser(uint8_t *buff, uint16_t len)
 
         if(report_type[ii] == 0x09)
         {
-            hid_mouse_rep_index.button = index/8;
+            hid_mouse_rep_index.value[0] = index;
+            hid_mouse_rep_index.button = index;
         }else if(report_type[ii] == 0x30)
         {
-            hid_mouse_rep_index.x = index/8;
+            hid_mouse_rep_index.value[1] = index;
+            hid_mouse_rep_index.x = index;
         }else if(report_type[ii] == 0x31)
         {
-            hid_mouse_rep_index.y = index/8;
+            hid_mouse_rep_index.value[2] = index;
+            hid_mouse_rep_index.y = index;
         }else if(report_type[ii] == 0x38)
         {
-            hid_mouse_rep_index.wheel = index/8;
+            hid_mouse_rep_index.value[3] = index;
+            hid_mouse_rep_index.wheel = index;
         }
 
         index += report_size[ii];

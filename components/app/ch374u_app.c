@@ -35,6 +35,8 @@ uint8_t SetupGetRepDescr[] = {0x81, 0x06, 0x00, 0x22, 0x00, 0x00, 0x74, 0x00};
 uint8_t SetupSetUsbAddr[] = {0x00, 0x05, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00};
 // 设置USB配置
 uint8_t SetupSetUsbConfig[] = {0x00, 0x09, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+// Set IDLE
+uint8_t SetupSetIDLE[] = {0x21, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
 uint8_t UsbDevEndpSize = DEFAULT_ENDP0_SIZE; /* USB设备的端点0的最大包尺寸 */
 
@@ -187,9 +189,11 @@ uint8_t HostCtrlTransfer374(uint8_t *ReqBuf, uint8_t *DatBuf, uint8_t *RetLen) /
 {
     uint8_t s, len, count, total = 0;
     bool tog;
+    ESP_LOGI("ATouch", "HostCtrlTransfer374");
+    printf_byte_logi(ReqBuf,8);
     Write374Block(RAM_HOST_TRAN, 8, ReqBuf);
     Write374Byte(REG_USB_LENGTH, 8);
-    mDelayuS(200);
+    //mDelayuS(200);
     s = WaitHostTransact374(0, DEF_USB_PID_SETUP, false, 200); // SETUP阶段，200mS超时
     if (s == USB_INT_SUCCESS)
     {               // SETUP成功
@@ -365,17 +369,17 @@ uint8_t GetConfigDescr(uint8_t *buf) // 获取配置描述符
     return (s);
 }
 
-uint8_t GetReportDescr(uint8_t addr, uint8_t *buf, uint16_t len_r) // 获取Report描述符
+uint8_t GetReportDescr(uint8_t addr, uint8_t itf_num, uint8_t *buf, uint16_t len_r) // 获取Report描述符
 {
     uint8_t s, len = len_r;
 
     memcpy(CtrlBuf, SetupGetRepDescr, sizeof(SetupGetRepDescr));
-    ((PUSB_SETUP_REQ)CtrlBuf)->wValueL = 0;
-    ((PUSB_SETUP_REQ)CtrlBuf)->wLengthL = 0x15;//len;   // 完整配置描述符的总长度
-    ((PUSB_SETUP_REQ)CtrlBuf)->wLengthH = 0x01;
+    ((PUSB_SETUP_REQ)CtrlBuf)->wIndexL = itf_num;
+    //((PUSB_SETUP_REQ)CtrlBuf)->wValueL = 0;
+    ((PUSB_SETUP_REQ)CtrlBuf)->wLengthL = len;   // 完整配置描述符的总长度
+    //((PUSB_SETUP_REQ)CtrlBuf)->wLengthH = 0x01;
     ((PUSB_SETUP_REQ)CtrlBuf)->bType = 0x81;//addr;     // 完整配置描述符的总长度
     s = HostCtrlTransfer374(CtrlBuf, buf, &len); // 执行控制传输
-    printf_byte_logi(CtrlBuf, 8);
     if (s == USB_INT_SUCCESS)
     {
         if (len < len_r)
@@ -402,6 +406,12 @@ uint8_t SetUsbConfig(uint8_t cfg) // 设置USB设备配置
 {
     memcpy(CtrlBuf, SetupSetUsbConfig, sizeof(SetupSetUsbConfig));
     ((PUSB_SETUP_REQ)CtrlBuf)->wValueL = cfg;          // USB设备配置
+    return (HostCtrlTransfer374(CtrlBuf, NULL, NULL)); // 执行控制传输
+}
+
+uint8_t SetUsbIDLE(void) // 设置USB设备配置
+{
+    memcpy(CtrlBuf, SetupSetIDLE, sizeof(SetupSetIDLE));
     return (HostCtrlTransfer374(CtrlBuf, NULL, NULL)); // 执行控制传输
 }
 
@@ -862,11 +872,12 @@ void ParseConfigDescr(uint8_t index, uint8_t *config_descr)
     int ret = 0;
     bool is_mouse = false;
     uint16_t report_descr_len = 0;
+    uint8_t mouse_itf_num = 0;
 
     uint8_t itf_count = 0, endp_count = 0;
     uint8_t *config_descr_buffer = config_descr;
     bool itf_ok_flag = false;
-    uint8_t report_descr[255];
+    uint8_t report_descr[512];
 
     PUSB_CFG_DESCR cfg_descr;
     PUSB_ITF_DESCR itf_descr;
@@ -905,6 +916,7 @@ void ParseConfigDescr(uint8_t index, uint8_t *config_descr)
                 itf_descr->bInterfaceProtocol == 0x02)
             {
                 is_mouse = true;
+                mouse_itf_num = itf_descr->bInterfaceNumber;
                 report_descr_len = (uint16_t)(((PUSB_HID_DESCR)config_descr_buffer)->bDescriptorLengthL | ((((PUSB_HID_DESCR)config_descr_buffer)->bDescriptorLengthH) << 8));
             }
             config_descr_buffer += 9;
@@ -957,9 +969,12 @@ void ParseConfigDescr(uint8_t index, uint8_t *config_descr)
 
             if(is_mouse == true)
             {
-                //do{
-                //    mDelaymS(200);    
-                    if(GetReportDescr(RootHubDev[index].Endp_In,report_descr, report_descr_len)!=USB_INT_SUCCESS)
+                //do{bInterfaceNumber
+                    SetUsbConfig(RootHubDev[index].cfg_descr.bConfigurationValue);
+                    //mDelaymS(200);    
+                    // SetUsbIDLE();
+                    // mDelaymS(200);    
+                    if(GetReportDescr(RootHubDev[index].Endp_In,mouse_itf_num,report_descr, report_descr_len)!=USB_INT_SUCCESS)
                     {
                         ESP_LOGI("ATouch", "GetReportDescr Error");
                     }
@@ -1169,7 +1184,7 @@ extern struct HID_MOUSE_REPORT_INDEX hid_mouse_rep_index;
 void QueryMouse(uint8_t index)
 {
     uint8_t s = 0, len = 0;
-    uint8_t mouse_send_tmp[4];
+    uint8_t mouse_send_tmp[4],tmp_int,tmp_dec;
 
     SetHostUsbAddr(RootHubDev[index].DeviceAddress); // 设置USB主机当前操作的USB设备地址
     SetUsbSpeed(RootHubDev[index].DeviceSpeed);      // 设置当前USB速度
@@ -1184,16 +1199,29 @@ void QueryMouse(uint8_t index)
         if (len)
         {
             Read374Block(RAM_HOST_RECV, len, TempBuf); // 取出数据并打印
+            //printf_byte_logi(TempBuf, len);
+            for(int i=0;i<4;i++)
+            {
+                tmp_int = hid_mouse_rep_index.value[i] / 8;
+                tmp_dec = hid_mouse_rep_index.value[i] % 8;
+                if(tmp_dec == 0)
+                {
+                    mouse_send_tmp[i] = TempBuf[tmp_int];
+                }else{
+                    mouse_send_tmp[i] = (uint8_t)((TempBuf[tmp_int]>>(8-tmp_dec)) | (TempBuf[tmp_int+1]<<(8-tmp_dec)));
+                }
+            }
 
-            mouse_send_tmp[0] = TempBuf[hid_mouse_rep_index.button];
-            mouse_send_tmp[1] = TempBuf[hid_mouse_rep_index.x];
-            mouse_send_tmp[2] = TempBuf[hid_mouse_rep_index.y];
-            mouse_send_tmp[3] = TempBuf[hid_mouse_rep_index.wheel];
+            
 
+            // mouse_send_tmp[1] = TempBuf[hid_mouse_rep_index.x];
+            // mouse_send_tmp[2] = TempBuf[hid_mouse_rep_index.y];
+            // mouse_send_tmp[3] = TempBuf[hid_mouse_rep_index.wheel];
+            //printf_byte_logi(mouse_send_tmp, 4);
             if (msg_send(mouse_send_tmp, 4, DEV_MOUSE) != 0)
             {
                 ESP_LOGD("ATouch", ">>Mouse data: ");
-                printf_byte_logi(mouse_send_tmp, 4);
+                printf_byte(mouse_send_tmp, 4);
             }
         }
     }
@@ -1220,11 +1248,11 @@ void QueryKeyboard(uint8_t index)
         if (len)
         {
             Read374Block(RAM_HOST_RECV, len, TempBuf); // 取出数据并打印
-
-            if (msg_send(TempBuf, len, DEV_KEYBOARD) != 0)
+            //printf_byte_logi(TempBuf, len);
+            if (msg_send(TempBuf, 8, DEV_KEYBOARD) != 0)
             {
                 ESP_LOGD("ATouch", ">>KeyBoard data: ");
-                printf_byte(TempBuf, len);
+                printf_byte(TempBuf, 8);
             }
         }
     }

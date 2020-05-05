@@ -15,6 +15,7 @@ struct HID_MOUSE_REPORT_INDEX
     uint8_t x;
     uint8_t y;
     uint8_t wheel;
+    uint8_t value[4];
 };
 
 int hid_report_descr_parser(uint8_t *buff,uint16_t len);
