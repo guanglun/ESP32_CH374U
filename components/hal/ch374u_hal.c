@@ -21,11 +21,12 @@
 #define PORT8_7    19
 
 #define PORT8_SEL  (0xFF << PORT8_0)
-#define CH374_CTRL_SEL  ((1ULL<<CH374_WR) | (1ULL<<CH374_RD) | (1ULL<<CH374_A0))
+#define CH374_CTRL_SEL  ((1ULL<<CH374_WR) | (1ULL<<CH374_RD) | (1ULL<<CH374_A0) | (1ULL<<CH374_CS))
 
 #define	CH374_WR 21
 #define	CH374_RD 22
 #define	CH374_A0 23
+#define	CH374_CS 5
 
 #define CH374_WR_HIGH()     GPIO.out_w1ts = (1 << CH374_WR);
 #define CH374_WR_LOW()      GPIO.out_w1tc = (1 << CH374_WR);
@@ -33,6 +34,8 @@
 #define CH374_RD_LOW()      GPIO.out_w1tc = (1 << CH374_RD);
 #define CH374_A0_HIGH()     GPIO.out_w1ts = (1 << CH374_A0);
 #define CH374_A0_LOW()      GPIO.out_w1tc = (1 << CH374_A0);
+#define CH374_CS_HIGH()     GPIO.out_w1ts = (1 << CH374_CS);
+#define CH374_CS_LOW()      GPIO.out_w1tc = (1 << CH374_CS);
 
 #define	CH374_DATA_DAT_OUT(d)	{GPIO.out_w1tc = ((0xFF) << PORT8_0); GPIO.out_w1ts = (d << PORT8_0); }	
 #define	CH374_DATA_DAT_IN()	    ( (GPIO.in >> PORT8_0) )		
@@ -58,10 +61,11 @@ void CH374_PORT_INIT()
 	io_conf.pull_up_en = 0;
     gpio_config(&io_conf);
 
+	CH374_CS_LOW();
 	CH374_WR_HIGH();
 	CH374_RD_HIGH();
 	CH374_A0_LOW();
-	CH374_DATA_DIR_IN( ); 
+	CH374_DATA_DIR_IN(); 
 }
 
 void Write374Index( uint8_t mIndex ) 
